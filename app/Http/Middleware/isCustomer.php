@@ -1,0 +1,34 @@
+<?php
+
+namespace App\Http\Middleware;
+
+use Closure;
+use Illuminate\Http\Request;
+
+class isCustomer
+{
+    /**
+     * Handle an incoming request.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \Closure(\Illuminate\Http\Request): (\Illuminate\Http\Response|\Illuminate\Http\RedirectResponse)  $next
+     * @return \Illuminate\Http\Response|\Illuminate\Http\RedirectResponse
+     */
+    public function handle(Request $request, Closure $next)
+    {
+
+        if (auth()->user()->role->id == 99)
+        {
+            if ($request->route()->uri == 'customer/search')
+            {
+                return redirect('/' . auth()->user()->customer->slug);
+            }
+            if ($request->route()->customer->id != auth()->user()->customer_id)
+            {
+                abort('403');
+            }
+        }
+
+        return $next($request);
+    }
+}

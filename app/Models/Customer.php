@@ -1,0 +1,55 @@
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+
+
+class Customer extends Model
+{
+    use HasFactory;
+
+    public function getRouteKeyName()
+    {
+        return 'slug';
+    }
+
+    public function networks()
+    {
+        return $this->hasMany(Network::class);
+    }
+
+    public function servers()
+    {
+        return $this->hasMany(Server::class);
+    }
+
+    public function vms()
+    {
+        return $this->hasMany(VM::class);
+    }
+
+    public function adusers()
+    {
+        return $this->hasMany(ADUser::class);
+    }
+
+    public function adgroups()
+    {
+        return $this->hasMany(ADGroup::class);
+    }
+
+    public function files()
+    {
+        return $this->hasMany(File::class);
+    }
+
+    public function loginwebsites()
+    {
+        return $this->hasMany(LoginWebsite::class);
+    }
+
+
+
+}
