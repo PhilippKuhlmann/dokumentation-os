@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('servers', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('customer_id');
+            $table->foreignId('customer_id')->constrained('customers')->onDelete('cascade');
             $table->foreignId('server_operating_system_id')->nullable();
             $table->string('name')->nullable();
             $table->string('manufacturer')->nullable();
@@ -28,6 +28,7 @@ return new class extends Migration
             $table->string('bmcPassword')->nullable();
             $table->string('services')->nullable();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

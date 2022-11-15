@@ -27,6 +27,7 @@ return new class extends Migration
             $table->string('dhcpStart')->nullable();
             $table->string('dhcpEnd')->nullable();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

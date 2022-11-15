@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('extension');
             $table->string('file_path');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

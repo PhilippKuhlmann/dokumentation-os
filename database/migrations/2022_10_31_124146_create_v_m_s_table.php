@@ -22,6 +22,7 @@ return new class extends Migration
             $table->string('ip2')->nullable();
             $table->string('services')->nullable();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

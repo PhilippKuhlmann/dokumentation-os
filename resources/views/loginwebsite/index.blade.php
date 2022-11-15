@@ -17,7 +17,7 @@
                             $loginwebsite->name,
                             $loginwebsite->username,
                             $loginwebsite->password,
-                            $loginwebsite->url,
+                            'url' => $loginwebsite->url,
                         ]"
 
                         editUrl="{{ route('loginwebsite.edit', [$customer, $loginwebsite]) }}"
