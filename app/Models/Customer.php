@@ -65,6 +65,11 @@ class Customer extends Model
         return $this->hasMany(Mailbox::class);
     }
 
+    public function wifis()
+    {
+        return $this->hasMany(Wifi::class);
+    }
+
 
 
 }

@@ -95,6 +95,10 @@ class DatabaseSeeder extends Seeder
             'customer_id' => $customer->id,
         ]);
 
+        \App\Models\Wifi::factory(4)->create([
+            'customer_id' => $customer->id,
+        ]);
+
 
         $customer = \App\Models\Customer::factory()->create([
             'name' => 'Kuhlmann',

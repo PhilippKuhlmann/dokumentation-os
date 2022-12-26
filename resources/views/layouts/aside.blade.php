@@ -18,6 +18,13 @@
                 Netzwerke
             </x-aside.link>
 
+            <x-aside.link href="{{ route('wifi.index', $customer) }}" activeUrl="{{ request()->routeIs('wifi.*') }}">
+                <x-slot name="icon">
+                    <x-svg.wifi class="w-6 h-6" />
+                </x-slot>
+                WLAN
+            </x-aside.link>
+
             <x-aside.heading name="Server" />
 
             <x-aside.link href="{{ route('server.index', $customer) }}" activeUrl="{{ request()->routeIs('server.*') }}">
