@@ -1,6 +1,5 @@
 <x-app-layout :$customer>
 
-    <x-sitetopmenu />
 
     <div class="p-3">
         <div class="w-full p-3 rounded-md dark:text-gray-100 bg-white dark:bg-gray-800">
@@ -9,10 +8,10 @@
 
 
 
-                <div class="flex flex-row gap-3">
-                    <input type="file" name="file" />
-                    <x-inputs.field name="name" placeholder="Dateiname" />
-                    <x-inputs.button label="Hochladen" />
+                <div class="flex flex-row gap-3 p-3 bg-gray-900">
+                    <x-input.file id="file" name="file" class="w-96" />
+                    <x-input.field name="name" placeholder="Dateiname" />
+                    <x-input.button label="Hochladen" />
                 </div>
             </form>
         </div>
@@ -21,7 +20,7 @@
 
         <div class="flex flex-wrap mt-8 gap-3">
             @foreach ($customer->files as $file)
-                <div class="w-48 rounded-md shadow-md dark:text-gray-100  bg-white dark:bg-gray-800">
+                <div class="w-48 rounded-md shadow-md dark:text-gray-100  bg-white dark:bg-gray-900">
                     <div class="text-right pr-1">
                         <form method="POST" action="/{{ $customer->slug }}/file/{{ $file->id }}">
                             @csrf

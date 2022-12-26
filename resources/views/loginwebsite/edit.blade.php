@@ -2,7 +2,7 @@
 
     <div class="w-full p-3">
 
-        <div class="flex flex-col w-fit rounded-md shadow-md bg-white dark:bg-gray-800">
+        <div class="flex flex-col w-fit rounded-md shadow-md bg-white dark:bg-gray-900">
             <div class="w-full text-2xl text-center p-3 dark:text-gray-100">
                 Edit Webseiten Login
             </div>
@@ -11,17 +11,17 @@
                 @method('PATCH')
 
                 <div class="flex flex-row gap-3 mb-3">
-                    <x-inputs.field name="name" placeholder="Name" value="{{ $loginwebsite->name }}" autofocus/>
+                    <x-input.field name="name" placeholder="Name" value="{{ $loginwebsite->name }}" autofocus/>
                 </div>
                 <div class="flex flex-row gap-3 mb-3">
-                    <x-inputs.field name="username" placeholder="Benutzername" value="{{ $loginwebsite->username }}" />
-                    <x-inputs.field name="password" placeholder="Passwort" value="{{ $loginwebsite->password }}"/>
+                    <x-input.field name="username" placeholder="Benutzername" value="{{ $loginwebsite->username }}" />
+                    <x-input.field name="password" placeholder="Passwort" value="{{ $loginwebsite->password }}"/>
                 </div>
                 <div class="flex flex-row gap-3 mb-3">
-                    <x-inputs.field name="url" placeholder="URL" value="{{ $loginwebsite->url }}" />
+                    <x-input.field name="url" placeholder="URL" value="{{ $loginwebsite->url }}" />
                 </div>
                 <div class="flex flex-row gap-3">
-                    <x-inputs.button label="Ändern" />
+                    <x-input.button label="Ändern" />
                 </div>
             </form>
         </div>

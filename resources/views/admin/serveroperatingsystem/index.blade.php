@@ -13,8 +13,8 @@
             <h1>Server Betriebsystem hinzufügen</h1>
         <form method="POST" action="/admin/create/serveroperatingsystem">
             @csrf
-            <x-inputs.field name="name" placeholder="Name" />
-            <x-inputs.button label="Hinzufügen" />
+            <x-input.field name="name" placeholder="Name" />
+            <x-input.button label="Hinzufügen" />
         </form>
         </div>
     </div>

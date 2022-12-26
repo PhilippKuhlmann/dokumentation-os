@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Website>
  */
-class WebsiteFactory extends Factory
+class LoginWebsiteFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -17,7 +17,10 @@ class WebsiteFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'name' => fake()->domainWord(),
+            'username' => fake()->userName(),
+            'password' => fake()->password(),
+            'url' => 'https://example.com',
         ];
     }
 }

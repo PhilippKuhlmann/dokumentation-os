@@ -50,6 +50,16 @@ class Customer extends Model
         return $this->hasMany(LoginWebsite::class);
     }
 
+    public function phonesystems()
+    {
+        return $this->hasMany(PhoneSystem::class);
+    }
+
+    public function phones()
+    {
+        return $this->hasMany(Phone::class);
+    }
+
 
 
 }

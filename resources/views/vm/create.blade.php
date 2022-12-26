@@ -2,7 +2,7 @@
 
     <div class="w-full p-3">
 
-        <div class="flex flex-col w-fit rounded-md shadow-md bg-white dark:bg-gray-800">
+        <div class="flex flex-col w-fit rounded-md shadow-md bg-white dark:bg-gray-900">
             <div class="w-full text-2xl text-center p-3 dark:text-gray-100">
                 Neue VM
             </div>
@@ -10,25 +10,25 @@
                 @csrf
 
                 <div class="flex flex-row gap-3 mb-3">
-                    <x-inputs.field type="name" name="name" placeholder="Name" autofocus/>
+                    <x-input.field type="name" name="name" placeholder="Name" autofocus/>
                 </div>
                 <div class="flex flex-row gap-3 mb-3">
-                    <x-inputs.field name="ip1" placeholder="IP 1" />
-                    <x-inputs.field name="ip2" placeholder="IP 2" />
+                    <x-input.field name="ip1" placeholder="IP 1" />
+                    <x-input.field name="ip2" placeholder="IP 2" />
                 </div>
                 <div class="flex flex-col gap-3 mb-3">
-                    <x-inputs.select name="server_operating_system_id">
+                    <x-input.select name="server_operating_system_id">
                         @foreach ($serverOperatingSystems as $os)
                             <option value="{{ $os->id }}">{{ $os->name }}</option>
                         @endforeach
-                    </x-inputs.select>
+                    </x-input.select>
                 </div>
                 <div class="flex flex-col gap-3 mb-3">
                     <label for="services" class="text-white">Dienste Bitte mit komma getrennt angeben</label>
-                    <x-inputs.field id="services" name="services" placeholder="Dienste" />
+                    <x-input.field id="services" name="services" placeholder="Dienste" />
                 </div>
                 <div class="flex flex-row gap-3">
-                    <x-inputs.button label="Hinzufügen" />
+                    <x-input.button label="Hinzufügen" />
                 </div>
             </form>
         </div>

@@ -2,7 +2,7 @@
 
     <div class="w-full p-3">
 
-        <div class="flex flex-col w-fit rounded-md shadow-md bg-white dark:bg-gray-800">
+        <div class="flex flex-col w-fit rounded-md shadow-md bg-white dark:bg-gray-900">
             <div class="w-full text-2xl text-center p-3 dark:text-gray-100">
                 Neue Webseiten Login
             </div>
@@ -10,17 +10,17 @@
                 @csrf
 
                 <div class="flex flex-row gap-3 mb-3">
-                    <x-inputs.field name="name" placeholder="Name" autofocus/>
+                    <x-input.field name="name" placeholder="Name" autofocus/>
                 </div>
                 <div class="flex flex-row gap-3 mb-3">
-                    <x-inputs.field name="username" placeholder="Benutzername" />
-                    <x-inputs.field name="password" placeholder="Passwort"/>
+                    <x-input.field name="username" placeholder="Benutzername" />
+                    <x-input.field name="password" placeholder="Passwort"/>
                 </div>
                 <div class="flex flex-row gap-3 mb-3">
-                    <x-inputs.field name="url" placeholder="URL" />
+                    <x-input.field name="url" placeholder="URL" />
                 </div>
                 <div class="flex flex-row gap-3">
-                    <x-inputs.button label="Hinzufügen" />
+                    <x-input.button label="Hinzufügen" />
                 </div>
             </form>
         </div>

@@ -4,7 +4,7 @@
 <button
     type="{{ $type }}"
     {{ $attributes->merge([
-        'class' => 'bg-blue-700 py-2 px-4 rounded-md text-white hover:bg-blue-600 focus:bg-blue-600'
+        'class' => 'bg-blue-700 py-2 px-8 rounded-sm text-white text-sm hover:bg-blue-600 focus:bg-blue-600'
     ]) }}
     >
         {{ $label }}

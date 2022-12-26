@@ -11,15 +11,15 @@
                 @method('PATCH')
 
                 <div class="flex flex-row gap-3 mb-3">
-                    <x-inputs.field name="firstName" placeholder="Vorname" value="{{ $aduser->firstName }}" autofocus/>
-                    <x-inputs.field name="lastName" placeholder="Nachname" value="{{ $aduser->lastName }}" />
+                    <x-input.field name="firstName" placeholder="Vorname" value="{{ $aduser->firstName }}" autofocus/>
+                    <x-input.field name="lastName" placeholder="Nachname" value="{{ $aduser->lastName }}" />
                 </div>
                 <div class="flex flex-row gap-3 mb-3">
-                    <x-inputs.field name="username" placeholder="Benutzername" value="{{ $aduser->username }}" />
-                    <x-inputs.field name="password" placeholder="Passwort" value="{{ $aduser->password }}"/>
+                    <x-input.field name="username" placeholder="Benutzername" value="{{ $aduser->username }}" />
+                    <x-input.field name="password" placeholder="Passwort" value="{{ $aduser->password }}"/>
                 </div>
                 <div class="flex flex-row gap-3">
-                    <x-inputs.button label="Ändern" />
+                    <x-input.button label="Ändern" />
                 </div>
             </form>
         </div>

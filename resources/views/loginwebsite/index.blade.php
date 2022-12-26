@@ -1,7 +1,7 @@
 <x-app-layout :$customer>
 
     <x-sitetopmenu>
-        <x-inputs.linkbutton label="Neu" link="{{ route('loginwebsite.create', [$customer]) }}" />
+        <x-input.linkbutton label="Neu" link="{{ route('loginwebsite.create', [$customer]) }}" />
     </x-sitetopmenu>
 
     <div class="m-3">
@@ -16,7 +16,7 @@
                         :values="[
                             $loginwebsite->name,
                             $loginwebsite->username,
-                            $loginwebsite->password,
+                            'password' => $loginwebsite->password,
                             'url' => $loginwebsite->url,
                         ]"
 

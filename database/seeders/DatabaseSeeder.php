@@ -67,15 +67,19 @@ class DatabaseSeeder extends Seeder
             'customer_id' => $customer->id,
         ]);
 
-        \App\Models\ADGroup::factory(10)->create([
+        \App\Models\ADGroup::factory(5)->create([
             'customer_id' => $customer->id,
         ]);
 
-        \App\Models\Server::factory(5)->create([
+        \App\Models\Server::factory(3)->create([
             'customer_id' => $customer->id,
         ]);
 
-        \App\Models\VM::factory(15)->create([
+        \App\Models\VM::factory(5)->create([
+            'customer_id' => $customer->id,
+        ]);
+
+        \App\Models\LoginWebsite::factory(5)->create([
             'customer_id' => $customer->id,
         ]);
 

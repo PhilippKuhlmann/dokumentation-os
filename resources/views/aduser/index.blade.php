@@ -1,7 +1,7 @@
 <x-app-layout :$customer>
 
     <x-sitetopmenu>
-        <x-inputs.linkbutton label="Neu" link="/{{ Request::path() }}/create" />
+        <x-input.linkbutton label="Neu" link="/{{ Request::path() }}/create" />
     </x-sitetopmenu>
 
     <div class="m-3">
@@ -17,7 +17,7 @@
                             $aduser->firstName,
                             $aduser->lastName,
                             $aduser->username,
-                            $aduser->password,
+                            'password' => $aduser->password,
                         ]"
 
                         editUrl="/{{ Request::path() }}/{{ $aduser->id }}/edit"

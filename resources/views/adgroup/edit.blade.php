@@ -11,13 +11,13 @@
                 @method('PATCH')
 
                 <div class="flex flex-row gap-3 mb-3">
-                    <x-inputs.field name="name" placeholder="Name" class="w-96" value="{{ $adgroup->name }}" autofocus/>
+                    <x-input.field name="name" placeholder="Name" class="w-96" value="{{ $adgroup->name }}" autofocus/>
                 </div>
                 <div class="flex flex-row gap-3 mb-3">
-                    <x-inputs.field name="description" placeholder="Beschreibung" class="w-96" value="{{ $adgroup->description }}" />
+                    <x-input.field name="description" placeholder="Beschreibung" class="w-96" value="{{ $adgroup->description }}" />
                 </div>
                 <div class="flex flex-row gap-3">
-                    <x-inputs.button label="Ändern" />
+                    <x-input.button label="Ändern" />
                 </div>
             </form>
         </div>

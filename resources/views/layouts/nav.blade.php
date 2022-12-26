@@ -1,15 +1,12 @@
-<nav class="fixed flex items-center bg-white h-16 w-full justify-between dark:bg-gray-800 dark:text-gray-100">
-    <div class="my-auto">
-        <a href="/" class="flex items-center w-64 justify-center">
-            <x-svg.logo class="w-10 h-10" />
-            <h1 class="ml-3 text-lg">
-                {{ config('app.name') }}
-            </h1>
-        </a>
+<div class="fixed w-full flex items-center justify-between h-14 text-white z-10 bg-blue-800 dark:bg-gray-900">
+
+    <div class="flex items-center justify-start md:justify-center w-14 md:w-64 h-14">
+        <x-svg.logo class="h-8 w-8 fill-gray-100" />
+        <span class="hidden md:block ml-4">{{ config('app.name') }}</span>
     </div>
 
     @cannot('isCustomer')
-        <x-inputs.customersearch class="w-96 hidden md:block" value="{{ $customer->name }}" />
+        <x-input.customersearch class="w-96 hidden md:block" value="{{ $customer->name }}" />
     @endcannot
 
 
@@ -26,7 +23,7 @@
 
         <!-- Dropdown menu -->
         <div id="userDropdown"
-            class="hidden z-10 w-44 bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700 dark:divide-gray-600"
+            class="hidden z-50 w-44 bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700 dark:divide-gray-600"
             style="position: absolute; inset: 0px auto auto 0px; margin: 0px; transform: translate(0px, 438px);"
             data-popper-reference-hidden="" data-popper-escaped="" data-popper-placement="bottom-start">
             <div class="py-3 px-4 text-sm text-gray-900 dark:text-white">
@@ -42,4 +39,9 @@
             </div>
         </div>
     </div>
-</nav>
+</div>
+
+
+
+
+

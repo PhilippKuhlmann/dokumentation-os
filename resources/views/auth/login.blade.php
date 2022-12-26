@@ -1,37 +1,37 @@
-<x-empty-layout>
-    <div class="flex h-screen justify-center items-center">
-        <div class=" w-full sm:w-96 sm:rounded-xl sm:shadow-2xl p-5 bg-white dark:bg-gray-800">
-            <x-svg.logo class="w-32 h-32 mx-auto" />
-            <h1 class="mt-5 text-2xl text-center dark:text-gray-100">
-                {{ config('app.name') }}
-            </h1>
-            <div class="text-center">
-                <form method="POST" action="{{ route('login') }}" >
-                    @csrf
+<x-guest-layout>
 
-                    <x-inputs.field
-                        name="username"
-                        placeholder="Benutzername"
-                        value="{{ old('username') }}"
-                        class="w-full mt-5"
-                        required
-                        autofocus
-                    />
+    <div class="min-h-screen flex flex-col sm:justify-center items-center">
+        <div>
+            <x-svg.logo class="w-24 h-24 p-2 rounded-xl fill-gray-100 bg-blue-600" />
+        </div>
+        <div class="mt-3 tracking-wide text-2xl font-semibold">
+            {{ config('app.name') }}
+        </div>
+        <div class="mt-6 w-full sm:max-w-md">
+            <form method="POST" action="{{ route('login') }}">
+                @csrf
 
-                    <x-inputs.field
-                        type="password"
-                        name="password"
-                        placeholder="Passwort"
-                        class="w-full mt-5"
-                        required
-                        autocomplete="current-password"
-                    />
+                <div>
+                    <x-input.label for="username" value="Benutzername" />
+                    <x-input.field id="username" name="username" class="mt-1 w-full" value="{{ old('username') }}" required autofocus />
+                </div>
 
-                    <x-input-error :messages="$errors->get('username')" class="mt-3" />
+                <div class="mt-4">
+                    <x-input.label for="password" value="Passwort" />
+                    <x-input.field id="password" type="password" name="password" class="mt-1 w-full" required />
+                </div>
 
-                    <x-inputs.button label="Login" class="mt-5 px-10" />
-                </form>
-            </div>
+                <div class="mt-4">
+                    <x-input.checkbox value="Remember Me" name="remember" for="remember_me" />
+                </div>
+
+                <div class="mt-4 flex items-center justify-end">
+                    <x-input.button label="Anmelden" />
+                </div>
+
+
+            </form>
         </div>
     </div>
-</x-empty-layout>
+
+</x-guest-layout>

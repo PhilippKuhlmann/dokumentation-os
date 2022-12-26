@@ -11,6 +11,8 @@ use App\Http\Controllers\FileController;
 use App\Http\Controllers\ServerOperatingSystemController;
 use App\Http\Controllers\VMController;
 use App\Http\Controllers\LoginWebsiteController;
+use App\Http\Controllers\PhoneController;
+use App\Http\Controllers\PhoneSystemController;
 
 /*
 |--------------------------------------------------------------------------
@@ -56,6 +58,8 @@ Route::middleware(['auth', 'isCustomer'])->group(function () {
             Route::resource('aduser', ADUserController::class)->except(['show']);
             Route::resource('adgroup', ADGroupController::class)->except(['show']);
             Route::resource('loginwebsite', LoginWebsiteController::class)->except(['show']);
+            Route::resource('phoneSystem', PhoneSystemController::class)->except(['show']);
+            Route::resource('phone', PhoneController::class)->except(['show']);
 
             // File
             Route::resource('file', FileController::class)->only(['index', 'store', 'destroy']);

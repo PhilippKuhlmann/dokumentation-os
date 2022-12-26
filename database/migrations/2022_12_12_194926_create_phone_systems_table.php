@@ -1,0 +1,42 @@
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+return new class extends Migration
+{
+    /**
+     * Run the migrations.
+     *
+     * @return void
+     */
+    public function up()
+    {
+        Schema::create('phone_systems', function (Blueprint $table) {
+            $table->id();
+            $table->foreignId('customer_id');
+            $table->string('ip1')->nullable();
+            $table->string('ip2')->nullable();
+            $table->string('ip3')->nullable();
+            $table->string('port')->nullable();
+            $table->string('username')->nullable();
+            $table->string('password')->nullable();
+            $table->string('manufacturer')->nullable();
+            $table->string('type')->nullable();
+            $table->string('model')->nullable();
+            $table->string('serialNumber')->nullable();
+            $table->timestamps();
+        });
+    }
+
+    /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
+    public function down()
+    {
+        Schema::dropIfExists('phone_systems');
+    }
+};
