@@ -39,20 +39,4 @@
         </x-card>
     @endforeach
 
-
-<!--
-IP-Adresse
-Port
-Benutzername
-Passwort
-
-Hersteller
-Modell
-MAC
-SNr
-
-Nebenstelle
-
--->
-
 </x-app-layout>

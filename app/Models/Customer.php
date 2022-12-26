@@ -60,6 +60,11 @@ class Customer extends Model
         return $this->hasMany(Phone::class);
     }
 
+    public function mailboxes()
+    {
+        return $this->hasMany(Mailbox::class);
+    }
+
 
 
 }

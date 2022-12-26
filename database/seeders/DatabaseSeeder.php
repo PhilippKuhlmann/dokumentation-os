@@ -83,6 +83,18 @@ class DatabaseSeeder extends Seeder
             'customer_id' => $customer->id,
         ]);
 
+        \App\Models\PhoneSystem::factory(3)->create([
+            'customer_id' => $customer->id,
+        ]);
+
+        \App\Models\Phone::factory(20)->create([
+            'customer_id' => $customer->id,
+        ]);
+
+        \App\Models\Mailbox::factory(10)->create([
+            'customer_id' => $customer->id,
+        ]);
+
 
         $customer = \App\Models\Customer::factory()->create([
             'name' => 'Kuhlmann',
@@ -102,6 +114,7 @@ class DatabaseSeeder extends Seeder
 
         $this->call([
             ServerOperatingSystemsSeeder::class,
+            MailboxProvidorsSeeder::class,
         ]);
     }
 }

@@ -17,7 +17,13 @@ class PhoneSystemFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'manufacturer' => fake()->randomElement(['reventix', '3cx', 'Panasonic']),
+            'model' => fake()->ean8(),
+            'serialNumber' => fake()->ean13(),
+            'ip1' => fake()->localIpv4(),
+            'port' => '443',
+            'username' => fake()->userName(),
+            'password' => fake()->password(),
         ];
     }
 }

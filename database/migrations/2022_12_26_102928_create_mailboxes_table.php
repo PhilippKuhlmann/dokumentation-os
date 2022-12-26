@@ -13,19 +13,14 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('phone_systems', function (Blueprint $table) {
+        Schema::create('mailboxes', function (Blueprint $table) {
             $table->id();
             $table->foreignId('customer_id')->constrained('customers')->onDelete('cascade');
-            $table->string('ip1')->nullable();
-            $table->string('ip2')->nullable();
-            $table->string('ip3')->nullable();
-            $table->string('port')->nullable();
+            $table->foreignId('mailbox_provider_id')->nullable();
+            $table->string('name')->nullable();
+            $table->string('mailAdress')->nullable();
             $table->string('username')->nullable();
             $table->string('password')->nullable();
-            $table->string('manufacturer')->nullable();
-            $table->string('type')->nullable();
-            $table->string('model')->nullable();
-            $table->string('serialNumber')->nullable();
             $table->timestamps();
         });
     }
@@ -37,6 +32,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('phone_systems');
+        Schema::dropIfExists('mailboxes');
     }
 };

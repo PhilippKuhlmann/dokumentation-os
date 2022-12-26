@@ -84,6 +84,15 @@
                 Webseiten
             </x-aside.link>
 
+            <x-aside.heading name="E-Mail" />
+
+            <x-aside.link href="{{ route('mailbox.index', $customer) }}" activeUrl="{{ request()->routeIs('mailbox.*') }}">
+                <x-slot name="icon">
+                    <x-svg.mail class="w-6 h-6" />
+                </x-slot>
+                E-Mail Postfächer
+            </x-aside.link>
+
         </ul>
         <p class="mb-14 px-5 py-3 hidden md:block text-center text-xs">Copyright @2022 by Philipp</p>
     </div>
