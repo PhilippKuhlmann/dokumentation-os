@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Http\Requests\VMRequest;
 use App\Models\Customer;
 use App\Models\ServerOperatingSystem;
 use App\Models\VM;
-use Illuminate\Support\Arr;
 
 class VMController extends Controller
 {
@@ -26,23 +25,11 @@ class VMController extends Controller
         ]);
     }
 
-    public function store(Customer $customer, Request $request)
+    public function store(Customer $customer, VMRequest $request)
     {
+        $customer->vms()->create($request->validated());
 
-        $request = Arr::set($request, 'services', explode(',', $request->services));
-
-        $validated = $request->validate([
-            'name' => [],
-            'ip1' => [],
-            'ip2' => [],
-            'services.*' => [],
-            'server_operating_system_id' => []
-        ]);
-
-
-        $customer->vms()->create($validated);
-
-        return redirect('/' . $customer->slug . '/vm');
+        return redirect(route('vm.index', $customer));
     }
 
     public function edit(Customer $customer, VM $vm)
@@ -54,27 +41,17 @@ class VMController extends Controller
         ]);
     }
 
-    public function update(Customer $customer, VM $vm, Request $request)
+    public function update(Customer $customer, VM $vm, VMRequest $request)
     {
-        $request = Arr::set($request, 'services', explode(',', $request->services));
+        $vm->update($request->validated());
 
-        $validated = $request->validate([
-            'name' => [],
-            'ip1' => [],
-            'ip2' => [],
-            'services.*' => [],
-            'server_operating_system_id' => []
-        ]);
-
-        $vm->update($validated);
-
-        return redirect('/' . $customer->slug . '/vm' . '/');
+        return redirect(route('vm.index', $customer));
     }
 
     public function destroy(Customer $customer, VM $vm)
     {
         $vm->delete();
 
-        return redirect('/' . $customer->slug . '/vm');
+        return redirect(route('vm.index', $customer));
     }
 }

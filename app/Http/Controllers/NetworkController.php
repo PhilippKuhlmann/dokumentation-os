@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Http\Requests\NetworkRequest;
 use App\Models\Customer;
 use App\Models\Network;
 
@@ -31,22 +31,9 @@ class NetworkController extends Controller
         ]);
     }
 
-    public function store(Customer $customer, Request $request)
+    public function store(Customer $customer, NetworkRequest $request)
     {
-        $validated = $request->validate([
-            'vlanId' => [],
-            'description' => [],
-            'network' => ['max:15'],
-            'subnetmask' => ['max:15'],
-            'cidr' => ['max:3'],
-            'gateway' => ['max:15'],
-            'dns1' => ['max:15'],
-            'dns2' => ['max:15'],
-            'dhcpStart' => ['max:3'],
-            'dhcpEnd' => ['max:3'],
-        ]);
-
-        $customer->networks()->create($validated);
+        $customer->networks()->create($request->validated());
 
         return redirect('/' . $customer->slug . '/network');
     }
@@ -59,22 +46,9 @@ class NetworkController extends Controller
         ]);
     }
 
-    public function update(Customer $customer, Network $network, Request $request)
+    public function update(Customer $customer, Network $network, NetworkRequest $request)
     {
-        $validated = $request->validate([
-            'vlanId' => [],
-            'description' => [],
-            'network' => ['max:15'],
-            'subnetmask' => ['max:15'],
-            'cidr' => ['max:3'],
-            'gateway' => ['max:15'],
-            'dns1' => ['max:15'],
-            'dns2' => ['max:15'],
-            'dhcpStart' => ['max:3'],
-            'dhcpEnd' => ['max:3'],
-        ]);
-
-        $network->update($validated);
+        $network->update($request->validated());
 
         return redirect('/' . $customer->slug . '/network' . '/' . $network->id);
     }

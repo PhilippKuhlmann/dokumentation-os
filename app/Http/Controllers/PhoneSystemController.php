@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\PhoneSystemRequest;
 use App\Models\Customer;
 use App\Models\PhoneSystem;
-use Illuminate\Http\Request;
 
 class PhoneSystemController extends Controller
 {
@@ -22,24 +22,9 @@ class PhoneSystemController extends Controller
         ]);
     }
 
-    public function store(Customer $customer, Request $request)
+    public function store(Customer $customer, PhoneSystemRequest $request)
     {
-
-        $validated = $request->validate([
-            'manufacturer' => [],
-            'type' => [],
-            'model' => [],
-            'serialNumber' => [],
-            'ip1' => [],
-            'ip2' => [],
-            'ip3' => [],
-            'port' => [],
-            'username' => [],
-            'password' => [],
-        ]);
-
-
-        $customer->phonesystems()->create($validated);
+        $customer->phonesystems()->create($request->validated());
 
         return redirect(route('phoneSystem.index', $customer));
     }
@@ -53,22 +38,9 @@ class PhoneSystemController extends Controller
         ]);
     }
 
-    public function update(Customer $customer, PhoneSystem $phoneSystem, Request $request)
+    public function update(Customer $customer, PhoneSystem $phoneSystem, PhoneSystemRequest $request)
     {
-        $validated = $request->validate([
-            'manufacturer' => [],
-            'type' => [],
-            'model' => [],
-            'serialNumber' => [],
-            'ip1' => [],
-            'ip2' => [],
-            'ip3' => [],
-            'port' => [],
-            'username' => [],
-            'password' => [],
-        ]);
-
-        $phoneSystem->update($validated);
+        $phoneSystem->update($request->validated());
 
         return redirect(route('phoneSystem.index', $customer));
     }

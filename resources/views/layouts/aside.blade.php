@@ -41,6 +41,15 @@
                 VMs
             </x-aside.link>
 
+            <x-aside.heading name="Clients" />
+
+            <x-aside.link href="{{ route('computer.index', $customer) }}" activeUrl="{{ request()->routeIs('computer.*') }}">
+                <x-slot name="icon">
+                    <x-svg.computer class="w-6 h-6" />
+                </x-slot>
+                Computer
+            </x-aside.link>
+
             <x-aside.heading name="Active Directory" />
 
             <x-aside.link href="{{ route('aduser.index', $customer) }}" activeUrl="{{ request()->routeIs('aduser.*') }}">

@@ -7,6 +7,7 @@ use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\ServerController;
 use App\Http\Controllers\NetworkController;
 use App\Http\Controllers\ADUserController;
+use App\Http\Controllers\ComputerController;
 use App\Http\Controllers\FileController;
 use App\Http\Controllers\ServerOperatingSystemController;
 use App\Http\Controllers\VMController;
@@ -64,6 +65,7 @@ Route::middleware(['auth', 'isCustomer'])->group(function () {
             Route::resource('phone', PhoneController::class)->except(['show']);
             Route::resource('mailbox', MailboxController::class)->except(['show']);
             Route::resource('wifi', WifiController::class)->except(['show']);
+            Route::resource('computer', ComputerController::class)->except(['show']);
 
             // File
             Route::resource('file', FileController::class)->only(['index', 'store', 'destroy']);

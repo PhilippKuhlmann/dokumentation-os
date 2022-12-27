@@ -25,7 +25,7 @@ class ServerFactory extends Factory
             'bmcIp' => fake()->localIpv4(),
             'bmcUser' => 'root',
             'bmcPassword' => fake()->password(),
-            'services' => ['Hyper-V', 'DNS', 'AD'],
+            'services' => 'Hyper-V,DNS,AD',
             'server_operating_system_id' => fake()->numberBetween($min = 1, $max = 10),
         ];
     }

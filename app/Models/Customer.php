@@ -70,6 +70,11 @@ class Customer extends Model
         return $this->hasMany(Wifi::class);
     }
 
+    public function computers()
+    {
+        return $this->hasMany(Computer::class);
+    }
+
 
 
 }

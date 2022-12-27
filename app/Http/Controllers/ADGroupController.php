@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ADGroupRequest;
 use App\Models\ADGroup;
-use Illuminate\Http\Request;
 use App\Models\Customer;
 
 class ADGroupController extends Controller
@@ -23,18 +23,11 @@ class ADGroupController extends Controller
         ]);
     }
 
-    public function store(Customer $customer, Request $request)
+    public function store(Customer $customer, ADGroupRequest $request)
     {
+        $customer->adgroups()->create($request->validated());
 
-        $validated = $request->validate([
-            'name' => [],
-            'description' => [],
-        ]);
-
-
-        $customer->adgroups()->create($validated);
-
-        return redirect('/' . $customer->slug . '/adgroup');
+        return redirect(route('adgroup.index', $customer));
     }
 
     public function edit(Customer $customer, ADGroup $adgroup)
@@ -45,22 +38,17 @@ class ADGroupController extends Controller
         ]);
     }
 
-    public function update(Customer $customer, ADGroup $adgroup, Request $request)
+    public function update(Customer $customer, ADGroup $adgroup, ADGroupRequest $request)
     {
-        $validated = $request->validate([
-            'name' => [],
-            'description' => [],
-        ]);
+        $adgroup->update($request->validated());
 
-        $adgroup->update($validated);
-
-        return redirect('/' . $customer->slug . '/adgroup' . '/');
+        return redirect(route('adgroup.index', $customer));
     }
 
     public function destroy(Customer $customer, ADGroup $adgroup)
     {
         $adgroup->delete();
 
-        return redirect('/' . $customer->slug . '/adgroup');
+        return redirect(route('adgroup.index', $customer));
     }
 }

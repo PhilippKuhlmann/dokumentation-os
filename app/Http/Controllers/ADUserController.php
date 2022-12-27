@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Http\Requests\ADUserRequest;
 use App\Models\Customer;
 use App\Models\ADUser;
 
@@ -23,20 +23,11 @@ class ADUserController extends Controller
         ]);
     }
 
-    public function store(Customer $customer, Request $request)
+    public function store(Customer $customer, ADUserRequest $request)
     {
+        $customer->adusers()->create($request->validated());
 
-        $validated = $request->validate([
-            'firstName' => [],
-            'lastName' => [],
-            'username' => [],
-            'password' => [],
-        ]);
-
-
-        $customer->adusers()->create($validated);
-
-        return redirect('/' . $customer->slug . '/aduser');
+        return redirect(route('aduser.index', $customer));
     }
 
     public function edit(Customer $customer, ADUser $aduser)
@@ -47,24 +38,17 @@ class ADUserController extends Controller
         ]);
     }
 
-    public function update(Customer $customer, ADUser $aduser, Request $request)
+    public function update(Customer $customer, ADUser $aduser, ADUserRequest $request)
     {
-        $validated = $request->validate([
-            'firstName' => [],
-            'lastName' => [],
-            'username' => [],
-            'password' => [],
-        ]);
+        $aduser->update($request->validated());
 
-        $aduser->update($validated);
-
-        return redirect('/' . $customer->slug . '/aduser' . '/');
+        return redirect(route('aduser.index', $customer));
     }
 
     public function destroy(Customer $customer, ADUser $aduser)
     {
         $aduser->delete();
 
-        return redirect('/' . $customer->slug . '/aduser');
+        return redirect(route('aduser.index', $customer));
     }
 }

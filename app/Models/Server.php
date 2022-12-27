@@ -14,15 +14,18 @@ class Server extends Model
 
     protected $guarded = [];
 
-    protected $casts = [
-        'services' => 'array'
-    ];
-
     protected function bmcPassword(): Attribute
     {
         return new Attribute(
             get: fn ($value) => Crypt::decryptString($value),
             set: fn ($value) => Crypt::encryptString($value),
+        );
+    }
+
+    protected function services(): Attribute
+    {
+        return new Attribute(
+            get: fn ($value) => explode(',', $value),
         );
     }
 

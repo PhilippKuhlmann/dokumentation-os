@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\MailboxRequest;
 use App\Models\Customer;
 use App\Models\Mailbox;
 use App\Models\MailboxProvider;
-use Illuminate\Http\Request;
 
 class MailboxController extends Controller
 {
@@ -24,19 +24,9 @@ class MailboxController extends Controller
         ]);
     }
 
-    public function store(Customer $customer, Request $request)
+    public function store(Customer $customer, MailboxRequest $request)
     {
-
-        $validated = $request->validate([
-            'name' => [],
-            'mailAdress' => [],
-            'username' => [],
-            'password' => [],
-            'mailbox_provider_id' => [],
-        ]);
-
-
-        $customer->mailboxes()->create($validated);
+        $customer->mailboxes()->create($request->validated());
 
         return redirect(route('mailbox.index', $customer));
     }
@@ -50,18 +40,9 @@ class MailboxController extends Controller
         ]);
     }
 
-    public function update(Customer $customer, Mailbox $mailbox, Request $request)
+    public function update(Customer $customer, Mailbox $mailbox, MailboxRequest $request)
     {
-
-        $validated = $request->validate([
-            'name' => [],
-            'mailAdress' => [],
-            'username' => [],
-            'password' => [],
-            'mailbox_provider_id' => [],
-        ]);
-
-        $mailbox->update($validated);
+        $mailbox->update($request->validated());
 
         return redirect(route('mailbox.index', $customer));
     }

@@ -19,7 +19,7 @@ class VMFactory extends Factory
         return [
             'name' => fake()->domainWord(),
             'ip1' => fake()->localIpv4(),
-            'services' => ['docker', 'apache2', 'mariadb'],
+            'services' => 'docker,apache2,mariadb',
             'server_operating_system_id' => fake()->numberBetween($min = 1, $max = 10),
         ];
     }

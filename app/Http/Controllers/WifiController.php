@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\WifiRequest;
 use App\Models\Customer;
 use App\Models\Wifi;
-use Illuminate\Http\Request;
 
 class WifiController extends Controller
 {
@@ -22,18 +22,9 @@ class WifiController extends Controller
         ]);
     }
 
-    public function store(Customer $customer, Request $request)
+    public function store(Customer $customer, WifiRequest $request)
     {
-
-        $validated = $request->validate([
-            'ssid' => [],
-            'password' => [],
-            'vlan' => [],
-            'encryption' => [],
-        ]);
-
-
-        $customer->wifis()->create($validated);
+        $customer->wifis()->create($request->validated());
 
         return redirect(route('wifi.index', $customer));
     }
@@ -46,16 +37,9 @@ class WifiController extends Controller
         ]);
     }
 
-    public function update(Customer $customer, Wifi $wifi, Request $request)
+    public function update(Customer $customer, Wifi $wifi, WifiRequest $request)
     {
-        $validated = $request->validate([
-            'ssid' => [],
-            'password' => [],
-            'vlan' => [],
-            'encryption' => [],
-        ]);
-
-        $wifi->update($validated);
+        $wifi->update($request->validated());
 
         return redirect(route('wifi.index', $customer));
     }

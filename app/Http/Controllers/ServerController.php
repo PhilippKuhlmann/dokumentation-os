@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Http\Requests\ServerRequest;
 use App\Models\Server;
 use App\Models\Customer;
 use App\Models\ServerOperatingSystem;
@@ -37,31 +37,11 @@ class ServerController extends Controller
         ]);
     }
 
-    public function store(Customer $customer, Request $request)
+    public function store(Customer $customer, ServerRequest $request)
     {
+        $customer->servers()->create($request->validated());
 
-        $request = Arr::set($request, 'services', explode(',', $request->services));
-
-        $validated = $request->validate([
-            'name' => [],
-            'type' => [],
-            'manufacturer' => [],
-            'model' => [],
-            'serialNumber' => [],
-            'ip1' => [],
-            'ip2' => [],
-            'dns2' => [],
-            'bmcIp' => [],
-            'bmcUser' => [],
-            'bmcPassword' => [],
-            'services.*' => [],
-            'server_operating_system_id' => [],
-        ]);
-
-
-        $customer->servers()->create($validated);
-
-        return redirect('/' . $customer->slug . '/server');
+        return redirect(route('server.index', $customer));
     }
 
     public function edit(Customer $customer, Server $server)
@@ -73,35 +53,17 @@ class ServerController extends Controller
         ]);
     }
 
-    public function update(Customer $customer, Server $server, Request $request)
+    public function update(Customer $customer, Server $server, ServerRequest $request)
     {
-        $request = Arr::set($request, 'services', explode(',', $request->services));
+        $server->update($request->validated());
 
-        $validated = $request->validate([
-            'name' => [],
-            'type' => [],
-            'manufacturer' => [],
-            'model' => [],
-            'serialNumber' => [],
-            'ip1' => [],
-            'ip2' => [],
-            'dns2' => [],
-            'bmcIp' => [],
-            'bmcUser' => [],
-            'bmcPassword' => [],
-            'services.*' => [],
-            'server_operating_system_id' => [],
-        ]);
-
-        $server->update($validated);
-
-        return redirect('/' . $customer->slug . '/server' . '/');
+        return redirect(route('server.index', $customer));
     }
 
     public function destroy(Customer $customer, Server $server)
     {
         $server->delete();
 
-        return redirect('/' . $customer->slug . '/server');
+        return redirect(route('server.index', $customer));
     }
 }

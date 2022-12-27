@@ -1,6 +1,6 @@
 @props(['title'])
 
-<div class="w-96 h-28 ">
+<div class="w-96 mb-3">
     <div class="text-sm text-gray-500">
         {{ $title }}
     </div>

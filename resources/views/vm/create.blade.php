@@ -10,7 +10,7 @@
                 @csrf
 
                 <div class="flex flex-row gap-3 mb-3">
-                    <x-input.field type="name" name="name" placeholder="Name" autofocus/>
+                    <x-input.field name="name" placeholder="Name" autofocus/>
                 </div>
                 <div class="flex flex-row gap-3 mb-3">
                     <x-input.field name="ip1" placeholder="IP 1" />

@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\LoginWebsiteRequest;
 use App\Models\Customer;
 use App\Models\LoginWebsite;
-use Illuminate\Http\Request;
 
 class LoginWebsiteController extends Controller
 {
@@ -24,20 +24,11 @@ class LoginWebsiteController extends Controller
         ]);
     }
 
-    public function store(Customer $customer, Request $request)
+    public function store(Customer $customer, LoginWebsiteRequest $request)
     {
+        $customer->loginwebsites()->create($request->validated());
 
-        $validated = $request->validate([
-            'name' => [],
-            'username' => [],
-            'password' => [],
-            'url' => [],
-        ]);
-
-
-        $customer->loginwebsites()->create($validated);
-
-        return redirect('/' . $customer->slug . '/loginwebsite');
+        return redirect(route('loginwebsite.index', $customer));
     }
 
     public function edit(Customer $customer, LoginWebsite $loginwebsite)
@@ -48,26 +39,17 @@ class LoginWebsiteController extends Controller
         ]);
     }
 
-    public function update(Customer $customer, LoginWebsite $loginwebsite, Request $request)
+    public function update(Customer $customer, LoginWebsite $loginwebsite, LoginWebsiteRequest $request)
     {
+        $loginwebsite->update($request->validated());
 
-        $validated = $request->validate([
-            'name' => [],
-            'username' => [],
-            'password' => [],
-            'url' => [],
-        ]);
-
-
-        $loginwebsite->update($validated);
-
-        return redirect('/' . $customer->slug . '/loginwebsite' . '/');
+        return redirect(route('loginwebsite.index', $customer));
     }
 
     public function destroy(Customer $customer, LoginWebsite $loginwebsite)
     {
         $loginwebsite->delete();
 
-        return redirect('/' . $customer->slug . '/loginwebsite');
+        return redirect(route('loginwebsite.index', $customer));
     }
 }
