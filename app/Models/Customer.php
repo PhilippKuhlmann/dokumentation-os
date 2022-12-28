@@ -75,6 +75,11 @@ class Customer extends Model
         return $this->hasMany(Computer::class);
     }
 
+    public function printers()
+    {
+        return $this->hasMany(Printer::class);
+    }
+
 
 
 }

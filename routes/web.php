@@ -15,6 +15,7 @@ use App\Http\Controllers\LoginWebsiteController;
 use App\Http\Controllers\MailboxController;
 use App\Http\Controllers\PhoneController;
 use App\Http\Controllers\PhoneSystemController;
+use App\Http\Controllers\PrinterController;
 use App\Http\Controllers\WifiController;
 
 /*
@@ -66,6 +67,7 @@ Route::middleware(['auth', 'isCustomer'])->group(function () {
             Route::resource('mailbox', MailboxController::class)->except(['show']);
             Route::resource('wifi', WifiController::class)->except(['show']);
             Route::resource('computer', ComputerController::class)->except(['show']);
+            Route::resource('printer', PrinterController::class)->except(['show']);
 
             // File
             Route::resource('file', FileController::class)->only(['index', 'store', 'destroy']);

@@ -103,6 +103,10 @@ class DatabaseSeeder extends Seeder
             'customer_id' => $customer->id,
         ]);
 
+        \App\Models\Printer::factory(10)->create([
+            'customer_id' => $customer->id,
+        ]);
+
 
         $customer = \App\Models\Customer::factory()->create([
             'name' => 'Kuhlmann',

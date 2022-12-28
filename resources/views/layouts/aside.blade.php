@@ -50,6 +50,13 @@
                 Computer
             </x-aside.link>
 
+            <x-aside.link href="{{ route('printer.index', $customer) }}" activeUrl="{{ request()->routeIs('printer.*') }}">
+                <x-slot name="icon">
+                    <x-svg.printer class="w-6 h-6" />
+                </x-slot>
+                Drucker
+            </x-aside.link>
+
             <x-aside.heading name="Active Directory" />
 
             <x-aside.link href="{{ route('aduser.index', $customer) }}" activeUrl="{{ request()->routeIs('aduser.*') }}">
