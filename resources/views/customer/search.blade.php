@@ -1,4 +1,5 @@
 <x-empty-layout>
+    <!--
     <div class="flex flex-col h-screen justify-center items-center">
         <div
             class="w-full sm:w-96 md:w-1/2 sm:rounded-md sm:shadow-2xl p-3 bg-white
@@ -31,4 +32,10 @@
 
         </div>
     </div>
+
+-->
+
+
+    <livewire:search-customer />
+
 </x-empty-layout>
