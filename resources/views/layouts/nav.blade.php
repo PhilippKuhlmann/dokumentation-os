@@ -1,6 +1,6 @@
 <div class="fixed w-full flex items-center justify-between h-14 text-white z-10 bg-blue-800 dark:bg-gray-900">
 
-    <div class="flex items-center justify-start md:justify-center w-14 md:w-64 h-14">
+    <div class="flex items-center justify-center md:justify-center w-14 md:w-64 h-14">
         <x-svg.logo class="h-8 w-8 fill-gray-100" />
         <span class="hidden md:block ml-4">{{ config('app.name') }}</span>
     </div>
