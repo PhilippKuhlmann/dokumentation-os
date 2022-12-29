@@ -33,6 +33,7 @@ class DatabaseSeeder extends Seeder
         \App\Models\User::factory()->create([
             'name' => 'Philipp Kuhlmann',
             'username' => 'p.kuhlmann',
+            'email' => 'p.kuhlmann@stadel.info',
             'password' => bcrypt('password'),
             'role_id' => 2,
         ]);

@@ -24,7 +24,7 @@
                     </x-input.select>
                 </div>
                 <div class="flex flex-col gap-3 mb-3">
-                    <label for="services" class="text-white">Dienste Bitte mit komma getrennt angeben</label>
+                    <label for="services" class="dark:text-white text-xs">Dienste Bitte mit komma getrennt angeben (eins,zwei,drei)</label>
                     <x-input.field id="services" name="services" placeholder="Dienste" />
                 </div>
                 <div class="flex flex-row gap-3">

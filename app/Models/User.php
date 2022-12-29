@@ -27,6 +27,14 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    public function getAvatar()
+    {
+        return 'https://www.gravatar.com/avatar/'
+            .md5($this->email)
+            .'?s=200'
+            .'&d=mp';
+    }
+
     public function role()
     {
         return $this->belongsTo(Role::class);
