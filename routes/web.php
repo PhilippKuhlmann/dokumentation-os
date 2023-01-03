@@ -57,6 +57,7 @@ Route::post('/admin/create/serveroperatingsystem', [ServerOperatingSystemControl
 // Customer
 Route::get('/customer/search', [CustomerController::class, 'search']);
 Route::get('/{customer}', [CustomerController::class, 'index'])->name('customer.dashboard');
+Route::post('/{customer}/view-pdf', [CustomerController::class, 'viewPDF'])->name('customer.view-pdf');
 
 
 Route::middleware(['auth', 'isCustomer'])->group(function () {

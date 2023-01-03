@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Customer;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class CustomerController extends Controller
 {
@@ -48,17 +49,11 @@ class CustomerController extends Controller
         ]);
     }
 
-    public function router(Customer $customer)
+    public function viewPDF(Customer $customer)
     {
-        return view('customer.router', [
+        $pdf = Pdf::loadView('pdf.customer', [
             'customer' => $customer,
         ]);
-    }
-
-    public function server(Customer $customer)
-    {
-        return view('customer.server', [
-            'customer' => $customer,
-        ]);
+        return $pdf->stream();
     }
 }
