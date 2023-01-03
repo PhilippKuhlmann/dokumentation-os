@@ -77,22 +77,13 @@
 
                 </div>
 
-
                 <div class="flex flex-row gap-3 mt-5">
                     <x-input.button label="Hinzufügen" />
                 </div>
 
             </form>
-
-
-
         </div>
-
-
-
     </div>
-
-
 
     @foreach ($errors->all() as $error)
         {{ $error }}

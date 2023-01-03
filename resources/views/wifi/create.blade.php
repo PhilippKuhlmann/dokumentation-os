@@ -1,25 +1,41 @@
 <x-app-layout :$customer>
 
-    <div class="w-full p-3">
+    <div class="flex justify-center intems-center mt-10">
 
-        <div class="flex flex-col w-fit rounded-md shadow-md bg-white dark:bg-gray-900">
-            <div class="w-full text-2xl text-center p-3 dark:text-gray-100">
+        <div class="flex flex-col p-8 shadow-lg rounded-sm bg-white dark:bg-gray-900">
+            <div class="text-2xl pl-5">
                 Neues WLAN
             </div>
+
             <form method="post" action="{{ route('wifi.store', $customer) }}" class="p-5">
                 @csrf
 
-                <div class="flex flex-row gap-3 mb-3">
-                    <x-input.field name="ssid" placeholder="SSID" autofocus/>
-                    <x-input.field name="password" placeholder="Passwort" />
+                <div class="flex flex-col">
+                    <x-input.label for="ssid" value="SSID" />
+                    <x-input.field id="ssid" name="ssid" class="mt-1" value="{{ old('ssid') }}"
+                        autofocus />
                 </div>
-                <div class="flex flex-row gap-3 mb-3">
-                    <x-input.field name="vlan" placeholder="VLAN" />
-                    <x-input.field name="encryption" placeholder="Verschlüsselung"/>
+
+                <div class="flex flex-col mt-2 ">
+                    <x-input.label for="password" value="Password" />
+                    <x-input.field id="password" name="password" class="mt-1" value="{{ old('password') }}"
+                        required />
                 </div>
-                <div class="flex flex-row gap-3">
+
+                <div class="flex flex-col mt-2">
+                    <x-input.label for="encryption" value="Verschlüsselung" />
+                    <x-input.field id="encryption" name="encryption" class="mt-1" value="{{ old('encryption') }}" required />
+                </div>
+
+                <div class="flex flex-col mt-2">
+                    <x-input.label for="vlanId" value="VLAN ID" />
+                    <x-input.field  type="number" id="vlanId" name="vlanId" class="mt-1" value="{{ old('vlanId') }}" required />
+                </div>
+
+                <div class="flex flex-row gap-3 mt-5">
                     <x-input.button label="Hinzufügen" />
                 </div>
+
             </form>
         </div>
     </div>
