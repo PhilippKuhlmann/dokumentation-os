@@ -30,7 +30,7 @@
                 @foreach ($customers as $customer)
                     <a href="/{{ $customer->slug }}"
                         class="py-2 px-3 m-1 rounded-md hover:dark:bg-gray-600 bg-gray-100 hover:bg-gray-200 dark:bg-gray-700">
-                        {{ $customer->name }}
+                        {{ $customer->name }} {{ $customer->location ? ' - ' . $customer->location : '' }}
                     </a>
                 @endforeach
             </div>

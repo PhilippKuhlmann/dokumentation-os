@@ -1,18 +1,33 @@
-<aside class="hidden md:block fixed  flex-col py-1 bg-white h-screen w-64 dark:bg-gray-800">
-    <ul class="mt-1 dark:text-gray-100">
+<div class="fixed flex flex-col top-14 left-0 w-14 hover:w-64 md:w-64 bg-blue-800 dark:bg-gray-900 h-full text-white">
+    <div class="overflow-y-auto overflow-x-hidden flex flex-col justify-between flex-grow">
+        <ul class="flex flex-col py-4 space-y-1">
 
-        <x-nav.asideLink activeUrl="{{ request()->is('admin') }}" link="/admin">
-            <x-slot:icon><x-svg.settings class="w-6 h-6" /></x-slot>
-            Admin Dashboard
-        </x-nav.asideLink>
+            <x-aside.link href="{{ route('admin.daschboard') }}" activeUrl="{{ request()->routeIs('admin.daschboard') }}" >
+                <x-slot name="icon">
+                    <x-svg.home class="w-6 h-6" />
+                </x-slot>
+                Daschboard
+            </x-aside.link>
 
-        <x-nav.asideLabel>Server</x-nav.asideLabel>
+            <x-aside.heading name="Kunden" />
 
-        <x-nav.asideLink activeUrl="{{ request()->segment(2) == 'serveroperatingsystem' }}" link="/admin/serveroperatingsystem">
-            <x-slot:icon><x-svg.settings class="w-6 h-6" /></x-slot>
-            Server Betriebsystem
-        </x-nav.asideLink>
+            <x-aside.link href="{{ route('admin.customer.index') }}" activeUrl="{{ request()->routeIs('admin.customer.*') }}">
+                <x-slot name="icon">
+                    <x-svg.settings class="w-6 h-6" />
+                </x-slot>
+                Kunden
+            </x-aside.link>
 
+            <x-aside.heading name="Server" />
+
+            <x-aside.link href="{{ route('admin.server.operatingsystem') }}" activeUrl="{{ request()->routeIs('admin.server.operatingsystem') }}">
+                <x-slot name="icon">
+                    <x-svg.settings class="w-6 h-6" />
+                </x-slot>
+                Server Betriebsystem
+            </x-aside.link>
 
     </ul>
-</aside>
+    <p class="mb-14 px-5 py-3 hidden md:block text-center text-xs">Copyright @2022 by Philipp</p>
+</div>
+</div>

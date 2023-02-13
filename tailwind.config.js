@@ -15,6 +15,7 @@ module.exports = {
                 sans: ['Open Sans', ...defaultTheme.fontFamily.sans],
             },
         },
+
     },
 
     darkMode: 'media',

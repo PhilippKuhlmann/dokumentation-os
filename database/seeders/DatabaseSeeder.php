@@ -58,7 +58,6 @@ class DatabaseSeeder extends Seeder
             'customer_id' => $customer->id,
         ]);
 
-        \App\Models\Customer::factory(20)->create();
 
         \App\Models\Network::factory(10)->create([
             'customer_id' => $customer->id,

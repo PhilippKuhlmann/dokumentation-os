@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\Customer;
+use Illuminate\Support\Str;
+use Illuminate\Http\Request;
 use Barryvdh\DomPDF\Facade\Pdf;
+use App\Http\Requests\CustomerRequest;
 
 class CustomerController extends Controller
 {
@@ -41,10 +43,10 @@ class CustomerController extends Controller
         ]);
     }
 
-    public function index(Customer $customer)
+    public function dashboard(Customer $customer)
     {
 
-        return view('customer.index', [
+        return view('customer.dashboard', [
             'customer' => $customer,
         ]);
     }
@@ -55,5 +57,28 @@ class CustomerController extends Controller
             'customer' => $customer,
         ]);
         return $pdf->stream();
+    }
+
+
+
+
+    // ADMIN Bereich
+    public function index()
+    {
+        $customers = Customer::paginate(20);
+
+        return view('admin.customer.index', compact('customers'));
+    }
+
+    public function create()
+    {
+        return view('admin.customer.create');
+    }
+
+    public function store(CustomerRequest $request)
+    {
+        Customer::create($request->validated());
+
+        return redirect(route('admin.customer.index'));
     }
 }

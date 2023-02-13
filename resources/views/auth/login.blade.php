@@ -16,6 +16,10 @@
                     <x-input.field id="username" name="username" class="mt-1 w-full" value="{{ old('username') }}" required autofocus />
                 </div>
 
+                @foreach ($errors->all() as $error)
+                    {{ $error }}
+                @endforeach
+
                 <div class="mt-4">
                     <x-input.label for="password" value="Passwort" />
                     <x-input.field id="password" type="password" name="password" class="mt-1 w-full" required />
@@ -28,7 +32,6 @@
                 <div class="mt-4 flex items-center justify-end">
                     <x-input.button label="Anmelden" />
                 </div>
-
 
             </form>
         </div>

@@ -17,6 +17,7 @@ use App\Http\Controllers\PhoneController;
 use App\Http\Controllers\PhoneSystemController;
 use App\Http\Controllers\PrinterController;
 use App\Http\Controllers\WifiController;
+use Illuminate\Support\Facades\URL;
 
 /*
 |--------------------------------------------------------------------------
@@ -49,14 +50,21 @@ Route::get('/test', function() {
 });
 
 // Admin
-Route::get('/admin', [AdminController::class, 'index']);
+Route::get('/admin', [AdminController::class, 'index'])->name('admin.daschboard');
 
-Route::get('/admin/serveroperatingsystem', [ServerOperatingSystemController::class, 'index']);
+Route::get('/admin/serveroperatingsystem', [ServerOperatingSystemController::class, 'index'])->name('admin.server.operatingsystem');
 Route::post('/admin/create/serveroperatingsystem', [ServerOperatingSystemController::class, 'store']);
+
+Route::get('/admin/customer', [CustomerController::class, 'index'])->name('admin.customer.index');
+Route::post('/admin/customer', [CustomerController::class, 'store'])->name('admin.customer.store');
+Route::get('/admin/customer/create', [CustomerController::class, 'create'])->name('admin.customer.create');
+
+
+
 
 // Customer
 Route::get('/customer/search', [CustomerController::class, 'search']);
-Route::get('/{customer}', [CustomerController::class, 'index'])->name('customer.dashboard');
+Route::get('/{customer}', [CustomerController::class, 'dashboard'])->name('customer.dashboard');
 Route::post('/{customer}/view-pdf', [CustomerController::class, 'viewPDF'])->name('customer.view-pdf');
 
 
