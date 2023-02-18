@@ -14,11 +14,15 @@ module.exports = {
             fontFamily: {
                 sans: ['Open Sans', ...defaultTheme.fontFamily.sans],
             },
+            colors: {
+                'sdarkblue': '#0C2E5E',
+                'ssystemblue': '#01B0EC',
+            },
         },
 
     },
 
-    darkMode: 'media',
+    darkMode: 'class',
 
     plugins: [
         require('flowbite/plugin'),

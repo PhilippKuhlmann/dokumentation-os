@@ -1,11 +1,13 @@
-@props(['href', 'activeUrl'])
-
+@props(['href'])
 <li>
-    <a href="{{ $href }}"
-        class="{{ $activeUrl ? 'border-gray-100' : 'border-transparent' }} relative flex flex-row items-center h-10 focus:outline-none hover:bg-blue-900 dark:hover:bg-gray-600 text-white-600 hover:text-white-800 border-l-4 hover:border-blue-500 dark:hover:border-gray-500 pr-6">
-        <span class="inline-flex justify-center items-center ml-4">
-            {{ $icon }}
+    <a
+        href="{{ $href }}"
+        {{ $attributes->merge(['class' => 'flex items-center p-2 text-base font-normal text-gray-100 dark:text-white hover:bg-blue-800 dark:hover:bg-gray-700']) }}
+    >
+        {{ $svg }}
+
+        <span class="ml-3">
+            {{ $slot }}
         </span>
-        <span class="ml-2 text-sm tracking-wide truncate">{{ $slot }}</span>
     </a>
 </li>

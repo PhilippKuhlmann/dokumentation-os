@@ -1,122 +1,123 @@
-<div class="fixed flex flex-col top-14 left-0 w-14 hover:w-64 md:w-64 bg-blue-800 dark:bg-gray-900 h-full text-white">
-    <div class="overflow-y-auto overflow-x-hidden flex flex-col justify-between flex-grow">
-        <ul class="flex flex-col py-4 space-y-1">
+<aside id="logo-sidebar"
+        class="fixed top-0 left-0 z-40 w-64 h-screen pt-20 transition-transform -translate-x-full text-gray-100 bg-sdarkblue sm:translate-x-0 dark:bg-gray-900 "
+        aria-label="Sidebar">
+        <div class="h-full px-3 pb-4 overflow-y-auto bg-sdarkblue dark:bg-gray-900">
+            <ul class="space-y-2 mb-8">
 
-            <x-aside.link href="{{ route('customer.dashboard', $customer) }}" activeUrl="{{ request()->routeIs('customer.dashboard') }}" >
-                <x-slot name="icon">
-                    <x-svg.home class="w-6 h-6" />
-                </x-slot>
-                Daschboard
-            </x-aside.link>
+                <x-aside.link href="{{ route('customer.dashboard', $customer) }}">
+                    <x-slot:svg>
+                        <x-svg.home class="h-6 w-6" />
+                    </x-slot:svg>
+                    Dashboard
+                </x-aside.link>
 
-            <x-aside.heading name="Netzwerk" />
+                <x-aside.seperator name="Netzwerk" />
 
-            <x-aside.link href="{{ route('network.index', $customer) }}" activeUrl="{{ request()->routeIs('network.*') }}">
-                <x-slot name="icon">
-                    <x-svg.settings class="w-6 h-6" />
-                </x-slot>
-                Netzwerke
-            </x-aside.link>
+                <x-aside.link href="{{ route('network.index', $customer) }}">
+                    <x-slot:svg>
+                        <x-svg.settings class="h-6 w-6" />
+                    </x-slot:svg>
+                    Netzwerke
+                </x-aside.link>
 
-            <x-aside.link href="{{ route('wifi.index', $customer) }}" activeUrl="{{ request()->routeIs('wifi.*') }}">
-                <x-slot name="icon">
-                    <x-svg.wifi class="w-6 h-6" />
-                </x-slot>
-                WLAN
-            </x-aside.link>
+                <x-aside.link href="{{ route('wifi.index', $customer) }}">
+                    <x-slot:svg>
+                        <x-svg.wifi class="h-6 w-6" />
+                    </x-slot:svg>
+                    WLAN
+                </x-aside.link>
 
-            <x-aside.heading name="Server" />
+                <x-aside.seperator name="Server" />
 
-            <x-aside.link href="{{ route('server.index', $customer) }}" activeUrl="{{ request()->routeIs('server.*') }}">
-                <x-slot name="icon">
-                    <x-svg.servers class="w-6 h-6" />
-                </x-slot>
-                Server
-            </x-aside.link>
+                <x-aside.link href="{{ route('server.index', $customer) }}">
+                    <x-slot:svg>
+                        <x-svg.servers class="h-6 w-6" />
+                    </x-slot:svg>
+                    Server
+                </x-aside.link>
 
-            <x-aside.link href="{{ route('vm.index', $customer) }}" activeUrl="{{ request()->routeIs('vm.*') }}">
-                <x-slot name="icon">
-                    <x-svg.server class="w-6 h-6" />
-                </x-slot>
-                VMs
-            </x-aside.link>
+                <x-aside.link href="{{ route('vm.index', $customer) }}">
+                    <x-slot:svg>
+                        <x-svg.server class="h-6 w-6" />
+                    </x-slot:svg>
+                    VMs
+                </x-aside.link>
 
-            <x-aside.heading name="Clients" />
+                <x-aside.seperator name="Clients" />
 
-            <x-aside.link href="{{ route('computer.index', $customer) }}" activeUrl="{{ request()->routeIs('computer.*') }}">
-                <x-slot name="icon">
-                    <x-svg.computer class="w-6 h-6" />
-                </x-slot>
-                Computer
-            </x-aside.link>
+                <x-aside.link href="{{ route('computer.index', $customer) }}">
+                    <x-slot:svg>
+                        <x-svg.computer class="h-6 w-6" />
+                    </x-slot:svg>
+                    Computer
+                </x-aside.link>
 
-            <x-aside.link href="{{ route('printer.index', $customer) }}" activeUrl="{{ request()->routeIs('printer.*') }}">
-                <x-slot name="icon">
-                    <x-svg.printer class="w-6 h-6" />
-                </x-slot>
-                Drucker
-            </x-aside.link>
+                <x-aside.link href="{{ route('printer.index', $customer) }}">
+                    <x-slot:svg>
+                        <x-svg.printer class="h-6 w-6" />
+                    </x-slot:svg>
+                    Drucker
+                </x-aside.link>
 
-            <x-aside.heading name="Active Directory" />
+                <x-aside.seperator name="AD" />
 
-            <x-aside.link href="{{ route('aduser.index', $customer) }}" activeUrl="{{ request()->routeIs('aduser.*') }}">
-                <x-slot name="icon">
-                    <x-svg.user class="w-6 h-6" />
-                </x-slot>
-                AD-User
-            </x-aside.link>
+                <x-aside.link href="{{ route('aduser.index', $customer) }}">
+                    <x-slot:svg>
+                        <x-svg.user class="h-6 w-6" />
+                    </x-slot:svg>
+                    AD-User
+                </x-aside.link>
 
-            <x-aside.link href="{{ route('adgroup.index', $customer) }}" activeUrl="{{ request()->routeIs('adgroup.*') }}">
-                <x-slot name="icon">
-                    <x-svg.group class="w-6 h-6" />
-                </x-slot>
-                AD-Gruppen
-            </x-aside.link>
+                <x-aside.link href="{{ route('adgroup.index', $customer) }}">
+                    <x-slot:svg>
+                        <x-svg.group class="h-6 w-6" />
+                    </x-slot:svg>
+                    AD-Gruppen
+                </x-aside.link>
 
-            <x-aside.heading name="Telefon" />
+                <x-aside.seperator name="Telefon" />
 
-            <x-aside.link href="{{ route('phoneSystem.index', $customer) }}" activeUrl="{{ request()->routeIs('phoneSystem.*') }}">
-                <x-slot name="icon">
-                    <x-svg.phone class="w-6 h-6" />
-                </x-slot>
-                TK-Anlage
-            </x-aside.link>
+                <x-aside.link href="{{ route('phoneSystem.index', $customer) }}">
+                    <x-slot:svg>
+                        <x-svg.phone class="h-6 w-6" />
+                    </x-slot:svg>
+                    TK-Anlage
+                </x-aside.link>
 
-            <x-aside.link href="{{ route('phone.index', $customer) }}" activeUrl="{{ request()->routeIs('phone.*') }}">
-                <x-slot name="icon">
-                    <x-svg.phone class="w-6 h-6" />
-                </x-slot>
-                Telefon
-            </x-aside.link>
+                <x-aside.link href="{{ route('phone.index', $customer) }}">
+                    <x-slot:svg>
+                        <x-svg.phone class="h-6 w-6" />
+                    </x-slot:svg>
+                    Telefon
+                </x-aside.link>
 
-            <x-aside.heading name="Sonstiges" />
+                <x-aside.seperator name="Sonstiges" />
 
-            <x-aside.link href="{{ route('file.index', $customer) }}" activeUrl="{{ request()->routeIs('file.*') }}">
-                <x-slot name="icon">
-                    <x-svg.upload class="w-6 h-6" />
-                </x-slot>
-                Dateien
-            </x-aside.link>
+                <x-aside.link href="{{ route('file.index', $customer) }}">
+                    <x-slot:svg>
+                        <x-svg.upload class="h-6 w-6" />
+                    </x-slot:svg>
+                    Dateien
+                </x-aside.link>
 
-            <x-aside.heading name="Logins" />
+                <x-aside.seperator name="Logins" />
 
-            <x-aside.link href="{{ route('loginwebsite.index', $customer) }}" activeUrl="{{ request()->routeIs('loginwebsite.*') }}">
-                <x-slot name="icon">
-                    <x-svg.link class="w-6 h-6" />
-                </x-slot>
-                Webseiten
-            </x-aside.link>
+                <x-aside.link href="{{ route('loginwebsite.index', $customer) }}">
+                    <x-slot:svg>
+                        <x-svg.link class="h-6 w-6" />
+                    </x-slot:svg>
+                    Webseiten
+                </x-aside.link>
 
-            <x-aside.heading name="E-Mail" />
+                <x-aside.seperator name="E-Mail" />
 
-            <x-aside.link href="{{ route('mailbox.index', $customer) }}" activeUrl="{{ request()->routeIs('mailbox.*') }}">
-                <x-slot name="icon">
-                    <x-svg.mail class="w-6 h-6" />
-                </x-slot>
-                E-Mail Postfächer
-            </x-aside.link>
+                <x-aside.link href="{{ route('mailbox.index', $customer) }}">
+                    <x-slot:svg>
+                        <x-svg.mail class="h-6 w-6" />
+                    </x-slot:svg>
+                    E-Mail Postfächer
+                </x-aside.link>
 
-        </ul>
-        <p class="mb-14 px-5 py-3 hidden md:block text-center text-xs">Copyright @2022 by Philipp</p>
-    </div>
-</div>
+            </ul>
+        </div>
+    </aside>
