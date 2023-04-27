@@ -23,7 +23,7 @@
     @livewireStyles
 </head>
 
-<body class="antialiased bg-gray-100 dark:bg-gray-800">
+<body class="antialiased bg-gray-100 dark:bg-gray-900">
 
     @include('layouts.navigation')
     @include('layouts.aside')

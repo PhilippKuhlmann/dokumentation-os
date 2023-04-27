@@ -25,8 +25,7 @@ module.exports = {
     darkMode: 'class',
 
     plugins: [
-        require('flowbite/plugin'),
         require('@tailwindcss/forms'),
-
+        require('flowbite/plugin'),
     ],
 };

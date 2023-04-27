@@ -1,6 +1,6 @@
 @props(['values', 'values', 'editUrl', 'deleteUrl'])
 
-<tr class="bg-white border-b dark:bg-gray-900 dark:border-gray-700">
+<tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
     @foreach ($values as $key => $value)
         @if ($key == 'url')
             <td scope="row" class="py-4 px-6">
@@ -12,7 +12,7 @@
 
                 <div class="relative">
                     <input placeholder="" :type="show ? 'password' : 'text'"
-                        class="text-sm w-full p-0 text-gray-900 dark:text-gray-100 dark:bg-gray-900 border-0"
+                        class="text-sm w-full p-0 text-gray-900 dark:text-gray-100 dark:bg-gray-800 border-0"
                         value="{{ $value }}"
                         disabled>
                     <div class="absolute inset-y-0 right-0 pr-3 flex items-center text-sm leading-5">

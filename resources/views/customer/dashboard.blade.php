@@ -2,7 +2,7 @@
     <div class="p-3">
 
         <div class="flex justify-between">
-            <div class="text-3xl">
+            <div class="text-3xl dark:text-gray-100">
                 Daschboard - {{ $customer->name }}
             </div>
             <div class="">
@@ -17,7 +17,7 @@
 
 
 
-        <div class="flex w-48 h-24 bg-gray-900">
+        <div class="flex w-48 h-24 bg-gray-800 dark:text-gray-100">
             <div class="flex w-16 h-24 justify-center items-center">
                 <x-svg.server class="h-8 w-8" />
             </div>

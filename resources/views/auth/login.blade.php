@@ -26,7 +26,7 @@
                 </div>
 
                 <div class="mt-4">
-                    <x-input.checkbox value="Remember Me" name="remember" for="remember_me" />
+                    <x-input.checkbox value="Login merken" name="remember" for="remember_me" />
                 </div>
 
                 <div class="mt-4 flex items-center justify-end">
