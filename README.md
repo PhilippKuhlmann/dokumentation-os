@@ -30,3 +30,23 @@ Hier die Datei anpassen und mit eurer Datenbank ausfüllen.
 ### Datenbank migrieren
 
     php artisan migrate:fresh --seed
+
+
+
+
+# Default Gruppen und Login
+**Admin**
+Kann Einstellung am System ändern und hat Zugriff auf alle Kunden
+
+**Techniker**
+Hat Zugriff auf alle Kunden
+
+**Kunde**
+Kann nur seine eigenen Daten sehen
+
+
+|Benutzername|Passwort|Rolle|
+|--|--|--|
+|admin|password|Admin|
+|p.kuhlmann|password|Techniker|
+|mustermann|password|Kunde|
