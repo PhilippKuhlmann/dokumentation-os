@@ -1,8 +1,8 @@
 <x-app-layout :$customer>
 
-    <div class="flex justify-center intems-center mt-10">
+    <div class="flex">
 
-        <div class="flex flex-col p-8 shadow-lg rounded-sm bg-white dark:bg-gray-900">
+        <div class="flex flex-col p-2 dark:text-gray-100">
             <div class="text-2xl pl-5">
                 Neues WLAN
             </div>
