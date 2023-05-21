@@ -6,7 +6,7 @@
     >
         {{ $svg }}
 
-        <span class="ml-3">
+        <span class="ml-3 w-full">
             {{ $slot }}
         </span>
     </a>

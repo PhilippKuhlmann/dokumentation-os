@@ -13,23 +13,11 @@
             </div>
         </div>
 
-        <div class="m-10"></div>
 
 
 
-        <div class="flex w-48 h-24 bg-gray-800 dark:text-gray-100">
-            <div class="flex w-16 h-24 justify-center items-center">
-                <x-svg.server class="h-8 w-8" />
-            </div>
-            <div class="flex flex-col grow">
-                <div class="pt-3 text-xl text-center">
-                    Server
-                </div>
-                <div class="flex text-xl justify-center items-center grow">
-                    {{ $customer->servers()->count() }}
-                </div>
-            </div>
-        </div>
+
+
 
 
     </div>
