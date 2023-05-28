@@ -1,45 +1,21 @@
 <x-app-layout :$customer>
+    <x-create.main header="E-Mail Postfach bearbeiten" labelsubmit="Ändern" action="{{ route('mailbox.update', [$customer, $mailbox]) }}">
+        @method('PATCH')
 
-    <div class="w-full p-3">
+        <x-create.singlerow label="Name" name="name" default="{{ $mailbox->name }}" />
 
-        <div class="flex flex-col w-fit rounded-md shadow-md bg-white dark:bg-gray-900">
-            <div class="w-full text-2xl text-center p-3 dark:text-gray-100">
-                E-Mail Postfach bearbeiten
-            </div>
-            <form method="post" action="{{ route('mailbox.update', [$customer, $mailbox]) }}" class="p-5">
-                @csrf
-                @method('PATCH')
+        <x-create.singlerow label="E-Mail Adresse" name="mailAdress" default="{{ $mailbox->mailAdress }}" />
 
-                <div class="flex flex-row gap-3 mb-3">
-                    <x-input.field name="name" placeholder="Name" value="{{ $mailbox->name }}" autofocus/>
-                </div>
-                <div class="flex flex-row gap-3 mb-3">
-                    <x-input.field name="mailAdress" placeholder="E-Mail Adresse" value="{{ $mailbox->mailAdress }}" />
-                </div>
-                <div class="flex flex-row gap-3 mb-3">
-                    <x-input.field name="username" placeholder="Benutzername" value="{{ $mailbox->username }}" />
-                    <x-input.field name="password" placeholder="Passwort" value="{{ $mailbox->password }}" />
-                </div>
-                <div class="flex flex-col gap-3 mb-3">
-                    <x-input.label for="mailbox_provider_id" value="Anbieter" />
-                    <x-input.select id="mailbox_provider_id" name="mailbox_provider_id">
-                        @foreach ($mailboxProviders as $mailboxProvider)
-                            <option value="{{ $mailboxProvider->id }}" @if ($mailboxProvider->id == $mailbox->mailbox_provider_id)
-                                selected
-                            @endif>{{ $mailboxProvider->name }}</option>
-                        @endforeach
-                    </x-input.select>
-                </div>
-                <div class="flex flex-row gap-3">
-                    <x-input.button label="Ändern" />
-                </div>
-            </form>
+        <x-create.doublerow label1="Benutzername" name1="username" default1="{{ $mailbox->username }}" label2="Passwort" name2="password" default2="{{ $mailbox->password }}" />
+
+        <div class="flex flex-col mt-2">
+            <x-input.label for="mailbox_provider_id" value="Anbieter" />
+            <x-input.select id="mailbox_provider_id" name="mailbox_provider_id">
+                @foreach ($mailboxProviders as $mailboxprovider)
+                    <option {{ $mailboxprovider->id == $mailbox->mailboxProvider->id ? 'selected' : '' }} value="{{ $mailboxprovider->id }}">{{ $mailboxprovider->name }}</option>
+                @endforeach
+            </x-input.select>
         </div>
-    </div>
 
-    @foreach ($errors->all() as $error)
-        {{ $error }}
-    @endforeach
-
-
+    </x-create.main>
 </x-app-layout>

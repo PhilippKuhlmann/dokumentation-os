@@ -1,42 +1,21 @@
 <x-app-layout :$customer>
+    <x-create.main header="Telefon bearbeiten" labelsubmit="Ändern" action="{{ route('phone.update', [$customer, $phone]) }}">
+        @method('PATCH')
 
-    <div class="w-full p-3">
+        <x-create.singlerow label="Nebenstelle" name="extension" default="{{ $phone->extension }}" />
 
-        <div class="flex flex-col w-fit rounded-md shadow-md bg-white dark:bg-gray-900">
-            <div class="w-full text-2xl text-center p-3 dark:text-gray-100">
-                Telefon bearbeiten
-            </div>
-            <form method="post" action="{{ route('phone.update', [$customer, $phone]) }}" class="p-5">
-                @csrf
-                @method('PATCH')
+        <x-create.doublerow label1="Hersteller" name1="manufacturer" default1="{{ $phone->manufacturer }}" label2="Model" name2="model" default2="{{ $phone->model }}" />
 
-                <div class="flex flex-row gap-3 mb-3">
-                    <x-input.field name="extension" placeholder="Nebenstelle" value="{{ $phone->extension }}" autofocus/>
-                </div>
-                <div class="flex flex-row gap-3 mb-3">
-                    <x-input.field name="manufacturer" placeholder="Hersteller" value="{{ $phone->manufacturer }}" />
-                    <x-input.field name="model" placeholder="Modell" value="{{ $phone->model }}" />
-                    <x-input.field name="serialNumber" placeholder="Seriennummer" value="{{ $phone->serialNumber }}" />
-                </div>
-                <div class="flex flex-row gap-3 mb-3">
-                    <x-input.field name="ip" placeholder="IP-Adresse" value="{{ $phone->ip }}" />
-                    <x-input.field name="port" placeholder="Port" value="{{ $phone->port }}" />
-                    <x-input.field name="mac" placeholder="MAC-Adresse" value="{{ $phone->mac }}" />
-                </div>
-                <div class="flex flex-row gap-3 mb-3">
-                    <x-input.field name="username" placeholder="Benutzername" value="{{ $phone->username }}" />
-                    <x-input.field name="password" placeholder="Passwort" value="{{ $phone->password }}" />
-                </div>
-                <div class="flex flex-row gap-3">
-                    <x-input.button label="Ändern" />
-                </div>
-            </form>
-        </div>
-    </div>
+        <x-create.singlerow label="Seriennummer" name="serialNumber" default="{{ $phone->serialNumber }}" />
 
-    @foreach ($errors->all() as $error)
-        {{ $error }}
-    @endforeach
+        <x-create.doublerow label1="IP" name1="ip" default1="{{ $phone->ip }}" label2="Port" name2="port" type2="number" default2="{{ $phone->port }}" />
 
+        <x-create.singlerow label="MAC-Adresse" name="mac" default="{{ $phone->mac }}" />
+
+        <x-create.doublerow label1="Benutzername" name1="username" default1="{{ $phone->username }}" label2="Passwort" name2="password" default2="{{ $phone->password }}" />
+
+    </x-create.main>
+
+    <x-deletecard action="{{ route('phone.destroy', [$customer, $phone]) }}" />
 
 </x-app-layout>

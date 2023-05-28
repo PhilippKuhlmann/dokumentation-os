@@ -1,31 +1,13 @@
 <x-app-layout :$customer>
+    <x-create.main header="AD-Gruppe bearbeiten" labelsubmit="Ändern" action="{{ route('adgroup.update', [$customer, $adgroup]) }}">
+        @method('PATCH')
 
-    <div class="w-full p-3">
+        <x-create.singlerow label="Name" name="name" default="{{ $adgroup->name }}" />
 
-        <div class="flex flex-col w-fit rounded-md shadow-md bg-white dark:bg-gray-800">
-            <div class="w-full text-2xl text-center p-3 dark:text-gray-100">
-                Neuer AD-Gruppe
-            </div>
-            <form method="post" action="/{{ $customer->slug }}/adgroup/{{ $adgroup->id }}" class="p-5">
-                @csrf
-                @method('PATCH')
+        <x-create.singlerow label="Beschreibung" name="description" default="{{ $adgroup->description }}" />
 
-                <div class="flex flex-row gap-3 mb-3">
-                    <x-input.field name="name" placeholder="Name" class="w-96" value="{{ $adgroup->name }}" autofocus/>
-                </div>
-                <div class="flex flex-row gap-3 mb-3">
-                    <x-input.field name="description" placeholder="Beschreibung" class="w-96" value="{{ $adgroup->description }}" />
-                </div>
-                <div class="flex flex-row gap-3">
-                    <x-input.button label="Ändern" />
-                </div>
-            </form>
-        </div>
-    </div>
+    </x-create.main>
 
-    @foreach ($errors->all() as $error)
-        {{ $error }}
-    @endforeach
-
+    <x-deletecard action="{{ route('adgroup.destroy', [$customer, $adgroup]) }}" />
 
 </x-app-layout>

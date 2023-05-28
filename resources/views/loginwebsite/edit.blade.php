@@ -1,35 +1,15 @@
 <x-app-layout :$customer>
+    <x-create.main header="Webseite bearbeiten" labelsubmit="Ändern" action="{{ route('loginwebsite.update', [$customer, $loginwebsite]) }}">
+        @method('PATCH')
 
-    <div class="w-full p-3">
+        <x-create.singlerow label="Name" name="name" default="{{ $loginwebsite->name }}" />
 
-        <div class="flex flex-col w-fit rounded-md shadow-md bg-white dark:bg-gray-900">
-            <div class="w-full text-2xl text-center p-3 dark:text-gray-100">
-                Edit Webseiten Login
-            </div>
-            <form method="post" action="{{ route('loginwebsite.update', [$customer, $loginwebsite]) }}" class="p-5">
-                @csrf
-                @method('PATCH')
+        <x-create.singlerow label="URL" name="url" default="{{ $loginwebsite->url }}" />
 
-                <div class="flex flex-row gap-3 mb-3">
-                    <x-input.field name="name" placeholder="Name" value="{{ $loginwebsite->name }}" autofocus/>
-                </div>
-                <div class="flex flex-row gap-3 mb-3">
-                    <x-input.field name="username" placeholder="Benutzername" value="{{ $loginwebsite->username }}" />
-                    <x-input.field name="password" placeholder="Passwort" value="{{ $loginwebsite->password }}"/>
-                </div>
-                <div class="flex flex-row gap-3 mb-3">
-                    <x-input.field name="url" placeholder="URL" value="{{ $loginwebsite->url }}" />
-                </div>
-                <div class="flex flex-row gap-3">
-                    <x-input.button label="Ändern" />
-                </div>
-            </form>
-        </div>
-    </div>
+        <x-create.doublerow label1="Benutzername" name1="username" default1="{{ $loginwebsite->username }}" label2="Passwort" name2="password" default2="{{ $loginwebsite->password }}" />
 
-    @foreach ($errors->all() as $error)
-        {{ $error }}
-    @endforeach
+    </x-create.main>
 
+    <x-deletecard action="{{ route('loginwebsite.destroy', [$customer, $loginwebsite]) }}" />
 
 </x-app-layout>

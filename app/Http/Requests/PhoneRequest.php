@@ -28,7 +28,7 @@ class PhoneRequest extends FormRequest
             'manufacturer' => 'max:255',
             'model' => 'max:255',
             'serialNumber' => 'max:255',
-            'ip1' => 'max:255',
+            'ip' => 'max:255',
             'port' => 'max:255',
             'mac' => 'max:255',
             'username' => 'max:255',

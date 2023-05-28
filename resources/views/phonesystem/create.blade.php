@@ -1,40 +1,15 @@
 <x-app-layout :$customer>
+    <x-create.main header="Neue Telefonanlage" action="{{ route('phoneSystem.store', $customer) }}">
 
-    <div class="w-full p-3">
+        <x-create.doublerow label1="Hersteller" name1="manufacturer" label2="Model" name2="model" />
 
-        <div class="flex flex-col w-fit rounded-md shadow-md bg-white dark:bg-gray-900">
-            <div class="w-full text-2xl text-center p-3 dark:text-gray-100">
-                Neue Telefonanlage
-            </div>
-            <form method="post" action="{{ route('phoneSystem.store', $customer) }}" class="p-5">
-                @csrf
+        <x-create.singlerow label="Seriennummer" name="serialNumber" />
 
-                <div class="flex flex-row gap-3 mb-3">
-                    <x-input.field name="manufacturer" placeholder="Hersteller" autofocus/>
-                    <x-input.field name="type" placeholder="Typ" />
-                    <x-input.field name="model" placeholder="Modell" />
-                    <x-input.field name="serialNumber" placeholder="Seriennummer" />
-                </div>
-                <div class="flex flex-row gap-3 mb-3">
-                    <x-input.field name="ip1" placeholder="IP 1" />
-                    <x-input.field name="ip2" placeholder="IP 2" />
-                    <x-input.field name="ip3" placeholder="IP 3" />
-                    <x-input.field name="port" placeholder="Port" />
-                </div>
-                <div class="flex flex-row gap-3 mb-3">
-                    <x-input.field name="username" placeholder="Benutzername" />
-                    <x-input.field name="password" placeholder="Passwort" />
-                </div>
-                <div class="flex flex-row gap-3">
-                    <x-input.button label="Hinzufügen" />
-                </div>
-            </form>
-        </div>
-    </div>
+        <x-create.doublerow label1="IP 1" name1="ip1" label2="Port" name2="port" type2="number" />
 
-    @foreach ($errors->all() as $error)
-        {{ $error }}
-    @endforeach
+        <x-create.doublerow label1="IP 2" name1="ip2" label2="IP 3" name2="ip3" />
 
+        <x-create.doublerow label1="Benutzername" name1="username" label2="Passwort" name2="password" />
 
+    </x-create.main>
 </x-app-layout>

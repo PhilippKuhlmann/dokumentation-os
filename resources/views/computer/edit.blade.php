@@ -1,5 +1,5 @@
 <x-app-layout :$customer>
-    <x-create.main header="Neuer Computer" labelsubmit="Ändern" action="{{ route('computer.update', [$customer, $computer]) }}">
+    <x-create.main header="Computer bearbeiten" labelsubmit="Ändern" action="{{ route('computer.update', [$customer, $computer]) }}">
         @method('PATCH')
 
         <x-create.singlerow label="Name" name="name" default="{{ $computer->name }}" />

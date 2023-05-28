@@ -16,7 +16,6 @@
             <x-slot:body>
 
                 <x-minitablecard title="Allgemein" :array="[
-                    'Art' => $phoneSystem->type,
                     'Modell' => $phoneSystem->model,
                     'Seriennummer' => $phoneSystem->serialNumber,
                 ]" />

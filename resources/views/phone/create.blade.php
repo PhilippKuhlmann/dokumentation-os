@@ -1,41 +1,17 @@
 <x-app-layout :$customer>
+    <x-create.main header="Neues Telefon" action="{{ route('phone.store', $customer) }}">
 
-    <div class="w-full p-3">
+        <x-create.singlerow label="Nebenstelle" name="extension" />
 
-        <div class="flex flex-col w-fit rounded-md shadow-md bg-white dark:bg-gray-900">
-            <div class="w-full text-2xl text-center p-3 dark:text-gray-100">
-                Neues Telefon
-            </div>
-            <form method="post" action="{{ route('phone.store', $customer) }}" class="p-5">
-                @csrf
+        <x-create.doublerow label1="Hersteller" name1="manufacturer" label2="Model" name2="model" />
 
-                <div class="flex flex-row gap-3 mb-3">
-                    <x-input.field name="extension" placeholder="Nebenstelle" autofocus/>
-                </div>
-                <div class="flex flex-row gap-3 mb-3">
-                    <x-input.field name="manufacturer" placeholder="Hersteller" />
-                    <x-input.field name="model" placeholder="Modell" />
-                    <x-input.field name="serialNumber" placeholder="Seriennummer" />
-                </div>
-                <div class="flex flex-row gap-3 mb-3">
-                    <x-input.field name="ip" placeholder="IP-Adresse" />
-                    <x-input.field name="port" placeholder="Port" />
-                    <x-input.field name="mac" placeholder="MAC-Adresse" />
-                </div>
-                <div class="flex flex-row gap-3 mb-3">
-                    <x-input.field name="username" placeholder="Benutzername" />
-                    <x-input.field name="password" placeholder="Passwort" />
-                </div>
-                <div class="flex flex-row gap-3">
-                    <x-input.button label="Hinzufügen" />
-                </div>
-            </form>
-        </div>
-    </div>
+        <x-create.singlerow label="Seriennummer" name="serialNumber" />
 
-    @foreach ($errors->all() as $error)
-        {{ $error }}
-    @endforeach
+        <x-create.doublerow label1="IP" name1="ip" label2="Port" name2="port" type2="number" />
 
+        <x-create.singlerow label="MAC-Adresse" name="mac" />
 
+        <x-create.doublerow label1="Benutzername" name1="username" label2="Passwort" name2="password" />
+
+    </x-create.main>
 </x-app-layout>

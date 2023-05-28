@@ -1,41 +1,19 @@
 <x-app-layout :$customer>
+    <x-create.main header="Drucker bearbeiten" labelsubmit="Ändern" action="{{ route('printer.update', [$customer, $printer]) }}">
+        @method('PATCH')
 
-    <div class="w-full p-3">
+        <x-create.singlerow label="Name" name="name" default="{{ $printer->name }}" />
 
-        <div class="flex flex-col w-fit rounded-md shadow-md bg-white dark:bg-gray-900">
-            <div class="w-full text-2xl text-center p-3 dark:text-gray-100">
-                Drucker bearbeiten
-            </div>
-            <form method="post" action="{{ route('printer.update', [$customer, $printer]) }}" class="p-5">
-                @csrf
-                @method('PATCH')
+        <x-create.doublerow label1="Hersteller" name1="manufacturer" default1="{{ $printer->manufacturer }}" label2="Model" name2="model" default2="{{ $printer->model }}" />
 
-                <div class="flex flex-row gap-3 mb-3">
-                    <x-input.field name="name" placeholder="Name" value="{{ $printer->name }}" autofocus/>
-                </div>
-                <div class="flex flex-row gap-3 mb-3">
-                    <x-input.field name="manufacturer" placeholder="Hersteller" value="{{ $printer->manufacturer }}" />
-                    <x-input.field name="model" placeholder="Modell" value="{{ $printer->model }}" />
-                    <x-input.field name="serialNumber" placeholder="Seriennummer" value="{{ $printer->serialNumber }}" />
-                </div>
-                <div class="flex flex-row gap-3 mb-3">
-                    <x-input.field name="ip" placeholder="IP-Adresse" value="{{ $printer->ip }}" />
-                    <x-input.field name="port" placeholder="Port" value="{{ $printer->port }}" />
-                </div>
-                <div class="flex flex-row gap-3 mb-3">
-                    <x-input.field name="username" placeholder="Benutzername" value="{{ $printer->username }}" />
-                    <x-input.field name="password" placeholder="Passwort" value="{{ $printer->password }}" />
-                </div>
-                <div class="flex flex-row gap-3">
-                    <x-input.button label="Ändern" />
-                </div>
-            </form>
-        </div>
-    </div>
+        <x-create.singlerow label="Seriennummer" name="serialNumber" default="{{ $printer->serialNumber }}" />
 
-    @foreach ($errors->all() as $error)
-        {{ $error }}
-    @endforeach
+        <x-create.singlerow label="IP-Adresse" name="ip" default="{{ $printer->ip }}" />
 
+        <x-create.doublerow label1="Benutzer" name1="username" default1="{{ $printer->username }}" label2="Passwort" name2="password" default2="{{ $printer->password }}" />
+
+    </x-create.main>
+
+    <x-deletecard action="{{ route('printer.destroy', [$customer, $printer]) }}" />
 
 </x-app-layout>

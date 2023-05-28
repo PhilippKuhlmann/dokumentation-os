@@ -1,32 +1,13 @@
 <x-app-layout :$customer>
+    <x-create.main header="Neuer AD-Benutzer" action="{{ route('aduser.store', $customer) }}">
 
-    <div class="w-full p-3">
+        <x-create.singlerow label="Vorname" name="firstName" />
 
-        <div class="flex flex-col w-fit rounded-md shadow-md bg-white dark:bg-gray-900">
-            <div class="w-full text-2xl text-center p-3 dark:text-gray-100">
-                Neuer AD-Benutzer
-            </div>
-            <form method="post" action="/{{ $customer->slug }}/aduser" class="p-5">
-                @csrf
+        <x-create.singlerow label="Nachname" name="lastName" />
 
-                <div class="flex flex-row gap-3 mb-3">
-                    <x-input.field name="firstName" placeholder="Vorname" autofocus/>
-                    <x-input.field name="lastName" placeholder="Nachname" />
-                </div>
-                <div class="flex flex-row gap-3 mb-3">
-                    <x-input.field name="username" placeholder="Benutzername" />
-                    <x-input.field name="password" placeholder="Passwort"/>
-                </div>
-                <div class="flex flex-row gap-3">
-                    <x-input.button label="Hinzufügen" />
-                </div>
-            </form>
-        </div>
-    </div>
+        <x-create.singlerow label="Benutzername" name="username" />
 
-    @foreach ($errors->all() as $error)
-        {{ $error }}
-    @endforeach
+        <x-create.singlerow label="Passwort" name="password" />
 
-
+    </x-create.main>
 </x-app-layout>

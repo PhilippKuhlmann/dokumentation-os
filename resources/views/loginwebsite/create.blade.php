@@ -1,34 +1,11 @@
 <x-app-layout :$customer>
+    <x-create.main header="Neue Webseite" action="{{ route('loginwebsite.store', $customer) }}">
 
-    <div class="w-full p-3">
+        <x-create.singlerow label="Name" name="name" />
 
-        <div class="flex flex-col w-fit rounded-md shadow-md bg-white dark:bg-gray-900">
-            <div class="w-full text-2xl text-center p-3 dark:text-gray-100">
-                Neue Webseiten Login
-            </div>
-            <form method="post" action="{{ route('loginwebsite.store', [$customer]) }}" class="p-5">
-                @csrf
+        <x-create.singlerow label="URL" name="url" />
 
-                <div class="flex flex-row gap-3 mb-3">
-                    <x-input.field name="name" placeholder="Name" autofocus/>
-                </div>
-                <div class="flex flex-row gap-3 mb-3">
-                    <x-input.field name="username" placeholder="Benutzername" />
-                    <x-input.field name="password" placeholder="Passwort"/>
-                </div>
-                <div class="flex flex-row gap-3 mb-3">
-                    <x-input.field name="url" placeholder="URL" />
-                </div>
-                <div class="flex flex-row gap-3">
-                    <x-input.button label="Hinzufügen" />
-                </div>
-            </form>
-        </div>
-    </div>
+        <x-create.doublerow label1="Benutzername" name1="username" label2="Passwort" name2="password" />
 
-    @foreach ($errors->all() as $error)
-        {{ $error }}
-    @endforeach
-
-
+    </x-create.main>
 </x-app-layout>
