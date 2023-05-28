@@ -10,4 +10,9 @@ class Computer extends Model
     use HasFactory;
 
     protected $guarded = [];
+
+    public function operatingSystem()
+    {
+        return $this->belongsTo(OperatingSystem::class);
+    }
 }

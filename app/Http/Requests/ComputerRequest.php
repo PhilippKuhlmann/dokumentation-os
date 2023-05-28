@@ -29,7 +29,7 @@ class ComputerRequest extends FormRequest
             'model' => 'max:255',
             'serialNumber' => 'max:255',
             'ip' => 'max:255',
-            'operatingSystem' => 'max:255',
+            'operating_system_id' => '',
         ];
     }
 }

@@ -1,46 +1,23 @@
 <x-app-layout :$customer>
+    <x-create.main header="Netzwerk bearbeiten" labelsubmit="Ändern" action="{{ route('network.update', [$customer, $network]) }}">
+        @method('PATCH')
 
-    <div class="w-full p-3">
+        <x-create.singlerow label="Beschreibung" name="description" default="{{ $network->description }}" />
 
-        <div class="flex flex-col w-fit rounded-md shadow-md bg-white dark:bg-gray-900">
-            <div class="w-full text-2xl text-center p-3 dark:text-gray-100">
-                Netzwerk Bearbeiten
-            </div>
-            <form method="post" action="/{{ $customer->slug }}/network/{{ $network->id }}" class="p-5">
-                @csrf
-                @method('PATCH')
+        <x-create.doublerow14 label1="Netzwerk" name1="network" default1="{{ $network->network }}" label2="VLAN ID" name2="vlanId" default2="1"
+            type2="number" default2="{{ $network->vlanId }}"  />
 
-                <div class="flex flex-row gap-3 mb-3">
-                    <x-input.field type="number" name="vlanId" placeholder="VLAN ID" value="{{ $network->vlanId }}" autofocus/>
-                    <x-input.field name="description" placeholder="Beschreibung" value="{{ $network->description }}" />
-                </div>
-                <div class="flex flex-row gap-3 mb-3">
-                    <x-input.field name="network" placeholder="Netzwerk" value="{{ $network->network }}" />
-                    <x-input.field name="subnetmask" placeholder="Subnetzmaske" value="{{ $network->subnetmask }}" />
-                    <x-input.field name="cidr" placeholder="CIDR" class="w-16" value="{{ $network->cidr }}" />
-                </div>
-                <div class="flex flex-row gap-3 mb-3">
-                    <x-input.field name="gateway" placeholder="Gateway" value="{{ $network->gateway }}" />
-                </div>
-                <div class="flex flex-row gap-3 mb-3">
-                    <x-input.field name="dns1" placeholder="DNS 1" value="{{ $network->dns1 }}" />
-                    <x-input.field name="dns2" placeholder="DNS 2" value="{{ $network->dns2 }}" />
-                </div>
-                <div class="flex flex-row gap-3 mb-3">
-                    <x-input.field name="dhcpStart" placeholder="DHCP-Start" value="{{ $network->dhcpStart }}" />
-                    <x-input.field name="dhcpEnd" placeholder="DHCP-End" value="{{ $network->dhcpEnd }}" />
-                </div>
-                <div class="flex flex-row gap-3">
-                    <x-input.button label="Update" />
-                </div>
+        <x-create.doublerow14 label1="Subnetzmaske" name1="subnetmask" default1="255.255.255.0" default1="{{ $network->subnetmask }}" label2="CIDR"
+            name2="cidr" default2="24" type2="number" default2="{{ $network->cidr }}" />
 
-            </form>
-        </div>
-    </div>
+        <x-create.singlerow label="Gateway" name="gateway" default="{{ $network->gateway }}" />
 
-    @foreach ($errors->all() as $error)
-        {{ $error }}
-    @endforeach
+        <x-create.doublerow label1="DNS 1" name1="dns1" default1="{{ $network->dns1 }}" label2="DNS 2" name2="dns2" default2="{{ $network->dns2 }}" />
 
+        <x-create.doublerow label1="DHCP-Start" name1="dhcpStart" default1="{{ $network->dhcpStart }}" label2="DHCP-Ende" name2="dhcpEnd" default2="{{ $network->dhcpEnd }}" />
+
+    </x-create.main>
+
+    <x-deletecard action="{{ route('network.destroy', [$customer, $network]) }}" />
 
 </x-app-layout>

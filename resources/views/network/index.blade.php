@@ -1,45 +1,38 @@
 <x-app-layout :$customer>
 
+    <x-sitetopmenu>
+        <x-input.linkbutton label="Neu" link="/{{ Request::path() }}/create" />
+    </x-sitetopmenu>
 
+    @foreach ($networks as $network)
+        <x-card>
+            <x-slot:head>
+                <x-show.header editUrl="/{{ Request::path() }}/{{ $network->id }}/edit">
+                    VLAN {{ $network->vlanId }} - {{ $network->description }}
+                </x-show.header>
+            </x-slot>
 
-    <div class="flex flex-col md:flex-row md:flex-wrap w-full">
+            <x-slot:body>
 
-        <div class="md:w-1/5">
-            <div class="m-3 p-3 text-center rounded-md dark:text-gray-100 outline-4 outline-dashed outline-gray-600 hover:outline-blue-500">
-                <a href="/{{ $customer->slug }}/network/create"
-                    class="text-gray-600 hover:text-blue-500">
-                    <div class="flex h-32 ">
-                        <span class="m-auto text-3xl text-center font-semibold ">+</span>
-                    </div>
-                </a>
-            </div>
+                <x-minitablecard title="Netzwerk" :array="[
+                    'Netzwerk' => $network->network,
+                    'Subnetzmakske' => $network->subnetmask,
+                    'CIDR' => $network->cidr,
+                    'Gateway' => $network->gateway,
+                ]" />
 
-        </div>
+                <x-minitablecard title="DHCP" :array="[
+                    'Start' => $network->dhcpStart,
+                    'Ende' => $network->dhcpEnd,
+                ]" />
 
-        @foreach ($customer->networks as $network)
-        <div class="md:w-1/5">
-            <div class="m-3 p-3 rounded-md shadow-md bg-white dark:bg-gray-800 dark:text-gray-100">
-                <a href="/{{ $customer->slug }}/network/{{ $network->id }}"
-                    class="">
-                    <div class="flex h-20 ">
-                        <span class="m-auto text-2xl text-center font-semibold">vlan {{ $network->vlanId }}</span>
-                    </div>
-                    <div class="flex h-12 flex-col mx-auto text-center">
-                        <span>{{ $network->description }}</span>
-                        <span>{{ $network->network }}{{ $network->cidr }}</span>
-                    </div>
-                </a>
-            </div>
+                <x-minitablecard title="DNS" :array="[
+                    'DNS 1' => $network->dns1,
+                    'DNS 2' => $network->dns2,
+                ]" />
 
-        </div>
-
-
-        @endforeach
-
-
-
-
-
-    </div>
+            </x-slot>
+        </x-card>
+    @endforeach
 
 </x-app-layout>

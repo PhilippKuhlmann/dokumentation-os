@@ -13,7 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('server_operating_systems', function (Blueprint $table) {
+        Schema::create('operating_systems', function (Blueprint $table) {
             $table->id();
             $table->string('name');
             $table->timestamps();
@@ -28,6 +28,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('server_operating_systems');
+        Schema::dropIfExists('operating_systems');
     }
 };

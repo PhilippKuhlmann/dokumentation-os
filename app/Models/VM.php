@@ -21,9 +21,9 @@ class VM extends Model
         );
     }
 
-    public function serverOperatingSystem()
+    public function operatingSystem()
     {
-        return $this->belongsTo(ServerOperatingSystem::class);
+        return $this->belongsTo(OperatingSystem::class);
     }
 
 }

@@ -21,7 +21,7 @@ return new class extends Migration
             $table->string('model')->nullable();
             $table->string('serialNumber')->nullable();
             $table->string('ip')->nullable();
-            $table->string('operatingSystem')->nullable();
+            $table->foreignId('operating_system_id')->nullable();
             $table->timestamps();
         });
     }

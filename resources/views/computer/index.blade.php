@@ -25,7 +25,7 @@
             ]" />
 
             <x-minitextcard title="Betriebsystem">
-                {{ $computer->operatingSystem }}
+                {{ $computer->operatingSystem->name }}
             </x-minitextcard>
 
         </x-slot>

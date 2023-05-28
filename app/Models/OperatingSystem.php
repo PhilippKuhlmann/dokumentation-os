@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class ServerOperatingSystem extends Model
+class OperatingSystem extends Model
 {
     use HasFactory, SoftDeletes;
 

@@ -28,7 +28,7 @@ class VMRequest extends FormRequest
             'ip1' => 'max:255',
             'ip2' => 'max:255',
             'services' => 'max:255',
-            'server_operating_system_id' => '',
+            'operating_system_id' => '',
         ];
     }
 }

@@ -26,7 +26,7 @@ class ServerFactory extends Factory
             'bmcUser' => 'root',
             'bmcPassword' => fake()->password(),
             'services' => 'Hyper-V,DNS,AD',
-            'server_operating_system_id' => fake()->numberBetween($min = 1, $max = 10),
+            'operating_system_id' => fake()->numberBetween($min = 1, $max = 10),
         ];
     }
 }

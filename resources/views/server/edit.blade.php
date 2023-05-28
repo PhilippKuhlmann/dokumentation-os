@@ -1,61 +1,26 @@
 <x-app-layout :$customer>
+    <x-create.main header="Server bearbeiten" labelsubmit="Ändern" action="{{ route('server.update', [$customer, $server]) }}">
+        @method('PATCH')
 
-    <div class="w-full p-3">
+        <x-create.singlerow label="Name" name="name" default="{{ $server->name }}" />
 
-        <div class="flex flex-col w-fit rounded-md shadow-md bg-white dark:bg-gray-900">
-            <div class="w-full text-2xl text-center p-3 dark:text-gray-100">
-                Neuer Server
-            </div>
-            <form method="post" action="/{{ $customer->slug }}/server/{{ $server->id }}" class="p-5">
-                @csrf
-                @method('PATCH')
+        <x-create.doublerow label1="Hersteller" name1="manufacturer" default1="{{ $server->manufacturer }}" label2="Model" name2="model" default2="{{ $server->model }}" />
 
-                <div class="flex flex-row gap-3 mb-3">
-                    <x-input.field type="name" name="name" placeholder="Name" value="{{ $server->name }}" autofocus/>
-                </div>
-                <div class="flex flex-row gap-3 mb-3">
-                    <x-input.field name="manufacturer" placeholder="Hersteller" value="{{ $server->manufacturer }}" />
-                    <x-input.field name="model" placeholder="Modell" value="{{ $server->model }}" />
-                    <x-input.field name="serialNumber" placeholder="SNr" value="{{ $server->serialNumber }}" />
-                </div>
-                <div class="flex flex-row gap-3 mb-3">
-                    <x-input.field name="ip1" placeholder="IP 1" value="{{ $server->ip1 }}" />
-                    <x-input.field name="ip2" placeholder="IP 2" value="{{ $server->ip2 }}" />
-                </div>
-                <div class="flex flex-row gap-3 mb-3">
-                    <x-input.field name="bmcIp" placeholder="BMC IP" value="{{ $server->bmcIp }}" />
-                    <x-input.field name="bmcUser" placeholder="BMC User" value="{{ $server->bmcUser }}" />
-                    <x-input.field name="bmcPassword" placeholder="BMC Passwort" value="{{ $server->bmcPassword }}" />
-                </div>
-                <div class="flex flex-col gap-3 mb-3">
-                    <x-input.select name="server_operating_system_id">
-                        @foreach ($serverOperatingSystems as $os)
-                            <option value="{{ $os->id }}" @if ($os->id == $server->server_operating_system_id)
-                                selected
-                            @endif>{{ $os->name }}</option>
-                        @endforeach
-                    </x-input.select>
-                </div>
-                <div class="flex flex-col gap-3 mb-3">
-                    <label for="services" class="dark:text-white">Dienste Bitte mit komma getrennt angeben</label>
-                    @if ($server->services > 1)
-                        <x-input.field id="services" name="services" placeholder="Dienste" value="{{ implode(',', $server->services) }}" />
-                    @else
-                    <x-input.field id="services" name="services" placeholder="Dienste" value="" />
-                    @endif
+        <x-create.singlerow label="Seriennummer" name="serialNumber" default="{{ $server->serialNumber }}" />
 
+        <x-create.doublerow label1="IP 1" name1="ip1" default1="{{ $server->ip1 }}" label2="IP 2" name2="ip2" default2="{{ $server->ip2 }}" />
 
-                </div>
-                <div class="flex flex-row gap-3">
-                    <x-input.button label="Ändern" />
-                </div>
-            </form>
-        </div>
-    </div>
+        <x-create.singlerow label="BMC IP" name="bmcIp" default="{{ $server->bmcIp }}" />
 
-    @foreach ($errors->all() as $error)
-        {{ $error }}
-    @endforeach
+        <x-create.doublerow label1="BMC User" name1="bmcUser" default1="{{ $server->bmcUser }}" label2="BMC Passwort" name2="bmcPassword" default2="{{ $server->bmcPassword }}" />
 
+        <x-edit.select.operatingsystem selector="{{ $server->operatingSystem->id }}" :$operatingSystems/>
+
+        <x-create.singlerow label="Dienste Bitte mit komma getrennt angeben (eins,zwei,drei)" name="services" default="{{ implode(',', $server->services) }}" />
+
+    </x-create.main>
+
+    <x-deletecard action="{{ route('server.destroy', [$customer, $server]) }}" />
 
 </x-app-layout>
+

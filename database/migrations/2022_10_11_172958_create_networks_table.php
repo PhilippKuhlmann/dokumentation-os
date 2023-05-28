@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('customer_id');
             $table->string('description')->nullable();
-            $table->string('vlanId')->nullable();
+            $table->bigInteger('vlanId')->nullable();
             $table->string('network')->nullable();
             $table->string('subnetmask')->nullable();
             $table->string('cidr')->nullable();

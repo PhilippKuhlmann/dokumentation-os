@@ -125,7 +125,7 @@ class DatabaseSeeder extends Seeder
 
 
         $this->call([
-            ServerOperatingSystemsSeeder::class,
+            OperatingSystemsSeeder::class,
             MailboxProvidorsSeeder::class,
         ]);
     }

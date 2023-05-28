@@ -1,6 +1,6 @@
-<div class="flex w-full p-2 gap-3">
+<div class="flex w-full pl-3 pt-3 gap-3">
 
-    <x-input.linkbutton label="Zurück" link="{{ url()->previous() }}" color="gray" />
+    <!-- <x-input.linkbutton label="Zurück" link="{{ url()->previous() }}" color="gray" /> -->
 
         {{ $slot }}
 

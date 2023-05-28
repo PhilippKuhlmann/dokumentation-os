@@ -6,16 +6,9 @@
     </div>
     <div class="flex items-center gap-3">
         <div class="flex flex-row space-x-2">
-            <a href="{{ $editUrl }}" class="font-medium text-gray-900 dark:text-gray-100 hover:text-blue-600">
+            <a href="{{ $editUrl }}" class="font-medium text-blue-500 dark:text-gray-100 hover:text-blue-700">
                 <x-svg.edit class="h-5 w-5" />
             </a>
-            <form method="POST" action="{{ $deleteUrl }}">
-                @csrf
-                @method('delete')
-                <button class="text-red-500 hover:text-red-800" type="submit">
-                    <x-svg.trash class="h-5 w-5" />
-                </button>
-            </form>
         </div>
     </div>
 </div>

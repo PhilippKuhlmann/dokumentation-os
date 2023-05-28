@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('customer_id');
             $table->string('ssid');
-            $table->string('vlan');
+            $table->bigInteger('vlan');
             $table->string('password');
             $table->string('encryption');
             $table->timestamps();

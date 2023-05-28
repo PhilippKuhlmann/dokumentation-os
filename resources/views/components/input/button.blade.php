@@ -1,11 +1,17 @@
-@props(['type' => 'submit', 'label'])
+@props([
+    'label',
+    'type' => 'submit',
+    'color' => 'blue'
+    ])
 
 
 <button
     type="{{ $type }}"
-    {{ $attributes->merge([
-        'class' => 'bg-blue-700 py-2 px-8 rounded- text-white text-sm hover:bg-blue-600 focus:bg-blue-600'
-    ]) }}
+    @if ($color == 'blue')
+        {{ $attributes->merge(['class' => 'py-2 px-4 text-sm bg-blue-700 hover:bg-blue-600 text-white rounded-md']) }}
+    @elseif ($color == 'red')
+        {{ $attributes->merge(['class' => 'py-2 px-4 text-sm bg-red-700 hover:bg-red-600 text-white rounded-md']) }}
+    @endif
     >
         {{ $label }}
 </button>

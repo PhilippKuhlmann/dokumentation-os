@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\VMRequest;
 use App\Models\Customer;
-use App\Models\ServerOperatingSystem;
+use App\Models\OperatingSystem;
 use App\Models\VM;
 
 class VMController extends Controller
@@ -21,7 +21,7 @@ class VMController extends Controller
     {
         return view('vm.create', [
             'customer' => $customer,
-            'serverOperatingSystems' => ServerOperatingSystem::all(),
+            'operatingSystems' => OperatingSystem::all(),
         ]);
     }
 
@@ -37,7 +37,7 @@ class VMController extends Controller
         return view('vm.edit', [
             'customer' => $customer,
             'vm' => $vm,
-            'serverOperatingSystems' => ServerOperatingSystem::all(),
+            'operatingSystems' => OperatingSystem::all(),
         ]);
     }
 

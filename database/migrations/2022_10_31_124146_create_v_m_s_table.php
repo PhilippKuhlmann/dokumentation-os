@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('v_m_s', function (Blueprint $table) {
             $table->id();
             $table->foreignId('customer_id');
-            $table->foreignId('server_operating_system_id')->nullable();
+            $table->foreignId('operating_system_id')->nullable();
             $table->string('name')->nullable();
             $table->string('ip1')->nullable();
             $table->string('ip2')->nullable();

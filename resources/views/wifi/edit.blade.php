@@ -1,33 +1,18 @@
 <x-app-layout :$customer>
+    <x-create.main header="WLAN bearbeiten" labelsubmit="Ändern"
+        action="{{ route('wifi.update', [$customer, $wifi]) }}">
+        @method('PATCH')
 
-    <div class="w-full p-3">
+        <x-create.singlerow label="SSID" name="ssid" default="{{ $wifi->ssid }}" />
 
-        <div class="flex flex-col w-fit rounded-md shadow-md bg-white dark:bg-gray-900">
-            <div class="w-full text-2xl text-center p-3 dark:text-gray-100">
-                WLAN bearbeiten
-            </div>
-            <form method="post" action="{{ route('wifi.update', [$customer, $wifi]) }}" class="p-5">
-                @csrf
-                @method('PATCH')
+        <x-create.singlerow label="Passwort" name="password" default="{{ $wifi->password }}" />
 
-                <div class="flex flex-row gap-3 mb-3">
-                    <x-input.field name="ssid" placeholder="SSID" value="{{ $wifi->ssid }}" autofocus/>
-                    <x-input.field name="password" placeholder="Passwort" value="{{ $wifi->password }}" />
-                </div>
-                <div class="flex flex-row gap-3 mb-3">
-                    <x-input.field name="vlan" placeholder="VLAN" value="{{ $wifi->vlan }}" />
-                    <x-input.field name="encryption" placeholder="Verschlüsselung" value="{{ $wifi->encryption }}" />
-                </div>
-                <div class="flex flex-row gap-3">
-                    <x-input.button label="Ändern" />
-                </div>
-            </form>
-        </div>
-    </div>
+        <x-create.singlerow label="Verschlüsselung" name="encryption" default="{{ $wifi->encryption }}" />
 
-    @foreach ($errors->all() as $error)
-        {{ $error }}
-    @endforeach
+        <x-create.singlerow label="VLAN ID" name="vlan" default="{{ $wifi->vlan }}" />
 
+    </x-create.main>
+
+    <x-deletecard action="{{ route('wifi.destroy', [$customer, $wifi]) }}" />
 
 </x-app-layout>

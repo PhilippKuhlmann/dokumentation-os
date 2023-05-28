@@ -24,16 +24,16 @@ class NetworkRequest extends FormRequest
     public function rules()
     {
         return [
-            'vlanId' => '',
-            'description' => '',
-            'network' => 'max:15',
-            'subnetmask' => 'max:15',
-            'cidr' => 'max:3',
-            'gateway' => 'max:15',
-            'dns1' => 'max:15',
-            'dns2' => 'max:15',
-            'dhcpStart' => 'max:3',
-            'dhcpEnd' => 'max:3',
+            'vlanId' => 'integer|min:1|max:4094',
+            'description' => 'required',
+            'network' => 'required|ipv4',
+            'subnetmask' => 'required|ipv4',
+            'cidr' => 'integer|min:0|max:32',
+            'gateway' => 'nullable|ipv4',
+            'dns1' => 'nullable|ipv4',
+            'dns2' => 'nullable|ipv4',
+            'dhcpStart' => 'nullable|integer|min:1|max:255',
+            'dhcpEnd' => 'nullable|integer|min:1|max:255',
         ];
     }
 }

@@ -24,10 +24,10 @@ class WifiRequest extends FormRequest
     public function rules()
     {
         return [
-            'ssid' => 'max:255',
-            'password' => 'max:255',
-            'vlan' => 'max:255',
-            'encryption' => 'max:255',
+            'ssid' => 'required|max:255',
+            'password' => 'nullable|max:255',
+            'vlan' => 'required|max:4096',
+            'encryption' => 'required|max:255',
         ];
     }
 }

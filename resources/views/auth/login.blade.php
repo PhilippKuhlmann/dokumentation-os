@@ -1,6 +1,6 @@
 <x-guest-layout>
 
-    <div class="min-h-screen flex flex-col sm:justify-center items-center">
+    <div class="min-h-screen flex flex-col p-2 sm:justify-center items-center">
         <div>
             <x-svg.logo class="w-24 h-24 p-2 rounded-xl fill-gray-100 bg-blue-600" />
         </div>

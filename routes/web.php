@@ -66,7 +66,7 @@ Route::middleware(['auth', 'isCustomer'])->group(function () {
     Route::prefix('{customer}')->group(function () {
         Route::scopeBindings()->group(function () {
 
-            Route::resource('network', NetworkController::class);
+            Route::resource('network', NetworkController::class)->except(['show']);
             Route::resource('server', ServerController::class)->except(['show']);
             Route::resource('vm', VMController::class)->except(['show']);
             Route::resource('aduser', ADUserController::class)->except(['show']);

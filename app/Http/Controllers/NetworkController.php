@@ -13,14 +13,7 @@ class NetworkController extends Controller
     {
         return view('network.index', [
             'customer' => $customer,
-        ]);
-    }
-
-    public function show(Customer $customer, Network $network)
-    {
-        return view('network.show', [
-            'customer' => $customer,
-            'network' => $network,
+            'networks' => Network::orderBy('vlanid')->get(),
         ]);
     }
 
@@ -50,14 +43,14 @@ class NetworkController extends Controller
     {
         $network->update($request->validated());
 
-        return redirect('/' . $customer->slug . '/network' . '/' . $network->id);
+        return redirect(route('network.index', $customer));
     }
 
     public function destroy(Customer $customer, Network $network)
     {
         $network->delete();
 
-        return redirect('/' . $customer->slug . '/network');
+        return redirect(route('network.index', $customer));
     }
 
 }

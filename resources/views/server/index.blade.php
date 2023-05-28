@@ -35,7 +35,7 @@
                 <x-minitagcard title="Dienste" :array="$server->services" />
 
                 <x-minitextcard title="Betriebsystem">
-                    {{ $server->serverOperatingSystem->name }}
+                    {{ $server->operatingSystem->name }}
                 </x-minitextcard>
 
             </x-slot>

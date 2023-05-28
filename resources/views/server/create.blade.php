@@ -1,90 +1,21 @@
 <x-app-layout :$customer>
+    <x-create.main header="Neuer Server" action="{{ route('server.store', $customer) }}">
 
-    <div class="w-full p-3">
+        <x-create.singlerow label="Name" name="name" />
 
-        <div class="flex flex-col w-fit">
-            <div class="w-full text-2xl text-center p-3 dark:text-gray-100">
-                Neuer Server
-            </div>
-            <form method="post" action="{{ route('server.store', $customer) }}" class="p-5">
-                @csrf
+        <x-create.doublerow label1="Hersteller" name1="manufacturer" label2="Model" name2="model" />
 
-                <div class="flex flex-col">
-                    <x-input.label for="name" value="Name" />
-                    <x-input.field id="name" name="name" class="mt-1" value="{{ old('name') }}" required autofocus />
-                </div>
+        <x-create.singlerow label="Seriennummer" name="serialNumber" />
 
-                <div class="flex flex-row">
-                    <div class="flex flex-col mt-2 grow">
-                        <x-input.label for="manufacturer" value="Hersteller" />
-                        <x-input.field id="manufacturer" name="manufacturer" class="mt-1" value="{{ old('manufacturer') }}" />
-                    </div>
+        <x-create.doublerow label1="IP 1" name1="ip1" label2="IP 2" name2="ip2" />
 
-                    <div class="flex flex-col mt-2 ml-2">
-                        <x-input.label for="model" value="Model" />
-                        <x-input.field id="model" name="model" class="mt-1 w-48" value="{{ old('model') }}" />
-                    </div>
+        <x-create.singlerow label="BMC IP" name="bmcIp" />
 
-                    <div class="flex flex-col mt-2 ml-2">
-                        <x-input.label for="serialNumber" value="SNr" />
-                        <x-input.field id="serialNumber" name="serialNumber" class="mt-1 w-48" value="{{ old('serialNumber') }}" />
-                    </div>
-                </div>
+        <x-create.doublerow label1="BMC User" name1="bmcUser" label2="BMC Passwort" name2="bmcPassword" />
 
-                <div class="flex flex-row">
-                    <div class="flex flex-col mt-2 grow">
-                        <x-input.label for="ip1" value="IP 1" />
-                        <x-input.field id="ip1" name="ip1" class="mt-1" value="{{ old('ip1') }}" required />
-                    </div>
+        <x-create.select.operatingsystem :$operatingSystems/>
 
-                    <div class="flex flex-col mt-2 ml-2 grow">
-                        <x-input.label for="ip2" value="IP 2" />
-                        <x-input.field id="ip2" name="ip2" class="mt-1" value="{{ old('ip2') }}" />
-                    </div>
-                </div>
+        <x-create.singlerow label="Dienste Bitte mit komma getrennt angeben (eins,zwei,drei)" name="services" />
 
-                <div class="flex flex-row">
-                    <div class="flex flex-col mt-2 grow">
-                        <x-input.label for="bmcIp" value="BMC IP" />
-                        <x-input.field id="bmcIp" name="bmcIp" class="mt-1" value="{{ old('bmcIp') }}" />
-                    </div>
-
-                    <div class="flex flex-col mt-2 ml-2">
-                        <x-input.label for="bmcUser" value="BMC User" />
-                        <x-input.field id="bmcUser" name="bmcUser" class="mt-1 w-48" value="{{ old('bmcUser') }}" />
-                    </div>
-
-                    <div class="flex flex-col mt-2 ml-2">
-                        <x-input.label for="bmcPassword" value="BMC Passwort" />
-                        <x-input.field id="bmcPassword" name="bmcPassword" class="mt-1 w-48" value="{{ old('bmcPassword') }}" />
-                    </div>
-                </div>
-
-                <div class="flex flex-col mt-2">
-                    <x-input.label for="server_operating_system_id" value="Betriebsystem" />
-                    <x-input.select id="server_operating_system_id" name="server_operating_system_id">
-                        @foreach ($serverOperatingSystems as $os)
-                            <option value="{{ $os->id }}">{{ $os->name }}</option>
-                        @endforeach
-                    </x-input.select>
-                </div>
-
-                <div class="flex flex-col mt-2 grow">
-                    <x-input.label for="services" value="Dienste Bitte mit komma getrennt angeben (eins,zwei,drei)" />
-                    <x-input.field id="services" name="services" class="mt-1" value="{{ old('services') }}" />
-                </div>
-
-                <div class="flex flex-row gap-3 mt-5">
-                    <x-input.button label="Hinzufügen" />
-                </div>
-
-            </form>
-        </div>
-    </div>
-
-    @foreach ($errors->all() as $error)
-        {{ $error }}
-    @endforeach
-
-
+    </x-create.main>
 </x-app-layout>

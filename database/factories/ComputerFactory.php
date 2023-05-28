@@ -22,7 +22,7 @@ class ComputerFactory extends Factory
             'model' => fake()->ean8(),
             'serialNumber' => fake()->ean13(),
             'ip' => fake()->localIpv4(),
-            'operatingSystem' => fake()->randomElement(['Windows 10 Pro', 'Windows 11 Pro', 'Debian 11']),
+            'operating_system_id' => fake()->numberBetween($min = 1, $max = 10),
         ];
     }
 }

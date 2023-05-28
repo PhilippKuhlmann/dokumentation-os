@@ -36,7 +36,7 @@ class ServerRequest extends FormRequest
             'bmcUser' => 'max:255',
             'bmcPassword' => 'max:255',
             'services' => 'max:255',
-            'server_operating_system_id' => '',
+            'operating_system_id' => '',
         ];
     }
 }

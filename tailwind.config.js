@@ -18,6 +18,9 @@ module.exports = {
                 'sdarkblue': '#0C2E5E',
                 'ssystemblue': '#01B0EC',
             },
+            width: {
+                '128': '32rem',
+              }
         },
 
     },

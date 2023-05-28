@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\ServerRequest;
 use App\Models\Server;
 use App\Models\Customer;
-use App\Models\ServerOperatingSystem;
+use App\Models\OperatingSystem;
 use Illuminate\Support\Arr;
 
 class ServerController extends Controller
@@ -33,7 +33,7 @@ class ServerController extends Controller
     {
         return view('server.create', [
             'customer' => $customer,
-            'serverOperatingSystems' => ServerOperatingSystem::all(),
+            'operatingSystems' => OperatingSystem::all(),
         ]);
     }
 
@@ -49,7 +49,7 @@ class ServerController extends Controller
         return view('server.edit', [
             'customer' => $customer,
             'server' => $server,
-            'serverOperatingSystems' => ServerOperatingSystem::all(),
+            'operatingSystems' => OperatingSystem::all(),
         ]);
     }
 

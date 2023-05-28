@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('servers', function (Blueprint $table) {
             $table->id();
             $table->foreignId('customer_id')->constrained('customers')->onDelete('cascade');
-            $table->foreignId('server_operating_system_id')->nullable();
+            $table->foreignId('operating_system_id')->nullable();
             $table->string('name')->nullable();
             $table->string('manufacturer')->nullable();
             $table->string('model')->nullable();

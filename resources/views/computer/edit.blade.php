@@ -1,39 +1,19 @@
 <x-app-layout :$customer>
+    <x-create.main header="Neuer Computer" labelsubmit="Ändern" action="{{ route('computer.update', [$customer, $computer]) }}">
+        @method('PATCH')
 
-    <div class="w-full p-3">
+        <x-create.singlerow label="Name" name="name" default="{{ $computer->name }}" />
 
-        <div class="flex flex-col w-fit rounded-md shadow-md bg-white dark:bg-gray-900">
-            <div class="w-full text-2xl text-center p-3 dark:text-gray-100">
-                Computer bearbeiten
-            </div>
-            <form method="post" action="{{ route('computer.update', [$customer, $computer]) }}" class="p-5">
-                @csrf
-                @method('PATCH')
+        <x-create.doublerow label1="Hersteller" name1="manufacturer" default1="{{ $computer->manufacturer }}" label2="Model" name2="model" default2="{{ $computer->model }}" />
 
-                <div class="flex flex-row gap-3 mb-3">
-                    <x-input.field name="name" placeholder="Name" value="{{ $computer->name }}" autofocus/>
-                </div>
-                <div class="flex flex-row gap-3 mb-3">
-                    <x-input.field name="manufacturer" placeholder="Hersteller" value="{{ $computer->manufacturer }}" />
-                    <x-input.field name="model" placeholder="Modell" value="{{ $computer->model }}" />
-                    <x-input.field name="serialNumber" placeholder="Seriennummer" value="{{ $computer->serialNumber }}" />
-                </div>
-                <div class="flex flex-row gap-3 mb-3">
-                    <x-input.field name="ip" placeholder="IP-Adresse" value="{{ $computer->ip }}" />
-                </div>
-                <div class="flex flex-row gap-3 mb-3">
-                    <x-input.field name="operatingSystem" placeholder="Betriebsystem" value="{{ $computer->operatingSystem }}" />
-                </div>
-                <div class="flex flex-row gap-3">
-                    <x-input.button label="Ändern" />
-                </div>
-            </form>
-        </div>
-    </div>
+        <x-create.singlerow label="Seriennummer" name="serialNumber" default="{{ $computer->serialNumber }}" />
 
-    @foreach ($errors->all() as $error)
-        {{ $error }}
-    @endforeach
+        <x-create.singlerow label="IP-Adresse" name="ip" default="{{ $computer->ip }}" />
 
+        <x-edit.select.operatingsystem selector="{{ $computer->operatingSystem->id }}" :$operatingSystems/>
+
+    </x-create.main>
+
+    <x-deletecard action="{{ route('computer.destroy', [$customer, $computer]) }}" />
 
 </x-app-layout>
