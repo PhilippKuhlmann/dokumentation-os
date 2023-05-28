@@ -10,14 +10,14 @@ class PhoneSystemController extends Controller
 {
     public function index(Customer $customer)
     {
-        return view('phoneSystem.index', [
+        return view('phonesystem.index', [
             'customer' => $customer,
         ]);
     }
 
     public function create(Customer $customer)
     {
-        return view('phoneSystem.create', [
+        return view('phonesystem.create', [
             'customer' => $customer,
         ]);
     }
@@ -32,7 +32,7 @@ class PhoneSystemController extends Controller
     public function edit(Customer $customer, PhoneSystem $phoneSystem)
     {
 
-        return view('phoneSystem.edit', [
+        return view('phonesystem.edit', [
             'customer' => $customer,
             'phoneSystem' => $phoneSystem,
         ]);
