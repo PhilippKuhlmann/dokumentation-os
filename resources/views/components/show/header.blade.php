@@ -6,7 +6,7 @@
     </div>
     <div class="flex items-center gap-3">
         <div class="flex flex-row space-x-2">
-            <a href="{{ $editUrl }}" class="font-medium text-blue-500 dark:text-gray-100 hover:text-blue-700">
+            <a href="{{ $editUrl }}" class="font-medium text-blue-500 dark:text-blue-500 hover:text-blue-700  dark:hover:text-blue-300">
                 <x-svg.edit class="h-5 w-5" />
             </a>
         </div>
