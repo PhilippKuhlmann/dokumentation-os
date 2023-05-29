@@ -5,7 +5,7 @@
 
 <div class="m-3">
 
-    <form method="POST" action="/admin/create/serveroperatingsystem" class="mb-5">
+    <form method="POST" action="/admin/create/operatingsystem" class="mb-5">
         @csrf
         <x-input.field name="name" placeholder="Name" />
         <x-input.button label="Hinzufügen" />
@@ -16,16 +16,16 @@
 
         <x-table.body>
 
-            @foreach ($serverOperatingSystems as $serverOperatingSystem)
+            @foreach ($operatingSystems as $operatingSystem)
 
                 <x-table.datarow
                     :values="[
-                        $serverOperatingSystem->name,
-                        $serverOperatingSystem->servers()->count(),
+                        $operatingSystem->name,
+                        $operatingSystem->servers()->count(),
                     ]"
 
-                    editUrl="/{{ Request::path() }}/{{ $serverOperatingSystem->id }}/edit"
-                    deleteUrl="/{{ Request::path() }}/{{ $serverOperatingSystem->id }}"
+                    editUrl="/{{ Request::path() }}/{{ $operatingSystem->id }}/edit"
+                    deleteUrl="/{{ Request::path() }}/{{ $operatingSystem->id }}"
                 />
 
             @endforeach

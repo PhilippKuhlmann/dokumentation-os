@@ -22,11 +22,11 @@
 
                 <x-aside.seperator name="Server" />
 
-                <x-aside.link href="{{ route('admin.server.operatingsystem') }}">
+                <x-aside.link href="{{ route('admin.operatingsystem') }}">
                     <x-slot:svg>
                         <x-svg.settings class="h-6 w-6" />
                     </x-slot:svg>
-                    Server Betriebsystem
+                    Betriebsysteme
                 </x-aside.link>
 
             </ul>

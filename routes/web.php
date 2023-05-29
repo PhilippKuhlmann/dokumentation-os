@@ -9,7 +9,7 @@ use App\Http\Controllers\NetworkController;
 use App\Http\Controllers\ADUserController;
 use App\Http\Controllers\ComputerController;
 use App\Http\Controllers\FileController;
-use App\Http\Controllers\ServerOperatingSystemController;
+use App\Http\Controllers\OperatingSystemController;
 use App\Http\Controllers\VMController;
 use App\Http\Controllers\LoginWebsiteController;
 use App\Http\Controllers\MailboxController;
@@ -45,8 +45,8 @@ Route::get('/test', function() {
 // Admin
 Route::get('/admin', [AdminController::class, 'index'])->name('admin.daschboard');
 
-Route::get('/admin/serveroperatingsystem', [ServerOperatingSystemController::class, 'index'])->name('admin.server.operatingsystem');
-Route::post('/admin/create/serveroperatingsystem', [ServerOperatingSystemController::class, 'store']);
+Route::get('/admin/operatingsystem', [operatingSystemController::class, 'index'])->name('admin.operatingsystem');
+Route::post('/admin/create/operatingsystem', [operatingSystemController::class, 'store']);
 
 Route::get('/admin/customer', [CustomerController::class, 'index'])->name('admin.customer.index');
 Route::post('/admin/customer', [CustomerController::class, 'store'])->name('admin.customer.store');

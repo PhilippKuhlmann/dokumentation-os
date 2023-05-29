@@ -11,7 +11,7 @@ class OperatingSystemController extends Controller
     {
 
         return view('admin.operatingsystem.index', [
-            'serverOperatingSystems' => OperatingSystem::all(),
+            'operatingSystems' => OperatingSystem::all(),
         ]);
     }
 
