@@ -20,8 +20,6 @@
                     Kunden
                 </x-aside.link>
 
-                <x-aside.seperator name="Server" />
-
                 <x-aside.link href="{{ route('admin.operatingsystem') }}">
                     <x-slot:svg>
                         <x-svg.settings class="h-6 w-6" />

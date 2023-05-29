@@ -17,7 +17,12 @@ class Customer extends Model
         parent::boot();
 
         static::creating(function ($customer) {
-            $customer->slug = Str::slug($customer->name);
+            if ($customer->location) {
+                $customer->slug = Str::slug($customer->name) . '-' . Str::slug($customer->location);
+            } else {
+                $customer->slug = Str::slug($customer->name);
+            }
+
         });
     }
 
