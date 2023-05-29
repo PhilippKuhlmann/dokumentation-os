@@ -1,7 +1,6 @@
 <x-app-layout :$customer>
-    <x-sitetopmenu>
-        <x-input.linkbutton label="Neu" link="{{ route('computer.create', [$customer]) }}" />
-    </x-sitetopmenu>
+
+    <x-sitetopmenu />
 
     @foreach ($customer->computers as $computer)
     <x-card>

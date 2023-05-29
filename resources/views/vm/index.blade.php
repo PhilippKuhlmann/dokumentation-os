@@ -1,8 +1,6 @@
 <x-app-layout :$customer>
 
-    <x-sitetopmenu>
-        <x-input.linkbutton label="Neu" link="{{ route('vm.create', [$customer]) }}" />
-    </x-sitetopmenu>
+    <x-sitetopmenu />
 
     @foreach ($customer->vms as $vm)
         <x-card>

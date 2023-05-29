@@ -61,7 +61,7 @@ Route::get('/{customer}', [CustomerController::class, 'dashboard'])->name('custo
 Route::post('/{customer}/view-pdf', [CustomerController::class, 'viewPDF'])->name('customer.view-pdf');
 
 
-Route::middleware(['auth', 'isCustomer'])->group(function () {
+Route::middleware(['auth', 'isCustomerRW', 'isCustomerR'])->group(function () {
 
     Route::prefix('{customer}')->group(function () {
         Route::scopeBindings()->group(function () {

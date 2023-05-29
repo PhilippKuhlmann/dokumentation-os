@@ -1,7 +1,6 @@
 <x-app-layout :$customer>
-    <x-sitetopmenu>
-        <x-input.linkbutton label="Neu" link="{{ route('printer.create', [$customer]) }}" />
-    </x-sitetopmenu>
+
+    <x-sitetopmenu />
 
     @foreach ($customer->printers as $printer)
     <x-card>

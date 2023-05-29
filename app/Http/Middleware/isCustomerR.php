@@ -5,7 +5,7 @@ namespace App\Http\Middleware;
 use Closure;
 use Illuminate\Http\Request;
 
-class isCustomer
+class isCustomerR
 {
     /**
      * Handle an incoming request.
@@ -16,8 +16,7 @@ class isCustomer
      */
     public function handle(Request $request, Closure $next)
     {
-
-        if (auth()->user()->role->id == 99)
+        if (auth()->user()->role->id == 98)
         {
             if ($request->route()->uri == 'customer/search')
             {

@@ -25,8 +25,13 @@ class DatabaseSeeder extends Seeder
         ]);
 
         \App\Models\Role::factory()->create([
+            'id' => 98,
+            'name' => 'Kunde R',
+        ]);
+
+        \App\Models\Role::factory()->create([
             'id' => 99,
-            'name' => 'Kunde',
+            'name' => 'Kunde RW',
         ]);
 
 
@@ -51,10 +56,18 @@ class DatabaseSeeder extends Seeder
         ]);
 
         \App\Models\User::factory()->create([
-            'name' => 'Max Mustermann',
-            'username' => 'max',
+            'name' => 'Max RW',
+            'username' => 'maxrw',
             'password' => bcrypt('password'),
             'role_id' => 99,
+            'customer_id' => $customer->id,
+        ]);
+
+        \App\Models\User::factory()->create([
+            'name' => 'Max R',
+            'username' => 'maxr',
+            'password' => bcrypt('password'),
+            'role_id' => 98,
             'customer_id' => $customer->id,
         ]);
 

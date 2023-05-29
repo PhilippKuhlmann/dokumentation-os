@@ -12,7 +12,7 @@ class CustomerController extends Controller
 {
     public function __construct(Customer $customer)
     {
-        $this->middleware(['auth', 'isCustomer']);
+        $this->middleware(['auth', 'isCustomerRW', 'isCustomerR']);
     }
 
     public function search()

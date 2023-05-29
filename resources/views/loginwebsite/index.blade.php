@@ -1,8 +1,6 @@
 <x-app-layout :$customer>
 
-    <x-sitetopmenu>
-        <x-input.linkbutton label="Neu" link="{{ route('loginwebsite.create', [$customer]) }}" />
-    </x-sitetopmenu>
+    <x-sitetopmenu />
 
     <div class="m-3">
         <x-table.main>

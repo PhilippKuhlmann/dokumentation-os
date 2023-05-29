@@ -43,12 +43,16 @@
 
     @endforeach
 
+
     <td class="py-4 px-6">
-        <div class="flex flex-row space-x-2">
-            <a href="{{ $editUrl }}" class="font-medium text-blue-500 dark:text-blue-500 hover:text-blue-800 hover:dark:text-blue-300">
-                <x-svg.edit class="h-5 w-5" />
-            </a>
-        </div>
+        @cannot('isCustomerR')
+            <div class="flex flex-row space-x-2">
+                <a href="{{ $editUrl }}" class="font-medium text-blue-500 dark:text-blue-500 hover:text-blue-800 hover:dark:text-blue-300">
+                    <x-svg.edit class="h-5 w-5" />
+                </a>
+            </div>
+        @endcannot
+
 
     </td>
 </tr>

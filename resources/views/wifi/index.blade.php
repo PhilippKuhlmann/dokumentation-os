@@ -1,8 +1,6 @@
 <x-app-layout :$customer>
 
-    <x-sitetopmenu>
-        <x-input.linkbutton label="Neu" link="/{{ Request::path() }}/create" />
-    </x-sitetopmenu>
+    <x-sitetopmenu />
 
     <div class="m-3">
         <x-table.main>
