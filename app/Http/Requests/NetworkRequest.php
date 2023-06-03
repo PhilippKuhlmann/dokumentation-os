@@ -36,4 +36,20 @@ class NetworkRequest extends FormRequest
             'dhcpEnd' => 'nullable|integer|min:1|max:255',
         ];
     }
+
+    public function attributes()
+    {
+        return [
+            'vlanId' => 'VLAN ID',
+            'description' => 'Beschreibung',
+            'network' => 'Netzwerk',
+            'subnetmask' => 'Subnetzmaske',
+            'cidr' => 'CIDR',
+            'gateway' => 'Gateway',
+            'dns1' => 'DNS 1',
+            'dns2' => 'DNS 2',
+            'dhcpStart' => 'DHCP-Start',
+            'dhcpEnd' => 'DHCP-Ende',
+        ];
+    }
 }

@@ -2,6 +2,7 @@
 <html lang="{{ config('app.locale') }}" class="h-screen bg-gray-100 dark:bg-gray-900">
 
 <head>
+    <link rel="icon" type="image/png" href="/images/favicon.png">
     <title>{{ config('app.name') }}</title>
 
     <!-- Meta -->
