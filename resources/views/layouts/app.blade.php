@@ -33,6 +33,8 @@
         {{ $slot }}
     </main>
 
+    @include('layouts.success')
+
     @livewireScripts
 </body>
 

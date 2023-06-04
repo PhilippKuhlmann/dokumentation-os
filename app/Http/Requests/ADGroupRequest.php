@@ -24,8 +24,16 @@ class ADGroupRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'max:255',
-            'description' => 'max:255',
+            'name' => 'required|max:255',
+            'description' => 'required|max:255',
+        ];
+    }
+
+    public function attributes()
+    {
+        return [
+            'name' => 'Name',
+            'description' => 'Beschreibung',
         ];
     }
 }

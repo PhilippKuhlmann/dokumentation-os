@@ -28,7 +28,7 @@ class NetworkController extends Controller
     {
         $customer->networks()->create($request->validated());
 
-        return redirect('/' . $customer->slug . '/network');
+        return redirect(route('network.index', $customer))->withSuccess('Gespeichert!');
     }
 
     public function edit(Customer $customer, Network $network)
@@ -43,14 +43,14 @@ class NetworkController extends Controller
     {
         $network->update($request->validated());
 
-        return redirect(route('network.index', $customer));
+        return redirect(route('network.index', $customer))->withSuccess('Gespeichert!');
     }
 
     public function destroy(Customer $customer, Network $network)
     {
         $network->delete();
 
-        return redirect(route('network.index', $customer));
+        return redirect(route('network.index', $customer))->withSuccess('Gelöscht!');
     }
 
 }

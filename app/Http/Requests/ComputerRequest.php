@@ -24,12 +24,23 @@ class ComputerRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'max:255',
+            'name' => 'required|max:255',
             'manufacturer' => 'max:255',
             'model' => 'max:255',
             'serialNumber' => 'max:255',
             'ip' => 'max:255',
             'operating_system_id' => '',
+        ];
+    }
+
+    public function attributes()
+    {
+        return [
+            'name' => 'Name',
+            'manufavtuter' => 'Hersteller',
+            'model' => 'Model',
+            'serialNumber' => 'Seriennummer',
+            'ip' => 'IP'
         ];
     }
 }

@@ -26,8 +26,18 @@ class ADUserRequest extends FormRequest
         return [
             'firstName' => 'max:255',
             'lastName' => 'max:255',
-            'username' => 'max:255',
-            'password' => 'max:255',
+            'username' => 'required|max:255',
+            'password' => 'required|max:255',
+        ];
+    }
+
+    public function attributes()
+    {
+        return [
+            'firstName' => 'Vorname',
+            'lastName' => 'Nachname',
+            'username' => 'Benutzername',
+            'password' => 'Passwort'
         ];
     }
 }
