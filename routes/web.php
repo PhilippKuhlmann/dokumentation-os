@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ADDomainController;
 use App\Http\Controllers\ADGroupController;
 use App\Http\Controllers\AdminController;
 use Illuminate\Support\Facades\Route;
@@ -69,6 +70,7 @@ Route::middleware(['auth', 'isCustomerRW', 'isCustomerR'])->group(function () {
             Route::resource('network', NetworkController::class)->except(['show']);
             Route::resource('server', ServerController::class)->except(['show']);
             Route::resource('vm', VMController::class)->except(['show']);
+            Route::resource('addomain', ADDomainController::class)->except(['show']);
             Route::resource('aduser', ADUserController::class)->except(['show']);
             Route::resource('adgroup', ADGroupController::class)->except(['show']);
             Route::resource('loginwebsite', LoginWebsiteController::class)->except(['show']);

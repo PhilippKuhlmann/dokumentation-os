@@ -71,6 +71,12 @@ class DatabaseSeeder extends Seeder
             'customer_id' => $customer->id,
         ]);
 
+        \App\Models\ADDomain::factory()->create([
+            'domain' => 'ad.mustermann.de',
+            'netbios' => 'MUSTERMANN',
+            'dsrmpassword' => 'password',
+            'customer_id' => $customer->id,
+        ]);
 
         \App\Models\Network::factory(10)->create([
             'customer_id' => $customer->id,

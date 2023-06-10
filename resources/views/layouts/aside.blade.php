@@ -63,6 +63,13 @@
 
                 <x-aside.seperator name="AD" />
 
+                <x-aside.link href="{{ route('addomain.index', $customer) }}">
+                    <x-slot:svg>
+                        <x-svg.settings class="h-6 w-6" />
+                    </x-slot:svg>
+                    AD-Domäne
+                </x-aside.link>
+
                 <x-aside.link href="{{ route('aduser.index', $customer) }}">
                     <x-slot:svg>
                         <x-svg.user class="h-6 w-6" />

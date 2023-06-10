@@ -46,6 +46,11 @@ class Customer extends Model
         return $this->hasMany(VM::class);
     }
 
+    public function addomains()
+    {
+        return $this->hasMany(ADDomain::class);
+    }
+
     public function adusers()
     {
         return $this->hasMany(ADUser::class);

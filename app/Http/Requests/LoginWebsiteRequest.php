@@ -24,10 +24,20 @@ class LoginWebsiteRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'max:255',
-            'username' => 'max:255',
-            'password' => 'max:255',
-            'url' => 'max:255',
+            'name' => 'required|max:255',
+            'username' => 'required|max:255',
+            'password' => 'required|max:255',
+            'url' => 'required|url|max:255',
+        ];
+    }
+
+    public function attributes()
+    {
+        return [
+            'name' => 'Name',
+            'username' => 'Benutzername',
+            'password' => 'Passwort',
+            'url' => 'URL'
         ];
     }
 }
