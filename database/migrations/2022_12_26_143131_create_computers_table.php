@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('computers', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('customer_id');
+            $table->foreignId('customer_id')->constrained('customers')->onDelete('cascade');
             $table->string('name');
             $table->string('manufacturer')->nullable();
             $table->string('model')->nullable();
@@ -23,6 +23,7 @@ return new class extends Migration
             $table->string('ip')->nullable();
             $table->foreignId('operating_system_id')->nullable();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

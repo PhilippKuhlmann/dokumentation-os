@@ -26,6 +26,7 @@ return new class extends Migration
             $table->string('mac')->nullable();
             $table->string('extension')->nullable();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

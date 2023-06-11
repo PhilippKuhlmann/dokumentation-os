@@ -15,12 +15,13 @@ return new class extends Migration
     {
         Schema::create('wifis', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('customer_id');
+            $table->foreignId('customer_id')->constrained('customers')->onDelete('cascade');
             $table->string('ssid');
             $table->bigInteger('vlan');
             $table->string('password');
             $table->string('encryption');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

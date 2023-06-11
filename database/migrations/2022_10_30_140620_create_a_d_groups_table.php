@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('a_d_groups', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('customer_id');
+            $table->foreignId('customer_id')->constrained('customers')->onDelete('cascade');
             $table->string('name')->nullable();
             $table->string('description')->nullable();
             $table->timestamps();
