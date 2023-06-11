@@ -36,6 +36,11 @@ class Customer extends Model
         return $this->hasMany(SecurepointUTM::class);
     }
 
+    public function securepointumas()
+    {
+        return $this->hasMany(SecurepointUMA::class);
+    }
+
     public function networks()
     {
         return $this->hasMany(Network::class);

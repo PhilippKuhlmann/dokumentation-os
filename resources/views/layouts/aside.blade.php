@@ -127,6 +127,13 @@
 
                 <x-aside.seperator name="E-Mail" />
 
+                <x-aside.link href="{{ route('securepointuma.index', $customer) }}">
+                    <x-slot:svg>
+                        <x-svg.db class="h-6 w-6" />
+                    </x-slot:svg>
+                    Securepoint UMA
+                </x-aside.link>
+
                 <x-aside.link href="{{ route('mailbox.index', $customer) }}">
                     <x-slot:svg>
                         <x-svg.mail class="h-6 w-6" />
