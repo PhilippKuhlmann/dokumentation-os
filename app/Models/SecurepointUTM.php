@@ -8,13 +8,21 @@ use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Facades\Crypt;
 
-class Wifi extends Model
+class SecurepointUTM extends Model
 {
     use HasFactory, SoftDeletes;
 
     protected $guarded = [];
 
     protected function password(): Attribute
+    {
+        return new Attribute(
+            get: fn ($value) => Crypt::decryptString($value),
+            set: fn ($value) => Crypt::encryptString($value),
+        );
+    }
+
+    protected function cloudBackupPassword(): Attribute
     {
         return new Attribute(
             get: fn ($value) => Crypt::decryptString($value),

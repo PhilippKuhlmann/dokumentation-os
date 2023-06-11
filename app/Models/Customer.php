@@ -31,6 +31,11 @@ class Customer extends Model
         return 'slug';
     }
 
+    public function securepointutms()
+    {
+        return $this->hasMany(SecurepointUTM::class);
+    }
+
     public function networks()
     {
         return $this->hasMany(Network::class);

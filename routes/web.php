@@ -17,6 +17,7 @@ use App\Http\Controllers\MailboxController;
 use App\Http\Controllers\PhoneController;
 use App\Http\Controllers\PhoneSystemController;
 use App\Http\Controllers\PrinterController;
+use App\Http\Controllers\SecurepointUTMController;
 use App\Http\Controllers\WifiController;
 use Illuminate\Support\Facades\URL;
 
@@ -67,6 +68,7 @@ Route::middleware(['auth', 'isCustomerRW', 'isCustomerR'])->group(function () {
     Route::prefix('{customer}')->group(function () {
         Route::scopeBindings()->group(function () {
 
+            Route::resource('securepointutm', SecurepointUTMController::class)->except(['show']);
             Route::resource('network', NetworkController::class)->except(['show']);
             Route::resource('server', ServerController::class)->except(['show']);
             Route::resource('vm', VMController::class)->except(['show']);

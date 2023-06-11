@@ -78,6 +78,10 @@ class DatabaseSeeder extends Seeder
             'customer_id' => $customer->id,
         ]);
 
+        \App\Models\SecurepointUTM::factory(1)->create([
+            'customer_id' => $customer->id,
+        ]);
+
         \App\Models\Network::factory(10)->create([
             'customer_id' => $customer->id,
         ]);

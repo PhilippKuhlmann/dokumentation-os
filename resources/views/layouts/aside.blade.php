@@ -13,6 +13,13 @@
 
                 <x-aside.seperator name="Netzwerk" />
 
+                <x-aside.link href="{{ route('securepointutm.index', $customer) }}">
+                    <x-slot:svg>
+                        <x-svg.fire class="h-6 w-6" />
+                    </x-slot:svg>
+                    Securepoint UTM
+                </x-aside.link>
+
                 <x-aside.link href="{{ route('network.index', $customer) }}">
                     <x-slot:svg>
                         <x-svg.settings class="h-6 w-6" />
