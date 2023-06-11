@@ -1,24 +1,29 @@
 <x-app-layout :$customer>
+
     <x-sitetopmenu />
 
-    @foreach ($customer->addomains as $addomain)
-        <x-card>
-            <x-slot:head>
-                <x-show.header editUrl="{{ route('addomain.edit', [$customer, $addomain]) }}">
-                    AD-Domäne
-                </x-show.header>
-            </x-slot>
+    <div class="m-3">
+        <x-table.main>
+            <x-table.head :labels="['Domäne', 'NETBIOS', 'DSRM Passwort', '', ]" />
 
-            <x-slot:body>
+            <x-table.body>
 
-                <x-minitablecard title="Domäne" :array="[
-                    'Domäne' => $addomain->domain,
-                    'NETBIOS' => $addomain->netbios,
-                    'DSRM Passwort' => $addomain->dsrmpassword,
-                ]" />
+                @foreach ($customer->addomains as $addomain)
 
-            </x-slot>
-        </x-card>
-    @endforeach
+                    <x-table.datarow
+                        :values="[
+                            $addomain->domain,
+                            $addomain->netbios,
+                            $addomain->dsrmpassword,
+                        ]"
+
+                        editUrl="{{ route('addomain.edit', [$customer, $addomain]) }}"
+                    />
+
+                @endforeach
+
+            </x-table.body>
+        </x-table.main>
+    </div>
 
 </x-app-layout>
