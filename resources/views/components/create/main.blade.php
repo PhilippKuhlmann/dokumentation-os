@@ -9,7 +9,7 @@
 
     <div class="md:flex xs:flex-col md:w-128">
 
-        <div class="flex flex-col dark:text-gray-100 w-full">
+        <div class="flex flex-col text-gray-100 w-full">
             <div class="text-2xl pl-5 mt-5">
                 {{ $header }}
             </div>
