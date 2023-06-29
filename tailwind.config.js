@@ -15,6 +15,10 @@ module.exports = {
                 sans: ['Open Sans', ...defaultTheme.fontFamily.sans],
             },
             colors: {
+                'blau-900': '#194b7e',
+                'blau-500': '#1D70A0',
+                'blau-300': '#4EA5DD',
+                'blau-100': '#01b1ec',
                 'sdarkblue': '#0C2E5E',
                 'ssystemblue': '#01B0EC',
             },
