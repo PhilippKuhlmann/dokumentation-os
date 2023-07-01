@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use GuzzleHttp\Client;
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -29,10 +30,15 @@ class User extends Authenticatable
 
     public function getAvatar()
     {
-        return 'https://www.gravatar.com/avatar/'
-            .md5($this->email)
-            .'?s=200'
-            .'&d=mp';
+        $client = new Client();
+
+        $response = $client->request('GET', 'https://visitenkarte.stadel.info/api/employee?email='. Auth()->user()->email);
+
+        $data = json_decode($response->getBody(), true);
+
+        $data = "https://visitenkarte.stadel.info/storage/" . $data[0]['picture'];
+
+        return $data;
     }
 
     public function role()

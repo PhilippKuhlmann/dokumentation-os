@@ -14,7 +14,7 @@
 
                 <!-- Email Address -->
                 <div>
-                    <x-input.label for="username" :value="__('Benutzername')" />
+                    <x-input.label for="username" :value="__('Benutzername')"  class="text-gray-900" />
                     <x-input.text id="username" class="block mt-1 w-full" type="text" name="username"
                         :value="old('username')" required autofocus autocomplete="username" />
                     <x-input.error :messages="$errors->get('username')" class="mt-2" />
@@ -22,7 +22,7 @@
 
                 <!-- Password -->
                 <div class="mt-4">
-                    <x-input.label for="password" :value="__('Passwort')" />
+                    <x-input.label for="password" :value="__('Passwort')" class="text-gray-900" />
 
                     <x-input.text id="password" class="block mt-1 w-full" type="password" name="password" required
                         autocomplete="current-password" />

@@ -3,8 +3,5 @@
             <x-input.linkbutton label="Neu" link="/{{ Request::path() }}/create" />
         @endcannot
 
-    <!-- <x-input.linkbutton label="Zurück" link="{{ url()->previous() }}" color="gray" /> -->
-
         {{ $slot }}
-
 </div>

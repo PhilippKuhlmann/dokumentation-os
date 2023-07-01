@@ -2,7 +2,7 @@
     <div class="p-3">
 
         <div class="flex justify-between">
-            <div class="text-3xl dark:text-gray-100">
+            <div class="text-3xl text-gray-100">
                 Daschboard - {{ $customer->name }}
             </div>
             <div class="">
