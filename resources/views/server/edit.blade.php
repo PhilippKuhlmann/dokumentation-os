@@ -14,6 +14,8 @@
 
         <x-create.doublerow label1="BMC User" name1="bmcUser" default1="{{ $server->bmcUser }}" label2="BMC Passwort" name2="bmcPassword" default2="{{ $server->bmcPassword }}" />
 
+        <x-create.doublerow label1="Rustdesk ID" name1="remoteID" default1="{{ $server->remoteID }}" label2="Rustdesk Passwort" name2="remotePassword" default2="{{ $server->remotePassword }}" />
+
         <x-edit.select.operatingsystem selector="{{ $server->operatingSystem->id }}" :$operatingSystems/>
 
         <x-create.singlerow label="Dienste Bitte mit komma getrennt angeben (eins,zwei,drei)" name="services" default="{{ implode(',', $server->services) }}" />

@@ -14,45 +14,26 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        \App\Models\Role::factory()->create([
-            'id' => 1,
-            'name' => 'Admin',
-        ]);
-
-        \App\Models\Role::factory()->create([
-            'id' => 2,
-            'name' => 'Techniker',
-        ]);
-
-        \App\Models\Role::factory()->create([
-            'id' => 98,
-            'name' => 'Kunde R',
-        ]);
-
-        \App\Models\Role::factory()->create([
-            'id' => 99,
-            'name' => 'Kunde RW',
-        ]);
-
-
-        \App\Models\User::factory()->create([
-            'name' => 'Philipp Kuhlmann',
-            'username' => 'p.kuhlmann',
-            'email' => 'p.kuhlmann@stadel.info',
-            'password' => bcrypt('password'),
-            'role_id' => 2,
-        ]);
-
-        \App\Models\User::factory()->create([
-            'name' => 'Admin',
-            'username' => 'admin',
-            'password' => bcrypt('password'),
-            'role_id' => 1,
+        $this->call([
+            RoleSeeder::class,
+            UserSeeder::class,
         ]);
 
         $customer = \App\Models\Customer::factory()->create([
+            'name' => 'Sem Stadel',
+        ]);
+
+        $customer = \App\Models\Customer::factory()->create([
+            'name' => 'Andreas Sieverding',
+        ]);
+
+        $customer = \App\Models\Customer::factory()->create([
+            'name' => 'Justin Schillmöller',
+        ]);
+
+
+        $customer = \App\Models\Customer::factory()->create([
             'name' => 'Mustermann',
-            'slug' => 'mustermann',
         ]);
 
         \App\Models\User::factory()->create([
@@ -133,21 +114,6 @@ class DatabaseSeeder extends Seeder
         \App\Models\Printer::factory(10)->create([
             'customer_id' => $customer->id,
         ]);
-
-
-        $customer = \App\Models\Customer::factory()->create([
-            'name' => 'Kuhlmann',
-            'slug' => 'kuhlmann',
-        ]);
-
-        \App\Models\User::factory()->create([
-            'name' => 'Kuhlmann Mustermann',
-            'username' => 'philipp',
-            'password' => bcrypt('password'),
-            'role_id' => 99,
-            'customer_id' => $customer->id,
-        ]);
-
 
 
 

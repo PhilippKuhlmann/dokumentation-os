@@ -17,7 +17,7 @@ class LoginWebsite extends Model
     protected function password(): Attribute
     {
         return new Attribute(
-            get: fn ($value) => Crypt::decryptString($value),
+            get: fn ($value) => !empty($value) ? Crypt::decryptString($value) : null,
             set: fn ($value) => Crypt::encryptString($value),
         );
     }

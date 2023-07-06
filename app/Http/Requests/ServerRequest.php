@@ -37,6 +37,8 @@ class ServerRequest extends FormRequest
             'bmcPassword' => 'max:255',
             'services' => 'max:255',
             'operating_system_id' => '',
+            'remoteID' => '',
+            'remotePassword' => '',
         ];
     }
 }

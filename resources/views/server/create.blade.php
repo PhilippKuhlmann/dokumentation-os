@@ -13,6 +13,8 @@
 
         <x-create.doublerow label1="BMC User" name1="bmcUser" label2="BMC Passwort" name2="bmcPassword" />
 
+        <x-create.doublerow label1="Rustdesk ID" name1="remoteID" label2="Rustdesk Passwort" name2="remotePassword" />
+
         <x-create.select.operatingsystem :$operatingSystems/>
 
         <x-create.singlerow label="Dienste Bitte mit komma getrennt angeben (eins,zwei,drei)" name="services" />

@@ -7,6 +7,9 @@
             <x-slot:head>
                 <x-show.header editUrl="/{{ Request::path() }}/{{ $server->id }}/edit"
                     deleteUrl="/{{ Request::path() }}/{{ $server->id }}">
+                    @if ($server->remoteID AND $server->remotePassword)
+                        <a href="rustdesk://connection/new/{{ $server->remoteID }}?password={{ $server->remotePassword }}" class=" bg-ssystemblue text-gray-100 rounded-md px-4 py-2 text-sm mr-5 hover:bg-blue-600">Verbinden</a>
+                    @endif
                     {{ $server->name }}
                 </x-show.header>
             </x-slot>

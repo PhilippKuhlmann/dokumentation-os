@@ -27,6 +27,8 @@ return new class extends Migration
             $table->string('bmcUser')->nullable();
             $table->string('bmcPassword')->nullable();
             $table->string('services')->nullable();
+            $table->string('remoteID')->nullable();
+            $table->string('remotePassword')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });
