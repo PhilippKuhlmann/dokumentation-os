@@ -9,6 +9,8 @@
 
         <x-create.singlerow label="IP-Adresse" name="ip" />
 
+        <x-create.doublerow label1="Rustdesk ID" name1="remoteID" label2="Rustdesk Passwort" name2="remotePassword" />
+
         <x-create.select.operatingsystem :$operatingSystems/>
 
     </x-create.main>

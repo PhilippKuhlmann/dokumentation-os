@@ -1,5 +1,5 @@
 <x-app-layout :$customer>
-    <x-create.main header="Server bearbeiten" labelsubmit="Ändern" action="{{ route('server.update', [$customer, $server]) }}">
+    <x-create.main header="Server bearbeiten" labelsubmit="Speichern" action="{{ route('server.update', [$customer, $server]) }}">
         @method('PATCH')
 
         <x-create.singlerow label="Name" name="name" default="{{ $server->name }}" />
@@ -12,9 +12,9 @@
 
         <x-create.singlerow label="BMC IP" name="bmcIp" default="{{ $server->bmcIp }}" />
 
-        <x-create.doublerow label1="BMC User" name1="bmcUser" default1="{{ $server->bmcUser }}" label2="BMC Passwort" name2="bmcPassword" default2="{{ $server->bmcPassword }}" />
+        <x-create.doublerow label1="BMC User" name1="bmcUser" default1="{{ $server->bmcUser }}" label2="BMC Passwort" name2="bmcPassword" default2="{!! $server->bmcPassword !!}" />
 
-        <x-create.doublerow label1="Rustdesk ID" name1="remoteID" default1="{{ $server->remoteID }}" label2="Rustdesk Passwort" name2="remotePassword" default2="{{ $server->remotePassword }}" />
+        <x-create.doublerow label1="Rustdesk ID" name1="remoteID" default1="{{ $server->remoteID }}" label2="Rustdesk Passwort" name2="remotePassword" default2="{!! $server->remotePassword !!}" />
 
         <x-edit.select.operatingsystem selector="{{ $server->operatingSystem->id }}" :$operatingSystems/>
 

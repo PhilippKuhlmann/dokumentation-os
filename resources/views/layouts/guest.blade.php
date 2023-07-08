@@ -9,10 +9,19 @@
 
     <title>{{ config('app.name') }}</title>
 
+    <style>
+        body {
+            background-image: url("/images/background.png");
+            background-position: center center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+      </style>
+
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 
-<body class="antialiased text-gray-900 bg-sdarkblue">
+<body class="antialiased text-gray-900">
 
     {{ $slot }}
 

@@ -6,7 +6,7 @@
 
         <x-create.singlerow label="NETBIOS" name="netbios" default="{{ $addomain->netbios }}" />
 
-        <x-create.singlerow label="DSRM Passwort" name="dsrmpassword" default="{{ $addomain->dsrmpassword }}" />
+        <x-create.singlerow label="DSRM Passwort" name="dsrmpassword" default="{!! $addomain->dsrmpassword !!}" />
 
     </x-create.main>
 

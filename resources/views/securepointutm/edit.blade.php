@@ -1,5 +1,5 @@
 <x-app-layout :$customer>
-    <x-create.main header="Securepoint UTM bearbeiten" labelsubmit="Ändern" action="{{ route('securepointutm.update', [$customer, $securepointutm]) }}">
+    <x-create.main header="Securepoint UTM bearbeiten" labelsubmit="Speichern" action="{{ route('securepointutm.update', [$customer, $securepointutm]) }}">
         @method('PATCH')
 
         <x-create.singlerow label="Name" name="name" default="{{ $securepointutm->name }}" />
@@ -8,9 +8,9 @@
 
         <x-create.singlerow label="Benutzername" name="username" default="{{ $securepointutm->username }}" />
 
-        <x-create.singlerow label="Passwort" name="password" default="{{ $securepointutm->password }}" />
+        <x-create.singlerow label="Passwort" name="password" default="{!! $securepointutm->password !!}" />
 
-        <x-create.singlerow label="Cloud Backup Passwort" name="cloudBackupPassword" default="{{ $securepointutm->cloudBackupPassword }}" />
+        <x-create.singlerow label="Cloud Backup Passwort" name="cloudBackupPassword" default="{!! $securepointutm->cloudBackupPassword !!}" />
 
         <x-create.singlerow label="IP" name="ip" default="{{ $securepointutm->ip }}" />
 

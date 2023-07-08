@@ -25,7 +25,7 @@ class PhoneFactory extends Factory
             'mac' => fake()->macAddress(),
             'port' => '443',
             'username' => fake()->userName(),
-            'password' => fake()->password(),
+            'password' => fake()->password($minLength = 6, $maxLength = 12),
         ];
     }
 }

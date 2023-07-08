@@ -8,7 +8,7 @@
 
         <x-create.singlerow label="Benutzername" name="username" default="{{ $aduser->username }}" />
 
-        <x-create.singlerow label="Passwort" name="password" default="{{ $aduser->password }}" />
+        <x-create.singlerow label="Passwort" name="password" default="{!! $aduser->password !!}" />
 
     </x-create.main>
 

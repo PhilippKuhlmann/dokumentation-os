@@ -1,5 +1,5 @@
 <x-app-layout :$customer>
-    <x-create.main header="Telefon bearbeiten" labelsubmit="Ändern" action="{{ route('phone.update', [$customer, $phone]) }}">
+    <x-create.main header="Telefon bearbeiten" labelsubmit="Speichern" action="{{ route('phone.update', [$customer, $phone]) }}">
         @method('PATCH')
 
         <x-create.singlerow label="Nebenstelle" name="extension" default="{{ $phone->extension }}" />
@@ -12,7 +12,7 @@
 
         <x-create.singlerow label="MAC-Adresse" name="mac" default="{{ $phone->mac }}" />
 
-        <x-create.doublerow label1="Benutzername" name1="username" default1="{{ $phone->username }}" label2="Passwort" name2="password" default2="{{ $phone->password }}" />
+        <x-create.doublerow label1="Benutzername" name1="username" default1="{{ $phone->username }}" label2="Passwort" name2="password" default2="{!! $phone->password !!}" />
 
     </x-create.main>
 

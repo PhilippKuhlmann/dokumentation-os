@@ -22,6 +22,8 @@ return new class extends Migration
             $table->string('serialNumber')->nullable();
             $table->string('ip')->nullable();
             $table->foreignId('operating_system_id')->nullable();
+            $table->string('remoteID')->nullable();
+            $table->string('remotePassword')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

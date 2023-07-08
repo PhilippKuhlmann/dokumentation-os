@@ -20,7 +20,7 @@ class ADUserFactory extends Factory
             'firstName' => fake()->firstName($gender = 'male'|'female'),
             'lastName' => fake()->lastName(),
             'username' => fake()->userName(),
-            'password' => fake()->password(),
+            'password' => fake()->password($minLength = 6, $maxLength = 12),
         ];
     }
 }

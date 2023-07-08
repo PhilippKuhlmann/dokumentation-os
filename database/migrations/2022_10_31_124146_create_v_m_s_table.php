@@ -21,6 +21,8 @@ return new class extends Migration
             $table->string('ip1')->nullable();
             $table->string('ip2')->nullable();
             $table->string('services')->nullable();
+            $table->string('remoteID')->nullable();
+            $table->string('remotePassword')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

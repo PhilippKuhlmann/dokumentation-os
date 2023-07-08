@@ -24,7 +24,10 @@ module.exports = {
             },
             width: {
                 '128': '32rem',
-              }
+            },
+            backgroundImage: {
+                'loginbackground': "url('/images/background.png')",
+            }
         },
 
     },

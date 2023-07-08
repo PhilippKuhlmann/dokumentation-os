@@ -24,7 +24,7 @@ class ServerFactory extends Factory
             'ip1' => fake()->localIpv4(),
             'bmcIp' => fake()->localIpv4(),
             'bmcUser' => 'root',
-            'bmcPassword' => fake()->password(),
+            'bmcPassword' => fake()->password($minLength = 6, $maxLength = 14),
             'services' => 'Hyper-V,DNS,AD',
             'operating_system_id' => fake()->numberBetween($min = 1, $max = 10),
         ];

@@ -23,7 +23,7 @@ class PhoneSystemFactory extends Factory
             'ip1' => fake()->localIpv4(),
             'port' => '443',
             'username' => fake()->userName(),
-            'password' => fake()->password(),
+            'password' => fake()->password($minLength = 6, $maxLength = 12),
         ];
     }
 }

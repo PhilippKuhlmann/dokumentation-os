@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use App\Models\ServerOperatingSystem;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Facades\Crypt;
 
 class VM extends Model
 {
@@ -18,6 +19,14 @@ class VM extends Model
     {
         return new Attribute(
             get: fn ($value) => explode(',', $value),
+        );
+    }
+
+    protected function remotePassword(): Attribute
+    {
+        return new Attribute(
+            get: fn ($value) => !empty($value) ? Crypt::decryptString($value) : null,
+            set: fn ($value) => Crypt::encryptString($value),
         );
     }
 

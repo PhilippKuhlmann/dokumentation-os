@@ -1,11 +1,11 @@
 <x-app-layout :$customer>
-    <x-create.main header="WLAN bearbeiten" labelsubmit="Ändern"
+    <x-create.main header="WLAN bearbeiten" labelsubmit="Speichern"
         action="{{ route('wifi.update', [$customer, $wifi]) }}">
         @method('PATCH')
 
         <x-create.singlerow label="SSID" name="ssid" default="{{ $wifi->ssid }}" />
 
-        <x-create.singlerow label="Passwort" name="password" default="{{ $wifi->password }}" />
+        <x-create.singlerow label="Passwort" name="password" default="{!! $wifi->password !!}" />
 
         <x-create.singlerow label="Verschlüsselung" name="encryption" default="{{ $wifi->encryption }}" />
 

@@ -24,7 +24,7 @@ class PrinterFactory extends Factory
             'ip' => fake()->localIpv4(),
             'port' => fake()->randomElement(['443', '80', '8080']),
             'username' => fake()->userName(),
-            'password' => fake()->password(),
+            'password' => fake()->password($minLength = 6, $maxLength = 12),
         ];
     }
 }

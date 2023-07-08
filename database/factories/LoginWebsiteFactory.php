@@ -19,7 +19,7 @@ class LoginWebsiteFactory extends Factory
         return [
             'name' => fake()->domainWord(),
             'username' => fake()->userName(),
-            'password' => fake()->password(),
+            'password' => fake()->password($minLength = 6, $maxLength = 12),
             'url' => 'https://example.com',
         ];
     }

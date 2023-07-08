@@ -29,6 +29,8 @@ class VMRequest extends FormRequest
             'ip2' => 'max:255',
             'services' => 'max:255',
             'operating_system_id' => '',
+            'remoteID' => '',
+            'remotePassword' => '',
         ];
     }
 }

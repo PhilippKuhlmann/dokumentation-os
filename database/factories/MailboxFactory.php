@@ -20,7 +20,7 @@ class MailboxFactory extends Factory
             'name' => fake()->name(),
             'mailAdress' => fake()->email(),
             'username' => fake()->userName(),
-            'password' => fake()->password(),
+            'password' => fake()->password($minLength = 6, $maxLength = 12),
             'mailbox_provider_id' => fake()->numberBetween($min = 1, $max = 4),
         ];
     }

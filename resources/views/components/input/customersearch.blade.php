@@ -16,7 +16,7 @@
                 autofocus
             @endif
             />
-        <button type="submit" class="bg-blue-700 px-6 rounded-r-sm text-sm text-white hover:bg-blue-600 focus:bg-blue-600">
+        <button type="submit" class="bg-ssystemblue px-6 rounded-r-sm text-sm text-white hover:bg-blue-600 focus:bg-blue-600">
             Suchen
         </button>
     </form>

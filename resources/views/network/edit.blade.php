@@ -1,5 +1,5 @@
 <x-app-layout :$customer>
-    <x-create.main header="Netzwerk bearbeiten" labelsubmit="Ändern" action="{{ route('network.update', [$customer, $network]) }}">
+    <x-create.main header="Netzwerk bearbeiten" labelsubmit="Speichern" action="{{ route('network.update', [$customer, $network]) }}">
         @method('PATCH')
 
         <x-create.singlerow label="Beschreibung" name="description" default="{{ $network->description }}" />
