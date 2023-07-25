@@ -17,6 +17,7 @@ use App\Http\Controllers\MailboxController;
 use App\Http\Controllers\PhoneController;
 use App\Http\Controllers\PhoneSystemController;
 use App\Http\Controllers\PrinterController;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SecurepointUMAController;
 use App\Http\Controllers\SecurepointUTMController;
 use App\Http\Controllers\WifiController;
@@ -55,7 +56,10 @@ Route::get('/admin/customer', [CustomerController::class, 'index'])->name('admin
 Route::post('/admin/customer', [CustomerController::class, 'store'])->name('admin.customer.store');
 Route::get('/admin/customer/create', [CustomerController::class, 'create'])->name('admin.customer.create');
 
-
+// Profile
+Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
 
 // Customer

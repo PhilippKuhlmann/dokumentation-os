@@ -13,7 +13,7 @@ class NetworkController extends Controller
     {
         return view('network.index', [
             'customer' => $customer,
-            'networks' => Network::orderBy('vlanid')->get(),
+            'networks' => Network::where('customer_id', $customer->id)->orderBy('vlanid')->get(),
         ]);
     }
 

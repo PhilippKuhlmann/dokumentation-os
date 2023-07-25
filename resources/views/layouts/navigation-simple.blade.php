@@ -13,16 +13,14 @@
                         </path>
                     </svg>
                 </button>
-                <a href="{{ route('customer.dashboard', $customer) }}" class="flex ml-2 md:mr-24">
+                <a href="/" class="flex ml-2 md:mr-24">
                     <img src="/images/icon_stadel-weiss.png" class="h-8 mr-3" alt="STADEL Logo" />
                     <span class="self-center text-xl font-light sm:text-2xl whitespace-nowrap text-white">
                         {{ config('app.name') }}
                     </span>
                 </a>
             </div>
-            @cannot('isCustomer')
-                <x-input.customersearch class="w-96 hidden md:block" value="{{ $customer->name }}" />
-            @endcannot
+
             <div class="flex items-center">
                 <div class="flex items-center ml-3">
                     <div class="w-14">

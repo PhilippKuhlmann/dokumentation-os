@@ -20,19 +20,6 @@ class DatabaseSeeder extends Seeder
         ]);
 
         $customer = \App\Models\Customer::factory()->create([
-            'name' => 'Sem Stadel',
-        ]);
-
-        $customer = \App\Models\Customer::factory()->create([
-            'name' => 'Andreas Sieverding',
-        ]);
-
-        $customer = \App\Models\Customer::factory()->create([
-            'name' => 'Justin Schillmöller',
-        ]);
-
-
-        $customer = \App\Models\Customer::factory()->create([
             'name' => 'Mustermann',
         ]);
 

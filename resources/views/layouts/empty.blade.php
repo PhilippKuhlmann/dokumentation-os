@@ -1,15 +1,13 @@
 <!DOCTYPE html>
-<html lang="{{ config('app.locale') }}" class="h-screen bg-gray-100 dark:bg-gray-900">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
 <head>
-    <link rel="icon" type="image/png" href="/images/favicon.png">
-    <title>{{ config('app.name') }}</title>
-
-    <!-- Meta -->
-    <meta name="viewport" content="width=device-width">
-    <meta name="token" content="{{ csrf_token() }}">
-    <meta name="base-url" content="{{ url('/') }}">
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link rel="icon" type="image/png" href="/images/favicon.png">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+
+    <title>{{ config('app.name') }}</title>
 
     <script>
         // On page load or when changing themes, best to add inline in `head` to avoid FOUC
@@ -21,14 +19,20 @@
         }
     </script>
 
-    <!-- Scripts -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 
     @livewireStyles
 </head>
 
-<body class="font-sans antialiased bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-gray-100">
-    {{ $slot }}
+<body class="antialiased bg-sdarkblue dark:bg-gray-900">
+
+    @include('layouts.navigation-simple')
+
+    <main class="mt-16">
+        {{ $slot }}
+    </main>
+
+    @include('layouts.success')
 
     @livewireScripts
 </body>
