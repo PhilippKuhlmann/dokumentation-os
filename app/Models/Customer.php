@@ -126,6 +126,11 @@ class Customer extends Model
         return $this->hasMany(FTPServer::class);
     }
 
+    public function dyndns()
+    {
+        return $this->hasMany(DynDNS::class);
+    }
+
 
 
 }

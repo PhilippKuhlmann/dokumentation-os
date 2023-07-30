@@ -59,6 +59,7 @@
                  <x-aside.dropdown label="Dienste" svg="svg.settings" >
                     <x-slot:links>
                         <x-aside.dropdownlink label="FTP-Server" href="{{ route('ftpserver.index', $customer) }}" />
+                        <x-aside.dropdownlink label="DynDNS" href="{{ route('dyndns.index', $customer) }}" />
                     </x-slot:links>
                  </x-aside.dropdown>
 

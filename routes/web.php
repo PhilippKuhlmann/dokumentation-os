@@ -9,6 +9,7 @@ use App\Http\Controllers\ServerController;
 use App\Http\Controllers\NetworkController;
 use App\Http\Controllers\ADUserController;
 use App\Http\Controllers\ComputerController;
+use App\Http\Controllers\DynDNSController;
 use App\Http\Controllers\FileController;
 use App\Http\Controllers\FTPServerController;
 use App\Http\Controllers\LoginNASController;
@@ -114,6 +115,17 @@ Route::middleware(['auth', 'isCustomerRW', 'isCustomerR'])->group(function () {
             Route::resource('computer', ComputerController::class)->except(['show']);
             Route::resource('printer', PrinterController::class)->except(['show']);
             Route::resource('ftpserver', FTPServerController::class)->except(['show']);
+
+
+            // DynDNS
+            //Route::resource('dyndns', DynDNSController::class)->except(['show']);
+            Route::get('dyndns', [DynDNSController::class, 'index'])->name('dyndns.index');
+            Route::post('dyndns', [DynDNSController::class, 'store'])->name('dyndns.store');
+            Route::get('dyndns/create', [DynDNSController::class, 'create'])->name('dyndns.create');
+            Route::get('dyndns/{dyndns}/edit', [DynDNSController::class, 'edit'])->name('dyndns.edit');
+            Route::patch('dyndns/{dyndns}', [DynDNSController::class, 'update'])->name('dyndns.update');
+            Route::delete('dyndns/{dyndns}', [DynDNSController::class, 'destroy'])->name('dyndns.destroy');
+
 
             // File
             Route::resource('file', FileController::class)->only(['index', 'store', 'destroy']);
