@@ -74,6 +74,10 @@ class DatabaseSeeder extends Seeder
             'customer_id' => $customer->id,
         ]);
 
+        \App\Models\NAS::factory(3)->create([
+            'customer_id' => $customer->id,
+        ]);
+
         \App\Models\LoginWebsite::factory(5)->create([
             'customer_id' => $customer->id,
         ]);

@@ -10,10 +10,13 @@ use App\Http\Controllers\NetworkController;
 use App\Http\Controllers\ADUserController;
 use App\Http\Controllers\ComputerController;
 use App\Http\Controllers\FileController;
+use App\Http\Controllers\FTPServerController;
+use App\Http\Controllers\LoginNASController;
 use App\Http\Controllers\OperatingSystemController;
 use App\Http\Controllers\VMController;
 use App\Http\Controllers\LoginWebsiteController;
 use App\Http\Controllers\MailboxController;
+use App\Http\Controllers\NASController;
 use App\Http\Controllers\PhoneController;
 use App\Http\Controllers\PhoneSystemController;
 use App\Http\Controllers\PrinterController;
@@ -21,7 +24,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SecurepointUMAController;
 use App\Http\Controllers\SecurepointUTMController;
 use App\Http\Controllers\WifiController;
-use Illuminate\Support\Facades\URL;
+use App\Models\LoginNAS;
 
 /*
 |--------------------------------------------------------------------------
@@ -78,16 +81,39 @@ Route::middleware(['auth', 'isCustomerRW', 'isCustomerR'])->group(function () {
             Route::resource('network', NetworkController::class)->except(['show']);
             Route::resource('server', ServerController::class)->except(['show']);
             Route::resource('vm', VMController::class)->except(['show']);
+
+            // NAS
+            //Route::resource('nas', NASController::class)->except(['show']);
+            Route::get('nas', [NASController::class, 'index'])->name('nas.index');
+            Route::post('nas', [NASController::class, 'store'])->name('nas.store');
+            Route::get('nas/create', [NASController::class, 'create'])->name('nas.create');
+            Route::get('nas/{nas}/edit', [NASController::class, 'edit'])->name('nas.edit');
+            Route::patch('nas/{nas}', [NASController::class, 'update'])->name('nas.update');
+            Route::delete('nas/{nas}', [NASController::class, 'destroy'])->name('nas.destroy');
+
+
+
             Route::resource('addomain', ADDomainController::class)->except(['show']);
             Route::resource('aduser', ADUserController::class)->except(['show']);
             Route::resource('adgroup', ADGroupController::class)->except(['show']);
             Route::resource('loginwebsite', LoginWebsiteController::class)->except(['show']);
+
+            // LoginNAS
+            //Route::resource('loginnas', LoginNASController::class)->except(['show']);
+            Route::get('loginnas', [LoginNASController::class, 'index'])->name('loginnas.index');
+            Route::post('loginnas', [LoginNASController::class, 'store'])->name('loginnas.store');
+            Route::get('loginnas/create', [LoginNASController::class, 'create'])->name('loginnas.create');
+            Route::get('loginnas/{loginnas}/edit', [LoginNASController::class, 'edit'])->name('loginnas.edit');
+            Route::patch('loginnas/{loginnas}', [LoginNASController::class, 'update'])->name('loginnas.update');
+            Route::delete('loginnas/{loginnas}', [LoginNASController::class, 'destroy'])->name('loginnas.destroy');
+
             Route::resource('phoneSystem', PhoneSystemController::class)->except(['show']);
             Route::resource('phone', PhoneController::class)->except(['show']);
             Route::resource('mailbox', MailboxController::class)->except(['show']);
             Route::resource('wifi', WifiController::class)->except(['show']);
             Route::resource('computer', ComputerController::class)->except(['show']);
             Route::resource('printer', PrinterController::class)->except(['show']);
+            Route::resource('ftpserver', FTPServerController::class)->except(['show']);
 
             // File
             Route::resource('file', FileController::class)->only(['index', 'store', 'destroy']);

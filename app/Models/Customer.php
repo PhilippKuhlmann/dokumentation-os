@@ -56,6 +56,11 @@ class Customer extends Model
         return $this->hasMany(VM::class);
     }
 
+    public function nas()
+    {
+        return $this->hasMany(NAS::class);
+    }
+
     public function addomains()
     {
         return $this->hasMany(ADDomain::class);
@@ -79,6 +84,11 @@ class Customer extends Model
     public function loginwebsites()
     {
         return $this->hasMany(LoginWebsite::class);
+    }
+
+    public function loginnas()
+    {
+        return $this->hasMany(LoginNAS::class);
     }
 
     public function phonesystems()
@@ -109,6 +119,11 @@ class Customer extends Model
     public function printers()
     {
         return $this->hasMany(Printer::class);
+    }
+
+    public function ftpservers()
+    {
+        return $this->hasMany(FTPServer::class);
     }
 
 

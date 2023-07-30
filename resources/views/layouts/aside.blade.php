@@ -16,6 +16,7 @@
                     <x-slot:links>
                         <x-aside.dropdownlink label="Server" href="{{ route('server.index', $customer) }}" />
                         <x-aside.dropdownlink label="VMs" href="{{ route('vm.index', $customer) }}" />
+                        <x-aside.dropdownlink label="NAS" href="{{ route('nas.index', $customer) }}" />
                     </x-slot:links>
                  </x-aside.dropdown>
 
@@ -41,9 +42,10 @@
                     </x-slot:links>
                  </x-aside.dropdown>
 
-                 <x-aside.dropdown label="Logins" svg="svg.link" >
+                 <x-aside.dropdown label="Logins" svg="svg.login" >
                     <x-slot:links>
                         <x-aside.dropdownlink label="Webseiten" href="{{ route('loginwebsite.index', $customer) }}" />
+                        <x-aside.dropdownlink label="NAS" href="{{ route('loginnas.index', $customer) }}" />
                     </x-slot:links>
                  </x-aside.dropdown>
 
@@ -51,6 +53,12 @@
                     <x-slot:links>
                         <x-aside.dropdownlink label="Securepoint UMA" href="{{ route('securepointuma.index', $customer) }}" />
                         <x-aside.dropdownlink label="E-Mail Postfächer" href="{{ route('mailbox.index', $customer) }}" />
+                    </x-slot:links>
+                 </x-aside.dropdown>
+
+                 <x-aside.dropdown label="Dienste" svg="svg.settings" >
+                    <x-slot:links>
+                        <x-aside.dropdownlink label="FTP-Server" href="{{ route('ftpserver.index', $customer) }}" />
                     </x-slot:links>
                  </x-aside.dropdown>
 

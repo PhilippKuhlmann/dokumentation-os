@@ -17,7 +17,7 @@ class ServerFactory extends Factory
     public function definition()
     {
         return [
-            'name' => fake()->domainWord(),
+            'name' => 'SRV-' . fake()->domainWord(),
             'manufacturer' => fake()->company(),
             'model' => fake()->ean8(),
             'serialNumber' => fake()->ean13(),

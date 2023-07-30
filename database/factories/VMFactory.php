@@ -17,7 +17,7 @@ class VMFactory extends Factory
     public function definition()
     {
         return [
-            'name' => fake()->domainWord(),
+            'name' => 'SRV-' . fake()->domainWord(),
             'ip1' => fake()->localIpv4(),
             'services' => 'docker,apache2,mariadb',
             'operating_system_id' => fake()->numberBetween($min = 1, $max = 10),
