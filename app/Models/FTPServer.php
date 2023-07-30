@@ -12,6 +12,8 @@ class FTPServer extends Model
 {
     use HasFactory, SoftDeletes;
 
+    protected $table = 'ftp_servers';
+
     protected $guarded = [];
 
     protected function password(): Attribute

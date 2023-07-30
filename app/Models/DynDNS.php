@@ -12,6 +12,8 @@ class DynDNS extends Model
 {
     use HasFactory, SoftDeletes;
 
+    protected $table = 'dyndns';
+
     protected $guarded = [];
 
     protected function password(): Attribute

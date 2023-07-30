@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('f_t_p_servers', function (Blueprint $table) {
+        Schema::create('ftp_servers', function (Blueprint $table) {
             $table->id();
             $table->foreignId('customer_id')->constrained('customers')->onDelete('cascade');
             $table->string('host')->nullable();
@@ -28,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('f_t_p_servers');
+        Schema::dropIfExists('ftp_servers');
     }
 };
