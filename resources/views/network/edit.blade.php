@@ -2,6 +2,8 @@
     <x-create.main header="Netzwerk bearbeiten" labelsubmit="Speichern" action="{{ route('network.update', [$customer, $network]) }}">
         @method('PATCH')
 
+        <x-edit.select name="site_id" value="Standort" selector="{{ $network->site_id }}" :array="$sites" />
+
         <x-create.singlerow label="Beschreibung" name="description" default="{{ $network->description }}" />
 
         <x-create.doublerow14 label1="Netzwerk" name1="network" default1="{{ $network->network }}" label2="VLAN ID" name2="vlanId" default2="1"

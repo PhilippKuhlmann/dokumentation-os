@@ -11,16 +11,12 @@ class ADGroupController extends Controller
 
     public function index(Customer $customer)
     {
-        return view('adgroup.index', [
-            'customer' => $customer
-        ]);
+        return view('adgroup.index', compact('customer'));
     }
 
     public function create(Customer $customer)
     {
-        return view('adgroup.create', [
-            'customer' => $customer,
-        ]);
+        return view('adgroup.create', compact('customer'));
     }
 
     public function store(Customer $customer, ADGroupRequest $request)
@@ -32,10 +28,7 @@ class ADGroupController extends Controller
 
     public function edit(Customer $customer, ADGroup $adgroup)
     {
-        return view('adgroup.edit', [
-            'customer' => $customer,
-            'adgroup' => $adgroup,
-        ]);
+        return view('adgroup.edit', compact('customer', 'adgroup'));
     }
 
     public function update(Customer $customer, ADGroup $adgroup, ADGroupRequest $request)

@@ -2,7 +2,7 @@
 
     <x-sitetopmenu />
 
-    @foreach ($customer->servers as $server)
+    @foreach ($servers as $server)
         <x-card>
             <x-slot:head>
                 <x-show.header editUrl="/{{ Request::path() }}/{{ $server->id }}/edit"

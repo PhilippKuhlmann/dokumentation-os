@@ -23,9 +23,19 @@ class LoginNASRequest extends FormRequest
     {
         return [
             'nas_id' => 'required',
-            'username' => 'max:255',
-            'password' => 'max:255',
+            'username' => 'required|max:255',
+            'password' => 'required|max:255',
             'description' => 'max:255',
+        ];
+    }
+
+    public function attributes()
+    {
+        return [
+            'nas_id' => 'NAS',
+            'username' => 'Benutzername',
+            'password' => 'Passwort',
+            'description' => 'Beschreibung',
         ];
     }
 }

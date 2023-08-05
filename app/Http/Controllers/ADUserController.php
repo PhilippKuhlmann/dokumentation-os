@@ -11,16 +11,12 @@ class ADUserController extends Controller
 
     public function index(Customer $customer)
     {
-        return view('aduser.index', [
-            'customer' => $customer,
-        ]);
+        return view('aduser.index', compact('customer'));
     }
 
     public function create(Customer $customer)
     {
-        return view('aduser.create', [
-            'customer' => $customer,
-        ]);
+        return view('aduser.create', compact('customer'));
     }
 
     public function store(Customer $customer, ADUserRequest $request)
@@ -32,10 +28,7 @@ class ADUserController extends Controller
 
     public function edit(Customer $customer, ADUser $aduser)
     {
-        return view('aduser.edit', [
-            'customer' => $customer,
-            'aduser' => $aduser,
-        ]);
+        return view('aduser.edit', compact('customer', 'aduser'));
     }
 
     public function update(Customer $customer, ADUser $aduser, ADUserRequest $request)

@@ -12,6 +12,8 @@ class ADDomain extends Model
 {
     use HasFactory, SoftDeletes;
 
+    protected $table = 'ad_domains';
+
     protected $guarded = [];
 
     protected function password(): Attribute

@@ -24,13 +24,27 @@ class VMRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'max:255',
+            'name' => 'required|max:255',
             'ip1' => 'max:255',
             'ip2' => 'max:255',
             'services' => 'max:255',
             'operating_system_id' => '',
             'remoteID' => '',
             'remotePassword' => '',
+        ];
+    }
+
+    public function attributes()
+    {
+        return [
+            'name' => 'Name',
+            'ip1' => 'IP 1',
+            'ip2' => 'IP 2',
+            'services' => 'Dienste',
+            'cidr' => 'CIDR',
+            'operating_system_id' => 'Betriebsystem',
+            'remoteID' => 'Rustdesk ID',
+            'remotePassword' => 'Rustdesk Password',
         ];
     }
 }

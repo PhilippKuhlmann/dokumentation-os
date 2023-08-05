@@ -12,6 +12,8 @@ class ADUser extends Model
 {
     use HasFactory, SoftDeletes;
 
+    protected $table = 'ad_users';
+
     protected $guarded = [];
 
     protected function password(): Attribute

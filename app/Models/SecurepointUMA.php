@@ -12,6 +12,8 @@ class SecurepointUMA extends Model
 {
     use HasFactory, SoftDeletes;
 
+    protected $table = 'securepoint_umas';
+
     protected $guarded = [];
 
     protected function password(): Attribute

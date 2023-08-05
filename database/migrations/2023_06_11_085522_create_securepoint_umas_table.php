@@ -13,15 +13,14 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('securepoint_u_t_m_s', function (Blueprint $table) {
+        Schema::create('securepoint_umas', function (Blueprint $table) {
             $table->id();
             $table->foreignId('customer_id')->constrained('customers')->onDelete('cascade');
             $table->string('name');
             $table->string('type')->nullable();
-            $table->string('serialNumber')->nullable();
             $table->string('username');
             $table->string('password');
-            $table->string('cloudBackupPassword');
+            $table->string('encryptionkey');
             $table->string('ip');
             $table->string('urlAdmin');
             $table->string('urlUser')->nullable();
@@ -37,6 +36,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('securepoint_u_t_m_s');
+        Schema::dropIfExists('securepoint_umas');
     }
 };

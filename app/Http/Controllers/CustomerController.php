@@ -17,6 +17,7 @@ class CustomerController extends Controller
 
     public function search()
     {
+        session()->put('site', 'all');
 
         if (auth()->user()->role->id == 99)
         {

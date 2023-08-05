@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('networks', function (Blueprint $table) {
             $table->id();
             $table->foreignId('customer_id')->constrained('customers')->onDelete('cascade');
+            $table->foreignId('site_id')->constrained('sites')->onDelete('cascade');
             $table->string('description')->nullable();
             $table->bigInteger('vlanId')->nullable();
             $table->string('network')->nullable();

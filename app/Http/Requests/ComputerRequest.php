@@ -24,6 +24,7 @@ class ComputerRequest extends FormRequest
     public function rules()
     {
         return [
+            'site_id' => 'required',
             'name' => 'required|max:255',
             'manufacturer' => 'max:255',
             'model' => 'max:255',
@@ -38,6 +39,7 @@ class ComputerRequest extends FormRequest
     public function attributes()
     {
         return [
+            'site_id' => 'Standort',
             'name' => 'Name',
             'manufavtuter' => 'Hersteller',
             'model' => 'Model',

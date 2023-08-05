@@ -4,6 +4,28 @@
         <div class="h-full px-3 pb-4 overflow-y-auto bg-sdarkblue dark:bg-gray-900">
             <ul class="space-y-2">
 
+                <form method="post" action="{{ route('filter.site', $customer) }}">
+                    @csrf
+                <div class="flex flex-col">
+                    <div class="">
+                        <x-input.label value="Standort" />
+                    </div>
+                    <div class="flex gap-2">
+                        <x-input.select name="site" class="w-full">
+
+
+                            <option value="all">Alle</option>
+                            @foreach ($customer->sites as $site)
+                                <option value="{{ $site->id }}" {{ $site->id == session()->get('site') ? 'selected' : '' }}>{{ $site->name }}</option>
+                            @endforeach
+                        </x-input.select>
+                        <x-input.button label="Filtern" />
+                    </div>
+                </div>
+            </form>
+
+
+
                 <x-aside.dropdown label="Netzwerk" svg="svg.wifi" >
                     <x-slot:links>
                         <x-aside.dropdownlink label="Securepoint UTM" href="{{ route('securepointutm.index', $customer) }}" />

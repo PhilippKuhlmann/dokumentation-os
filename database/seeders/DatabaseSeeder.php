@@ -23,6 +23,30 @@ class DatabaseSeeder extends Seeder
             'name' => 'Mustermann',
         ]);
 
+        $site1 = \App\Models\Site::factory()->create([
+            'customer_id' => $customer->id,
+            'name' => 'Island',
+        ]);
+
+        $site2 = \App\Models\Site::factory()->create([
+            'customer_id' => $customer->id,
+            'name' => 'Norwegen',
+        ]);
+
+        $customer2 = \App\Models\Customer::factory()->create([
+            'name' => 'Kuhlmann',
+        ]);
+
+        $site3 = \App\Models\Site::factory()->create([
+            'customer_id' => $customer2->id,
+            'name' => 'main',
+        ]);
+
+        $site4 = \App\Models\Site::factory()->create([
+            'customer_id' => $customer2->id,
+            'name' => 'second',
+        ]);
+
         \App\Models\User::factory()->create([
             'name' => 'Max RW',
             'username' => 'maxrw',
@@ -54,8 +78,24 @@ class DatabaseSeeder extends Seeder
             'customer_id' => $customer->id,
         ]);
 
-        \App\Models\Network::factory(10)->create([
+        \App\Models\Network::factory(5)->create([
             'customer_id' => $customer->id,
+            'site_id' => $site1->id,
+        ]);
+
+        \App\Models\Network::factory(3)->create([
+            'customer_id' => $customer->id,
+            'site_id' => $site2->id,
+        ]);
+
+        \App\Models\Network::factory(2)->create([
+            'customer_id' => $customer2->id,
+            'site_id' => $site3->id,
+        ]);
+
+        \App\Models\Network::factory(1)->create([
+            'customer_id' => $customer2->id,
+            'site_id' => $site4->id,
         ]);
 
         \App\Models\ADUser::factory(10)->create([
@@ -100,6 +140,7 @@ class DatabaseSeeder extends Seeder
 
         \App\Models\Computer::factory(10)->create([
             'customer_id' => $customer->id,
+            'site_id' => $site1->id,
         ]);
 
         \App\Models\Printer::factory(10)->create([

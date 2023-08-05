@@ -6,20 +6,28 @@ use App\Http\Requests\ComputerRequest;
 use App\Models\Computer;
 use App\Models\Customer;
 use App\Models\OperatingSystem;
+use App\Models\Site;
 
 class ComputerController extends Controller
 {
     public function index(Customer $customer)
     {
-        return view('computer.index', compact('customer'));
+        if (session()->get('site') == "all") {
+            $computers = Computer::where('customer_id', $customer->id)->get();
+
+        } else {
+            $computers = Computer::where('customer_id', $customer->id)->where('site_id', session()->get('site'))->get();
+        }
+
+        return view('computer.index', compact('customer', 'computers'));
     }
 
     public function create(Customer $customer)
     {
-        return view('computer.create', [
-            'customer' => $customer,
-            'operatingSystems' => OperatingSystem::all(),
-        ]);
+        $operatingSystems = OperatingSystem::all();
+        $sites = Site::where('customer_id', $customer->id)->get();
+
+        return view('computer.create', compact('customer', 'sites', 'operatingSystems'));
     }
 
     public function store(Customer $customer, ComputerRequest $request)
@@ -31,11 +39,10 @@ class ComputerController extends Controller
 
     public function edit(Customer $customer, Computer $computer)
     {
-        return view('computer.edit', [
-            'customer' => $customer,
-            'computer' => $computer,
-            'operatingSystems' => OperatingSystem::all(),
-        ]);
+        $operatingSystems = OperatingSystem::all();
+        $sites = Site::where('customer_id', $customer->id)->get();
+
+        return view('computer.edit', compact('customer', 'sites', 'computer', 'operatingSystems'));
     }
 
     public function update(Customer $customer, Computer $computer, ComputerRequest $request)

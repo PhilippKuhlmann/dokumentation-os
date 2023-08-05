@@ -10,6 +10,8 @@ class ADGroup extends Model
 {
     use HasFactory, SoftDeletes;
 
+    protected $table = 'ad_groups';
+
     protected $guarded = [];
 
 }

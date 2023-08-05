@@ -24,6 +24,7 @@ use App\Http\Controllers\PrinterController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SecurepointUMAController;
 use App\Http\Controllers\SecurepointUTMController;
+use App\Http\Controllers\SiteController;
 use App\Http\Controllers\WifiController;
 use App\Models\LoginNAS;
 
@@ -76,6 +77,9 @@ Route::middleware(['auth', 'isCustomerRW', 'isCustomerR'])->group(function () {
 
     Route::prefix('{customer}')->group(function () {
         Route::scopeBindings()->group(function () {
+
+            // Site
+            Route::post('filter', [SiteController::class, 'filter'])->name('filter.site');
 
             Route::resource('securepointutm', SecurepointUTMController::class)->except(['show']);
             Route::resource('securepointuma', SecurepointUMAController::class)->except(['show']);

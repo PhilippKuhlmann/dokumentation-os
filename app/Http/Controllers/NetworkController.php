@@ -5,23 +5,28 @@ namespace App\Http\Controllers;
 use App\Http\Requests\NetworkRequest;
 use App\Models\Customer;
 use App\Models\Network;
+use App\Models\Site;
 
 class NetworkController extends Controller
 {
 
-    public function index(Customer $customer)
+    public function index(Customer $customer, Site $site)
     {
-        return view('network.index', [
-            'customer' => $customer,
-            'networks' => Network::where('customer_id', $customer->id)->orderBy('vlanid')->get(),
-        ]);
+        if (session()->get('site') == "all") {
+            $networks = Network::where('customer_id', $customer->id)->orderBy('vlanid')->get();
+
+        } else {
+            $networks = Network::where('customer_id', $customer->id)->where('site_id', session()->get('site'))->orderBy('vlanid')->get();
+        }
+
+        return view('network.index', compact('customer', 'networks'));
     }
 
     public function create(Customer $customer)
     {
-        return view('network.create', [
-            'customer' => $customer,
-        ]);
+        $sites = Site::where('customer_id', $customer->id)->get();
+
+        return view('network.create', compact('customer', 'sites'));
     }
 
     public function store(Customer $customer, NetworkRequest $request)
@@ -33,10 +38,9 @@ class NetworkController extends Controller
 
     public function edit(Customer $customer, Network $network)
     {
-        return view('network.edit', [
-            'customer' => $customer,
-            'network' => $network,
-        ]);
+        $sites = Site::where('customer_id', $customer->id)->get();
+
+        return view('network.edit', compact('customer', 'network', 'sites'));
     }
 
     public function update(Customer $customer, Network $network, NetworkRequest $request)

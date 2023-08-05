@@ -26,11 +26,26 @@ class NASRequest extends FormRequest
             'manufacturer' => 'max:255',
             'model' => 'max:255',
             'serialNumber' => 'max:255',
-            'ip1' => 'max:255',
+            'ip1' => 'required|max:255',
             'ip2' => 'max:255',
             'port' => 'max:255',
             'username' => 'required|max:255',
             'password' => 'required|max:255',
+        ];
+    }
+
+    public function attributes()
+    {
+        return [
+            'name' => 'Name',
+            'manufacturer' => 'Hersteller',
+            'model' => 'Model',
+            'serialNumber' => 'Seriennummer',
+            'ip1' => 'IP 1',
+            'ip2' => 'IP 2',
+            'port' => 'Port',
+            'username' => 'Benutzername',
+            'password' => 'Passwort',
         ];
     }
 }

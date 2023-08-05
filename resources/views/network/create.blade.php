@@ -1,6 +1,8 @@
 <x-app-layout :$customer>
     <x-create.main header="Neues Netzwerk" action="{{ route('network.store', $customer) }}">
 
+        <x-create.select name="site_id" value="Standort" :array="$sites" />
+
         <x-create.singlerow label="Beschreibung" name="description" />
 
         <x-create.doublerow14 label1="Netzwerk" name1="network" label2="VLAN ID" name2="vlanId" default2="1"

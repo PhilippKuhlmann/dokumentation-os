@@ -13,20 +13,9 @@ class ServerController extends Controller
 
     public function index(Customer $customer)
     {
+        $servers = Server::where('customer_id', $customer->id)->with('operatingSystem')->get();
 
-        return view('server.index', [
-            'customer' => $customer,
-        ]);
-    }
-
-    public function show(Customer $customer, Server $server)
-    {
-        $server = Arr::set($server, 'services', explode(',', $server->services));
-
-        return view('server.show',[
-            'customer' => $customer,
-            'server' => $server,
-        ]);
+        return view('server.index', compact('customer', 'servers'));
     }
 
     public function create(Customer $customer)

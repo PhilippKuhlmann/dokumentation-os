@@ -13,17 +13,13 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('securepoint_u_m_a_s', function (Blueprint $table) {
+        Schema::create('ad_users', function (Blueprint $table) {
             $table->id();
             $table->foreignId('customer_id')->constrained('customers')->onDelete('cascade');
-            $table->string('name');
-            $table->string('type')->nullable();
-            $table->string('username');
-            $table->string('password');
-            $table->string('encryptionkey');
-            $table->string('ip');
-            $table->string('urlAdmin');
-            $table->string('urlUser')->nullable();
+            $table->string('firstName')->nullable();
+            $table->string('lastName')->nullable();
+            $table->string('username')->nullable();
+            $table->string('password')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });
@@ -36,6 +32,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('securepoint_u_m_a_s');
+        Schema::dropIfExists('ad_users');
     }
 };

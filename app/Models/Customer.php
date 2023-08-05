@@ -17,12 +17,7 @@ class Customer extends Model
         parent::boot();
 
         static::creating(function ($customer) {
-            if ($customer->location) {
-                $customer->slug = Str::slug($customer->name) . '-' . Str::slug($customer->location);
-            } else {
-                $customer->slug = Str::slug($customer->name);
-            }
-
+            $customer->slug = Str::slug($customer->name);
         });
     }
 
@@ -30,6 +25,14 @@ class Customer extends Model
     {
         return 'slug';
     }
+
+    public function sites()
+    {
+        return $this->hasMany(Site::class);
+    }
+
+
+
 
     public function securepointutms()
     {

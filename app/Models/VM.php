@@ -13,6 +13,8 @@ class VM extends Model
 {
     use HasFactory, SoftDeletes;
 
+    protected $table = 'vms';
+
     protected $guarded = [];
 
     protected function services(): Attribute

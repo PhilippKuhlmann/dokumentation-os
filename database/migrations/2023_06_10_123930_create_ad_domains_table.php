@@ -13,13 +13,12 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('a_d_users', function (Blueprint $table) {
+        Schema::create('ad_domains', function (Blueprint $table) {
             $table->id();
             $table->foreignId('customer_id')->constrained('customers')->onDelete('cascade');
-            $table->string('firstName')->nullable();
-            $table->string('lastName')->nullable();
-            $table->string('username')->nullable();
-            $table->string('password')->nullable();
+            $table->string('domain');
+            $table->string('netbios');
+            $table->string('dsrmpassword');
             $table->timestamps();
             $table->softDeletes();
         });
@@ -32,6 +31,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('a_d_users');
+        Schema::dropIfExists('ad_domains');
     }
 };

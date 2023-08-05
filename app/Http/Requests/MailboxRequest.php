@@ -31,4 +31,15 @@ class MailboxRequest extends FormRequest
             'mailbox_provider_id' => '',
         ];
     }
+
+    public function attributes()
+    {
+        return [
+            'name' => 'Name',
+            'mailAdress' => 'E-Mail Adresse',
+            'username' => 'Benutzername',
+            'password' => 'Passwort',
+            'mailbox_provider_id' => 'Anbieter',
+        ];
+    }
 }

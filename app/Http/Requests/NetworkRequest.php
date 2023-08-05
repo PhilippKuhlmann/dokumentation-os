@@ -24,6 +24,7 @@ class NetworkRequest extends FormRequest
     public function rules()
     {
         return [
+            'site_id' => 'required',
             'vlanId' => 'integer|min:1|max:4094',
             'description' => 'required',
             'network' => 'required|ipv4',
@@ -40,6 +41,7 @@ class NetworkRequest extends FormRequest
     public function attributes()
     {
         return [
+            'site_id' => 'Standort',
             'vlanId' => 'VLAN ID',
             'description' => 'Beschreibung',
             'network' => 'Netzwerk',
