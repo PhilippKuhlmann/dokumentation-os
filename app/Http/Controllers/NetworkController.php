@@ -10,21 +10,18 @@ use App\Models\Site;
 class NetworkController extends Controller
 {
 
-    public function index(Customer $customer, Site $site)
+    public function index(Customer $customer)
     {
-        if (session()->get('site') == "all") {
-            $networks = Network::where('customer_id', $customer->id)->orderBy('vlanid')->get();
-
-        } else {
-            $networks = Network::where('customer_id', $customer->id)->where('site_id', session()->get('site'))->orderBy('vlanid')->get();
-        }
+        $networks = $this->getFilteredQuery(Network::class, $customer)
+                         ->orderBy('vlanId')
+                         ->get();
 
         return view('network.index', compact('customer', 'networks'));
     }
 
     public function create(Customer $customer)
     {
-        $sites = Site::where('customer_id', $customer->id)->get();
+        $sites = $this->getSitesForCustomer($customer);
 
         return view('network.create', compact('customer', 'sites'));
     }
@@ -38,7 +35,7 @@ class NetworkController extends Controller
 
     public function edit(Customer $customer, Network $network)
     {
-        $sites = Site::where('customer_id', $customer->id)->get();
+        $sites = $this->getSitesForCustomer($customer);
 
         return view('network.edit', compact('customer', 'network', 'sites'));
     }

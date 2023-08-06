@@ -1,5 +1,5 @@
 <x-app-layout :$customer>
-    <x-create.main header="Neue Securepoint UTM" action="{{ route('securepointutm.store', $customer) }}">
+    <x-create.main header="Neuer SeRouter" action="{{ route('router.store', $customer) }}">
 
         <x-create.select name="site_id" value="Standort" :array="$sites" />
 
@@ -11,13 +11,7 @@
 
         <x-create.singlerow label="Passwort" name="password" />
 
-        <x-create.singlerow label="Cloud Backup Passwort" name="cloudBackupPassword" />
-
-        <x-create.singlerow label="IP" name="ip" />
-
-        <x-create.singlerow label="Admin URL" name="urlAdmin" />
-
-        <x-create.singlerow label="User URL" name="urlUser" />
+        <x-create.doublerow14 label1="IP" name1="ip" label2="Port" name2="port" type2="number" />
 
     </x-create.main>
 </x-app-layout>

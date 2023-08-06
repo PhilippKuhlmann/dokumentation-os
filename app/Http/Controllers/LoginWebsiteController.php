@@ -11,17 +11,12 @@ class LoginWebsiteController extends Controller
 
     public function index(Customer $customer)
     {
-        return view('loginwebsite.index', [
-            'customer' => $customer,
-            'loginwebsitesArray' => $customer->loginwebsites()->get()->toArray(),
-        ]);
+        return view('loginwebsite.index', compact('customer'));
     }
 
     public function create(Customer $customer)
     {
-        return view('loginwebsite.create', [
-            'customer' => $customer,
-        ]);
+        return view('loginwebsite.create', compact('customer'));
     }
 
     public function store(Customer $customer, LoginWebsiteRequest $request)
@@ -33,10 +28,7 @@ class LoginWebsiteController extends Controller
 
     public function edit(Customer $customer, LoginWebsite $loginwebsite)
     {
-        return view('loginwebsite.edit', [
-            'customer' => $customer,
-            'loginwebsite' => $loginwebsite,
-        ]);
+        return view('loginwebsite.edit', compact('customer', 'loginwebsite'));
     }
 
     public function update(Customer $customer, LoginWebsite $loginwebsite, LoginWebsiteRequest $request)

@@ -4,14 +4,12 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class SecurepointUTMRequest extends FormRequest
+class RouterRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
-     *
-     * @return bool
      */
-    public function authorize()
+    public function authorize(): bool
     {
         return true;
     }
@@ -19,7 +17,7 @@ class SecurepointUTMRequest extends FormRequest
     /**
      * Get the validation rules that apply to the request.
      *
-     * @return array<string, mixed>
+     * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array|string>
      */
     public function rules()
     {
@@ -30,10 +28,8 @@ class SecurepointUTMRequest extends FormRequest
             'serialNumber' => 'nullable|max:255',
             'username' => 'required|max:255',
             'password' => 'required|max:255',
-            'cloudBackupPassword' => 'required|max:255',
             'ip' => 'required|ipv4|max:255',
-            'urlAdmin' => 'required|url|max:255',
-            'urlUser' => 'nullable|url|max:255',
+            'port' => 'required|numeric'
         ];
     }
 
@@ -46,11 +42,8 @@ class SecurepointUTMRequest extends FormRequest
             'serialNumber' => 'Seriennummer',
             'username' => 'Benutzername',
             'password' => 'Passwort',
-            'cloudBackupPassword' => 'Cloud Backup Passwort',
             'ip' => 'IP',
-            'urlAdmin' => 'Admin URL',
-            'urlUser' => 'User URL',
+            'port' => 'Port',
         ];
     }
-
 }

@@ -12,6 +12,7 @@ use App\Http\Controllers\ComputerController;
 use App\Http\Controllers\DynDNSController;
 use App\Http\Controllers\FileController;
 use App\Http\Controllers\FTPServerController;
+use App\Http\Controllers\LoginGeneralController;
 use App\Http\Controllers\LoginNASController;
 use App\Http\Controllers\OperatingSystemController;
 use App\Http\Controllers\VMController;
@@ -22,6 +23,7 @@ use App\Http\Controllers\PhoneController;
 use App\Http\Controllers\PhoneSystemController;
 use App\Http\Controllers\PrinterController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\RouterController;
 use App\Http\Controllers\SecurepointUMAController;
 use App\Http\Controllers\SecurepointUTMController;
 use App\Http\Controllers\SiteController;
@@ -81,6 +83,7 @@ Route::middleware(['auth', 'isCustomerRW', 'isCustomerR'])->group(function () {
             // Site
             Route::post('filter', [SiteController::class, 'filter'])->name('filter.site');
 
+            Route::resource('router', RouterController::class)->except(['show']);
             Route::resource('securepointutm', SecurepointUTMController::class)->except(['show']);
             Route::resource('securepointuma', SecurepointUMAController::class)->except(['show']);
             Route::resource('network', NetworkController::class)->except(['show']);
@@ -102,6 +105,7 @@ Route::middleware(['auth', 'isCustomerRW', 'isCustomerR'])->group(function () {
             Route::resource('aduser', ADUserController::class)->except(['show']);
             Route::resource('adgroup', ADGroupController::class)->except(['show']);
             Route::resource('loginwebsite', LoginWebsiteController::class)->except(['show']);
+            Route::resource('logingeneral', LoginGeneralController::class)->except(['show']);
 
             // LoginNAS
             //Route::resource('loginnas', LoginNASController::class)->except(['show']);

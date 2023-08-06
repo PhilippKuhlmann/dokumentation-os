@@ -72,6 +72,12 @@ class DatabaseSeeder extends Seeder
 
         \App\Models\SecurepointUTM::factory(1)->create([
             'customer_id' => $customer->id,
+            'site_id' => $site1->id,
+        ]);
+
+        \App\Models\Router::factory(2)->create([
+            'customer_id' => $customer->id,
+            'site_id' => $site1->id,
         ]);
 
         \App\Models\SecurepointUMA::factory(1)->create([
@@ -136,6 +142,7 @@ class DatabaseSeeder extends Seeder
 
         \App\Models\Wifi::factory(4)->create([
             'customer_id' => $customer->id,
+            'site_id' => $site1->id,
         ]);
 
         \App\Models\Computer::factory(10)->create([

@@ -1,0 +1,15 @@
+<x-app-layout :$customer>
+    <x-create.main header="Login bearbeiten" labelsubmit="Speichern" action="{{ route('logingeneral.update', [$customer, $logingeneral]) }}">
+        @method('PATCH')
+
+        <x-create.singlerow label="Name" name="name" default="{{ $logingeneral->name }}" />
+
+        <x-create.singlerow label="Beschreibung" name="description" default="{{ $logingeneral->description }}" />
+
+        <x-create.doublerow label1="Benutzername" name1="username" default1="{{ $logingeneral->username }}" label2="Passwort" name2="password" default2="{!! $logingeneral->password !!}" />
+
+    </x-create.main>
+
+    <x-deletecard action="{{ route('logingeneral.destroy', [$customer, $logingeneral]) }}" />
+
+</x-app-layout>

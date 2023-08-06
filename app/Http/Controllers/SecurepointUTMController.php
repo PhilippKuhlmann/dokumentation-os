@@ -10,16 +10,17 @@ class SecurepointUTMController extends Controller
 {
     public function index(Customer $customer)
     {
-        return view('securepointutm.index', [
-            'customer' => $customer
-        ]);
+        $securepointutms = $this->getFilteredQuery(SecurepointUTM::class, $customer)
+                                ->get();
+
+        return view('securepointutm.index', compact('customer', 'securepointutms'));
     }
 
     public function create(Customer $customer)
     {
-        return view('securepointutm.create', [
-            'customer' => $customer,
-        ]);
+        $sites = $this->getSitesForCustomer($customer);
+
+        return view('securepointutm.create', compact('customer', 'sites'));
     }
 
     public function store(Customer $customer, SecurepointUTMRequest $request)
@@ -31,10 +32,9 @@ class SecurepointUTMController extends Controller
 
     public function edit(Customer $customer, SecurepointUTM $securepointutm)
     {
-        return view('securepointutm.edit', [
-            'customer' => $customer,
-            'securepointutm' => $securepointutm,
-        ]);
+        $sites = $this->getSitesForCustomer($customer);
+
+        return view('securepointutm.edit', compact('customer', 'securepointutm', 'sites'));
     }
 
     public function update(Customer $customer, SecurepointUTM $securepointutm, SecurepointUTMRequest $request)

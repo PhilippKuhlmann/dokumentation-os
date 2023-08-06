@@ -10,16 +10,17 @@ class WifiController extends Controller
 {
     public function index(Customer $customer)
     {
-        return view('wifi.index', [
-            'customer' => $customer,
-        ]);
+        $wifis = $this->getFilteredQuery(Wifi::class, $customer)
+                      ->get();
+
+        return view('wifi.index', compact('customer', 'wifis'));
     }
 
     public function create(Customer $customer)
     {
-        return view('wifi.create', [
-            'customer' => $customer,
-        ]);
+        $sites = $this->getSitesForCustomer($customer);
+
+        return view('wifi.create', compact('customer', 'sites'));
     }
 
     public function store(Customer $customer, WifiRequest $request)
@@ -31,10 +32,9 @@ class WifiController extends Controller
 
     public function edit(Customer $customer, Wifi $wifi)
     {
-        return view('wifi.edit', [
-            'customer' => $customer,
-            'wifi' => $wifi,
-        ]);
+        $sites = $this->getSitesForCustomer($customer);
+
+        return view('wifi.edit', compact('customer', 'wifi', 'sites'));
     }
 
     public function update(Customer $customer, Wifi $wifi, WifiRequest $request)

@@ -1,7 +1,7 @@
 <x-app-layout :$customer>
     <x-sitetopmenu />
 
-    @foreach ($customer->securepointutms as $securepointutm)
+    @foreach ($securepointutms as $securepointutm)
         <x-card>
             <x-slot:head>
                 <x-show.header editUrl="{{ route('securepointutm.edit', [$customer, $securepointutm]) }}">

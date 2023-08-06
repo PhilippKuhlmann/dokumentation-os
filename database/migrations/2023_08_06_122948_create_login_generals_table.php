@@ -8,19 +8,16 @@ return new class extends Migration
 {
     /**
      * Run the migrations.
-     *
-     * @return void
      */
-    public function up()
+    public function up(): void
     {
-        Schema::create('wifis', function (Blueprint $table) {
+        Schema::create('login_generals', function (Blueprint $table) {
             $table->id();
             $table->foreignId('customer_id')->constrained('customers')->onDelete('cascade');
-            $table->foreignId('site_id')->constrained('sites')->onDelete('cascade');
-            $table->string('ssid');
-            $table->bigInteger('vlan');
-            $table->string('password');
-            $table->string('encryption');
+            $table->string('name')->nullable();
+            $table->string('description')->nullable();
+            $table->string('username')->nullable();
+            $table->string('password')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });
@@ -28,11 +25,9 @@ return new class extends Migration
 
     /**
      * Reverse the migrations.
-     *
-     * @return void
      */
-    public function down()
+    public function down(): void
     {
-        Schema::dropIfExists('wifis');
+        Schema::dropIfExists('login_generals');
     }
 };

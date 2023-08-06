@@ -6,30 +6,29 @@
 
                 <form method="post" action="{{ route('filter.site', $customer) }}">
                     @csrf
-                <div class="flex flex-col">
-                    <div class="">
-                        <x-input.label value="Standort" />
+                    <div class="flex flex-col">
+                        <div class="">
+                            <x-input.label value="Standort" />
+                        </div>
+                        <div class="flex gap-2">
+                            <x-input.select name="site" class="w-full">
+                                <option value="all">Alle</option>
+                                @foreach ($customer->sites as $site)
+                                    <option value="{{ $site->id }}" {{ $site->id == session()->get('site') ? 'selected' : '' }}>{{ $site->name }}</option>
+                                @endforeach
+                            </x-input.select>
+                            <x-input.button label="Filtern" />
+                        </div>
                     </div>
-                    <div class="flex gap-2">
-                        <x-input.select name="site" class="w-full">
-
-
-                            <option value="all">Alle</option>
-                            @foreach ($customer->sites as $site)
-                                <option value="{{ $site->id }}" {{ $site->id == session()->get('site') ? 'selected' : '' }}>{{ $site->name }}</option>
-                            @endforeach
-                        </x-input.select>
-                        <x-input.button label="Filtern" />
-                    </div>
-                </div>
-            </form>
+                </form>
 
 
 
                 <x-aside.dropdown label="Netzwerk" svg="svg.wifi" >
                     <x-slot:links>
                         <x-aside.dropdownlink label="Securepoint UTM" href="{{ route('securepointutm.index', $customer) }}" />
-                        <x-aside.dropdownlink label="Netzwerk" href="{{ route('network.index', $customer) }}" />
+                        <x-aside.dropdownlink label="Router" href="{{ route('router.index', $customer) }}" />
+                        <x-aside.dropdownlink label="VLAN" href="{{ route('network.index', $customer) }}" />
                         <x-aside.dropdownlink label="WLAN" href="{{ route('wifi.index', $customer) }}" />
                     </x-slot:links>
                  </x-aside.dropdown>
@@ -66,6 +65,7 @@
 
                  <x-aside.dropdown label="Logins" svg="svg.login" >
                     <x-slot:links>
+                        <x-aside.dropdownlink label="Allgemein" href="{{ route('logingeneral.index', $customer) }}" />
                         <x-aside.dropdownlink label="Webseiten" href="{{ route('loginwebsite.index', $customer) }}" />
                         <x-aside.dropdownlink label="NAS" href="{{ route('loginnas.index', $customer) }}" />
                     </x-slot:links>

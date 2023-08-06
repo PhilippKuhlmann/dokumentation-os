@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('securepoint_utms', function (Blueprint $table) {
             $table->id();
             $table->foreignId('customer_id')->constrained('customers')->onDelete('cascade');
+            $table->foreignId('site_id')->constrained('sites')->onDelete('cascade');
             $table->string('name');
             $table->string('type')->nullable();
             $table->string('serialNumber')->nullable();

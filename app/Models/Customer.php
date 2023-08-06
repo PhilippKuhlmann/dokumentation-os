@@ -39,6 +39,11 @@ class Customer extends Model
         return $this->hasMany(SecurepointUTM::class);
     }
 
+    public function routers()
+    {
+        return $this->hasMany(Router::class);
+    }
+
     public function securepointumas()
     {
         return $this->hasMany(SecurepointUMA::class);
@@ -82,6 +87,11 @@ class Customer extends Model
     public function files()
     {
         return $this->hasMany(File::class);
+    }
+
+    public function logingenerals()
+    {
+        return $this->hasMany(LoginGeneral::class);
     }
 
     public function loginwebsites()

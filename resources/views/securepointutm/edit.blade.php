@@ -2,6 +2,8 @@
     <x-create.main header="Securepoint UTM bearbeiten" labelsubmit="Speichern" action="{{ route('securepointutm.update', [$customer, $securepointutm]) }}">
         @method('PATCH')
 
+        <x-edit.select name="site_id" value="Standort" selector="{{ $securepointutm->site_id }}" :array="$sites" />
+
         <x-create.singlerow label="Name" name="name" default="{{ $securepointutm->name }}" />
 
         <x-create.doublerow label1="Type" name1="type" default1="{{ $securepointutm->type }}" label2="Seriennummer" name2="serialNumber" default2="{{ $securepointutm->serialNumber }}" />

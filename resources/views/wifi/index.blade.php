@@ -8,7 +8,7 @@
 
             <x-table.body>
 
-                @foreach ($customer->wifis as $wifi)
+                @foreach ($wifis as $wifi)
 
                     <x-table.datarow
                         :values="[
@@ -19,7 +19,7 @@
                         ]"
 
                         editUrl="/{{ Request::path() }}/{{ $wifi->id }}/edit"
-                        deleteUrl="/{{ Request::path() }}/{{ $wifi->id }}"
+
                     />
 
                 @endforeach
