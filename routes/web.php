@@ -82,6 +82,7 @@ Route::middleware(['auth', 'isCustomerRW', 'isCustomerR'])->group(function () {
 
             // Site
             Route::post('filter', [SiteController::class, 'filter'])->name('filter.site');
+            Route::resource('site', SiteController::class)->except(['show']);
 
             Route::resource('router', RouterController::class)->except(['show']);
             Route::resource('securepointutm', SecurepointUTMController::class)->except(['show']);

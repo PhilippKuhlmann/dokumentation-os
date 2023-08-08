@@ -22,7 +22,11 @@
                     </div>
                 </form>
 
-
+                <x-aside.dropdown label="Kunde" svg="svg.office" >
+                    <x-slot:links>
+                        <x-aside.dropdownlink label="Standort" href="{{ route('site.index', $customer) }}" />
+                    </x-slot:links>
+                 </x-aside.dropdown>
 
                 <x-aside.dropdown label="Netzwerk" svg="svg.wifi" >
                     <x-slot:links>
