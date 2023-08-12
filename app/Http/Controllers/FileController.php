@@ -12,9 +12,11 @@ class FileController extends Controller
 
     public function index(Customer $customer)
     {
-        return view('file.index', [
-            'customer' => $customer,
-        ]);
+        $files = $this->getFilteredQuery(File::class, $customer)
+                      ->orderBy('created_at')
+                      ->get();
+
+        return view('file.index', compact('customer', 'files'));
     }
 
     public function store(Customer $customer, Request $request)

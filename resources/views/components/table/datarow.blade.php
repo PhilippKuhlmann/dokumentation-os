@@ -6,6 +6,10 @@
             <td scope="row" class="py-4 px-6">
                 <a href="{{ $value }}" target="_blank"  class="text-blue-500 hover:text-blue-700">{{ $value }}</a>
             </td>
+        @elseif ($key == 'download')
+            <td scope="row" class="py-4 px-6">
+                <a href="{{ $value }}" target="_blank"  class="text-blue-500 hover:text-blue-700">Download</a>
+            </td>
         @elseif ($key == 'password')
         <td scope="row" class="py-4 px-6">
             <div class="" x-data="{ show: true }">
@@ -46,11 +50,16 @@
 
     <td class="py-4 px-6">
         @cannot('isCustomerR')
-            <div class="flex flex-row space-x-2">
-                <a href="{{ $editUrl }}" class="font-medium text-blue-500 dark:text-blue-500 hover:text-blue-800 hover:dark:text-blue-300">
-                    <x-svg.edit class="h-5 w-5" />
-                </a>
-            </div>
+            @isset($editUrl)
+                <div class="flex flex-row space-x-2">
+                    <a href="{{ $editUrl }}" class="font-medium text-blue-500 dark:text-blue-500 hover:text-blue-800 hover:dark:text-blue-300">
+                        <x-svg.edit class="h-5 w-5" />
+                    </a>
+                </div>
+            @endisset
+            @isset($delUrl)
+
+            @endisset
         @endcannot
 
 
