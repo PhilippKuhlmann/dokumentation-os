@@ -8,6 +8,7 @@ use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\ServerController;
 use App\Http\Controllers\NetworkController;
 use App\Http\Controllers\ADUserController;
+use App\Http\Controllers\CameraController;
 use App\Http\Controllers\ComputerController;
 use App\Http\Controllers\DynDNSController;
 use App\Http\Controllers\FileController;
@@ -23,12 +24,12 @@ use App\Http\Controllers\PhoneController;
 use App\Http\Controllers\PhoneSystemController;
 use App\Http\Controllers\PrinterController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\RecorderController;
 use App\Http\Controllers\RouterController;
 use App\Http\Controllers\SecurepointUMAController;
 use App\Http\Controllers\SecurepointUTMController;
 use App\Http\Controllers\SiteController;
 use App\Http\Controllers\WifiController;
-use App\Models\LoginNAS;
 
 /*
 |--------------------------------------------------------------------------
@@ -124,6 +125,8 @@ Route::middleware(['auth', 'isCustomerRW', 'isCustomerR'])->group(function () {
             Route::resource('computer', ComputerController::class)->except(['show']);
             Route::resource('printer', PrinterController::class)->except(['show']);
             Route::resource('ftpserver', FTPServerController::class)->except(['show']);
+            Route::resource('recorder', RecorderController::class)->except(['show']);
+            Route::resource('camera', CameraController::class)->except(['show']);
 
 
             // DynDNS

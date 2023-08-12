@@ -82,6 +82,13 @@
                     </x-slot:links>
                  </x-aside.dropdown>
 
+                 <x-aside.dropdown label="Kamera" svg="svg.cam" >
+                    <x-slot:links>
+                        <x-aside.dropdownlink label="Recorder" href="{{ route('recorder.index', $customer) }}" />
+                        <x-aside.dropdownlink label="Kamera" href="{{ route('camera.index', $customer) }}" />
+                    </x-slot:links>
+                 </x-aside.dropdown>
+
                  <x-aside.dropdown label="Dienste" svg="svg.settings" >
                     <x-slot:links>
                         <x-aside.dropdownlink label="FTP-Server" href="{{ route('ftpserver.index', $customer) }}" />

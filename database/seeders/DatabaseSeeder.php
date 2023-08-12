@@ -160,6 +160,16 @@ class DatabaseSeeder extends Seeder
             'site_id' => $site1->id,
         ]);
 
+        \App\Models\Recorder::factory(2)->create([
+            'customer_id' => $customer->id,
+            'site_id' => $site1->id,
+        ]);
+
+        \App\Models\Camera::factory(10)->create([
+            'customer_id' => $customer->id,
+            'site_id' => $site1->id,
+        ]);
+
 
 
         $this->call([

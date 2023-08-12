@@ -144,6 +144,16 @@ class Customer extends Model
         return $this->hasMany(DynDNS::class);
     }
 
+    public function recorders()
+    {
+        return $this->hasMany(Recorder::class);
+    }
+
+    public function cameras()
+    {
+        return $this->hasMany(Camera::class);
+    }
+
 
 
 }

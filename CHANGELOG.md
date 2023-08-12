@@ -15,6 +15,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Standort Drucker
 - Standort Telefonanlage
 - Standort Telefone
+- Menü Kamera
+- Kamera + Standort
+- Recorder + Standort
 
 ## Changed
 
