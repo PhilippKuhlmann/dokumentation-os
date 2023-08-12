@@ -2,7 +2,7 @@
 
     <x-sitetopmenu />
 
-    @foreach ($customer->phones as $phone)
+    @foreach ($phones as $phone)
         <x-card>
             <x-slot:head>
                 <x-show.header editUrl="/{{ Request::path() }}/{{ $phone->id }}/edit"

@@ -4,7 +4,7 @@
         <x-input.linkbutton label="Weitere Logins" link="{{ route('loginnas.index', $customer) }}" />
     </x-sitetopmenu>
 
-    @foreach ($customer->nas as $nas)
+    @foreach ($nas as $nas)
         <x-card>
             <x-slot:head>
                 <x-show.header

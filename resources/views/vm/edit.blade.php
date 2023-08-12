@@ -2,6 +2,8 @@
     <x-create.main header="VM bearbeiten" labelsubmit="Speichern" action="{{ route('vm.update', [$customer, $vm]) }}">
         @method('PATCH')
 
+        <x-edit.select name="site_id" value="Standort" selector="{{ $vm->site_id }}" :array="$sites" />
+
         <x-create.singlerow label="Name" name="name" default="{{ $vm->name }}" />
 
         <x-create.doublerow label1="IP 1" name1="ip1" default1="{{ $vm->ip1 }}" label2="IP 2" name2="ip2" default2="{{ $vm->ip2 }}" />

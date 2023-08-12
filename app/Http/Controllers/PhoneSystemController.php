@@ -10,16 +10,17 @@ class PhoneSystemController extends Controller
 {
     public function index(Customer $customer)
     {
-        return view('phonesystem.index', [
-            'customer' => $customer,
-        ]);
+        $phoneSystems = $this->getFilteredQuery(PhoneSystem::class, $customer)
+                            ->get();
+
+        return view('phonesystem.index', compact('customer', 'phoneSystems'));
     }
 
     public function create(Customer $customer)
     {
-        return view('phonesystem.create', [
-            'customer' => $customer,
-        ]);
+        $sites = $this->getSitesForCustomer($customer);
+
+        return view('phonesystem.create', compact('customer', 'sites'));
     }
 
     public function store(Customer $customer, PhoneSystemRequest $request)
@@ -31,11 +32,9 @@ class PhoneSystemController extends Controller
 
     public function edit(Customer $customer, PhoneSystem $phoneSystem)
     {
+        $sites = $this->getSitesForCustomer($customer);
 
-        return view('phonesystem.edit', [
-            'customer' => $customer,
-            'phoneSystem' => $phoneSystem,
-        ]);
+        return view('phonesystem.edit', compact('customer', 'sites', 'phoneSystem'));
     }
 
     public function update(Customer $customer, PhoneSystem $phoneSystem, PhoneSystemRequest $request)

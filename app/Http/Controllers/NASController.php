@@ -11,12 +11,17 @@ class NASController extends Controller
 {
     public function index(Customer $customer)
     {
-        return view('nas.index', compact('customer'));
+        $nas = $this->getFilteredQuery(NAS::class, $customer)
+                    ->get();
+
+        return view('nas.index', compact('customer', 'nas'));
     }
 
     public function create(Customer $customer)
     {
-        return view('nas.create', compact('customer'));
+        $sites = $this->getSitesForCustomer($customer);
+
+        return view('nas.create', compact('customer', 'sites'));
     }
 
     public function store(Customer $customer, NASRequest $request)
@@ -28,7 +33,9 @@ class NASController extends Controller
 
     public function edit(Customer $customer, NAS $nas)
     {
-        return view('nas.edit', compact('customer', 'nas'));
+        $sites = $this->getSitesForCustomer($customer);
+
+        return view('nas.edit', compact('customer', 'sites', 'nas'));
     }
 
     public function update(Customer $customer, NAS $nas, NASRequest $request)

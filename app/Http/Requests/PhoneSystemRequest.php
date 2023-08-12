@@ -24,6 +24,7 @@ class PhoneSystemRequest extends FormRequest
     public function rules()
     {
         return [
+            'site_id' => 'required',
             'manufacturer' => 'max:255',
             'type' => 'max:255',
             'model' => 'max:255',
@@ -34,6 +35,23 @@ class PhoneSystemRequest extends FormRequest
             'port' => 'max:255',
             'username' => 'max:255',
             'password' => 'max:255',
+        ];
+    }
+
+    public function attributes()
+    {
+        return [
+            'site_id' => 'Standort',
+            'manufacturer' => 'Hersteller',
+            'type' => 'Typ',
+            'model' => 'Model',
+            'serialNumber' => 'Seriennummer',
+            'ip1' => 'IP 1',
+            'ip2' => 'IP 2',
+            'ip3' => 'IP 3',
+            'port' => 'Port',
+            'username' => 'Benutzername',
+            'password' => 'Passwort',
         ];
     }
 }

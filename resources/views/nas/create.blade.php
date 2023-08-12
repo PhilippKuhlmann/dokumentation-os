@@ -1,6 +1,8 @@
 <x-app-layout :$customer>
     <x-create.main header="Neue NAS" action="{{ route('nas.store', $customer) }}">
 
+        <x-create.select name="site_id" value="Standort" :array="$sites" />
+
         <x-create.singlerow label="Name" name="name" />
 
         <x-create.doublerow label1="Hersteller" name1="manufacturer" label2="Model" name2="model" />

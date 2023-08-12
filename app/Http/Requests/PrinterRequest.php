@@ -24,14 +24,30 @@ class PrinterRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'max:255',
+            'site_id' => 'required',
+            'name' => 'required|max:255',
             'manufacturer' => 'max:255',
             'model' => 'max:255',
             'serialNumber' => 'max:255',
             'ip' => 'max:255',
             'port' => 'max:255',
             'username' => 'max:255',
-            'password' => 'max:255',
+            'password' => 'required|max:255',
+        ];
+    }
+
+    public function attributes()
+    {
+        return [
+            'site_id' => 'Standort',
+            'name' => 'Name',
+            'manufacturer' => 'Hersteller',
+            'model' => 'Model',
+            'serialNumber' => 'Seriennummer',
+            'ip' => 'IP',
+            'port' => 'Port',
+            'username' => 'Benutzername',
+            'password' => 'Passwort',
         ];
     }
 }

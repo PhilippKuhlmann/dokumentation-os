@@ -2,6 +2,8 @@
     <x-create.main header="Telefon bearbeiten" labelsubmit="Speichern" action="{{ route('phone.update', [$customer, $phone]) }}">
         @method('PATCH')
 
+        <x-edit.select name="site_id" value="Standort" selector="{{ $phone->site_id }}" :array="$sites" />
+
         <x-create.singlerow label="Nebenstelle" name="extension" default="{{ $phone->extension }}" />
 
         <x-create.doublerow label1="Hersteller" name1="manufacturer" default1="{{ $phone->manufacturer }}" label2="Model" name2="model" default2="{{ $phone->model }}" />

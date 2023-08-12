@@ -10,12 +10,17 @@ class PrinterController extends Controller
 {
     public function index(Customer $customer)
     {
-        return view('printer.index', compact('customer'));
+        $printers = $this->getFilteredQuery(Printer::class, $customer)
+                         ->get();
+
+        return view('printer.index', compact('customer', 'printers'));
     }
 
     public function create(Customer $customer)
     {
-        return view('printer.create', compact('customer'));
+        $sites = $this->getSitesForCustomer($customer);
+
+        return view('printer.create', compact('customer', 'sites'));
     }
 
     public function store(Customer $customer, PrinterRequest $request)
@@ -27,7 +32,9 @@ class PrinterController extends Controller
 
     public function edit(Customer $customer, Printer $printer)
     {
-        return view('printer.edit', compact('customer', 'printer'));
+        $sites = $this->getSitesForCustomer($customer);
+
+        return view('printer.edit', compact('customer', 'printer', 'sites'));
     }
 
     public function update(Customer $customer, Printer $printer, PrinterRequest $request)

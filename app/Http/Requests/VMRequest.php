@@ -24,6 +24,7 @@ class VMRequest extends FormRequest
     public function rules()
     {
         return [
+            'site_id' => 'required',
             'name' => 'required|max:255',
             'ip1' => 'max:255',
             'ip2' => 'max:255',
@@ -37,6 +38,7 @@ class VMRequest extends FormRequest
     public function attributes()
     {
         return [
+            'site_id' => 'Standort',
             'name' => 'Name',
             'ip1' => 'IP 1',
             'ip2' => 'IP 2',

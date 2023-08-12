@@ -13,17 +13,19 @@ class ServerController extends Controller
 
     public function index(Customer $customer)
     {
-        $servers = Server::where('customer_id', $customer->id)->with('operatingSystem')->get();
+        $servers = $this->getFilteredQuery(Server::class, $customer)
+                        ->with('operatingSystem')
+                        ->get();
 
         return view('server.index', compact('customer', 'servers'));
     }
 
     public function create(Customer $customer)
     {
-        return view('server.create', [
-            'customer' => $customer,
-            'operatingSystems' => OperatingSystem::all(),
-        ]);
+        $sites = $this->getSitesForCustomer($customer);
+        $operatingSystems = OperatingSystem::all();
+
+        return view('server.create', compact('customer', 'sites', 'operatingSystems'));
     }
 
     public function store(Customer $customer, ServerRequest $request)
@@ -35,11 +37,10 @@ class ServerController extends Controller
 
     public function edit(Customer $customer, Server $server)
     {
-        return view('server.edit', [
-            'customer' => $customer,
-            'server' => $server,
-            'operatingSystems' => OperatingSystem::all(),
-        ]);
+        $sites = $this->getSitesForCustomer($customer);
+        $operatingSystems = OperatingSystem::all();
+
+        return view('server.edit', compact('customer', 'sites', 'operatingSystems', 'server'));
     }
 
     public function update(Customer $customer, Server $server, ServerRequest $request)

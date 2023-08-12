@@ -1,6 +1,8 @@
 <x-app-layout :$customer>
     <x-create.main header="Neue Telefonanlage" action="{{ route('phoneSystem.store', $customer) }}">
 
+        <x-create.select name="site_id" value="Standort" :array="$sites" />
+
         <x-create.doublerow label1="Hersteller" name1="manufacturer" label2="Model" name2="model" />
 
         <x-create.singlerow label="Seriennummer" name="serialNumber" />

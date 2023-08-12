@@ -114,14 +114,17 @@ class DatabaseSeeder extends Seeder
 
         \App\Models\Server::factory(3)->create([
             'customer_id' => $customer->id,
+            'site_id' => $site1->id,
         ]);
 
         \App\Models\VM::factory(5)->create([
             'customer_id' => $customer->id,
+            'site_id' => $site1->id,
         ]);
 
         \App\Models\NAS::factory(3)->create([
             'customer_id' => $customer->id,
+            'site_id' => $site1->id,
         ]);
 
         \App\Models\LoginWebsite::factory(5)->create([
@@ -130,13 +133,15 @@ class DatabaseSeeder extends Seeder
 
         \App\Models\PhoneSystem::factory(3)->create([
             'customer_id' => $customer->id,
+            'site_id' => $site1->id,
         ]);
 
-        \App\Models\Phone::factory(20)->create([
+        \App\Models\Phone::factory(10)->create([
             'customer_id' => $customer->id,
+            'site_id' => $site1->id,
         ]);
 
-        \App\Models\Mailbox::factory(10)->create([
+        \App\Models\Mailbox::factory(3)->create([
             'customer_id' => $customer->id,
         ]);
 
@@ -145,13 +150,14 @@ class DatabaseSeeder extends Seeder
             'site_id' => $site1->id,
         ]);
 
-        \App\Models\Computer::factory(10)->create([
+        \App\Models\Computer::factory(3)->create([
             'customer_id' => $customer->id,
             'site_id' => $site1->id,
         ]);
 
-        \App\Models\Printer::factory(10)->create([
+        \App\Models\Printer::factory(3)->create([
             'customer_id' => $customer->id,
+            'site_id' => $site1->id,
         ]);
 
 

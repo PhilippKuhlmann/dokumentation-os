@@ -2,7 +2,7 @@
 
     <x-sitetopmenu />
 
-    @foreach ($customer->printers as $printer)
+    @foreach ($printers as $printer)
     <x-card>
         <x-slot:head>
             <x-show.header editUrl="/{{ Request::path() }}/{{ $printer->id }}/edit"

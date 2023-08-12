@@ -22,6 +22,7 @@ class NASRequest extends FormRequest
     public function rules(): array
     {
         return [
+            'site_id' => 'required',
             'name' => 'max:255',
             'manufacturer' => 'max:255',
             'model' => 'max:255',
@@ -37,6 +38,7 @@ class NASRequest extends FormRequest
     public function attributes()
     {
         return [
+            'site_id' => 'Standort',
             'name' => 'Name',
             'manufacturer' => 'Hersteller',
             'model' => 'Model',

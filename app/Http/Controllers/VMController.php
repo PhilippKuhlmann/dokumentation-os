@@ -12,17 +12,19 @@ class VMController extends Controller
 
     public function index(Customer $customer)
     {
-        return view('vm.index',[
-            'customer' => $customer
-        ]);
+        $vms = $this->getFilteredQuery(VM::class, $customer)
+                    ->with('operatingSystem')
+                    ->get();
+
+        return view('vm.index', compact('customer', 'vms'));
     }
 
     public function create(Customer $customer)
     {
-        return view('vm.create', [
-            'customer' => $customer,
-            'operatingSystems' => OperatingSystem::all(),
-        ]);
+        $sites = $this->getSitesForCustomer($customer);
+        $operatingSystems = OperatingSystem::all();
+
+        return view('vm.create', compact('customer', 'sites', 'operatingSystem'));
     }
 
     public function store(Customer $customer, VMRequest $request)
@@ -34,11 +36,10 @@ class VMController extends Controller
 
     public function edit(Customer $customer, VM $vm)
     {
-        return view('vm.edit', [
-            'customer' => $customer,
-            'vm' => $vm,
-            'operatingSystems' => OperatingSystem::all(),
-        ]);
+        $sites = $this->getSitesForCustomer($customer);
+        $operatingSystems = OperatingSystem::all();
+
+        return view('vm.edit', compact('customer', 'sites', 'operatingSystem', 'vm'));
     }
 
     public function update(Customer $customer, VM $vm, VMRequest $request)

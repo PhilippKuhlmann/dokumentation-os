@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('phones', function (Blueprint $table) {
             $table->id();
             $table->foreignId('customer_id')->constrained('customers')->onDelete('cascade');
+            $table->foreignId('site_id')->constrained('sites')->onDelete('cascade');
             $table->string('ip')->nullable();
             $table->string('port')->nullable();
             $table->string('username')->nullable();

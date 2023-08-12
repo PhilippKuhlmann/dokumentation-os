@@ -1,6 +1,8 @@
 <x-app-layout :$customer>
     <x-create.main header="Neue VM" action="{{ route('vm.store', $customer) }}">
 
+        <x-create.select name="site_id" value="Standort" :array="$sites" />
+
         <x-create.singlerow label="Name" name="name" />
 
         <x-create.doublerow label1="IP 1" name1="ip1" label2="IP 2" name2="ip2" />

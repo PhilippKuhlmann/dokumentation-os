@@ -2,7 +2,7 @@
 
     <x-sitetopmenu />
 
-    @foreach ($customer->vms as $vm)
+    @foreach ($vms as $vm)
         <x-card>
             <x-slot:head>
                 <x-show.header

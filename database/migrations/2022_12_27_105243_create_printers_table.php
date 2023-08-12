@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('printers', function (Blueprint $table) {
             $table->id();
             $table->foreignId('customer_id')->constrained('customers')->onDelete('cascade');
+            $table->foreignId('site_id')->constrained('sites')->onDelete('cascade');
             $table->string('name')->nullable();
             $table->string('manufacturer')->nullable();
             $table->string('model')->nullable();
