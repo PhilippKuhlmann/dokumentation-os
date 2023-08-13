@@ -23,6 +23,10 @@ class SiteRequest extends FormRequest
     {
         return [
             'name' => 'required',
+            'street' => '',
+            'house_number' => '',
+            'zip' => '',
+            'city' => '',
         ];
     }
 
@@ -30,6 +34,10 @@ class SiteRequest extends FormRequest
     {
         return [
             'name' => 'Name',
+            'street' => 'Straße',
+            'house_number' => 'Hausnummer',
+            'zip' => 'PLZ',
+            'city' => 'Stadt',
         ];
     }
 }

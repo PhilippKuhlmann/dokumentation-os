@@ -15,7 +15,12 @@ return new class extends Migration
             $table->id();
             $table->foreignId('customer_id')->constrained('customers')->onDelete('cascade');
             $table->string('name');
+            $table->string('street')->nullable();
+            $table->string('house_number')->nullable();
+            $table->string('zip')->nullable();
+            $table->string('city')->nullable();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

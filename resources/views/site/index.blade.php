@@ -4,7 +4,7 @@
 
     <div class="m-3">
         <x-table.main>
-            <x-table.head :labels="['Name', '', ]" />
+            <x-table.head :labels="['Name', 'Straße', 'Ort', '', ]" />
 
             <x-table.body>
 
@@ -13,6 +13,9 @@
                     <x-table.datarow
                         :values="[
                             $site->name,
+                            $site->street . ' ' . $site->house_number,
+                            $site->zip . ' ' . $site->city,
+
                         ]"
 
                         editUrl="/{{ Request::path() }}/{{ $site->id }}/edit"

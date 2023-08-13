@@ -53,6 +53,9 @@
         tr:nth-child(even) {
             background-color: #f2f2f2;
         }
+        .h-250 {
+            height: 250px;
+        }
     </style>
 </head>
 
@@ -61,11 +64,39 @@
         <span>Stand: {{ date('d.m.Y') }}</span>
     </div>
     <div class="center">
-        <svg width="100" height="100">
-            <circle cx="50" cy="50" r="40" stroke="green" stroke-width="4" fill="yellow" />
-          </svg>
-        <h1>Dokumentation</h1>
+        <img src="./images/stadel_systeme_logo.svg" class="h-250" />
+        <h1>
+            Dokumentation
+            <br>
+            {{ $customer->name }}
+        </h1>
+
     </div>
+
+    <div class="page-break"></div>
+
+
+    <h1>Netze</h1>
+
+    <table>
+        <tr>
+            <th>VLAN ID</th>
+            <th>Netzwerk</th>
+            <th>Gateway</th>
+            <th>DNS 1</th>
+            <th>DNS 2</th>
+        </tr>
+        @foreach ($customer->networks as $network)
+            <tr>
+                <td>{{ $network->vlanId }}</td>
+                <td>{{ $network->network }}{{ $network->cidr }}</td>
+                <td>{{ $network->gateway }}</td>
+                <td>{{ $network->dns1 }}</td>
+                <td>{{ $network->dns2 }}</td>
+            </tr>
+        @endforeach
+
+    </table>
 
 
     <div class="page-break"></div>

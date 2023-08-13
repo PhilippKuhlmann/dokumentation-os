@@ -17,7 +17,11 @@ class SiteFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'name' => fake()->randomElement(['Lohne', 'Brägel', 'Vechta']),
+            'street' => fake()->streetName(),
+            'house_number' => fake()->numberBetween(1, 145),
+            'zip' => fake()->postcode(),
+            'city' => fake()->city(),
         ];
     }
 }
