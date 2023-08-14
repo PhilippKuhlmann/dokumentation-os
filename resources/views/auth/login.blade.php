@@ -42,9 +42,7 @@
 
                 <div class="flex items-center justify-end mt-4">
 
-                    <x-primary-button class="ml-3">
-                        {{ __('Anmelden') }}
-                    </x-primary-button>
+                    <x-input.button label="Anmelden" />
                 </div>
             </form>
         </div>

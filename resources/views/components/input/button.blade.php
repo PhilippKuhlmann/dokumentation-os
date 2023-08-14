@@ -8,7 +8,7 @@
 <button
     type="{{ $type }}"
     @if ($color == 'blue')
-        {{ $attributes->merge(['class' => 'py-2 px-4 text-sm bg-ssystemblue hover:bg-blue-600 text-white rounded-md']) }}
+        {{ $attributes->merge(['class' => 'py-2 px-4 text-sm bg-cerulean-500 hover:bg-cerulean-600 text-white rounded-md']) }}
     @elseif ($color == 'red')
         {{ $attributes->merge(['class' => 'py-2 px-4 text-sm bg-red-700 hover:bg-red-600 text-white rounded-md']) }}
     @endif
