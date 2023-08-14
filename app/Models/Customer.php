@@ -154,6 +154,18 @@ class Customer extends Model
         return $this->hasMany(Camera::class);
     }
 
+    public function contactpersons()
+    {
+        return $this->hasMany(ContactPerson::class);
+    }
+
+    public function contactpeople()
+    {
+        return $this->hasMany(ContactPerson::class);
+    }
+
+
+
 
 
 }

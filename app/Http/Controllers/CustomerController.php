@@ -7,6 +7,7 @@ use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Barryvdh\DomPDF\Facade\Pdf;
 use App\Http\Requests\CustomerRequest;
+use App\Models\ContactPerson;
 use App\Models\Site;
 
 class CustomerController extends Controller
@@ -48,8 +49,9 @@ class CustomerController extends Controller
     public function dashboard(Customer $customer)
     {
         $sites = Site::where('customer_id', $customer->id)->get();
+        $contactpersons = ContactPerson::where('customer_id', $customer->id)->get();
 
-        return view('customer.dashboard', compact('customer', 'sites'));
+        return view('customer.dashboard', compact('customer', 'sites', 'contactpersons'));
     }
 
     public function viewPDF(Customer $customer)

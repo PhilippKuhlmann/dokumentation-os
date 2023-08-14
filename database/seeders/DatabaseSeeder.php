@@ -170,6 +170,10 @@ class DatabaseSeeder extends Seeder
             'site_id' => $site1->id,
         ]);
 
+        \App\Models\ContactPerson::factory(3)->create([
+            'customer_id' => $customer->id,
+        ]);
+
 
 
         $this->call([

@@ -10,6 +10,7 @@ use App\Http\Controllers\NetworkController;
 use App\Http\Controllers\ADUserController;
 use App\Http\Controllers\CameraController;
 use App\Http\Controllers\ComputerController;
+use App\Http\Controllers\ContactPersonController;
 use App\Http\Controllers\DynDNSController;
 use App\Http\Controllers\FileController;
 use App\Http\Controllers\FTPServerController;
@@ -84,6 +85,7 @@ Route::middleware(['auth', 'isCustomerRW', 'isCustomerR'])->group(function () {
             // Site
             Route::post('filter', [SiteController::class, 'filter'])->name('filter.site');
             Route::resource('site', SiteController::class)->except(['show']);
+            Route::resource('contactperson', ContactPersonController::class)->except(['show']);
 
             Route::resource('router', RouterController::class)->except(['show']);
             Route::resource('securepointutm', SecurepointUTMController::class)->except(['show']);
