@@ -13,7 +13,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## Changed
 
-- Add ContactPerson to Dashboard 
+- Add ContactPerson to Dashboard
+- Change Hover Color Buttons 
 
 
 ## [23-08-13]
