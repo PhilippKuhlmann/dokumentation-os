@@ -1,6 +1,5 @@
 <x-admin-layout>
 
-    <x-sitetopmenu />
 
 <div class="m-3">
 

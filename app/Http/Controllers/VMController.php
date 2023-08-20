@@ -24,7 +24,7 @@ class VMController extends Controller
         $sites = $this->getSitesForCustomer($customer);
         $operatingSystems = OperatingSystem::all();
 
-        return view('vm.create', compact('customer', 'sites', 'operatingSystem'));
+        return view('vm.create', compact('customer', 'sites', 'operatingSystems'));
     }
 
     public function store(Customer $customer, VMRequest $request)

@@ -45,18 +45,13 @@ use App\Http\Controllers\WifiController;
 
 require __DIR__.'/auth.php';
 
-
-
 Route::get('/', function() {
     return redirect('/login');
 });
 
-Route::get('/test', function() {
-    return view('lab.test');
-});
 
 // Admin
-Route::get('/admin', [AdminController::class, 'index'])->name('admin.daschboard');
+Route::get('/admin', [AdminController::class, 'index'])->name('admin.dashboard');
 
 Route::get('/admin/operatingsystem', [operatingSystemController::class, 'index'])->name('admin.operatingsystem');
 Route::post('/admin/create/operatingsystem', [operatingSystemController::class, 'store']);
@@ -64,6 +59,7 @@ Route::post('/admin/create/operatingsystem', [operatingSystemController::class, 
 Route::get('/admin/customer', [CustomerController::class, 'index'])->name('admin.customer.index');
 Route::post('/admin/customer', [CustomerController::class, 'store'])->name('admin.customer.store');
 Route::get('/admin/customer/create', [CustomerController::class, 'create'])->name('admin.customer.create');
+
 
 // Profile
 Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -77,7 +73,7 @@ Route::get('/{customer}', [CustomerController::class, 'dashboard'])->name('custo
 Route::post('/{customer}/view-pdf', [CustomerController::class, 'viewPDF'])->name('customer.view-pdf');
 
 
-Route::middleware(['auth', 'isCustomerRW', 'isCustomerR'])->group(function () {
+Route::middleware(['auth', 'isCustomerRW', 'isCustomerR', 'isCustomer'])->group(function () {
 
     Route::prefix('{customer}')->group(function () {
         Route::scopeBindings()->group(function () {

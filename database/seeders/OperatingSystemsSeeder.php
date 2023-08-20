@@ -24,6 +24,7 @@ class OperatingSystemsSeeder extends Seeder
             'Windows Server 2012 R2 Standard',
             'Windows Server 2012 R2 Datacenter',
 
+            'Debian 12',
             'Debian 11',
             'Debian 10',
             'Debian 9',

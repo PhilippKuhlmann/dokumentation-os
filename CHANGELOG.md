@@ -5,6 +5,26 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+
+## [23-08-20]
+
+## Added
+
+- Filter isCustomer behinalttet isCustomerR und is CustomerRW
+
+## Changed
+
+- Admin desing Update
+
+## Fixed
+
+- Erstellen einer neuen VM war nicht möglich
+- Kunden haben nichts mehr gesehen bei Geräten die einer Site zugeordnet waren
+- Suchleiste für Kunden ausgeblendet
+- Kunde konnte sein Profiel nicht bearbeiten
+
+
+
 ## [23-08-14]
 
 ## Added

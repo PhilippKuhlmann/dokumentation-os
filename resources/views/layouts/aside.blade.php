@@ -22,12 +22,14 @@
                     </div>
                 </form>
 
-                <x-aside.dropdown label="Kunde" svg="svg.office" >
-                    <x-slot:links>
-                        <x-aside.dropdownlink label="Standort" href="{{ route('site.index', $customer) }}" />
-                        <x-aside.dropdownlink label="Ansprechpartner" href="{{ route('contactperson.index', $customer) }}" />
-                    </x-slot:links>
-                 </x-aside.dropdown>
+                @cannot('isCustomer')
+                    <x-aside.dropdown label="Kunde" svg="svg.office" >
+                        <x-slot:links>
+                            <x-aside.dropdownlink label="Standort" href="{{ route('site.index', $customer) }}" />
+                            <x-aside.dropdownlink label="Ansprechpartner" href="{{ route('contactperson.index', $customer) }}" />
+                        </x-slot:links>
+                    </x-aside.dropdown>
+                 @endcannot
 
                 <x-aside.dropdown label="Netzwerk" svg="svg.wifi" >
                     <x-slot:links>

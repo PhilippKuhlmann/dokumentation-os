@@ -14,7 +14,7 @@ class Controller extends BaseController
 
     protected function getFilteredQuery($model, $customer)
     {
-        if (session()->get('site') == "all") {
+        if (session()->get('site') == "all" || !session()->get('site')) {
             return $model::where('customer_id', $customer->id);
         } else {
             return $model::where('customer_id', $customer->id)->where('site_id', session()->get('site'));

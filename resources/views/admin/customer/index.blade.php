@@ -4,7 +4,7 @@
 
 <div class="m-3">
     <x-table.main>
-        <x-table.head :labels="['Name', 'Standort', '', ]" />
+        <x-table.head :labels="['Name', 'KD-Nr.', '', ]" />
 
         <x-table.body>
 
@@ -13,7 +13,7 @@
                 <x-table.datarow
                     :values="[
                         $customer->name,
-                        $customer->location,
+                        $customer->customer_number,
                     ]"
 
                     editUrl="/{{ Request::path() }}/{{ $customer->id }}/edit"
