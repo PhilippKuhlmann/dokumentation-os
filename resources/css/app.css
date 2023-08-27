@@ -1,3 +1,52 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@font-face {
+    font-family: "CoconPro";
+    src: url("/public/fonts/CoconPro-Regular.otf") format('opentype');
+}
+
+.font-CoconPro {
+    font-family: 'CoconPro', sans;
+}
+
+@font-face {
+    font-family: "DINPro-Regular";
+    src: url("/public/fonts/DINPro-Regular.otf") format('opentype');
+}
+
+.font-DINPro {
+    font-family: 'DINPro-Regular', sans;
+}
+
+@font-face {
+    font-family: "DINPro-Light";
+    src: url("/public/fonts/DINPro-Light.otf") format('opentype');
+}
+
+.font-DINPro-light {
+    font-family: 'DINPro-Light', sans;
+}
+
+@font-face {
+    font-family: "DINPro-Medium";
+    src: url("/public/fonts/DINPro-Medium.otf") format('opentype');
+}
+
+.font-DINPro-medium {
+    font-family: 'DINPro-Medium', sans;
+}
+
+@font-face {
+    font-family: "DINPro-Bold";
+    src: url("/public/fonts/DINPro-Bold.otf") format('opentype');
+}
+
+.font-DINPro-bold {
+    font-family: 'DINPro-Bold', sans;
+}
+
+
+
+

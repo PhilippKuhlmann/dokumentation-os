@@ -2,7 +2,7 @@
     <div class="p-3">
 
         <div class="flex justify-between">
-            <div class="text-3xl text-gray-100">
+            <div class="text-3xl font-CoconPro text-gray-900 dark:text-gray-100">
                 {{ $customer->name }}
             </div>
             <div class="">
@@ -14,27 +14,27 @@
         </div>
 
         <div class="flex">
-            <div class="flex flex-col text-gray-100 w-64 p-5">
-                <div class="text-2xl mt-5">Standorte</div>
+            <div class="flex flex-col text-gray-900 dark:text-gray-100 w-64 p-5">
+                <div class="text-2xl font-CoconPro mt-5">Standorte</div>
 
                 @foreach ($sites as $site)
                     <div class="mt-5">
                         <div class="text-xl">{{ $site->name }}</div>
-                        <div class="text-sm text-gray-400">{{ $site->street }} {{ $site->house_number }}</div>
-                        <div class="text-sm text-gray-400">{{ $site->zip }} {{ $site->city }}</div>
+                        <div class="text-sm text-gray-700 dark:text-gray-400">{{ $site->street }} {{ $site->house_number }}</div>
+                        <div class="text-sm text-gray-700 dark:text-gray-400">{{ $site->zip }} {{ $site->city }}</div>
                     </div>
                 @endforeach
 
             </div>
 
-            <div class="flex flex-col text-gray-100 w-64 p-5">
-                <div class="text-2xl mt-5">Ansprechpartner</div>
+            <div class="flex flex-col text-gray-900 dark:text-gray-100 w-64 p-5">
+                <div class="text-2xl font-CoconPro mt-5">Ansprechpartner</div>
 
                 @foreach ($contactpersons as $contactperson)
                     <div class="mt-5">
                         <div class="text-xl">{{ $contactperson->first_name }} {{ $contactperson->last_name }}</div>
-                        <div class="text-sm text-gray-400">{{ $contactperson->phone }}</div>
-                        <div class="text-sm text-gray-400">{{ $contactperson->mail }}</div>
+                        <div class="text-sm text-gray-700 dark:text-gray-400">{{ $contactperson->phone }}</div>
+                        <div class="text-sm text-gray-700 dark:text-gray-400">{{ $contactperson->mail }}</div>
                     </div>
                 @endforeach
 

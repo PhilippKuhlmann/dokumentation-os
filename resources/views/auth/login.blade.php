@@ -2,7 +2,7 @@
     <div class="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0">
         <div class="flex flex-col justify-center items-center">
             <img src="/images/icon_stadel-weiss.png" class="w-32 h-32">
-            <span class="text-4xl text-gray-100">
+            <span class="text-4xl font-CoconPro text-gray-100">
                 {{ config('app.name') }}
             </span>
         </div>

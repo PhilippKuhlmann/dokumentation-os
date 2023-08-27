@@ -12,8 +12,13 @@ module.exports = {
     theme: {
         extend: {
             fontFamily: {
-                sans: ['Open Sans', ...defaultTheme.fontFamily.sans],
+                CoconPro: ['CoconPro-Regular', 'sans'],
+                DINPro: ['DINPro-Regular', 'sans'],
+                'DINPro-bold': ['DINPro-Bold', 'sans'],
+                'DINPro-light': ['DINPro-Light', 'sans'],
+                'DINPro-medium': ['DINPro-Medium', 'sans'],
             },
+
             colors: {
                 'blau-900': '#194b7e',
                 'blau-500': '#1D70A0',

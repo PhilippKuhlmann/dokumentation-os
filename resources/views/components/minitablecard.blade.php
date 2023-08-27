@@ -15,7 +15,7 @@
 
                                 <div class="relative">
                                     <input placeholder="" :type="show ? 'password' : 'text'"
-                                        class="text-sm w-full p-0 text-gray-900 dark:text-gray-100 dark:bg-gray-800 border-0"
+                                        class="text-sm w-full p-0 text-gray-900 bg-gray-100 dark:text-gray-100 dark:bg-gray-800 border-0"
                                         value="{{ $value }}" disabled>
                                     <div class="absolute inset-y-0 right-0 pr-3 flex items-center text-sm leading-5">
 

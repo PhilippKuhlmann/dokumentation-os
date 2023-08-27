@@ -9,8 +9,8 @@
         <x-create.doublerow14 label1="Netzwerk" name1="network" default1="{{ $network->network }}" label2="VLAN ID" name2="vlanId" default2="1"
             type2="number" default2="{{ $network->vlanId }}"  />
 
-        <x-create.doublerow14 label1="Subnetzmaske" name1="subnetmask" default1="255.255.255.0" default1="{{ $network->subnetmask }}" label2="CIDR"
-            name2="cidr" default2="24" type2="number" default2="{{ $network->cidr }}" />
+        <x-create.doublerow14 label1="Subnetzmaske" name1="subnetmask" default1="{{ $network->subnetmask }}" label2="CIDR"
+            name2="cidr" type2="number" default2="{{ $network->cidr }}" />
 
         <x-create.singlerow label="Gateway" name="gateway" default="{{ $network->gateway }}" />
 

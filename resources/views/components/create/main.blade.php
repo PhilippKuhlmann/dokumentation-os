@@ -9,8 +9,8 @@
 
     <div class="md:flex xs:flex-col md:w-128">
 
-        <div class="flex flex-col text-gray-100 w-full">
-            <div class="text-2xl pl-5 mt-5">
+        <div class="flex flex-col text-cerulean-950 dark:text-cerulean-500 w-full">
+            <div class="text-2xl font-CoconPro pl-5 mt-5">
                 {{ $header }}
             </div>
 
@@ -20,7 +20,7 @@
                 {{ $slot }}
 
                 <div class="flex flex-row justify-between gap-3 mt-5">
-                    <a href="{{ redirect()->back()->getTargetUrl() }}" class="bg-gray-600 hover:bg-gray-500 px-4 py-2 rounded-md text-center">Abbrechen</a>
+                    <a href="{{ redirect()->back()->getTargetUrl() }}" class="bg-gray-600 text-gray-100 hover:bg-gray-500 px-4 py-2 rounded-md text-center">Abbrechen</a>
                     <x-input.button label="{{ $labelsubmit }}" />
                 </div>
             </form>

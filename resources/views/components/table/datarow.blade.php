@@ -1,6 +1,6 @@
 @props(['values', 'values', 'editUrl', 'deleteUrl'])
 
-<tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+<tr class="bg-gray-200 border-b border-gray-900 dark:bg-gray-800 dark:border-gray-700">
     @foreach ($values as $key => $value)
         @if ($key == 'url')
             <td scope="row" class="py-4 px-6">

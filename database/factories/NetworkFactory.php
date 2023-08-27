@@ -21,7 +21,7 @@ class NetworkFactory extends Factory
             'vlanId' => fake()->numberBetween(1, 254),
             'network' => fake()->localIpv4,
             'subnetmask' => '255.255.255.0',
-            'cidr'=> '/24',
+            'cidr'=> '24',
             'gateway' => fake()->localIpv4,
             'dns1' => fake()->localIpv4,
             'dns2' => fake()->localIpv4,

@@ -24,7 +24,7 @@
     @livewireStyles
 </head>
 
-<body class="antialiased bg-sdarkblue dark:bg-gray-900">
+<body class="antialiased font-DINPro bg-white dark:bg-gray-900">
 
     @include('layouts.navigation-simple')
 

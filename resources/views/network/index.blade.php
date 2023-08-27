@@ -14,7 +14,7 @@
                 <x-minitablecard title="Netzwerk" :array="[
                     'Netzwerk' => $network->network,
                     'Subnetzmakske' => $network->subnetmask,
-                    'CIDR' => $network->cidr,
+                    'CIDR' => '/'. $network->cidr,
                     'Gateway' => $network->gateway,
                 ]" />
 
