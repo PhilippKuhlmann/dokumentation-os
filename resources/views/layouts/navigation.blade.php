@@ -15,7 +15,7 @@
                 </button>
                 <a href="{{ route('customer.dashboard', $customer) }}" class="flex ml-2 md:mr-24">
                     <img src="/images/icon_stadel.png" class="h-10 mr-3" alt="STADEL Logo" />
-                    <span class="self-center text-xl font-CoconPro text-cerulean-950 sm:text-2xl whitespace-nowrap dark:text-gray-100">
+                    <span class="self-center text-xl font-CoconPro text-chathams-blue-800 sm:text-2xl whitespace-nowrap dark:text-gray-100">
                         {{ config('app.name') }}
                     </span>
                 </a>

@@ -20,7 +20,7 @@
                 {{ $slot }}
 
                 <div class="flex flex-row justify-between gap-3 mt-5">
-                    <a href="{{ redirect()->back()->getTargetUrl() }}" class="bg-gray-600 text-gray-100 hover:bg-gray-500 px-4 py-2 rounded-md text-center">Abbrechen</a>
+                    <a href="{{ redirect()->back()->getTargetUrl() }}" class="font-DINPro-bold text-gray-600 hover:text-gray-500 px-4 py-2 text-center">Abbrechen</a>
                     <x-input.button label="{{ $labelsubmit }}" />
                 </div>
             </form>
