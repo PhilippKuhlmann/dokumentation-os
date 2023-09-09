@@ -7,25 +7,25 @@
     "file": "assets/DINPro-Medium.4f353e87.otf",
     "src": "public/fonts/DINPro-Medium.otf"
   },
-  "public/fonts/DINPro-Light.otf": {
-    "file": "assets/DINPro-Light.f26fe203.otf",
-    "src": "public/fonts/DINPro-Light.otf"
-  },
   "public/fonts/DINPro-Bold.otf": {
     "file": "assets/DINPro-Bold.e67ddf8c.otf",
     "src": "public/fonts/DINPro-Bold.otf"
+  },
+  "public/fonts/DINPro-Light.otf": {
+    "file": "assets/DINPro-Light.f26fe203.otf",
+    "src": "public/fonts/DINPro-Light.otf"
   },
   "public/fonts/DINPro-Regular.otf": {
     "file": "assets/DINPro-Regular.617311af.otf",
     "src": "public/fonts/DINPro-Regular.otf"
   },
   "resources/js/app.js": {
-    "file": "assets/app.2df53867.js",
+    "file": "assets/app.11934fb4.js",
     "src": "resources/js/app.js",
     "isEntry": true
   },
   "resources/css/app.css": {
-    "file": "assets/app.d59873f2.css",
+    "file": "assets/app.b8777deb.css",
     "src": "resources/css/app.css",
     "isEntry": true
   }
