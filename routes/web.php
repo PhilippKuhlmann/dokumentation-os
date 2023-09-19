@@ -15,6 +15,8 @@ use App\Http\Controllers\DECTController;
 use App\Http\Controllers\DynDNSController;
 use App\Http\Controllers\FileController;
 use App\Http\Controllers\FTPServerController;
+use App\Http\Controllers\LicenseWindowsController;
+use App\Http\Controllers\LicenseSoftwareController;
 use App\Http\Controllers\LoginGeneralController;
 use App\Http\Controllers\LoginNASController;
 use App\Http\Controllers\OperatingSystemController;
@@ -128,6 +130,23 @@ Route::middleware(['auth', 'isCustomerRW', 'isCustomerR', 'isCustomer'])->group(
             Route::resource('recorder', RecorderController::class)->except(['show']);
             Route::resource('camera', CameraController::class)->except(['show']);
 
+            // Lizenz Software
+            //Route::resource('licensesoftware', LicenseSoftwareController::class)->except(['show']);
+            Route::get('licensesoftware', [LicenseSoftwareController::class, 'index'])->name('licensesoftware.index');
+            Route::post('licensesoftware', [LicenseSoftwareController::class, 'store'])->name('licensesoftware.store');
+            Route::get('licensesoftware/create', [LicenseSoftwareController::class, 'create'])->name('licensesoftware.create');
+            Route::get('licensesoftware/{licensesoftware}/edit', [LicenseSoftwareController::class, 'edit'])->name('licensesoftware.edit');
+            Route::patch('licensesoftware/{licensesoftware}', [LicenseSoftwareController::class, 'update'])->name('licensesoftware.update');
+            Route::delete('licensesoftware/{licensesoftware}', [LicenseSoftwareController::class, 'destroy'])->name('licensesoftware.destroy');
+
+            // Lizenz Windows
+            //Route::resource('licensewindows', LicenseWindowsController::class)->except(['show']);
+            Route::get('licensewindows', [LicenseWindowsController::class, 'index'])->name('licensewindows.index');
+            Route::post('licensewindows', [LicenseWindowsController::class, 'store'])->name('licensewindows.store');
+            Route::get('licensewindows/create', [LicenseWindowsController::class, 'create'])->name('licensewindows.create');
+            Route::get('licensewindows/{licensewindows}/edit', [LicenseWindowsController::class, 'edit'])->name('licensewindows.edit');
+            Route::patch('licensewindows/{licensewindows}', [LicenseWindowsController::class, 'update'])->name('licensewindows.update');
+            Route::delete('licensewindows/{licensewindows}', [LicenseWindowsController::class, 'destroy'])->name('licensewindows.destroy');
 
             // DynDNS
             //Route::resource('dyndns', DynDNSController::class)->except(['show']);

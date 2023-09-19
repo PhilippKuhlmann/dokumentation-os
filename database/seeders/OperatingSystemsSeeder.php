@@ -23,6 +23,12 @@ class OperatingSystemsSeeder extends Seeder
             'Windows Server 2016 Datacenter',
             'Windows Server 2012 R2 Standard',
             'Windows Server 2012 R2 Datacenter',
+            'Windows Server 2012 Standard',
+            'Windows Server 2012 Datacenter',
+            'Windows Server 2008 R2 Standard',
+            'Windows Server 2008 R2 Datacenter',
+            'Windows Server 2008 Standard',
+            'Windows Server 2008 Datacenter',
 
             'Debian 12',
             'Debian 11',
@@ -31,13 +37,18 @@ class OperatingSystemsSeeder extends Seeder
 
             'Rangee OS',
 
-            'Windows 10 Pro',
             'Windows 11 Pro',
-            'Windows 7 Pro',
-
-            'Windows 10 Home',
             'Windows 11 Home',
+
+            'Windows 10 Pro',
+            'Windows 10 Pro',
+
+            'Windows 7 Pro',
             'Windows 7 Home',
+
+            'Windows XP Pro',
+            'Windows XP Home',
+
         ];
 
         foreach ($array as $a) {

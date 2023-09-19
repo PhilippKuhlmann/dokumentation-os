@@ -179,6 +179,14 @@ class DatabaseSeeder extends Seeder
             'customer_id' => $customer->id,
         ]);
 
+        \App\Models\LicenseWindows::factory(10)->create([
+            'customer_id' => $customer->id,
+        ]);
+
+        \App\Models\LicenseSoftware::factory(5)->create([
+            'customer_id' => $customer->id,
+        ]);
+
 
 
         $this->call([

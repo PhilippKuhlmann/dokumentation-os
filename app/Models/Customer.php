@@ -174,7 +174,15 @@ class Customer extends Model
         return $this->hasMany(ContactPerson::class);
     }
 
+    public function licensewindows()
+    {
+        return $this->hasMany(LicenseWindows::class);
+    }
 
+    public function licensesoftware()
+    {
+        return $this->hasMany(LicenseSoftware::class);
+    }
 
 
 

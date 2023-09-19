@@ -93,6 +93,26 @@
                     </x-slot:links>
                  </x-aside.dropdown>
 
+                 <x-aside.dropdown label="Lizenzen" svg="svg.document" >
+                    <x-slot:links>
+                        <x-aside.dropdownlink label="Windows" href="{{ route('licensewindows.index', $customer) }}" />
+                        <x-aside.dropdownlink label="Software" href="{{ route('licensesoftware.index', $customer) }}" />
+                    </x-slot:links>
+                 </x-aside.dropdown>
+
+                 <!--
+                    Lizenzen
+                        - Windows
+                            - OS, Key,
+
+                        - RDS
+                            - Key, Anzahl, User/Device
+
+                        - Programme (David, ProCall, David, Office)
+                            - Name, Key, Username, Password
+
+                 -->
+
                  <x-aside.dropdown label="Dienste" svg="svg.settings" >
                     <x-slot:links>
                         <x-aside.dropdownlink label="FTP-Server" href="{{ route('ftpserver.index', $customer) }}" />
