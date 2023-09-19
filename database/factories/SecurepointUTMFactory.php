@@ -22,6 +22,7 @@ class SecurepointUTMFactory extends Factory
             'username' => 'admin',
             'password' => fake()->password($minLength = 6, $maxLength = 12),
             'cloudBackupPassword' => fake()->password($minLength = 6, $maxLength = 12),
+            'uscpin' => fake()->numberBetween(1000, 9999),
             'ip' => '192.168.175.1',
             'urlAdmin' => 'https://192.168.175.1:11115',
             'urlUser' => 'https://192.168.175.1',

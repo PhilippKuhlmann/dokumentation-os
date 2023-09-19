@@ -141,6 +141,11 @@ class DatabaseSeeder extends Seeder
             'site_id' => $site1->id,
         ]);
 
+        \App\Models\DECT::factory(5)->create([
+            'customer_id' => $customer->id,
+            'site_id' => $site1->id,
+        ]);
+
         \App\Models\Mailbox::factory(3)->create([
             'customer_id' => $customer->id,
         ]);

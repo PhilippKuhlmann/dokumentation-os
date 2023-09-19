@@ -20,6 +20,7 @@
                     'Benutzername' => $securepointutm->username,
                     'Passwort' => $securepointutm->password,
                     'Cloud Backup Passwort' => $securepointutm->cloudBackupPassword,
+                    'USC-PIN' => $securepointutm->uscpin,
                 ]" />
 
                 <x-minitablecard title="URL" :array="[

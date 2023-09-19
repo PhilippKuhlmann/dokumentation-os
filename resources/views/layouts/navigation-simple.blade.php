@@ -15,7 +15,7 @@
                 </button>
                 <a href="/" class="flex ml-2 md:mr-24">
                     <img src="/images/icon_stadel.png" class="h-10 mr-3" alt="STADEL Logo" />
-                    <span class="self-center text-xl text-chathams-blue-800 font-CoconPro sm:text-2xl whitespace-nowrap ">
+                    <span class="self-center text-xl text-chathams-blue-800 dark:text-white font-CoconPro sm:text-2xl whitespace-nowrap ">
                         {{ config('app.name') }}
                     </span>
                 </a>

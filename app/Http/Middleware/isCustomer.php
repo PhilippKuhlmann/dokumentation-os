@@ -18,8 +18,6 @@ class isCustomer
     {
         if (auth()->user()->role->id == 98 || auth()->user()->role->id == 99)
         {
-
-            dd('dd');
             if ($request->route()->uri == 'customer/search')
             {
                 return redirect('/' . auth()->user()->customer->slug);

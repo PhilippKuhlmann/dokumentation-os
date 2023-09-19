@@ -9,7 +9,7 @@
             @foreach ($array as $key => $value)
                 <tr>
                     <td>{{ $key }}</td>
-                    @if ($key == 'Passwort' || $key == 'BMC Passwort' || $key == 'DSRM Passwort' || $key == 'Cloud Backup Passwort' || $key == 'Verschlüsselungscode')
+                    @if ($key == 'Passwort' || $key == 'BMC Passwort' || $key == 'DSRM Passwort' || $key == 'Cloud Backup Passwort' || $key == 'Verschlüsselungscode' || $key == 'USC-PIN')
                         <td scope="row" class="">
                             <div class="" x-data="{ show: true }">
 

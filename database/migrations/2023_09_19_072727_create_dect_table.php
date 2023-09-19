@@ -8,25 +8,22 @@ return new class extends Migration
 {
     /**
      * Run the migrations.
-     *
-     * @return void
      */
-    public function up()
+    public function up(): void
     {
-        Schema::create('securepoint_utms', function (Blueprint $table) {
+        Schema::create('dect', function (Blueprint $table) {
             $table->id();
             $table->foreignId('customer_id')->constrained('customers')->onDelete('cascade');
             $table->foreignId('site_id')->constrained('sites')->onDelete('cascade');
-            $table->string('name');
-            $table->string('type')->nullable();
+            $table->string('ip')->nullable();
+            $table->string('port')->nullable();
+            $table->string('username')->nullable();
+            $table->string('password')->nullable();
+            $table->string('manufacturer')->nullable();
+            $table->string('model')->nullable();
             $table->string('serialNumber')->nullable();
-            $table->string('username');
-            $table->string('password');
-            $table->string('cloudBackupPassword')->nullable();
-            $table->string('uscpin')->nullable();
-            $table->string('ip');
-            $table->string('urlAdmin');
-            $table->string('urlUser')->nullable();
+            $table->string('mac')->nullable();
+            $table->string('role')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });
@@ -34,11 +31,9 @@ return new class extends Migration
 
     /**
      * Reverse the migrations.
-     *
-     * @return void
      */
-    public function down()
+    public function down(): void
     {
-        Schema::dropIfExists('securepoint_utms');
+        Schema::dropIfExists('dect');
     }
 };

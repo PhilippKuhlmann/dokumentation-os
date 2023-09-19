@@ -11,6 +11,7 @@ use App\Http\Controllers\ADUserController;
 use App\Http\Controllers\CameraController;
 use App\Http\Controllers\ComputerController;
 use App\Http\Controllers\ContactPersonController;
+use App\Http\Controllers\DECTController;
 use App\Http\Controllers\DynDNSController;
 use App\Http\Controllers\FileController;
 use App\Http\Controllers\FTPServerController;
@@ -118,6 +119,7 @@ Route::middleware(['auth', 'isCustomerRW', 'isCustomerR', 'isCustomer'])->group(
 
             Route::resource('phoneSystem', PhoneSystemController::class)->except(['show']);
             Route::resource('phone', PhoneController::class)->except(['show']);
+            Route::resource('dect', DECTController::class)->except(['show']);
             Route::resource('mailbox', MailboxController::class)->except(['show']);
             Route::resource('wifi', WifiController::class)->except(['show']);
             Route::resource('computer', ComputerController::class)->except(['show']);

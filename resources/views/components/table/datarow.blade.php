@@ -4,11 +4,11 @@
     @foreach ($values as $key => $value)
         @if ($key == 'url')
             <td scope="row" class="py-4 px-6">
-                <a href="{{ $value }}" target="_blank"  class="text-blue-500 hover:text-blue-700">{{ $value }}</a>
+                <a href="{{ $value }}" target="_blank"  class=" text-cerulean-500 hover:text-cerulean-600">{{ $value }}</a>
             </td>
         @elseif ($key == 'download')
             <td scope="row" class="py-4 px-6">
-                <a href="{{ $value }}" target="_blank"  class="text-blue-500 hover:text-blue-700">Download</a>
+                <a href="{{ $value }}" target="_blank"  class="text-cerulean-500 hover:text-cerulean-600">Download</a>
             </td>
         @elseif ($key == 'password')
         <td scope="row" class="py-4 px-6">

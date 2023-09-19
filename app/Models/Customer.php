@@ -114,6 +114,16 @@ class Customer extends Model
         return $this->hasMany(Phone::class);
     }
 
+    public function dect()
+    {
+        return $this->hasMany(DECT::class);
+    }
+
+    public function dects()
+    {
+        return $this->hasMany(DECT::class);
+    }
+
     public function mailboxes()
     {
         return $this->hasMany(Mailbox::class);

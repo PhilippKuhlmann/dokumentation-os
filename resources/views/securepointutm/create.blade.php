@@ -13,6 +13,8 @@
 
         <x-create.singlerow label="Cloud Backup Passwort" name="cloudBackupPassword" />
 
+        <x-create.singlerow label="USC-PIN" name="uscpin" />
+
         <x-create.singlerow label="IP" name="ip" />
 
         <x-create.singlerow label="Admin URL" name="urlAdmin" />

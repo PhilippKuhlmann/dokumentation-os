@@ -14,6 +14,8 @@
 
         <x-create.singlerow label="Cloud Backup Passwort" name="cloudBackupPassword" default="{!! $securepointutm->cloudBackupPassword !!}" />
 
+        <x-create.singlerow label="USC-PIN" name="uscpin" default="{!! $securepointutm->uscpin !!}" />
+
         <x-create.singlerow label="IP" name="ip" default="{{ $securepointutm->ip }}" />
 
         <x-create.singlerow label="Admin URL" name="urlAdmin" default="{{ $securepointutm->urlAdmin }}" />

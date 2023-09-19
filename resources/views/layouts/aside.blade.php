@@ -67,6 +67,7 @@
                     <x-slot:links>
                         <x-aside.dropdownlink label="TK-Anlage" href="{{ route('phoneSystem.index', $customer) }}" />
                         <x-aside.dropdownlink label="Telefon" href="{{ route('phone.index', $customer) }}" />
+                        <x-aside.dropdownlink label="DECT" href="{{ route('dect.index', $customer) }}" />
                     </x-slot:links>
                  </x-aside.dropdown>
 

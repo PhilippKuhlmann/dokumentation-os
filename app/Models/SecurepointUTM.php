@@ -32,4 +32,12 @@ class SecurepointUTM extends Model
         );
     }
 
+    protected function uscpin(): Attribute
+    {
+        return new Attribute(
+            get: fn ($value) => !empty($value) ? Crypt::decryptString($value) : null,
+            set: fn ($value) => Crypt::encryptString($value),
+        );
+    }
+
 }
