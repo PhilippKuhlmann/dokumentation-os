@@ -13,15 +13,10 @@
 
         .center {
             text-align: center;
-            /* Zentriert den Text innerhalb des h1-Tags */
             position: absolute;
-            /* Legt fest, dass das Element absolut positioniert wird */
             top: 50%;
-            /* Setzt den oberen Rand des Elements auf die Mitte der Seite */
             left: 50%;
-            /* Setzt den linken Rand des Elements auf die Mitte der Seite */
             transform: translate(-50%, -50%);
-            /* Zentriert das Element innerhalb seiner Elternbox */
         }
 
         .date {

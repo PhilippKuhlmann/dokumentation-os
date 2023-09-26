@@ -83,6 +83,7 @@ Route::middleware(['auth', 'isCustomerRW', 'isCustomerR', 'isCustomer'])->group(
 
             // Site
             Route::post('filter', [SiteController::class, 'filter'])->name('filter.site');
+
             Route::resource('site', SiteController::class)->except(['show']);
             Route::resource('contactperson', ContactPersonController::class)->except(['show']);
 

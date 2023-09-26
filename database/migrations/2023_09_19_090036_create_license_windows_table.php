@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('license_windows', function (Blueprint $table) {
             $table->id();
             $table->foreignId('customer_id')->constrained('customers')->onDelete('cascade');
-            $table->foreignId('operating_system_id')->nullable();
+            $table->foreignId('operating_system_id')->constrained('operating_systems')->onDelete('cascade')->nullable();
             $table->string('key');
             $table->timestamps();
             $table->softDeletes();

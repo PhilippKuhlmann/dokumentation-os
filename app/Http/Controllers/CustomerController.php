@@ -58,7 +58,11 @@ class CustomerController extends Controller
     {
         $pdf = Pdf::loadView('pdf.customer', [
             'customer' => $customer,
-        ]);
+        ],);
+
+
+
+
         return $pdf->stream();
     }
 

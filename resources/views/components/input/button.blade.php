@@ -11,6 +11,8 @@
         {{ $attributes->merge(['class' => 'py-2 px-2 text-cerulean-500 hover:text-cerulean-600 font-DINPro-bold']) }}
     @elseif ($color == 'red')
         {{ $attributes->merge(['class' => 'py-2 px-2 text-red-700 hover:text-red-600 font-DINPro-bold']) }}
+    @elseif ($color == 'gray')
+        {{ $attributes->merge(['class' => 'py-2 px-2 text-gray-600 hover:text-gray-500 font-DINPro-bold']) }}
     @endif
     >
         {{ $label }}

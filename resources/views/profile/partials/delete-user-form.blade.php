@@ -1,6 +1,6 @@
 <section class="space-y-6">
     <header>
-        <h2 class="text-lg font-medium text-gray-900">
+        <h2 class="text-lg font-medium text-gray-900 dark:text-gray-100">
             {{ __('Konto Löschen') }}
         </h2>
 
@@ -9,17 +9,15 @@
         </p>
     </header>
 
-    <x-danger-button
-        x-data=""
-        x-on:click.prevent="$dispatch('open-modal', 'confirm-user-deletion')"
-    >{{ __('Konto Löschen') }}</x-danger-button>
+    <x-input.button label="Konto Löschen!" color="red" x-data="" x-on:click.prevent="$dispatch('open-modal', 'confirm-user-deletion')" />
+
 
     <x-modal name="confirm-user-deletion" :show="$errors->userDeletion->isNotEmpty()" focusable>
-        <form method="post" action="{{ route('profile.destroy') }}" class="p-6">
+        <form method="post" action="{{ route('profile.destroy') }}" class="p-6 dark:bg-gray-800">
             @csrf
             @method('delete')
 
-            <h2 class="text-lg font-medium text-gray-900">
+            <h2 class="text-lg font-medium text-gray-900 dark:text-gray-100">
                 {{ __('Bist du sicher?') }}
             </h2>
 
@@ -42,13 +40,9 @@
             </div>
 
             <div class="mt-6 flex justify-end">
-                <x-secondary-button x-on:click="$dispatch('close')">
-                    {{ __('Abbrechen') }}
-                </x-secondary-button>
+                <x-input.button label="Abbrechen" color="gray" type="button" x-on:click="$dispatch('close')" />
 
-                <x-danger-button class="ml-3">
-                    {{ __('Konto Löschen') }}
-                </x-danger-button>
+                <x-input.button label="Konto Löschen!" color="red" />
             </div>
         </form>
     </x-modal>

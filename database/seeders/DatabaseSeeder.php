@@ -17,6 +17,8 @@ class DatabaseSeeder extends Seeder
         $this->call([
             RoleSeeder::class,
             UserSeeder::class,
+            OperatingSystemsSeeder::class,
+            MailboxProvidorsSeeder::class,
         ]);
 
         $customer = \App\Models\Customer::factory()->create([
@@ -189,9 +191,6 @@ class DatabaseSeeder extends Seeder
 
 
 
-        $this->call([
-            OperatingSystemsSeeder::class,
-            MailboxProvidorsSeeder::class,
-        ]);
+
     }
 }
