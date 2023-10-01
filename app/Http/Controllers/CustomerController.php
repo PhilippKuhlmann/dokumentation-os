@@ -74,7 +74,9 @@ class CustomerController extends Controller
     {
         $customers = Customer::paginate(20);
 
-        return view('admin.customer.index', compact('customers'));
+        $customersCount = Customer::all()->count();
+
+        return view('admin.customer.index', compact('customers', 'customersCount'));
     }
 
     public function create()
@@ -87,5 +89,18 @@ class CustomerController extends Controller
         Customer::create($request->validated());
 
         return redirect(route('admin.customer.index'));
+    }
+
+    public function edit($customer)
+    {
+        $customer = Customer::where('id', $customer)->firstOrFail();
+        return view('admin.customer.edit', compact('customer'));
+    }
+
+    public function update(Customer $customer, CustomerRequest $request)
+    {
+        $customer->update($request->validated());
+
+        return redirect(route('admin.customer.index', $customer));
     }
 }

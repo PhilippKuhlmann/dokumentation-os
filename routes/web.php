@@ -62,6 +62,8 @@ Route::post('/admin/create/operatingsystem', [operatingSystemController::class, 
 Route::get('/admin/customer', [CustomerController::class, 'index'])->name('admin.customer.index');
 Route::post('/admin/customer', [CustomerController::class, 'store'])->name('admin.customer.store');
 Route::get('/admin/customer/create', [CustomerController::class, 'create'])->name('admin.customer.create');
+Route::get('/admin/customer/{customer}/edit', [CustomerController::class, 'edit'])->name('admin.customer.edit');
+Route::patch('/admin/customer/{customer}', [CustomerController::class, 'update'])->name('admin.customer.update');
 
 
 // Profile
@@ -71,7 +73,7 @@ Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.
 
 
 // Customer
-Route::get('/customer/search', [CustomerController::class, 'search']);
+Route::get('/customer/search', [CustomerController::class, 'search'])->name('customer.search');
 Route::get('/{customer}', [CustomerController::class, 'dashboard'])->name('customer.dashboard');
 Route::post('/{customer}/view-pdf', [CustomerController::class, 'viewPDF'])->name('customer.view-pdf');
 

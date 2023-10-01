@@ -20,9 +20,23 @@
                     </span>
                 </a>
             </div>
+
             @cannot('isCustomer')
+                <div class="hidden md:flex gap-1 dark:text-gray-100">
+
+                    <x-nav.link url="{{ route('customer.dashboard', $customer) }}" name="Daschboard"><x-svg.home class="h-6 w-6" /> </x-nav.link>
+                    <x-nav.link url="{{ route('customer.search') }}" name="Kundensuche"><x-svg.search class="h-6 w-6" /> </x-nav.link>
+
+                </div>
+            <!--
                 <x-input.customersearch class="w-96 hidden md:block" value="{{ $customer->name }}" />
+            -->
             @endcannot
+
+
+
+
+
             <div class="flex items-center">
                 <div class="flex items-center ml-3">
                     <div class="w-14">

@@ -25,7 +25,7 @@ class CustomerRequest extends FormRequest
     {
         return [
             'name' => 'required|max:255',
-            'location' => 'max:255',
+            'customer_number' => 'max:255',
             'slug' => '',
         ];
     }
