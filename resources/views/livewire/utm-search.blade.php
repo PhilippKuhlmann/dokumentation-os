@@ -40,7 +40,7 @@
                                 {{ $utm->site->name }}
                             </td>
                             <td class="py-3 px-4">
-                                <a href="{{ $utm->url }}" target="_blank" class="hover:text-blau-100">
+                                <a href="{{ $utm->urlExternal }}" target="_blank" class="hover:text-blau-100">
                                     {{ $utm->urlExternal }}</a>
                             </td>
 
