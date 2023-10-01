@@ -53,21 +53,25 @@ Route::get('/', function() {
     return redirect('/login');
 });
 
-// GlobalSearch
-Route::get('/utmsearch', UtmSearch::class)->name('search.utm');
+Route::middleware(['auth', 'isTechniker'])->group(function () {
+    // GlobalSearch
+    Route::get('/utmsearch', UtmSearch::class)->name('search.utm');
+});
 
 
-// Admin
-Route::get('/admin', [AdminController::class, 'index'])->name('admin.dashboard');
+Route::middleware(['auth', 'isAdmin'])->group(function () {
+    // Admin
+    Route::get('/admin', [AdminController::class, 'index'])->name('admin.dashboard');
 
-Route::get('/admin/operatingsystem', [operatingSystemController::class, 'index'])->name('admin.operatingsystem');
-Route::post('/admin/create/operatingsystem', [operatingSystemController::class, 'store']);
+    Route::get('/admin/operatingsystem', [operatingSystemController::class, 'index'])->name('admin.operatingsystem');
+    Route::post('/admin/create/operatingsystem', [operatingSystemController::class, 'store']);
 
-Route::get('/admin/customer', [CustomerController::class, 'index'])->name('admin.customer.index');
-Route::post('/admin/customer', [CustomerController::class, 'store'])->name('admin.customer.store');
-Route::get('/admin/customer/create', [CustomerController::class, 'create'])->name('admin.customer.create');
-Route::get('/admin/customer/{customer}/edit', [CustomerController::class, 'edit'])->name('admin.customer.edit');
-Route::patch('/admin/customer/{customer}', [CustomerController::class, 'update'])->name('admin.customer.update');
+    Route::get('/admin/customer', [CustomerController::class, 'index'])->name('admin.customer.index');
+    Route::post('/admin/customer', [CustomerController::class, 'store'])->name('admin.customer.store');
+    Route::get('/admin/customer/create', [CustomerController::class, 'create'])->name('admin.customer.create');
+    Route::get('/admin/customer/{customer}/edit', [CustomerController::class, 'edit'])->name('admin.customer.edit');
+    Route::patch('/admin/customer/{customer}', [CustomerController::class, 'update'])->name('admin.customer.update');
+});
 
 
 // Profile
