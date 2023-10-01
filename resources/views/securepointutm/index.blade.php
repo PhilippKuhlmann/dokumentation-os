@@ -27,6 +27,7 @@
                     'IP' => $securepointutm->ip,
                     'Admin URL' => $securepointutm->urlAdmin,
                     'User URL' => $securepointutm->urlUser,
+                    'Externe URL' => $securepointutm->urlExternal,
                 ]" />
 
             </x-slot>

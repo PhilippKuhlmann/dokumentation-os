@@ -21,5 +21,7 @@
 
         <x-create.singlerow label="User URL" name="urlUser" />
 
+        <x-create.singlerow label="Externe URL" name="urlExternal" />
+
     </x-create.main>
 </x-app-layout>

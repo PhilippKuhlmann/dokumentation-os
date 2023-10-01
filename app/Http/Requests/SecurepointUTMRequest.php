@@ -34,6 +34,7 @@ class SecurepointUTMRequest extends FormRequest
             'ip' => 'required|ipv4|max:255',
             'urlAdmin' => 'required|url|max:255',
             'urlUser' => 'nullable|url|max:255',
+            'urlExternal' => 'nullable|url|max:255',
         ];
     }
 
@@ -50,6 +51,7 @@ class SecurepointUTMRequest extends FormRequest
             'ip' => 'IP',
             'urlAdmin' => 'Admin URL',
             'urlUser' => 'User URL',
+            'utlExternal' => 'Externe URL',
         ];
     }
 

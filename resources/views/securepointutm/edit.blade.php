@@ -22,6 +22,8 @@
 
         <x-create.singlerow label="User URL" name="urlUser" default="{{ $securepointutm->urlUser }}" />
 
+        <x-create.singlerow label="Externe URL" name="urlExternal" default="{{ $securepointutm->urlExternal }}" />
+
     </x-create.main>
 
     <x-deletecard action="{{ route('securepointutm.destroy', [$customer, $securepointutm]) }}" />

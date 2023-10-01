@@ -34,6 +34,7 @@ use App\Http\Controllers\SecurepointUMAController;
 use App\Http\Controllers\SecurepointUTMController;
 use App\Http\Controllers\SiteController;
 use App\Http\Controllers\WifiController;
+use App\Http\Livewire\UtmSearch;
 
 /*
 |--------------------------------------------------------------------------
@@ -51,6 +52,9 @@ require __DIR__.'/auth.php';
 Route::get('/', function() {
     return redirect('/login');
 });
+
+// GlobalSearch
+Route::get('/utmsearch', UtmSearch::class)->name('search.utm');
 
 
 // Admin

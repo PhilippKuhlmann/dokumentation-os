@@ -41,7 +41,7 @@
                                 </div>
                             </div>
                         </td>
-                    @elseif ($key == 'Admin URL' || $key == 'User URL')
+                    @elseif ($key == 'Admin URL' || $key == 'User URL' || $key == 'Externe URL')
                        <td>
                             <a href="{{ $value }}" target="_blank" class="hover:text-blue-600">
                                 {{ $value }}

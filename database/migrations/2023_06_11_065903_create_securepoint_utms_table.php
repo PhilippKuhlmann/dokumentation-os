@@ -27,6 +27,7 @@ return new class extends Migration
             $table->string('ip');
             $table->string('urlAdmin');
             $table->string('urlUser')->nullable();
+            $table->string('urlExternal')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

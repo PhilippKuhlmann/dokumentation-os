@@ -26,6 +26,7 @@ class SecurepointUTMFactory extends Factory
             'ip' => '192.168.175.1',
             'urlAdmin' => 'https://192.168.175.1:11115',
             'urlUser' => 'https://192.168.175.1',
+            'urlExternal' => 'https://meine.spdns.de:11115',
         ];
     }
 }
