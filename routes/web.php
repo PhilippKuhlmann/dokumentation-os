@@ -33,6 +33,7 @@ use App\Http\Controllers\RouterController;
 use App\Http\Controllers\SecurepointUMAController;
 use App\Http\Controllers\SecurepointUTMController;
 use App\Http\Controllers\SiteController;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\WifiController;
 use App\Http\Livewire\UtmSearch;
 
@@ -53,24 +54,40 @@ Route::get('/', function() {
     return redirect('/login');
 });
 
+
+// Techniker
 Route::middleware(['auth', 'isTechniker'])->group(function () {
     // GlobalSearch
     Route::get('/utmsearch', UtmSearch::class)->name('search.utm');
 });
 
 
+// Admin Bereich
 Route::middleware(['auth', 'isAdmin'])->group(function () {
-    // Admin
-    Route::get('/admin', [AdminController::class, 'index'])->name('admin.dashboard');
+    Route::prefix('admin')->group(function () {
 
-    Route::get('/admin/operatingsystem', [operatingSystemController::class, 'index'])->name('admin.operatingsystem');
-    Route::post('/admin/create/operatingsystem', [operatingSystemController::class, 'store']);
+    Route::get('/', [AdminController::class, 'index'])->name('admin.dashboard');
 
-    Route::get('/admin/customer', [CustomerController::class, 'index'])->name('admin.customer.index');
-    Route::post('/admin/customer', [CustomerController::class, 'store'])->name('admin.customer.store');
-    Route::get('/admin/customer/create', [CustomerController::class, 'create'])->name('admin.customer.create');
-    Route::get('/admin/customer/{customer}/edit', [CustomerController::class, 'edit'])->name('admin.customer.edit');
-    Route::patch('/admin/customer/{customer}', [CustomerController::class, 'update'])->name('admin.customer.update');
+    // Operating Systems
+    Route::get('/operatingsystem', [operatingSystemController::class, 'index'])->name('admin.operatingsystem');
+    Route::post('/create/operatingsystem', [operatingSystemController::class, 'store']);
+
+    // Kunden
+    Route::get('/customer', [CustomerController::class, 'index'])->name('admin.customer.index');
+    Route::post('/customer', [CustomerController::class, 'store'])->name('admin.customer.store');
+    Route::get('/customer/create', [CustomerController::class, 'create'])->name('admin.customer.create');
+    Route::get('/customer/{customer}/edit', [CustomerController::class, 'edit'])->name('admin.customer.edit');
+    Route::patch('/customer/{customer}', [CustomerController::class, 'update'])->name('admin.customer.update');
+
+    // Users
+    Route::get('/user', [UserController::class, 'index'])->name('admin.user.index');
+    Route::post('/user', [UserController::class, 'store'])->name('admin.user.store');
+    Route::get('/user/create', [UserController::class, 'create'])->name('admin.user.create');
+    Route::get('/user/{user}/edit', [UserController::class, 'edit'])->name('admin.user.edit');
+    Route::patch('/user/{user}', [UserController::class, 'update'])->name('admin.user.update');
+    Route::delete('/user/{user}', [UserController::class, 'destroy'])->name('admin.user.destroy');
+
+    });
 });
 
 
@@ -87,7 +104,6 @@ Route::post('/{customer}/view-pdf', [CustomerController::class, 'viewPDF'])->nam
 
 
 Route::middleware(['auth', 'isCustomerRW', 'isCustomerR', 'isCustomer'])->group(function () {
-
     Route::prefix('{customer}')->group(function () {
         Route::scopeBindings()->group(function () {
 
@@ -174,7 +190,5 @@ Route::middleware(['auth', 'isCustomerRW', 'isCustomerR', 'isCustomer'])->group(
             Route::get('/file/{file}', [FileController::class, 'download']);
 
         });
-
     });
-
 });
