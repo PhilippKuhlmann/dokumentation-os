@@ -20,7 +20,8 @@ class UserFactory extends Factory
         return [
             'name' => fake()->name(),
             'username' => fake()->name(),
-            'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
+            'role_id' => 2,
+            'password' => '$2y$10$pzM6B1LCh12rFh8PsH6WFuaApyBFgJRMth6xCVjsNcQK363izbBK2', // password
         ];
     }
 
