@@ -66,26 +66,30 @@ Route::middleware(['auth', 'isTechniker'])->group(function () {
 Route::middleware(['auth', 'isAdmin'])->group(function () {
     Route::prefix('admin')->group(function () {
 
-    Route::get('/', [AdminController::class, 'index'])->name('admin.dashboard');
+        Route::get('/', [AdminController::class, 'index'])->name('admin.dashboard');
 
-    // Operating Systems
-    Route::get('/operatingsystem', [operatingSystemController::class, 'index'])->name('admin.operatingsystem');
-    Route::post('/create/operatingsystem', [operatingSystemController::class, 'store']);
+        // Kunden
+        Route::get('/customer', [CustomerController::class, 'index'])->name('admin.customer.index');
+        Route::post('/customer', [CustomerController::class, 'store'])->name('admin.customer.store');
+        Route::get('/customer/create', [CustomerController::class, 'create'])->name('admin.customer.create');
+        Route::get('/customer/{customer}/edit', [CustomerController::class, 'edit'])->name('admin.customer.edit');
+        Route::patch('/customer/{customer}', [CustomerController::class, 'update'])->name('admin.customer.update');
 
-    // Kunden
-    Route::get('/customer', [CustomerController::class, 'index'])->name('admin.customer.index');
-    Route::post('/customer', [CustomerController::class, 'store'])->name('admin.customer.store');
-    Route::get('/customer/create', [CustomerController::class, 'create'])->name('admin.customer.create');
-    Route::get('/customer/{customer}/edit', [CustomerController::class, 'edit'])->name('admin.customer.edit');
-    Route::patch('/customer/{customer}', [CustomerController::class, 'update'])->name('admin.customer.update');
+        // Users
+        Route::get('/user', [UserController::class, 'index'])->name('admin.user.index');
+        Route::post('/user', [UserController::class, 'store'])->name('admin.user.store');
+        Route::get('/user/create', [UserController::class, 'create'])->name('admin.user.create');
+        Route::get('/user/{user}/edit', [UserController::class, 'edit'])->name('admin.user.edit');
+        Route::patch('/user/{user}', [UserController::class, 'update'])->name('admin.user.update');
+        Route::delete('/user/{user}', [UserController::class, 'destroy'])->name('admin.user.destroy');
 
-    // Users
-    Route::get('/user', [UserController::class, 'index'])->name('admin.user.index');
-    Route::post('/user', [UserController::class, 'store'])->name('admin.user.store');
-    Route::get('/user/create', [UserController::class, 'create'])->name('admin.user.create');
-    Route::get('/user/{user}/edit', [UserController::class, 'edit'])->name('admin.user.edit');
-    Route::patch('/user/{user}', [UserController::class, 'update'])->name('admin.user.update');
-    Route::delete('/user/{user}', [UserController::class, 'destroy'])->name('admin.user.destroy');
+        // Operating Systems
+        Route::get('/operatingsystem', [operatingSystemController::class, 'index'])->name('admin.operatingsystem.index');
+        Route::post('/create/operatingsystem', [operatingSystemController::class, 'store'])->name('admin.operatingsystem.store');
+        Route::get('/operatingsystem/create', [operatingSystemController::class, 'create'])->name('admin.operatingsystem.create');
+        Route::get('/operatingsystem/{operatingSystem}/edit', [operatingSystemController::class, 'edit'])->name('admin.operatingsystem.edit');
+        Route::patch('/operatingsystem/{operatingSystem}', [operatingSystemController::class, 'update'])->name('admin.operatingsystem.update');
+
 
     });
 });

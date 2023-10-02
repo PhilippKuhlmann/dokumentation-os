@@ -11,9 +11,9 @@
                 </x-slot:links>
             </x-aside.dropdown>
 
-            <x-aside.dropdown label="Clients" svg="svg.computer" >
+            <x-aside.dropdown label="Auswahlmenüs" svg="svg.computer" >
                 <x-slot:links>
-                    <x-aside.dropdownlink label="Betriebsysteme" href="{{ route('admin.operatingsystem') }}" />
+                    <x-aside.dropdownlink label="Betriebsysteme" href="{{ route('admin.operatingsystem.index') }}" />
                 </x-slot:links>
             </x-aside.dropdown>
 

@@ -10,6 +10,17 @@
             </div>
 
         </div>
+
+        <div class="h-20 w-64 border border-cerulean-500 rounded-sm">
+            <div class="h-8 text-cerulean-500 text-center font-CoconPro">
+                Zuletzt hinzugefügt
+            </div>
+            <div class="h-10 text-chathams-blue-800 dark:text-gray-100 text-center font-CoconPro text-2xl">
+                {{ $customerLastAdded->name }}
+            </div>
+
+        </div>
+
     </div>
 
 
@@ -18,7 +29,7 @@
 
 <div class="m-3">
     <x-table.main>
-        <x-table.head :labels="['Name', 'KD-Nr.', '', ]" />
+        <x-table.head :labels="['Name', 'KD-Nr.', 'URL', '', ]" />
 
         <x-table.body>
 
@@ -28,10 +39,10 @@
                     :values="[
                         $customer->name,
                         $customer->customer_number,
+                        'url' => '/' . $customer->slug,
                     ]"
 
                     editUrl="/{{ Request::path() }}/{{ $customer->id }}/edit"
-                    deleteUrl="/{{ Request::path() }}/{{ $customer->id }}"
                 />
 
             @endforeach

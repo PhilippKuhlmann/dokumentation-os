@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\OperatingSystemRequest;
 use App\Models\OperatingSystem;
 use Illuminate\Http\Request;
 
@@ -9,21 +10,33 @@ class OperatingSystemController extends Controller
 {
     public function index()
     {
+        $operatingSystems = OperatingSystem::paginate(20);
+        $operatingSystemsCount = OperatingSystem::all()->count();
 
-        return view('admin.operatingsystem.index', [
-            'operatingSystems' => OperatingSystem::all(),
-        ]);
+        return view('admin.operatingsystem.index', compact('operatingSystems', 'operatingSystemsCount'));
     }
 
-    public function store(Request $request)
+    public function create()
     {
-        $validated = $request->validate([
-            'name' => []
-        ]);
+        return view('admin.operatingsystem.create');
+    }
 
+    public function store(OperatingSystemRequest $request)
+    {
+        OperatingSystem::create($request->validated());
 
-        OperatingSystem::create($validated);
+        return redirect(route('admin.operatingsystem.index'));
+    }
 
-        return redirect('/admin/operatingsystem');
+    public function edit(OperatingSystem $operatingSystem)
+    {
+        return view('admin.operatingsystem.edit', compact('operatingSystem'));
+    }
+
+    public function update(OperatingSystem $operatingSystem, OperatingSystemRequest $request)
+    {
+        $operatingSystem->update($request->validated());
+
+        return redirect(route('admin.operatingsystem.index', $operatingSystem));
     }
 }
