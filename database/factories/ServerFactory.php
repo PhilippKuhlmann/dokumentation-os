@@ -27,6 +27,8 @@ class ServerFactory extends Factory
             'bmcPassword' => fake()->password($minLength = 6, $maxLength = 14),
             'services' => 'Hyper-V,DNS,AD',
             'operating_system_id' => fake()->numberBetween($min = 1, $max = 10),
+            'remoteID' => fake()->numberBetween($min = 100000000, $max = 999999999),
+            'remotePassword' => fake()->password($minLength = 10, $maxLength = 14),
         ];
     }
 }

@@ -5,11 +5,13 @@
     @foreach ($servers as $server)
         <x-card>
             <x-slot:head>
-                <x-show.header editUrl="/{{ Request::path() }}/{{ $server->id }}/edit"
-                    deleteUrl="/{{ Request::path() }}/{{ $server->id }}">
+                <x-show.header editUrl="/{{ Request::path() }}/{{ $server->id }}/edit">
                     @if ($server->remoteID AND $server->remotePassword)
-                        <a href="rustdesk://connection/new/{{ $server->remoteID }}?password={{ $server->remotePassword }}" class=" bg-cerulean-500 text-gray-100 rounded-sm px-4 py-2 text-sm mr-5 hover:bg-cerulean-600">
-                        Verbinden</a>
+                        <x-input.linkbutton link="rustdesk://connection/new/{{ $server->remoteID }}?password={{ $server->remotePassword }}">
+                            <x-slot:label>
+                                <x-svg.software.rustdesk class="h-6 w-6 !fill-cerulean-500 hover:!fill-cerulean-400" />
+                            </x-slot:label>
+                        </x-input.linkbutton>
                     @endif
                     {{ $server->name }}
                 </x-show.header>

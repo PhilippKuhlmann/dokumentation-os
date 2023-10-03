@@ -47,4 +47,9 @@ class Server extends Model
         return $this->belongsTo(Customer::class);
     }
 
+    public function site()
+    {
+        return $this->belongsTo(Site::class);
+    }
+
 }

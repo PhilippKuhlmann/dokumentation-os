@@ -1,7 +1,7 @@
 @props(['editUrl', 'deleteUrl'])
 
 <div class="flex w-full items-center justify-between p-3">
-    <div class="w-full text-2xl dark:text-gray-100">
+    <div class="flex gap-3 text-center items-center w-full text-2xl dark:text-gray-100">
         {{ $slot }}
     </div>
     @cannot('isCustomerR')

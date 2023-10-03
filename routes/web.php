@@ -35,6 +35,7 @@ use App\Http\Controllers\SecurepointUTMController;
 use App\Http\Controllers\SiteController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\WifiController;
+use App\Http\Livewire\RemoteSearch;
 use App\Http\Livewire\UtmSearch;
 
 /*
@@ -57,8 +58,10 @@ Route::get('/', function() {
 
 // Techniker
 Route::middleware(['auth', 'isTechniker'])->group(function () {
+
     // GlobalSearch
     Route::get('/utmsearch', UtmSearch::class)->name('search.utm');
+    Route::get('/remotesearch', RemoteSearch::class)->name('search.remote');
 });
 
 

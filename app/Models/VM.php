@@ -37,4 +37,14 @@ class VM extends Model
         return $this->belongsTo(OperatingSystem::class);
     }
 
+    public function customer()
+    {
+        return $this->belongsTo(Customer::class);
+    }
+
+    public function site()
+    {
+        return $this->belongsTo(Site::class);
+    }
+
 }

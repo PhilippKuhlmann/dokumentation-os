@@ -15,11 +15,20 @@ class UtmSearch extends Component
     {
         if ($this->search) {
             $search = $this->search;
-            $utms = SecurepointUTM::whereHas('customer', function ($query) use ($search) {
-                $query->where('name', 'like', "%$search%");
-            })->get();
+            $utms = SecurepointUTM::where('urlExternal', '!=', ' ')
+                                        ->with('customer')
+                                        ->with('site')
+                                        ->join('customers', 'securepoint_utms.customer_id', '=', 'customers.id')
+                                        ->where('customers.name', 'like', "%$search%")
+                                        ->orderBy('customers.name')
+                                        ->get();
         } else {
-            $utms = SecurepointUTM::all();
+            $utms = SecurepointUTM::where('urlExternal', '!=', ' ')
+                                    ->with('customer')
+                                    ->with('site')
+                                    ->join('customers', 'securepoint_utms.customer_id', '=', 'customers.id')
+                                    ->orderBy('customers.name')
+                                    ->get();
         }
 
         return view('livewire.utm-search', [

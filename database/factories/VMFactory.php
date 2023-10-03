@@ -21,6 +21,8 @@ class VMFactory extends Factory
             'ip1' => fake()->localIpv4(),
             'services' => 'docker,apache2,mariadb',
             'operating_system_id' => fake()->numberBetween($min = 1, $max = 10),
+            'remoteID' => fake()->numberBetween($min = 100000000, $max = 999999999),
+            'remotePassword' => fake()->password($minLength = 10, $maxLength = 14),
         ];
     }
 }
