@@ -9,6 +9,7 @@ use App\Http\Controllers\ServerController;
 use App\Http\Controllers\NetworkController;
 use App\Http\Controllers\ADUserController;
 use App\Http\Controllers\CameraController;
+use App\Http\Controllers\ChangelogController;
 use App\Http\Controllers\ComputerController;
 use App\Http\Controllers\ContactPersonController;
 use App\Http\Controllers\DECTController;
@@ -54,6 +55,8 @@ require __DIR__.'/auth.php';
 Route::get('/', function() {
     return redirect('/login');
 });
+
+Route::get('/changelog', [ChangelogController::class, 'index'])->name('changelog');
 
 
 // Techniker

@@ -5,6 +5,7 @@ namespace App\Providers;
 use App\Models\User;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -41,5 +42,19 @@ class AppServiceProvider extends ServiceProvider
         Gate::define('isCustomerRW', function(User $user) {
             return $user->role->id == 99;
         });
+
+
+
+        View::composer('*', function ($view) {
+
+            $changelog = file_get_contents(base_path('changelog.md'));
+            preg_match('/## (\d{2}\.\d{2}\.\d{2})/', $changelog, $matches);
+            $version = $matches[1] ?? 'Unbekannt';
+
+
+            $view->with('version', $version);
+        });
+
+
     }
 }

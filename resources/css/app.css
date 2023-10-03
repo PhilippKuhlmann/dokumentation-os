@@ -50,3 +50,25 @@
 
 
 
+.markdown h1 {
+    font-size: xx-large;
+    color: darkgray;
+}
+
+.markdown h2 {
+    font-size: x-large;
+    color: darkgray;
+    margin-top: 50px
+}
+
+.markdown h3 {
+    font-size: larger;
+    color: darkgray;
+}
+
+.markdown ul {
+    color: gray;
+    margin-bottom: 20px;
+    list-style: disc;
+    margin-left: 20px;
+}

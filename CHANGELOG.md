@@ -1,29 +1,25 @@
 # Changelog
 
-All notable changes to this project will be documented in this file.
+## 23.10.03
 
-The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
-and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+### Added
 
-## [23-10-03]
+- Zentrale Suche für Remoteverbindungen von Servern und VMs
+- Changelog öffentlich Sichtbar und automatisiert
 
-## Added
+### Fixed
 
-- Global Remote Connection Search over Servers and VMs
+- 1+N Fehler bei der Zentralen UTM Suche
 
-## Fixed
+### Changed
 
-- 1+n issue at UTM Search
-
-## Changed
-
-- Remote Connection Logo
+- Remote Verbindung Logo geändert
 
 
 
-## [23-10-02]
+## 23.10.02
 
-## Added
+### Added
 
 - Login Tests
 - Permission Tests
@@ -33,88 +29,88 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 
 
-## [23-10-01]
+## 23.10.01
 
-## Added
+### Added
 
-- UTM global search
-- UTM External URL
+- Zentrale suche nach UTMs
+- UTM Externer Link
 - Middelware isTechniker
 
-## Changed
+### Changed
 
 - Admin Bereich
-- Top Navigation bar
+- Top Navigation
 
 
 
-## [23-09-27]
+## 23.09.27
 
-## Changed
+### Changed
 
 - Admin Bereich
 
 
 
-## [23-09-26]
+## 23.09.26
 
-## Changed
+### Changed
 
 - Desing Profile Page
 
 
 
-## [23-09-19]
+## 23.09.19
 
-## Added
+### Added
 
 - USC-PIN zur Securepoin UTM hinzugefügt
 - DECT
 - Lizenzen Windows
 - Lizenzen Software
 
-## Changed
+### Changed
 
 - Desing
 
-## Fixed
+### Fixed
 
 - Phone and PhoneSystem passwort encrypted
 
 
 
-## [23-09-09]
+## 23.09.09
 
-## Changed
+### Changed
 
 - Desing
 - Update dependincies
 
 
 
-## [23-08-20]
+## 23.08.20
 
-## Added
+### Added
 
 - Custom Font
 
-## Changed
+### Changed
 
 - Light Desing
 
-## Fixed
+### Fixed
 
 - CIDR not shown in edit
 
 
 
-## [23-08-20]
+## 23.08.20
 
-## Added
+### Added
 
 - Filter isCustomer behinalttet isCustomerR und is CustomerRW
 
-## Changed
+### Changed
 
 - Admin desing Update
 
@@ -127,21 +123,21 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 
 
-## [23-08-14]
+## 23.08.14
 
-## Added
+### Added
 
 - Ansprechpartner
 
-## Changed
+### Changed
 
 - Add ContactPerson to Dashboard
 - Change Hover Color Buttons 
 
 
-## [23-08-13]
+## 23.08.13
 
-## Changed
+### Changed
 
 - Layout der PDF Doku
 - Site has now City ZIP Street
@@ -149,9 +145,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 
 
-## [23-08-12]
+## 23.08.12
 
-## Added
+### Added
 
 - Standort Server
 - Standort VM
@@ -163,62 +159,62 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Kamera + Standort
 - Recorder + Standort
 
-## Changed
+### Changed
 
 - Desing Files
 
 
 
-## [23-08-08]
+## 23.08.08
 
-## Added
+### Added
 
 - Menü Kunde
 - Standort des Kunden
 
 
 
-## [23-08-06]
+## 23.08.06
 
-## Added
+### Added
 
 - Router
 - Login Allgemein
 
-## Changed
+### Changed
 
 - UTM Standortfähig gemacht
 - WLAN Standortfähig gemacht
 
 
 
-## [23-08-05]
+## 23.08.05
 
-## Added
+### Added
 
 - Standort
 
-## Changed
+### Changed
 
 - Code angepasst, verkürzt
 - Benötigte Felder angepasst
 - Tabellen umbennant
 
 
-## [23-07-30]
+## 23.07.30
 
-## Added
+### Added
 
 - Menü Dienste
 - FTP-Server
 - DynDNS
 
-## Changed
+### Changed
 
 - Datenbank Tabelle umbenannt
 
 
-## [23-07-29]
+## 23.07.29
 
 ### Added
 
@@ -231,7 +227,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 
 
-## [23-07-28]
+## 23.07.28
 
 ### Added
 
