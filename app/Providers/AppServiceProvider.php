@@ -47,7 +47,8 @@ class AppServiceProvider extends ServiceProvider
 
         View::composer('*', function ($view) {
 
-            $changelog = file_get_contents(base_path('changelog.md'));
+            $changelog = file_get_contents('../changelog.md');
+
             preg_match('/## (\d{2}\.\d{2}\.\d{2})/', $changelog, $matches);
             $version = $matches[1] ?? 'Unbekannt';
 
