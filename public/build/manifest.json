@@ -3,10 +3,6 @@
     "file": "assets/CoconPro-Regular.fa463586.otf",
     "src": "public/fonts/CoconPro-Regular.otf"
   },
-  "public/fonts/DINPro-Light.otf": {
-    "file": "assets/DINPro-Light.f26fe203.otf",
-    "src": "public/fonts/DINPro-Light.otf"
-  },
   "public/fonts/DINPro-Bold.otf": {
     "file": "assets/DINPro-Bold.e67ddf8c.otf",
     "src": "public/fonts/DINPro-Bold.otf"
@@ -19,13 +15,17 @@
     "file": "assets/DINPro-Regular.617311af.otf",
     "src": "public/fonts/DINPro-Regular.otf"
   },
+  "public/fonts/DINPro-Light.otf": {
+    "file": "assets/DINPro-Light.f26fe203.otf",
+    "src": "public/fonts/DINPro-Light.otf"
+  },
   "resources/js/app.js": {
     "file": "assets/app.11934fb4.js",
     "src": "resources/js/app.js",
     "isEntry": true
   },
   "resources/css/app.css": {
-    "file": "assets/app.f04f137e.css",
+    "file": "assets/app.4f34cb23.css",
     "src": "resources/css/app.css",
     "isEntry": true
   }

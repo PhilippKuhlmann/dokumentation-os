@@ -20,6 +20,7 @@ class RemoteSearch extends Component
             $servers = Server::where('remoteID', '!=', '')->where('remotePassword', '!=', '')
                                 ->with('customer')
                                 ->join('customers', 'servers.customer_id', '=', 'customers.id')
+                                ->select('servers.*', 'customers.name as customerName')
                                 ->where('customers.name', 'like', "%$search%")
                                 ->orderBy('customers.name')
                                 ->get();
@@ -27,6 +28,7 @@ class RemoteSearch extends Component
             $vms = VM::where('remoteID', '!=', '')->where('remotePassword', '!=', '')
                         ->with('customer')
                         ->join('customers', 'vms.customer_id', '=', 'customers.id')
+                        ->select('vms.*', 'customers.name as customerName')
                         ->where('customers.name', 'like', "%$search%")
                         ->orderBy('customers.name')
                         ->get();
@@ -37,13 +39,15 @@ class RemoteSearch extends Component
                                 ->where('remotePassword', '!=', '')
                                 ->with('customer')
                                 ->join('customers', 'servers.customer_id', '=', 'customers.id')
+                                ->select('servers.*', 'customers.name as customerName')
                                 ->orderBy('customers.name')
                                 ->get();
 
             $vms = VM::where('remoteID', '!=', '')
                         ->where('remotePassword', '!=', '')
-                        ->with('customer')
+                        ->select('name')
                         ->join('customers', 'vms.customer_id', '=', 'customers.id')
+                        ->select('vms.*', 'customers.name as customerName')
                         ->orderBy('customers.name')
                         ->get();
         }
@@ -63,7 +67,7 @@ class RemoteSearch extends Component
             $remotes[] = [
                 'remoteID' => $vm->remoteID,
                 'remotePassword' => $vm->remotePassword,
-                'customerName' => $vm->customer->name,
+                'customerName' => $vm->customerName,
                 'name' => $vm->name,
             ];
         }
