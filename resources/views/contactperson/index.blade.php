@@ -1,6 +1,8 @@
 <x-app-layout :$customer>
 
-    <x-sitetopmenu />
+    @can('contactperson_create')
+       <x-sitetopmenu />
+    @endcan
 
     <div class="m-3">
         <x-table.main>
@@ -18,7 +20,8 @@
 
                         ]"
 
-                        editUrl="/{{ Request::path() }}/{{ $contactperson->id }}/edit"
+                        editUrl="{{ route('contactperson.edit', [$customer, $contactperson]) }}"
+                        can="contactperson_update"
 
                     />
 

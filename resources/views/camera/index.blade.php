@@ -1,10 +1,12 @@
 <x-app-layout :$customer>
-    <x-sitetopmenu />
+    @can('camera_create')
+        <x-sitetopmenu />
+    @endcan
 
     @foreach ($cameras as $camera)
         <x-card>
             <x-slot:head>
-                <x-show.header editUrl="/{{ Request::path() }}/{{ $camera->id }}/edit">
+                <x-show.header can="camera_update" editUrl="{{ route('camera.edit', [$customer, $camera]) }}">
                     {{ $camera->name }}
                 </x-show.header>
             </x-slot>

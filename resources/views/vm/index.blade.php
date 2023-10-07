@@ -1,11 +1,13 @@
 <x-app-layout :$customer>
 
-    <x-sitetopmenu />
+    @can('vm_create')
+        <x-sitetopmenu />
+    @endcan
 
     @foreach ($vms as $vm)
         <x-card>
             <x-slot:head>
-                <x-show.header editUrl="{{ route('vm.edit', [$customer, $vm]) }}">
+                <x-show.header can="vm_update" editUrl="{{ route('vm.edit', [$customer, $vm]) }}">
                     @if ($vm->remoteID AND $vm->remotePassword)
                         <x-input.linkbutton link="rustdesk://connection/new/{{ $vm->remoteID }}?password={{ $vm->remotePassword }}">
                             <x-slot:label>

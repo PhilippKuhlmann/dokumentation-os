@@ -10,6 +10,8 @@ class PrinterController extends Controller
 {
     public function index(Customer $customer)
     {
+        $this->authorize('viewAny', Printer::class);
+
         $printers = $this->getFilteredQuery(Printer::class, $customer)
                          ->get();
 
@@ -18,6 +20,8 @@ class PrinterController extends Controller
 
     public function create(Customer $customer)
     {
+        $this->authorize('create', Printer::class);
+
         $sites = $this->getSitesForCustomer($customer);
 
         return view('printer.create', compact('customer', 'sites'));
@@ -25,6 +29,8 @@ class PrinterController extends Controller
 
     public function store(Customer $customer, PrinterRequest $request)
     {
+        $this->authorize('create', Printer::class);
+
         $customer->printers()->create($request->validated());
 
         return redirect(route('printer.index', $customer));
@@ -32,6 +38,8 @@ class PrinterController extends Controller
 
     public function edit(Customer $customer, Printer $printer)
     {
+        $this->authorize('update', Printer::class);
+
         $sites = $this->getSitesForCustomer($customer);
 
         return view('printer.edit', compact('customer', 'printer', 'sites'));
@@ -39,6 +47,8 @@ class PrinterController extends Controller
 
     public function update(Customer $customer, Printer $printer, PrinterRequest $request)
     {
+        $this->authorize('update', Printer::class);
+
         $printer->update($request->validated());
 
         return redirect(route('printer.index', $customer));
@@ -46,6 +56,8 @@ class PrinterController extends Controller
 
     public function destroy(Customer $customer, Printer $printer)
     {
+        $this->authorize('delete', Printer::class);
+
         $printer->delete();
 
         return redirect(route('printer.index', $customer));

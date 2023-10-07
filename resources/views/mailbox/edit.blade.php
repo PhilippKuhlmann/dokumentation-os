@@ -18,4 +18,9 @@
         </div>
 
     </x-create.main>
+
+    @can('mailbox_delete')
+        <x-deletecard action="{{ route('mailbox.destroy', [$customer, $mailbox]) }}" />
+    @endcan
+
 </x-app-layout>

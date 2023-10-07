@@ -16,6 +16,8 @@
 
     </x-create.main>
 
-    <x-deletecard action="{{ route('phoneSystem.destroy', [$customer, $phoneSystem]) }}" />
+    @can('phonesystem_delete')
+        <x-deletecard action="{{ route('phoneSystem.destroy', [$customer, $phoneSystem]) }}" />
+    @endcan
 
 </x-app-layout>

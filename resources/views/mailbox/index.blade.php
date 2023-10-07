@@ -1,12 +1,13 @@
 <x-app-layout :$customer>
 
-    <x-sitetopmenu />
+    @can('mailbox_create')
+        <x-sitetopmenu />
+    @endcan
 
     @foreach ($customer->mailboxes as $mailbox)
     <x-card>
         <x-slot:head>
-            <x-show.header editUrl="/{{ Request::path() }}/{{ $mailbox->id }}/edit"
-                deleteUrl="/{{ Request::path() }}/{{ $mailbox->id }}">
+            <x-show.header can="mailbox_update" editUrl="{{ route('mailbox.edit', [$customer, $mailbox]) }}">
                 {{ $mailbox->name }}
             </x-show.header>
         </x-slot>

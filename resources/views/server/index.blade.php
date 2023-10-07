@@ -1,11 +1,14 @@
 <x-app-layout :$customer>
 
-    <x-sitetopmenu />
+    @can('server_create')
+        <x-sitetopmenu />
+    @endcan
+
 
     @foreach ($servers as $server)
         <x-card>
             <x-slot:head>
-                <x-show.header editUrl="/{{ Request::path() }}/{{ $server->id }}/edit">
+                <x-show.header can="server_update" editUrl="{{ route('server.edit', [$customer, $server]) }}">
                     @if ($server->remoteID AND $server->remotePassword)
                         <x-input.linkbutton link="rustdesk://connection/new/{{ $server->remoteID }}?password={{ $server->remotePassword }}">
                             <x-slot:label>

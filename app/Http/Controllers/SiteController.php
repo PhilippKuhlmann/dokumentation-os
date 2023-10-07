@@ -11,6 +11,7 @@ class SiteController extends Controller
 {
     public function filter(Customer $customer, Request $request)
     {
+
         session()->put('site', $request->site);
 
         return back();
@@ -18,6 +19,8 @@ class SiteController extends Controller
 
     public function index(Customer $customer)
     {
+        $this->authorize('viewAny', Site::class);
+
         $sites = $this->getSitesForCustomer($customer);
 
         return view('site.index', compact('customer', 'sites'));
@@ -25,11 +28,15 @@ class SiteController extends Controller
 
     public function create(Customer $customer)
     {
+        $this->authorize('create', Site::class);
+
         return view('site.create', compact('customer'));
     }
 
     public function store(Customer $customer, SiteRequest $request)
     {
+        $this->authorize('create', Site::class);
+
         $customer->sites()->create($request->validated());
 
         return redirect(route('site.index', $customer));
@@ -37,11 +44,15 @@ class SiteController extends Controller
 
     public function edit(Customer $customer, Site $site)
     {
+        $this->authorize('update', Site::class);
+
         return view('site.edit', compact('customer', 'site'));
     }
 
     public function update(Customer $customer, Site $site, SiteRequest $request)
     {
+        $this->authorize('update', Site::class);
+
         $site->update($request->validated());
 
         return redirect(route('site.index', $customer));
@@ -49,6 +60,8 @@ class SiteController extends Controller
 
     public function destroy(Customer $customer, Site $site)
     {
+        $this->authorize('delete', Site::class);
+
         $site->delete();
 
         return redirect(route('site.index', $customer));

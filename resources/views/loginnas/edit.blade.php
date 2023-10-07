@@ -10,7 +10,9 @@
 
     </x-create.main>
 
-    <x-deletecard action="{{ route('loginnas.destroy', [$customer, $loginnas]) }}" />
+    @can('loginnas_delete')
+        <x-deletecard action="{{ route('loginnas.destroy', [$customer, $loginnas]) }}" />
+    @endcan
 
 </x-app-layout>
 

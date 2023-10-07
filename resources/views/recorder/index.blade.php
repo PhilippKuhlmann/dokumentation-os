@@ -1,10 +1,13 @@
 <x-app-layout :$customer>
-    <x-sitetopmenu />
+
+    @can('recorder_create')
+        <x-sitetopmenu />
+    @endcan
 
     @foreach ($recorders as $recorder)
         <x-card>
             <x-slot:head>
-                <x-show.header editUrl="/{{ Request::path() }}/{{ $recorder->id }}/edit">
+                <x-show.header can="recorder_update" editUrl="{{ route('recorder.edit', [$customer, $recorder]) }}">
                     {{ $recorder->name }}
                 </x-show.header>
             </x-slot>

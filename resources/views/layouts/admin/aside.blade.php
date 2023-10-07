@@ -7,6 +7,7 @@
             <x-aside.dropdown label="Allgemein" svg="svg.office" >
                 <x-slot:links>
                     <x-aside.dropdownlink label="Benutzer" href="{{ route('admin.user.index') }}" />
+                    <x-aside.dropdownlink label="Rollen" href="{{ route('admin.role.index') }}" />
                     <x-aside.dropdownlink label="Kunden" href="{{ route('admin.customer.index') }}" />
                 </x-slot:links>
             </x-aside.dropdown>

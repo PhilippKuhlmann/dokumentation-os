@@ -16,6 +16,8 @@
 
     </x-create.main>
 
-    <x-deletecard action="{{ route('printer.destroy', [$customer, $printer]) }}" />
+    @can('printer_delete')
+        <x-deletecard action="{{ route('printer.destroy', [$customer, $printer]) }}" />
+    @endcan
 
 </x-app-layout>

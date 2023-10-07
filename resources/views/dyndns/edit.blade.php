@@ -12,6 +12,8 @@
 
     </x-create.main>
 
-    <x-deletecard action="{{ route('dyndns.destroy', [$customer, $dyndns]) }}" />
+    @can('dyndns_delete')
+        <x-deletecard action="{{ route('dyndns.destroy', [$customer, $dyndns]) }}" />
+    @endcan
 
 </x-app-layout>

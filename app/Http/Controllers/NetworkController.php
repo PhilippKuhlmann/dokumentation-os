@@ -12,6 +12,8 @@ class NetworkController extends Controller
 
     public function index(Customer $customer)
     {
+        $this->authorize('viewAny', Network::class);
+
         $networks = $this->getFilteredQuery(Network::class, $customer)
                          ->orderBy('vlanId')
                          ->get();
@@ -21,6 +23,8 @@ class NetworkController extends Controller
 
     public function create(Customer $customer)
     {
+        $this->authorize('create', Network::class);
+
         $sites = $this->getSitesForCustomer($customer);
 
         return view('network.create', compact('customer', 'sites'));
@@ -28,6 +32,8 @@ class NetworkController extends Controller
 
     public function store(Customer $customer, NetworkRequest $request)
     {
+        $this->authorize('create', Network::class);
+
         $customer->networks()->create($request->validated());
 
         return redirect(route('network.index', $customer))->withSuccess('Gespeichert!');
@@ -35,6 +41,8 @@ class NetworkController extends Controller
 
     public function edit(Customer $customer, Network $network)
     {
+        $this->authorize('update', Network::class);
+
         $sites = $this->getSitesForCustomer($customer);
 
         return view('network.edit', compact('customer', 'network', 'sites'));
@@ -42,6 +50,8 @@ class NetworkController extends Controller
 
     public function update(Customer $customer, Network $network, NetworkRequest $request)
     {
+        $this->authorize('update', Network::class);
+
         $network->update($request->validated());
 
         return redirect(route('network.index', $customer))->withSuccess('Gespeichert!');
@@ -49,6 +59,8 @@ class NetworkController extends Controller
 
     public function destroy(Customer $customer, Network $network)
     {
+        $this->authorize('delete', Network::class);
+
         $network->delete();
 
         return redirect(route('network.index', $customer))->withSuccess('Gelöscht!');

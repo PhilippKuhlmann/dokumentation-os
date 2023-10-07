@@ -1,6 +1,8 @@
 <x-app-layout :$customer>
 
-    <x-sitetopmenu />
+    @can('licensewindows_create')
+        <x-sitetopmenu />
+    @endcan
 
     <div class="m-3">
         <x-table.main>
@@ -16,7 +18,8 @@
                             $licensewindows->key,
                         ]"
 
-                        editUrl="/{{ Request::path() }}/{{ $licensewindows->id }}/edit"
+                        editUrl="{{ route('licensewindows.edit', [$customer, $licensewindows]) }}"
+                        can="licensewindows_update"
                     />
 
                 @endforeach

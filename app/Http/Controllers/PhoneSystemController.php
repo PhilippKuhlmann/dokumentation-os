@@ -10,6 +10,8 @@ class PhoneSystemController extends Controller
 {
     public function index(Customer $customer)
     {
+        $this->authorize('viewAny', PhoneSystem::class);
+
         $phoneSystems = $this->getFilteredQuery(PhoneSystem::class, $customer)
                             ->get();
 
@@ -18,6 +20,8 @@ class PhoneSystemController extends Controller
 
     public function create(Customer $customer)
     {
+        $this->authorize('create', PhoneSystem::class);
+
         $sites = $this->getSitesForCustomer($customer);
 
         return view('phonesystem.create', compact('customer', 'sites'));
@@ -25,6 +29,8 @@ class PhoneSystemController extends Controller
 
     public function store(Customer $customer, PhoneSystemRequest $request)
     {
+        $this->authorize('create', PhoneSystem::class);
+
         $customer->phonesystems()->create($request->validated());
 
         return redirect(route('phoneSystem.index', $customer));
@@ -32,6 +38,8 @@ class PhoneSystemController extends Controller
 
     public function edit(Customer $customer, PhoneSystem $phoneSystem)
     {
+        $this->authorize('update', PhoneSystem::class);
+
         $sites = $this->getSitesForCustomer($customer);
 
         return view('phonesystem.edit', compact('customer', 'sites', 'phoneSystem'));
@@ -39,6 +47,8 @@ class PhoneSystemController extends Controller
 
     public function update(Customer $customer, PhoneSystem $phoneSystem, PhoneSystemRequest $request)
     {
+        $this->authorize('update', PhoneSystem::class);
+
         $phoneSystem->update($request->validated());
 
         return redirect(route('phoneSystem.index', $customer));
@@ -46,6 +56,8 @@ class PhoneSystemController extends Controller
 
     public function destroy(Customer $customer, PhoneSystem $phoneSystem)
     {
+        $this->authorize('delete', PhoneSystem::class);
+
         $phoneSystem->delete();
 
         return redirect(route('phoneSystem.index', $customer));

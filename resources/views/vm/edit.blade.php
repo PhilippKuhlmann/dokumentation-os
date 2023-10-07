@@ -16,7 +16,10 @@
 
     </x-create.main>
 
-    <x-deletecard action="{{ route('vm.destroy', [$customer, $vm]) }}" />
+    @can('vm_delete')
+        <x-deletecard action="{{ route('vm.destroy', [$customer, $vm]) }}" />
+    @endcan
+
 
 </x-app-layout>
 

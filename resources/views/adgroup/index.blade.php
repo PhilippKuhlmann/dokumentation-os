@@ -1,6 +1,8 @@
 <x-app-layout :$customer>
 
-    <x-sitetopmenu />
+    @can('adgroup_create')
+        <x-sitetopmenu />
+    @endcan
 
     <div class="m-3">
         <x-table.main>
@@ -16,8 +18,8 @@
                             $adgroup->description,
                         ]"
 
-                        editUrl="/{{ Request::path() }}/{{ $adgroup->id }}/edit"
-                        deleteUrl="/{{ Request::path() }}/{{ $adgroup->id }}"
+                        editUrl="{{ route('adgroup.edit', [$customer, $adgroup]) }}"
+                        can="adgroup_update"
                     />
 
                 @endforeach

@@ -1,10 +1,13 @@
 <x-app-layout :$customer>
-    <x-sitetopmenu />
+
+    @can('securepointuma_create')
+        <x-sitetopmenu />
+    @endcan
 
     @foreach ($customer->securepointumas as $securepointuma)
         <x-card>
             <x-slot:head>
-                <x-show.header editUrl="{{ route('securepointuma.edit', [$customer, $securepointuma]) }}">
+                <x-show.header can="securepointuma_update" editUrl="{{ route('securepointuma.edit', [$customer, $securepointuma]) }}">
                     {{ $securepointuma->name }}
                 </x-show.header>
             </x-slot>

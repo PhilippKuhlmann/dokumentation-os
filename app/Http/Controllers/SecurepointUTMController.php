@@ -10,6 +10,8 @@ class SecurepointUTMController extends Controller
 {
     public function index(Customer $customer)
     {
+        $this->authorize('viewAny', SecurepointUTM::class);
+
         $securepointutms = $this->getFilteredQuery(SecurepointUTM::class, $customer)
                                 ->get();
 
@@ -18,6 +20,8 @@ class SecurepointUTMController extends Controller
 
     public function create(Customer $customer)
     {
+        $this->authorize('create', SecurepointUTM::class);
+
         $sites = $this->getSitesForCustomer($customer);
 
         return view('securepointutm.create', compact('customer', 'sites'));
@@ -25,6 +29,8 @@ class SecurepointUTMController extends Controller
 
     public function store(Customer $customer, SecurepointUTMRequest $request)
     {
+        $this->authorize('create', SecurepointUTM::class);
+
         $customer->securepointutms()->create($request->validated());
 
         return redirect(route('securepointutm.index', $customer));
@@ -32,6 +38,8 @@ class SecurepointUTMController extends Controller
 
     public function edit(Customer $customer, SecurepointUTM $securepointutm)
     {
+        $this->authorize('update', SecurepointUTM::class);
+
         $sites = $this->getSitesForCustomer($customer);
 
         return view('securepointutm.edit', compact('customer', 'securepointutm', 'sites'));
@@ -39,6 +47,8 @@ class SecurepointUTMController extends Controller
 
     public function update(Customer $customer, SecurepointUTM $securepointutm, SecurepointUTMRequest $request)
     {
+        $this->authorize('update', SecurepointUTM::class);
+
         $securepointutm->update($request->validated());
 
         return redirect(route('securepointutm.index', $customer));
@@ -46,6 +56,8 @@ class SecurepointUTMController extends Controller
 
     public function destroy(Customer $customer, SecurepointUTM $securepointutm)
     {
+        $this->authorize('delete', SecurepointUTM::class);
+
         $securepointutm->delete();
 
         return redirect(route('securepointutm.index', $customer));

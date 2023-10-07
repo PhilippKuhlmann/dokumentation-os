@@ -12,7 +12,9 @@
 
     </x-create.main>
 
-    <x-deletecard action="{{ route('licensesoftware.destroy', [$customer, $licensesoftware]) }}" />
+    @can('licensesoftware_delete')
+        <x-deletecard action="{{ route('licensesoftware.destroy', [$customer, $licensesoftware]) }}" />
+    @endcan
 
 </x-app-layout>
 

@@ -1,6 +1,8 @@
 <x-app-layout :$customer>
 
-    <x-sitetopmenu />
+    @can('loginwebsite_create')
+        <x-sitetopmenu />
+    @endcan
 
     <div class="m-3">
         <x-table.main>
@@ -19,7 +21,7 @@
                         ]"
 
                         editUrl="{{ route('loginwebsite.edit', [$customer, $loginwebsite]) }}"
-                        deleteUrl="{{ route('loginwebsite.destroy', [$customer, $loginwebsite]) }}"
+                        can="loginwebsite_update"
                     />
 
                 @endforeach

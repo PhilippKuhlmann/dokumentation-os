@@ -1,12 +1,13 @@
 <x-app-layout :$customer>
 
-    <x-sitetopmenu />
+    @can('phonesystem_create')
+        <x-sitetopmenu />
+    @endcan
 
     @foreach ($phoneSystems as $phoneSystem)
         <x-card>
             <x-slot:head>
-                <x-show.header editUrl="/{{ Request::path() }}/{{ $phoneSystem->id }}/edit"
-                    deleteUrl="/{{ Request::path() }}/{{ $phoneSystem->id }}">
+                <x-show.header can="phonesystem_update" editUrl="{{ route('phoneSystem.edit', [$customer, $phoneSystem]) }}">
                     {{ $phoneSystem->manufacturer }}
                 </x-show.header>
             </x-slot>

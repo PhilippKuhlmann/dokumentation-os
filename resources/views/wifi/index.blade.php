@@ -1,6 +1,8 @@
 <x-app-layout :$customer>
 
-    <x-sitetopmenu />
+    @can('wifi_create')
+        <x-sitetopmenu />
+    @endcan
 
     <div class="m-3">
         <x-table.main>
@@ -18,7 +20,8 @@
                             'password' => $wifi->password,
                         ]"
 
-                        editUrl="/{{ Request::path() }}/{{ $wifi->id }}/edit"
+                        editUrl="{{ route('wifi.edit', [$customer, $wifi]) }}"
+                        can="wifi_update"
 
                     />
 

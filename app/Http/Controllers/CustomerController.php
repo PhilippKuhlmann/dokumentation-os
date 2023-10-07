@@ -14,7 +14,7 @@ class CustomerController extends Controller
 {
     public function __construct(Customer $customer)
     {
-        $this->middleware(['auth', 'isCustomerRW', 'isCustomerR']);
+        $this->middleware(['auth', 'isCustomerRW', 'isCustomerR', 'isCustomer']);
     }
 
     public function search()

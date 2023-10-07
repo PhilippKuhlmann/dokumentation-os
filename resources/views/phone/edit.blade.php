@@ -18,6 +18,8 @@
 
     </x-create.main>
 
-    <x-deletecard action="{{ route('phone.destroy', [$customer, $phone]) }}" />
+    @can('phone_delete')
+        <x-deletecard action="{{ route('phone.destroy', [$customer, $phone]) }}" />
+    @endcan
 
 </x-app-layout>

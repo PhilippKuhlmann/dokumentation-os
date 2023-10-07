@@ -26,6 +26,8 @@
 
     </x-create.main>
 
-    <x-deletecard action="{{ route('securepointutm.destroy', [$customer, $securepointutm]) }}" />
+    @can('securepointutm_delete')
+        <x-deletecard action="{{ route('securepointutm.destroy', [$customer, $securepointutm]) }}" />
+    @endcan
 
 </x-app-layout>

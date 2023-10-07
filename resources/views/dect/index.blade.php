@@ -1,12 +1,13 @@
 <x-app-layout :$customer>
 
-    <x-sitetopmenu />
+    @can('dect_create')
+        <x-sitetopmenu />
+    @endcan
 
     @foreach ($dect as $dect)
         <x-card>
             <x-slot:head>
-                <x-show.header editUrl="/{{ Request::path() }}/{{ $dect->id }}/edit"
-                    deleteUrl="/{{ Request::path() }}/{{ $dect->id }}">
+                <x-show.header can="dect_update" editUrl="{{ route('dect.edit', [$customer, $dect]) }}">
                     Rolle: {{ $dect->role }}
                 </x-show.header>
             </x-slot>

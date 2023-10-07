@@ -1,6 +1,8 @@
 <x-app-layout :$customer>
 
-    <x-sitetopmenu />
+    @can('licensesoftware_create')
+       <x-sitetopmenu />
+    @endcan
 
     <div class="m-3">
         <x-table.main>
@@ -18,7 +20,8 @@
                             'password' => $licensesoftware->password,
                         ]"
 
-                        editUrl="/{{ Request::path() }}/{{ $licensesoftware->id }}/edit"
+                        editUrl="{{ route('licensesoftware.edit', [$customer, $licensesoftware]) }}"
+                        can="licensesoftware_update"
                     />
 
                 @endforeach

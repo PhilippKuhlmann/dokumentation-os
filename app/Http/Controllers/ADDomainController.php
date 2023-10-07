@@ -10,16 +10,22 @@ class ADDomainController extends Controller
 {
     public function index(Customer $customer)
     {
+        $this->authorize('viewAny', ADDomain::class);
+
         return view('addomain.index', compact('customer'));
     }
 
     public function create(Customer $customer)
     {
+        $this->authorize('create', ADDomain::class);
+
         return view('addomain.create', compact('customer'));
     }
 
     public function store(Customer $customer, ADDomainRequest $request)
     {
+        $this->authorize('create', ADDomain::class);
+
         $customer->addomains()->create($request->validated());
 
         return redirect(route('addomain.index', $customer));
@@ -27,11 +33,15 @@ class ADDomainController extends Controller
 
     public function edit(Customer $customer, ADDomain $addomain)
     {
+        $this->authorize('update', ADDomain::class);
+
         return view('addomain.edit', compact('customer', 'addomain'));
     }
 
     public function update(Customer $customer, ADDomain $addomain, ADDomainRequest $request)
     {
+        $this->authorize('update', ADDomain::class);
+
         $addomain->update($request->validated());
 
         return redirect(route('addomain.index', $customer));
@@ -39,6 +49,8 @@ class ADDomainController extends Controller
 
     public function destroy(Customer $customer, ADDomain $addomain)
     {
+        $this->authorize('delete', ADDomain::class);
+
         $addomain->delete();
 
         return redirect(route('addomain.index', $customer));

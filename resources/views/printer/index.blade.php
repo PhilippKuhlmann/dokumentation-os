@@ -1,12 +1,13 @@
 <x-app-layout :$customer>
 
-    <x-sitetopmenu />
+    @can('printer_create')
+        <x-sitetopmenu />
+    @endcan
 
     @foreach ($printers as $printer)
     <x-card>
         <x-slot:head>
-            <x-show.header editUrl="/{{ Request::path() }}/{{ $printer->id }}/edit"
-                deleteUrl="/{{ Request::path() }}/{{ $printer->id }}">
+            <x-show.header can="printer_update" editUrl="{{ route('printer.edit', [$customer, $printer]) }}">
                 {{ $printer->name }}
             </x-show.header>
         </x-slot>

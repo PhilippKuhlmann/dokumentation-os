@@ -11,6 +11,8 @@ class RouterController extends Controller
 {
     public function index(Customer $customer)
     {
+        $this->authorize('viewAny', Router::class);
+
         $routers = $this->getFilteredQuery(Router::class, $customer)
                         ->get();
 
@@ -19,6 +21,8 @@ class RouterController extends Controller
 
     public function create(Customer $customer)
     {
+        $this->authorize('create', Router::class);
+
         $sites = $this->getSitesForCustomer($customer);
 
         return view('router.create', compact('customer', 'sites'));
@@ -26,6 +30,8 @@ class RouterController extends Controller
 
     public function store(Customer $customer, RouterRequest $request)
     {
+        $this->authorize('create', Router::class);
+
         $customer->routers()->create($request->validated());
 
         return redirect(route('router.index', $customer));
@@ -33,6 +39,8 @@ class RouterController extends Controller
 
     public function edit(Customer $customer, Router $router)
     {
+        $this->authorize('update', Router::class);
+
         $sites = $this->getSitesForCustomer($customer);
 
         return view('router.edit', compact('customer', 'router', 'sites'));
@@ -40,6 +48,8 @@ class RouterController extends Controller
 
     public function update(Customer $customer, Router $router, RouterRequest $request)
     {
+        $this->authorize('update', Router::class);
+
         $router->update($request->validated());
 
         return redirect(route('router.index', $customer));
@@ -47,6 +57,8 @@ class RouterController extends Controller
 
     public function destroy(Customer $customer, Router $router)
     {
+        $this->authorize('delete', Router::class);
+
         $router->delete();
 
         return redirect(route('router.index', $customer));

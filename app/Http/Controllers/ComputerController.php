@@ -12,6 +12,8 @@ class ComputerController extends Controller
 {
     public function index(Customer $customer)
     {
+        $this->authorize('viewAny', Computer::class);
+
         if (session()->get('site') == "all") {
             $computers = Computer::where('customer_id', $customer->id)->get();
 
@@ -24,6 +26,8 @@ class ComputerController extends Controller
 
     public function create(Customer $customer)
     {
+        $this->authorize('create', Computer::class);
+
         $operatingSystems = OperatingSystem::all();
         $sites = Site::where('customer_id', $customer->id)->get();
 
@@ -32,6 +36,8 @@ class ComputerController extends Controller
 
     public function store(Customer $customer, ComputerRequest $request)
     {
+        $this->authorize('create', Computer::class);
+
         $customer->computers()->create($request->validated());
 
         return redirect(route('computer.index', $customer));
@@ -39,6 +45,8 @@ class ComputerController extends Controller
 
     public function edit(Customer $customer, Computer $computer)
     {
+        $this->authorize('update', Computer::class);
+
         $operatingSystems = OperatingSystem::all();
         $sites = Site::where('customer_id', $customer->id)->get();
 
@@ -47,6 +55,8 @@ class ComputerController extends Controller
 
     public function update(Customer $customer, Computer $computer, ComputerRequest $request)
     {
+        $this->authorize('update', Computer::class);
+
         $computer->update($request->validated());
 
         return redirect(route('computer.index', $customer));
@@ -54,6 +64,8 @@ class ComputerController extends Controller
 
     public function destroy(Customer $customer, Computer $computer)
     {
+        $this->authorize('delete', Computer::class);
+
         $computer->delete();
 
         return redirect(route('computer.index', $customer));

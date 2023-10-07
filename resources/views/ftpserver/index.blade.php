@@ -1,6 +1,8 @@
 <x-app-layout :$customer>
 
-    <x-sitetopmenu />
+    @can('ftpserver_create')
+       <x-sitetopmenu />
+    @endcan
 
     <div class="m-3">
         <x-table.main>
@@ -18,8 +20,8 @@
                             $ftpserver->description,
                         ]"
 
-                        editUrl="/{{ Request::path() }}/{{ $ftpserver->id }}/edit"
-                        deleteUrl="/{{ Request::path() }}/{{ $ftpserver->id }}"
+                        editUrl="{{ route('ftpserver.edit', [$customer, $ftpserver]) }}"
+                        can="ftpserver_update"
                     />
 
                 @endforeach

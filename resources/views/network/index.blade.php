@@ -1,10 +1,14 @@
 <x-app-layout :$customer>
-    <x-sitetopmenu />
+
+    @can('network_create')
+        <x-sitetopmenu />
+    @endcan
+
 
     @foreach ($networks as $network)
         <x-card>
             <x-slot:head>
-                <x-show.header editUrl="/{{ Request::path() }}/{{ $network->id }}/edit">
+                <x-show.header can="network_update" editUrl="{{ route('network.edit', [$customer, $network]) }}">
                     VLAN {{ $network->vlanId }} - {{ $network->description }}
                 </x-show.header>
             </x-slot>

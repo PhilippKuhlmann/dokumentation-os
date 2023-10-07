@@ -11,6 +11,8 @@ class CameraController extends Controller
 {
     public function index(Customer $customer)
     {
+        $this->authorize('viewAny', Camera::class);
+
         $cameras = $this->getFilteredQuery(Camera::class, $customer)
                         ->get();
 
@@ -19,6 +21,8 @@ class CameraController extends Controller
 
     public function create(Customer $customer)
     {
+        $this->authorize('create', Camera::class);
+
         $sites = $this->getSitesForCustomer($customer);
 
         return view('camera.create', compact('customer', 'sites'));
@@ -26,6 +30,8 @@ class CameraController extends Controller
 
     public function store(Customer $customer, CameraRequest $request)
     {
+        $this->authorize('create', Camera::class);
+
         $customer->cameras()->create($request->validated());
 
         return redirect(route('camera.index', $customer))->withSuccess('Gespeichert!');
@@ -33,6 +39,8 @@ class CameraController extends Controller
 
     public function edit(Customer $customer, Camera $camera)
     {
+        $this->authorize('update', Camera::class);
+
         $sites = $this->getSitesForCustomer($customer);
 
         return view('camera.edit', compact('customer', 'camera', 'sites'));
@@ -40,6 +48,8 @@ class CameraController extends Controller
 
     public function update(Customer $customer, Camera $camera, CameraRequest $request)
     {
+        $this->authorize('update', Camera::class);
+
         $camera->update($request->validated());
 
         return redirect(route('camera.index', $customer))->withSuccess('Gespeichert!');
@@ -47,6 +57,8 @@ class CameraController extends Controller
 
     public function destroy(Customer $customer, Camera $camera)
     {
+        $this->authorize('delete', Camera::class);
+
         $camera->delete();
 
         return redirect(route('camera.index', $customer))->withSuccess('Gelöscht!');

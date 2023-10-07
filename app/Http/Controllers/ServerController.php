@@ -13,6 +13,8 @@ class ServerController extends Controller
 
     public function index(Customer $customer)
     {
+        $this->authorize('viewAny', Server::class);
+
         $servers = $this->getFilteredQuery(Server::class, $customer)
                         ->with('operatingSystem')
                         ->get();
@@ -22,6 +24,8 @@ class ServerController extends Controller
 
     public function create(Customer $customer)
     {
+        $this->authorize('create', Server::class);
+
         $sites = $this->getSitesForCustomer($customer);
         $operatingSystems = OperatingSystem::all();
 
@@ -30,6 +34,8 @@ class ServerController extends Controller
 
     public function store(Customer $customer, ServerRequest $request)
     {
+        $this->authorize('create', Server::class);
+
         $customer->servers()->create($request->validated());
 
         return redirect(route('server.index', $customer));
@@ -37,6 +43,8 @@ class ServerController extends Controller
 
     public function edit(Customer $customer, Server $server)
     {
+        $this->authorize('update', Server::class);
+
         $sites = $this->getSitesForCustomer($customer);
         $operatingSystems = OperatingSystem::all();
 
@@ -45,6 +53,8 @@ class ServerController extends Controller
 
     public function update(Customer $customer, Server $server, ServerRequest $request)
     {
+        $this->authorize('update', Server::class);
+
         $server->update($request->validated());
 
         return redirect(route('server.index', $customer));
@@ -52,6 +62,8 @@ class ServerController extends Controller
 
     public function destroy(Customer $customer, Server $server)
     {
+        $this->authorize('delete', Server::class);
+
         $server->delete();
 
         return redirect(route('server.index', $customer));

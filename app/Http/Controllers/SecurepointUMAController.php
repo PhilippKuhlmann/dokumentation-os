@@ -11,6 +11,8 @@ class SecurepointUMAController extends Controller
 {
     public function index(Customer $customer)
     {
+        $this->authorize('viewAny', SecurepointUMA::class);
+
         return view('securepointuma.index', [
             'customer' => $customer
         ]);
@@ -18,6 +20,8 @@ class SecurepointUMAController extends Controller
 
     public function create(Customer $customer)
     {
+        $this->authorize('create', Router::class);
+
         return view('securepointuma.create', [
             'customer' => $customer,
         ]);
@@ -25,6 +29,8 @@ class SecurepointUMAController extends Controller
 
     public function store(Customer $customer, SecurepointUMARequest $request)
     {
+        $this->authorize('create', SecurepointUMA::class);
+
         $customer->securepointumas()->create($request->validated());
 
         return redirect(route('securepointuma.index', $customer));
@@ -32,6 +38,8 @@ class SecurepointUMAController extends Controller
 
     public function edit(Customer $customer, SecurepointUMA $securepointuma)
     {
+        $this->authorize('update', SecurepointUMA::class);
+
         return view('securepointuma.edit', [
             'customer' => $customer,
             'securepointuma' => $securepointuma,
@@ -40,6 +48,8 @@ class SecurepointUMAController extends Controller
 
     public function update(Customer $customer, SecurepointUMA $securepointuma, SecurepointUMARequest $request)
     {
+        $this->authorize('update', SecurepointUMA::class);
+
         $securepointuma->update($request->validated());
 
         return redirect(route('securepointuma.index', $customer));
@@ -47,6 +57,8 @@ class SecurepointUMAController extends Controller
 
     public function destroy(Customer $customer, SecurepointUMA $securepointuma)
     {
+        $this->authorize('delete', SecurepointUMA::class);
+
         $securepointuma->delete();
 
         return redirect(route('securepointuma.index', $customer));

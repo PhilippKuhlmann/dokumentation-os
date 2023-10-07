@@ -12,6 +12,8 @@ class FileController extends Controller
 
     public function index(Customer $customer)
     {
+        $this->authorize('viewAny', File::class);
+
         $files = $this->getFilteredQuery(File::class, $customer)
                       ->orderBy('created_at')
                       ->get();
@@ -21,6 +23,7 @@ class FileController extends Controller
 
     public function store(Customer $customer, Request $request)
     {
+        $this->authorize('create', File::class);
 
         $filePath = '';
         if ($request->hasFile('file')) {
@@ -47,6 +50,8 @@ class FileController extends Controller
 
     public function destroy(Customer $customer, File $file)
     {
+        $this->authorize('delete', File::class);
+
         Storage::delete($file->file_path);
         $file->delete();
 

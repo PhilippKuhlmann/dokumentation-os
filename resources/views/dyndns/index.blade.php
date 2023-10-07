@@ -1,6 +1,9 @@
 <x-app-layout :$customer>
 
-    <x-sitetopmenu />
+    @can('dyndns_create')
+        <x-sitetopmenu />
+    @endcan
+
 
     <div class="m-3">
         <x-table.main>
@@ -18,8 +21,8 @@
                             'password' => $dyndns->password,
                         ]"
 
-                        editUrl="/{{ Request::path() }}/{{ $dyndns->id }}/edit"
-                        deleteUrl="/{{ Request::path() }}/{{ $dyndns->id }}"
+                        editUrl="{{ route('dyndns.edit', [$customer, $dyndns]) }}"
+                        can="dyndns_update"
                     />
 
                 @endforeach

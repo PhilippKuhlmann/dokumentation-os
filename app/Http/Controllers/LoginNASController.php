@@ -12,11 +12,15 @@ class LoginNASController extends Controller
 {
     public function index(Customer $customer)
     {
+        $this->authorize('viewAny', LoginNAS::class);
+
         return view('loginnas.index', compact('customer'));
     }
 
     public function create(Customer $customer)
     {
+        $this->authorize('create', LoginNAS::class);
+
         $nas = NAS::where('customer_id', $customer->id)->get();
 
         return view('loginnas.create', compact('customer', 'nas'));
@@ -24,6 +28,8 @@ class LoginNASController extends Controller
 
     public function store(Customer $customer, LoginNASRequest $request)
     {
+        $this->authorize('create', LoginNAS::class);
+
         $customer->loginnas()->create($request->validated());
 
         return redirect(route('loginnas.index', $customer));
@@ -31,6 +37,8 @@ class LoginNASController extends Controller
 
     public function edit(Customer $customer, LoginNAS $loginnas)
     {
+        $this->authorize('update', LoginNAS::class);
+
         $nas = NAS::where('customer_id', $customer->id)->get();
 
         return view('loginnas.edit', compact('customer', 'loginnas', 'nas'));
@@ -38,6 +46,8 @@ class LoginNASController extends Controller
 
     public function update(Customer $customer, LoginNAS $loginnas, LoginNASRequest $request)
     {
+        $this->authorize('update', LoginNAS::class);
+
         $loginnas->update($request->validated());
 
         return redirect(route('loginnas.index', $customer));
@@ -45,6 +55,8 @@ class LoginNASController extends Controller
 
     public function destroy(Customer $customer, LoginNAS $loginnas)
     {
+        $this->authorize('delete', LoginNAS::class);
+
         $loginnas->delete();
 
         return redirect(route('loginnas.index', $customer));

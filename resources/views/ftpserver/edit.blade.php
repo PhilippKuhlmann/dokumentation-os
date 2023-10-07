@@ -12,6 +12,8 @@
 
     </x-create.main>
 
-    <x-deletecard action="{{ route('ftpserver.destroy', [$customer, $ftpserver]) }}" />
+    @can('ftpserver_delete')
+        <x-deletecard action="{{ route('ftpserver.destroy', [$customer, $ftpserver]) }}" />
+    @endcan
 
 </x-app-layout>

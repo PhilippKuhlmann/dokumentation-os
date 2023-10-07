@@ -8,6 +8,8 @@
 
     </x-create.main>
 
-    <x-deletecard action="{{ route('adgroup.destroy', [$customer, $adgroup]) }}" />
+    @can('adgroup_delete')
+        <x-deletecard action="{{ route('adgroup.destroy', [$customer, $adgroup]) }}" />
+    @endcan
 
 </x-app-layout>

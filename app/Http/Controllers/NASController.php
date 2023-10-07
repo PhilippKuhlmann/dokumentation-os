@@ -11,6 +11,8 @@ class NASController extends Controller
 {
     public function index(Customer $customer)
     {
+        $this->authorize('viewAny', NAS::class);
+
         $nas = $this->getFilteredQuery(NAS::class, $customer)
                     ->get();
 
@@ -19,6 +21,8 @@ class NASController extends Controller
 
     public function create(Customer $customer)
     {
+        $this->authorize('create', NAS::class);
+
         $sites = $this->getSitesForCustomer($customer);
 
         return view('nas.create', compact('customer', 'sites'));
@@ -26,6 +30,8 @@ class NASController extends Controller
 
     public function store(Customer $customer, NASRequest $request)
     {
+        $this->authorize('create', NAS::class);
+
         $customer->nas()->create($request->validated());
 
         return redirect(route('nas.index', $customer));
@@ -33,6 +39,8 @@ class NASController extends Controller
 
     public function edit(Customer $customer, NAS $nas)
     {
+        $this->authorize('update', NAS::class);
+
         $sites = $this->getSitesForCustomer($customer);
 
         return view('nas.edit', compact('customer', 'sites', 'nas'));
@@ -40,6 +48,8 @@ class NASController extends Controller
 
     public function update(Customer $customer, NAS $nas, NASRequest $request)
     {
+        $this->authorize('update', NAS::class);
+
         $nas->update($request->validated());
 
         return redirect(route('nas.index', $customer));
@@ -47,6 +57,8 @@ class NASController extends Controller
 
     public function destroy(Customer $customer, NAS $nas)
     {
+        $this->authorize('delete', NAS::class);
+
         $nas->delete();
 
         return redirect(route('nas.index', $customer));

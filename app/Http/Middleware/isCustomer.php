@@ -5,6 +5,7 @@ namespace App\Http\Middleware;
 use Closure;
 use Illuminate\Http\Request;
 
+
 class isCustomer
 {
     /**
@@ -16,7 +17,7 @@ class isCustomer
      */
     public function handle(Request $request, Closure $next)
     {
-        if (auth()->user()->role->id == 98 || auth()->user()->role->id == 99)
+        if (auth()->check() && auth()->user()->hasCustomer())
         {
             if ($request->route()->uri == 'customer/search')
             {
@@ -27,6 +28,7 @@ class isCustomer
                 abort('403');
             }
         }
+
 
         return $next($request);
     }

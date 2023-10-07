@@ -30,6 +30,7 @@ use App\Http\Controllers\PhoneSystemController;
 use App\Http\Controllers\PrinterController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RecorderController;
+use App\Http\Controllers\RoleController;
 use App\Http\Controllers\RouterController;
 use App\Http\Controllers\SecurepointUMAController;
 use App\Http\Controllers\SecurepointUTMController;
@@ -89,6 +90,14 @@ Route::middleware(['auth', 'isAdmin'])->group(function () {
         Route::patch('/user/{user}', [UserController::class, 'update'])->name('admin.user.update');
         Route::delete('/user/{user}', [UserController::class, 'destroy'])->name('admin.user.destroy');
 
+        // Rolen
+        Route::get('/role', [RoleController::class, 'index'])->name('admin.role.index');
+        Route::post('/role', [RoleController::class, 'store'])->name('admin.role.store');
+        Route::get('/role/create', [RoleController::class, 'create'])->name('admin.role.create');
+        Route::get('/role/{role}/edit', [RoleController::class, 'edit'])->name('admin.role.edit');
+        Route::patch('/role/{role}', [RoleController::class, 'update'])->name('admin.role.update');
+        Route::delete('/role/{role}', [RoleController::class, 'destroy'])->name('admin.role.destroy');
+
         // Operating Systems
         Route::get('/operatingsystem', [operatingSystemController::class, 'index'])->name('admin.operatingsystem.index');
         Route::post('/create/operatingsystem', [operatingSystemController::class, 'store'])->name('admin.operatingsystem.store');
@@ -113,7 +122,7 @@ Route::get('/{customer}', [CustomerController::class, 'dashboard'])->name('custo
 Route::post('/{customer}/view-pdf', [CustomerController::class, 'viewPDF'])->name('customer.view-pdf');
 
 
-Route::middleware(['auth', 'isCustomerRW', 'isCustomerR', 'isCustomer'])->group(function () {
+Route::middleware(['auth', 'isCustomer'])->group(function () {
     Route::prefix('{customer}')->group(function () {
         Route::scopeBindings()->group(function () {
 

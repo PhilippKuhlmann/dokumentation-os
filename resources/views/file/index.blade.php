@@ -3,11 +3,14 @@
     <form method="POST" action="/{{ $customer->slug }}/file" enctype="multipart/form-data">
         @csrf
 
-        <div class="flex flex-row gap-3 p-3">
-            <x-input.file id="file" name="file" class="w-96" />
-            <x-input.field name="name" placeholder="Dateiname" />
-            <x-input.button label="Hochladen" />
-        </div>
+        @can('file_create')
+            <div class="flex flex-row gap-3 p-3">
+                <x-input.file id="file" name="file" class="w-96" />
+                <x-input.field name="name" placeholder="Dateiname" />
+                <x-input.button label="Hochladen" />
+            </div>
+        @endcan
+
     </form>
 
 

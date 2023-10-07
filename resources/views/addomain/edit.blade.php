@@ -10,6 +10,8 @@
 
     </x-create.main>
 
-    <x-deletecard action="{{ route('addomain.destroy', [$customer, $addomain]) }}" />
+    @can('addomain_delete')
+        <x-deletecard action="{{ route('addomain.destroy', [$customer, $addomain]) }}" />
+    @endcan
 
 </x-app-layout>

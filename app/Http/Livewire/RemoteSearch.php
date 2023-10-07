@@ -58,7 +58,7 @@ class RemoteSearch extends Component
             $remotes[] = [
                 'remoteID' => $server->remoteID,
                 'remotePassword' => $server->remotePassword,
-                'customerName' => $server->customer->name,
+                'customerName' => $server->customerName,
                 'name' => $server->name,
             ];
         }

@@ -1,10 +1,11 @@
-@props(['editUrl', 'deleteUrl'])
+@props(['editUrl', 'can'])
 
 <div class="flex w-full items-center justify-between p-3">
     <div class="flex gap-3 text-center items-center w-full text-2xl dark:text-gray-100">
         {{ $slot }}
     </div>
-    @cannot('isCustomerR')
+
+    @can($can)
         <div class="flex items-center gap-3">
             <div class="flex flex-row space-x-2">
                 <a href="{{ $editUrl }}" class="font-medium text-cerulean-500 dark:text-cerulean-500 hover:text-cerulean-600  dark:hover:text-cerulean-600">
@@ -12,6 +13,8 @@
                 </a>
             </div>
         </div>
-    @endcannot
+    @endcan
+
+
 
 </div>

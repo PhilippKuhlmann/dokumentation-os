@@ -1,4 +1,4 @@
-@props(['values', 'values', 'editUrl', 'deleteUrl'])
+@props(['values', 'values', 'editUrl', 'can'])
 
 <tr class="bg-gray-200 border-b border-gray-900 dark:bg-gray-800 dark:border-gray-700">
     @foreach ($values as $key => $value)
@@ -49,7 +49,7 @@
 
 
     <td class="py-4 px-6">
-        @cannot('isCustomerR')
+        @can($can)
             @isset($editUrl)
                 <div class="flex flex-row space-x-2">
                     <a href="{{ $editUrl }}" class="font-medium text-cerulean-500 dark:text-cerulean-500 hover:text-cerulean-600 hover:dark:text-cerulean-600">
@@ -60,7 +60,7 @@
             @isset($delUrl)
 
             @endisset
-        @endcannot
+        @endcan
 
 
     </td>

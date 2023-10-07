@@ -1,6 +1,8 @@
 <x-app-layout :$customer>
 
-    <x-sitetopmenu />
+    @can('aduser_create')
+        <x-sitetopmenu />
+    @endcan
 
     <div class="m-3">
         <x-table.main>
@@ -18,8 +20,8 @@
                             'password' => $aduser->password,
                         ]"
 
-                        editUrl="/{{ Request::path() }}/{{ $aduser->id }}/edit"
-                        deleteUrl="/{{ Request::path() }}/{{ $aduser->id }}"
+                        editUrl="{{ route('aduser.edit', [$customer, $aduser]) }}"
+                        can="aduser_update"
                     />
 
                 @endforeach

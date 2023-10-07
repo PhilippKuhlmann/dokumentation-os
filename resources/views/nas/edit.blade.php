@@ -18,7 +18,9 @@
 
     </x-create.main>
 
-    <x-deletecard action="{{ route('nas.destroy', [$customer, $nas]) }}" />
+    @can('nas_delete')
+        <x-deletecard action="{{ route('nas.destroy', [$customer, $nas]) }}" />
+    @endcan
 
 </x-app-layout>
 

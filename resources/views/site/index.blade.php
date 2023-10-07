@@ -1,6 +1,8 @@
 <x-app-layout :$customer>
 
-    <x-sitetopmenu />
+    @can('site_create')
+        <x-sitetopmenu />
+    @endcan
 
     <div class="m-3">
         <x-table.main>
@@ -18,7 +20,8 @@
 
                         ]"
 
-                        editUrl="/{{ Request::path() }}/{{ $site->id }}/edit"
+                        editUrl="{{ route('site.edit', [$customer, $site]) }}"
+                        can="site_update"
 
                     />
 

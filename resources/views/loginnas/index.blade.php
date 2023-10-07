@@ -1,6 +1,8 @@
 <x-app-layout :$customer>
 
-    <x-sitetopmenu />
+    @can('loginnas_create')
+        <x-sitetopmenu />
+    @endcan
 
     <div class="m-3">
         <x-table.main>
@@ -18,8 +20,8 @@
                             $loginnas->description,
                         ]"
 
-                        editUrl="/{{ Request::path() }}/{{ $loginnas->id }}/edit"
-                        deleteUrl="/{{ Request::path() }}/{{ $loginnas->id }}"
+                        editUrl="{{ route('loginnas.edit', [$customer, $loginnas]) }}"
+                        can="loginnas_update"
                     />
 
                 @endforeach

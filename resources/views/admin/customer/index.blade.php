@@ -43,6 +43,7 @@
                     ]"
 
                     editUrl="/{{ Request::path() }}/{{ $customer->id }}/edit"
+                    can="isAdmin"
                 />
 
             @endforeach

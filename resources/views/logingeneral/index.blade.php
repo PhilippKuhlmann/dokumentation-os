@@ -1,6 +1,8 @@
 <x-app-layout :$customer>
 
-    <x-sitetopmenu />
+    @can('logingeneral_create')
+        <x-sitetopmenu />
+    @endcan
 
     <div class="m-3">
         <x-table.main>
@@ -20,6 +22,7 @@
                         ]"
 
                         editUrl="{{ route('logingeneral.edit', [$customer, $logingeneral]) }}"
+                        can="logingeneral_update"
                     />
 
                 @endforeach

@@ -1,10 +1,14 @@
 <x-app-layout :$customer>
-    <x-sitetopmenu />
+
+    @can('router_create')
+        <x-sitetopmenu />
+    @endcan
+
 
     @foreach ($routers as $router)
         <x-card>
             <x-slot:head>
-                <x-show.header editUrl="{{ route('router.edit', [$customer, $router]) }}">
+                <x-show.header can="router_update" editUrl="{{ route('router.edit', [$customer, $router]) }}">
                     {{ $router->name }}
                 </x-show.header>
             </x-slot>

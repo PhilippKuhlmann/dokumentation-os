@@ -1,15 +1,16 @@
 <x-app-layout :$customer>
 
-    <x-sitetopmenu>
-        <x-input.linkbutton label="Weitere Logins" link="{{ route('loginnas.index', $customer) }}" />
-    </x-sitetopmenu>
+    @can('nas_create')
+        <x-sitetopmenu>
+            <x-input.linkbutton label="Weitere Logins" link="{{ route('loginnas.index', $customer) }}" />
+        </x-sitetopmenu>
+    @endcan
+
 
     @foreach ($nas as $nas)
         <x-card>
             <x-slot:head>
-                <x-show.header
-                    editUrl="{{ route('nas.edit', [$customer, $nas]) }}"
-                    deleteUrl="{{ route('nas.destroy', [$customer, $nas]) }}">
+                <x-show.header can="nas_update" editUrl="{{ route('nas.edit', [$customer, $nas]) }}" >
                     {{ $nas->name }}
                 </x-show.header>
             </x-slot>

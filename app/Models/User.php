@@ -44,6 +44,26 @@ class User extends Authenticatable
         return $data;
     }
 
+    public function hasPermission($ability)
+    {
+        foreach ($this->role->permissions as $permission) {
+            if ($permission->name === $ability) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    public function hasCustomer()
+    {
+        if ($this->customer_id) {
+            return true;
+        }
+
+        return false;
+    }
+
     public function role()
     {
         return $this->belongsTo(Role::class);

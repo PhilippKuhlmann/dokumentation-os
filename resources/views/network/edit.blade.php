@@ -20,6 +20,8 @@
 
     </x-create.main>
 
-    <x-deletecard action="{{ route('network.destroy', [$customer, $network]) }}" />
+    @can('network_delete')
+        <x-deletecard action="{{ route('network.destroy', [$customer, $network]) }}" />
+    @endcan
 
 </x-app-layout>

@@ -11,16 +11,22 @@ class ADUserController extends Controller
 
     public function index(Customer $customer)
     {
+        $this->authorize('viewAny', ADUser::class);
+
         return view('aduser.index', compact('customer'));
     }
 
     public function create(Customer $customer)
     {
+        $this->authorize('create', ADUser::class);
+
         return view('aduser.create', compact('customer'));
     }
 
     public function store(Customer $customer, ADUserRequest $request)
     {
+        $this->authorize('create', ADUser::class);
+
         $customer->adusers()->create($request->validated());
 
         return redirect(route('aduser.index', $customer));
@@ -28,11 +34,15 @@ class ADUserController extends Controller
 
     public function edit(Customer $customer, ADUser $aduser)
     {
+        $this->authorize('update', ADUser::class);
+
         return view('aduser.edit', compact('customer', 'aduser'));
     }
 
     public function update(Customer $customer, ADUser $aduser, ADUserRequest $request)
     {
+        $this->authorize('update', ADUser::class);
+
         $aduser->update($request->validated());
 
         return redirect(route('aduser.index', $customer));
@@ -40,6 +50,8 @@ class ADUserController extends Controller
 
     public function destroy(Customer $customer, ADUser $aduser)
     {
+        $this->authorize('delete', ADUser::class);
+
         $aduser->delete();
 
         return redirect(route('aduser.index', $customer));

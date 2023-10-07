@@ -11,6 +11,8 @@ class MailboxController extends Controller
 {
     public function index(Customer $customer)
     {
+        $this->authorize('viewAny', Mailbox::class);
+
         return view('mailbox.index', [
             'customer' => $customer,
         ]);
@@ -18,6 +20,8 @@ class MailboxController extends Controller
 
     public function create(Customer $customer)
     {
+        $this->authorize('create', Mailbox::class);
+
         return view('mailbox.create', [
             'customer' => $customer,
             'mailboxProviders' => MailboxProvider::all(),
@@ -26,6 +30,8 @@ class MailboxController extends Controller
 
     public function store(Customer $customer, MailboxRequest $request)
     {
+        $this->authorize('create', Mailbox::class);
+
         $customer->mailboxes()->create($request->validated());
 
         return redirect(route('mailbox.index', $customer));
@@ -33,6 +39,8 @@ class MailboxController extends Controller
 
     public function edit(Customer $customer, Mailbox $mailbox)
     {
+        $this->authorize('update', Mailbox::class);
+
         return view('mailbox.edit', [
             'customer' => $customer,
             'mailbox' => $mailbox,
@@ -42,6 +50,8 @@ class MailboxController extends Controller
 
     public function update(Customer $customer, Mailbox $mailbox, MailboxRequest $request)
     {
+        $this->authorize('update', Mailbox::class);
+
         $mailbox->update($request->validated());
 
         return redirect(route('mailbox.index', $customer));
@@ -49,6 +59,8 @@ class MailboxController extends Controller
 
     public function destroy(Customer $customer, Mailbox $mailbox)
     {
+        $this->authorize('delete', Mailbox::class);
+
         $mailbox->delete();
 
         return redirect(route('mailbox.index', $customer));

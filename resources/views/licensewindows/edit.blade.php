@@ -8,7 +8,9 @@
 
     </x-create.main>
 
-    <x-deletecard action="{{ route('licensewindows.destroy', [$customer, $licensewindows]) }}" />
+    @can('licensewindows_delete')
+        <x-deletecard action="{{ route('licensewindows.destroy', [$customer, $licensewindows]) }}" />
+    @endcan
 
 </x-app-layout>
 

@@ -16,6 +16,8 @@
 
     </x-create.main>
 
-    <x-deletecard action="{{ route('camera.destroy', [$customer, $camera]) }}" />
+    @can('camera_delete')
+        <x-deletecard action="{{ route('camera.destroy', [$customer, $camera]) }}" />
+    @endcan
 
 </x-app-layout>

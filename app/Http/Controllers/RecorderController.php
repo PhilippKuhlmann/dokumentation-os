@@ -11,6 +11,8 @@ class RecorderController extends Controller
 {
     public function index(Customer $customer)
     {
+        $this->authorize('viewAny', Recorder::class);
+
         $recorders = $this->getFilteredQuery(Recorder::class, $customer)
                           ->get();
 
@@ -19,6 +21,8 @@ class RecorderController extends Controller
 
     public function create(Customer $customer)
     {
+        $this->authorize('create', Recorder::class);
+
         $sites = $this->getSitesForCustomer($customer);
 
         return view('recorder.create', compact('customer', 'sites'));
@@ -26,6 +30,8 @@ class RecorderController extends Controller
 
     public function store(Customer $customer, RecorderRequest $request)
     {
+        $this->authorize('create', Recorder::class);
+
         $customer->recorders()->create($request->validated());
 
         return redirect(route('recorder.index', $customer))->withSuccess('Gespeichert!');
@@ -33,6 +39,8 @@ class RecorderController extends Controller
 
     public function edit(Customer $customer, Recorder $recorder)
     {
+        $this->authorize('update', Recorder::class);
+
         $sites = $this->getSitesForCustomer($customer);
 
         return view('recorder.edit', compact('customer', 'recorder', 'sites'));
@@ -40,6 +48,8 @@ class RecorderController extends Controller
 
     public function update(Customer $customer, Recorder $recorder, RecorderRequest $request)
     {
+        $this->authorize('update', Recorder::class);
+
         $recorder->update($request->validated());
 
         return redirect(route('recorder.index', $customer))->withSuccess('Gespeichert!');
@@ -47,6 +57,8 @@ class RecorderController extends Controller
 
     public function destroy(Customer $customer, Recorder $recorder)
     {
+        $this->authorize('delete', Recorder::class);
+
         $recorder->delete();
 
         return redirect(route('recorder.index', $customer))->withSuccess('Gelöscht!');

@@ -1,11 +1,14 @@
 @props([
     'header',
     'action',
-    'labelsubmit' => 'Hinzufügen'
+    'labelsubmit' => 'Hinzufügen',
+    'right' => '',
 ])
 
 
 <div class="md:flex xs:flex-col">
+    <form method="post" action="{{ $action }}" class="p-5">
+        @csrf
 
     <div class="md:flex xs:flex-col md:w-128">
 
@@ -14,8 +17,8 @@
                 {{ $header }}
             </div>
 
-            <form method="post" action="{{ $action }}" class="p-5">
-                @csrf
+
+
 
                 {{ $slot }}
 
@@ -23,9 +26,11 @@
                     <a href="{{ redirect()->back()->getTargetUrl() }}" class="font-DINPro-bold text-gray-600 hover:text-gray-500 px-4 py-2 text-center">Abbrechen</a>
                     <x-input.button label="{{ $labelsubmit }}" />
                 </div>
-            </form>
+
         </div>
     </div>
+
+    {{ $right }}
 
     <div class="flex flex-col mt-10 w-full max-w-md:w-96">
         @foreach ($errors->all() as $error)
@@ -34,4 +39,5 @@
             </div>
         @endforeach
     </div>
+</form>
 </div>

@@ -1,6 +1,8 @@
 <x-app-layout :$customer>
 
+    @can('addomain_create')
     <x-sitetopmenu />
+    @endcan
 
     <div class="m-3">
         <x-table.main>
@@ -18,6 +20,7 @@
                         ]"
 
                         editUrl="{{ route('addomain.edit', [$customer, $addomain]) }}"
+                        can="addomain_update"
                     />
 
                 @endforeach
