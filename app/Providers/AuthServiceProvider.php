@@ -10,6 +10,7 @@ use App\Policies\ADUserPolicy;
 use App\Policies\ComputerPolicy;
 use App\Policies\ContactpersonPolicy;
 use App\Policies\CustomerPolicy;
+use App\Policies\GeneralPolicy;
 use App\Policies\NASPolicy;
 use App\Policies\NetworkPolicy;
 use App\Policies\PrinterPolicy;
@@ -43,6 +44,11 @@ class AuthServiceProvider extends ServiceProvider
         $this->registerPolicies();
 
         Gate::define('customer', [CustomerPolicy::class, 'customer']);
+
+        Gate::define('see_hidden', [GeneralPolicy::class, 'see_hidden']);
+
+
+
 
         $resources = ['Site','Contactperson','Server','VM','NAS','SecurepointUTM','Router','Network','Wifi','Computer','Printer','ADDomain','ADUser','ADGroup','PhoneSystem','Phone','DECT','LoginGeneral','LoginNAS','LoginWebsite','SecurepointUMA','Mailbox','Recorder','Camera','LicenseSoftware','LicenseWindows','FTPServer','DynDNS','File'];
 

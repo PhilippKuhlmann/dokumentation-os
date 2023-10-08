@@ -10,7 +10,7 @@
 
             <x-table.body>
 
-                @foreach ($customer->adusers as $aduser)
+                @foreach ($adusers as $aduser)
 
                     <x-table.datarow
                         :values="[

@@ -28,6 +28,7 @@ class ADUserRequest extends FormRequest
             'lastName' => 'max:255',
             'username' => 'required|max:255',
             'password' => 'required|max:255',
+            'hidden' => '',
         ];
     }
 

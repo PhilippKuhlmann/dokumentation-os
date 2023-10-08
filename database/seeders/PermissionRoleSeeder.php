@@ -66,6 +66,11 @@ class PermissionRoleSeeder extends Seeder
         }
 
 
+        $see_hidden = \App\Models\Permission::factory()->create([
+            'name' => 'see_hidden',
+            'description' => 'Verstecke Objekte sehen'
+        ]);
+
 
 
 
@@ -73,15 +78,19 @@ class PermissionRoleSeeder extends Seeder
 
         // PermissionRole
 
-        //admin
+        // admin
         $permissionns = Permission::all();
-        foreach ($permissionns as $permissionn) {
-            $admin->assignPermission($permissionn);
+        foreach ($permissionns as $permission) {
+            $admin->assignPermission($permission);
         }
 
-        foreach ($permissionns as $permissionn) {
-            $techniker->assignPermission($permissionn);
+        // techniker
+        foreach ($permissionns as $permission) {
+            $techniker->assignPermission($permission);
         }
+
+
+
 
 
     }

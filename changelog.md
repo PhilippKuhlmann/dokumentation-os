@@ -1,5 +1,13 @@
 # Changelog
 
+## 23.10.08
+
+### Added
+
+- AD-User können jetzt versteckt werden und nur von Benutzern mit der Permission see_hidden gesehen werden
+
+
+
 ## 23.10.07
 
 ### Added

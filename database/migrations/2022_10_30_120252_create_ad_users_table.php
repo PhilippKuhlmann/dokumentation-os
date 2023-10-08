@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('lastName')->nullable();
             $table->string('username')->nullable();
             $table->string('password')->nullable();
+            $table->boolean('hidden')->default(false);
             $table->timestamps();
             $table->softDeletes();
         });

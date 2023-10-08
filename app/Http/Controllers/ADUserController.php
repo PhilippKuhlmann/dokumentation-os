@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\ADUserRequest;
 use App\Models\Customer;
 use App\Models\ADUser;
+use Illuminate\Support\Facades\Auth;
 
 class ADUserController extends Controller
 {
@@ -13,7 +14,17 @@ class ADUserController extends Controller
     {
         $this->authorize('viewAny', ADUser::class);
 
-        return view('aduser.index', compact('customer'));
+        if (Auth::user()->can('see_hidden')) {
+            $adusers = ADUser::where('customer_id', $customer->id)
+                                ->get();
+        } else {
+            $adusers = ADUser::where('customer_id', $customer->id)
+                                ->where('hidden', false)
+                                ->get();
+        }
+
+        return view('aduser.index', compact('customer', 'adusers'));
+
     }
 
     public function create(Customer $customer)
