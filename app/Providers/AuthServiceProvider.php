@@ -46,11 +46,12 @@ class AuthServiceProvider extends ServiceProvider
         Gate::define('customer', [CustomerPolicy::class, 'customer']);
 
         Gate::define('see_hidden', [GeneralPolicy::class, 'see_hidden']);
+        Gate::define('create_pdf', [GeneralPolicy::class, 'create_pdf']);
 
 
 
 
-        $resources = ['Site','Contactperson','Server','VM','NAS','SecurepointUTM','Router','Network','Wifi','Computer','Printer','ADDomain','ADUser','ADGroup','PhoneSystem','Phone','DECT','LoginGeneral','LoginNAS','LoginWebsite','SecurepointUMA','Mailbox','Recorder','Camera','LicenseSoftware','LicenseWindows','FTPServer','DynDNS','File'];
+        $resources = ['Site','Contactperson','Server','VM','NAS','SecurepointUTM','Router','Network','Wifi','Computer','Printer','ADDomain','ADUser','ADGroup','PhoneSystem','Phone','DECT','LoginGeneral','LoginNAS','LoginWebsite','SecurepointUMA','Mailbox','Recorder','Camera','LicenseSoftware','LicenseWindows','LicenseAccess','FTPServer','DynDNS','File'];
 
         foreach ($resources as $resource) {
             $policyClass = "App\Policies\\{$resource}Policy";

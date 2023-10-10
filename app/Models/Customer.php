@@ -184,6 +184,11 @@ class Customer extends Model
         return $this->hasMany(LicenseSoftware::class);
     }
 
+    public function licenseaccesses()
+    {
+        return $this->hasMany(LicenseAccess::class);
+    }
+
 
 
 }

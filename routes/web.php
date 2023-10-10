@@ -16,6 +16,7 @@ use App\Http\Controllers\DECTController;
 use App\Http\Controllers\DynDNSController;
 use App\Http\Controllers\FileController;
 use App\Http\Controllers\FTPServerController;
+use App\Http\Controllers\LicenseAccessController;
 use App\Http\Controllers\LicenseWindowsController;
 use App\Http\Controllers\LicenseSoftwareController;
 use App\Http\Controllers\LoginGeneralController;
@@ -193,6 +194,15 @@ Route::middleware(['auth', 'isCustomer'])->group(function () {
             Route::get('licensewindows/{licensewindows}/edit', [LicenseWindowsController::class, 'edit'])->name('licensewindows.edit');
             Route::patch('licensewindows/{licensewindows}', [LicenseWindowsController::class, 'update'])->name('licensewindows.update');
             Route::delete('licensewindows/{licensewindows}', [LicenseWindowsController::class, 'destroy'])->name('licensewindows.destroy');
+
+            // Lizenz Access
+            //Route::resource('licenseaccess', LicenseAccessController::class)->except(['show']);
+            Route::get('licenseaccess', [LicenseAccessController::class, 'index'])->name('licenseaccess.index');
+            Route::post('licenseaccess', [LicenseAccessController::class, 'store'])->name('licenseaccess.store');
+            Route::get('licenseaccess/create', [LicenseAccessController::class, 'create'])->name('licenseaccess.create');
+            Route::get('licenseaccess/{licenseaccess}/edit', [LicenseAccessController::class, 'edit'])->name('licenseaccess.edit');
+            Route::patch('licenseaccess/{licenseaccess}', [LicenseAccessController::class, 'update'])->name('licenseaccess.update');
+            Route::delete('licenseaccess/{licenseaccess}', [LicenseAccessController::class, 'destroy'])->name('licenseaccess.destroy');
 
             // DynDNS
             //Route::resource('dyndns', DynDNSController::class)->except(['show']);

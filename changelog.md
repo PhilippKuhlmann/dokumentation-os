@@ -1,5 +1,18 @@
 # Changelog
 
+## 23.10.10
+
+### Added
+
+- Recht zum erstellen von der PDF Dokumentation
+- Zugriffs Lizenzen 
+
+### Fixed
+
+- Im Seitenmenü wurde der Hauptmenü Punkt nur angezeigt wenn man auf alle unterpunkte zugriff hatte
+
+
+
 ## 23.10.08
 
 ### Added

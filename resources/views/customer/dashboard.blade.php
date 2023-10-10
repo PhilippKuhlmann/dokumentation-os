@@ -5,12 +5,15 @@
             <div class="text-3xl font-CoconPro text-gray-900 dark:text-gray-100">
                 {{ $customer->name }}
             </div>
-            <div class="">
-                <form action="{{ route('customer.view-pdf', $customer) }}" method="POST" target="__blank">
-                    @csrf
-                    <x-input.button label="PDF erstellen" />
-                </form>
-            </div>
+            @can('create_pdf')
+                <div class="">
+                    <form action="{{ route('customer.view-pdf', $customer) }}" method="POST" target="__blank">
+                        @csrf
+                        <x-input.button label="PDF erstellen" />
+                    </form>
+                </div>
+            @endcan
+
         </div>
 
         <div class="flex">

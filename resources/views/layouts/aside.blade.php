@@ -22,7 +22,7 @@
                 </div>
             </form>
 
-            @canany('site_viewAny', 'contactperson_viewAny')
+            @canany(['site_viewAny', 'contactperson_viewAny'])
                 <x-aside.dropdown label="Kunde" svg="svg.office">
                     <x-slot:links>
                         @can('site_viewAny')
@@ -35,7 +35,7 @@
                 </x-aside.dropdown>
             @endcanany
 
-            @canany('securepointutm_viewAny', 'router_viewAny', 'network_viewAny', 'wifi_viewAny')
+            @canany(['securepointutm_viewAny', 'router_viewAny', 'network_viewAny', 'wifi_viewAny'])
                 <x-aside.dropdown label="Netzwerk" svg="svg.wifi">
                     <x-slot:links>
                         @can('securepointutm_viewAny')
@@ -55,7 +55,7 @@
                 </x-aside.dropdown>
             @endcanany
 
-            @canany('server_viewAny', 'vm_viewAny', 'nas_viewAny')
+            @canany(['server_viewAny', 'vm_viewAny', 'nas_viewAny'])
                 <x-aside.dropdown label="Server" svg="svg.servers">
                     <x-slot:links>
                         @can('server_viewAny')
@@ -71,7 +71,7 @@
                 </x-aside.dropdown>
             @endcanany
 
-            @canany('computer_viewAny', 'printer_viewAny')
+            @canany(['computer_viewAny', 'printer_viewAny'])
                 <x-aside.dropdown label="Clients" svg="svg.computer">
                     <x-slot:links>
                         @can('computer_viewAny')
@@ -84,7 +84,7 @@
                 </x-aside.dropdown>
             @endcanany
 
-            @canany('addomain_viewAny', 'aduser_viewAny', 'adgroup_viewAny')
+            @canany(['addomain_viewAny', 'aduser_viewAny', 'adgroup_viewAny'])
                 <x-aside.dropdown label="AD" svg="svg.user">
                     <x-slot:links>
                         @can('addomain_viewAny')
@@ -100,7 +100,7 @@
                 </x-aside.dropdown>
             @endcanany
 
-            @canany('phonesystem_viewAny', 'phone_viewAny', 'dect_viewAny')
+            @canany(['phonesystem_viewAny', 'phone_viewAny', 'dect_viewAny'])
                 <x-aside.dropdown label="Telefon" svg="svg.phone">
                     <x-slot:links>
                         @can('phonesystem_viewAny')
@@ -116,7 +116,7 @@
                 </x-aside.dropdown>
             @endcanany
 
-            @canany('logingeneral_viewAny', 'loginwebsite_viewAny', 'loginnas_viewAny')
+            @canany(['logingeneral_viewAny', 'loginwebsite_viewAny', 'loginnas_viewAny'])
                 <x-aside.dropdown label="Logins" svg="svg.login">
                     <x-slot:links>
                         @can('logingeneral_viewAny')
@@ -132,7 +132,7 @@
                 </x-aside.dropdown>
             @endcanany
 
-            @canany('securepointuma_viewAny', 'mailbox_viewAny')
+            @canany(['securepointuma_viewAny', 'mailbox_viewAny'])
                 <x-aside.dropdown label="E-Mail" svg="svg.mail">
                     <x-slot:links>
                         @can('securepointuma_viewAny')
@@ -145,7 +145,7 @@
                 </x-aside.dropdown>
             @endcanany
 
-            @canany('recorder_viewAny', 'camera_viewAny')
+            @canany(['recorder_viewAny', 'camera_viewAny'])
                 <x-aside.dropdown label="Kamera" svg="svg.cam">
                     <x-slot:links>
                         @can('recorder_viewAny')
@@ -158,11 +158,14 @@
                 </x-aside.dropdown>
             @endcanany
 
-            @canany('licensewindows_viewAny', 'licensesoftware_viewAny')
+            @canany(['licensewindows_viewAny','licenseaccess_viewAny' , 'licensesoftware_viewAny'])
                 <x-aside.dropdown label="Lizenzen" svg="svg.document">
                     <x-slot:links>
                         @can('licensewindows_viewAny')
                             <x-aside.dropdownlink label="Windows" href="{{ route('licensewindows.index', $customer) }}" />
+                        @endcan
+                        @can('licenseaccess_viewAny')
+                            <x-aside.dropdownlink label="CAL" href="{{ route('licenseaccess.index', $customer) }}" />
                         @endcan
                         @can('licensesoftware_viewAny')
                             <x-aside.dropdownlink label="Software" href="{{ route('licensesoftware.index', $customer) }}" />
@@ -171,7 +174,7 @@
                 </x-aside.dropdown>
             @endcanany
 
-            @canany('ftpserver_viewAny', 'dyndns_viewAny')
+            @canany(['ftpserver_viewAny', 'dyndns_viewAny'])
                 <x-aside.dropdown label="Dienste" svg="svg.settings">
                     <x-slot:links>
                         @can('ftpserver_viewAny')
@@ -184,7 +187,7 @@
                 </x-aside.dropdown>
             @endcanany
 
-            @canany('file_viewAny')
+            @canany(['file_viewAny'])
                 <x-aside.dropdown label="Sonstiges" svg="svg.settings">
                     <x-slot:links>
                         @can('file_viewAny')

@@ -14,4 +14,9 @@ class GeneralPolicy
     {
         return $user->hasPermission('see_hidden');
     }
+
+    public function create_pdf(User $user)
+    {
+        return $user->hasPermission('create_pdf');
+    }
 }
