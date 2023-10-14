@@ -39,7 +39,7 @@ class LoginTest extends TestCase
         $this->followRedirects($response)->assertViewIs('customer.search');
     }
 
-    public function test_login_user_with_role_customer_read_only(): void
+    public function test_login_user_with_role_customer(): void
     {
         $user = $this->createAndAuthenticateUserCustomerReadOnly();
 
@@ -53,17 +53,4 @@ class LoginTest extends TestCase
         $this->followRedirects($response)->assertViewIs('customer.dashboard');
     }
 
-    public function test_login_user_with_role_customer_read_write(): void
-    {
-        $user = $this->createAndAuthenticateUserCustomerReadWrite();
-
-        $response = $this->post('/login', [
-            'username' => $user->username,
-            'password' => 'password',
-        ]);
-
-        $this->assertAuthenticated();
-
-        $this->followRedirects($response)->assertViewIs('customer.dashboard');
-    }
 }

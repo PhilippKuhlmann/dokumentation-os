@@ -85,6 +85,6 @@ class RemoteSearch extends Component
 
 
         return view('livewire.remote-search', compact('remotes'))
-            ->layout('layouts.empty');;
+            ->layout('layouts.empty', ['title' => "Rustdesk"]);
     }
 }

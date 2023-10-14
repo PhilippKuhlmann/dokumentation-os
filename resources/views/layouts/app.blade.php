@@ -1,3 +1,6 @@
+@props([
+    'title' => ''
+])
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
@@ -7,7 +10,7 @@
     <link rel="icon" type="image/png" href="/images/favicon.png">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name') }}</title>
+    <title>{{ $title ? $title : config('app.name') }}</title>
 
     <script>
         // On page load or when changing themes, best to add inline in `head` to avoid FOUC

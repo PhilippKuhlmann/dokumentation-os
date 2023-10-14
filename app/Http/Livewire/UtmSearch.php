@@ -34,6 +34,6 @@ class UtmSearch extends Component
         return view('livewire.utm-search', [
             'utms' => $utms,
         ])
-            ->layout('layouts.empty');
+            ->layout('layouts.empty', ['title' => "UTM"]);
     }
 }

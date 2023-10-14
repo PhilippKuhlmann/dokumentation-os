@@ -1,5 +1,13 @@
 # Changelog
 
+## 23.10.14
+
+### Added
+
+- Title der Seite Dynamisch gemacht
+
+
+
 ## 23.10.10
 
 ### Added
