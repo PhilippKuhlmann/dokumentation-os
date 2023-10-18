@@ -10,6 +10,7 @@
 
 - Rustdesk Logo
 - UTM Logo
+- Pakte Updates
 
 
 
