@@ -7,8 +7,13 @@
     <title>Dokumentation - {{ $customer->name }}</title>
 
     <style>
+        @font-face {
+            font-family: "CoconPro";
+            src: url("fonts/CoconPro-Regular.otf") format('opentype');
+        }
+
         body {
-            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            font-family: 'CoconPro' !important;
         }
 
         .center {

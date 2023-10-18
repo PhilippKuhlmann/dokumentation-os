@@ -1,5 +1,18 @@
 # Changelog
 
+## 23.10.18
+
+### Added
+
+- Permission Tests
+
+### Changes
+
+- Rustdesk Logo
+- UTM Logo
+
+
+
 ## 23.10.14
 
 ### Added

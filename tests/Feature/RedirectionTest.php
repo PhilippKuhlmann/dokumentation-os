@@ -2,16 +2,13 @@
 
 namespace Tests\Feature;
 
-// use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
 class RedirectionTest extends TestCase
 {
-    /**
-     * A basic test example.
-     *
-     * @return void
-     */
+    use RefreshDatabase;
+
     public function test_the_application_redirect_to_login_on_default_url_for_unauthenticated_user()
     {
         $response = $this->get('/');

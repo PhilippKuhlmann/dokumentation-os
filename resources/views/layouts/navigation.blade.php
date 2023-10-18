@@ -26,7 +26,7 @@
 
                     <x-nav.link url="{{ route('customer.dashboard', $customer) }}" name="Daschboard"><x-svg.home class="h-6 w-6" /> </x-nav.link>
                     <x-nav.link url="{{ route('customer.search') }}" name="Kundensuche"><x-svg.search class="h-6 w-6" /> </x-nav.link>
-                    <x-nav.link url="{{ route('search.utm') }}" name="UTM Suche" target="_blank"><x-svg.fire class="h-6 w-6" /> </x-nav.link>
+                    <x-nav.link url="{{ route('search.utm') }}" name="UTM Suche" target="_blank"><x-svg.software.securepoint class="h-6 w-6" /> </x-nav.link>
                     <x-nav.link url="{{ route('search.remote') }}" name="Rustdesk Suche" target="_blank"><x-svg.software.rustdesk class="h-6 w-6" /> </x-nav.link>
 
                 </div>

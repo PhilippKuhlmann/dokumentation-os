@@ -11,25 +11,19 @@ use Tests\TestCase;
 
 class PermissionsTest extends TestCase
 {
-    public function test_user_with_role_customer_read_write_cannot_access_admin_page(): void
+    use RefreshDatabase;
+
+    public function test_user_without_admin_role_cannot_access_admin_page(): void
     {
-        $user = $this->createAndAuthenticateUserCustomerReadWrite();
+        $user = $this->createAndAuthenticateUserwithoutCustomer();
 
         $response = $this->get('/admin');
         $response->assertStatus(403);
     }
 
-    public function test_user_with_role_customer_read_only_cannot_access_admin_page(): void
+    public function test_user_with_customer_can_only_access_assigned_customer(): void
     {
-        $user = $this->createAndAuthenticateUserCustomerReadOnly();
-
-        $response = $this->get('/admin');
-        $response->assertStatus(403);
-    }
-
-    public function test_user_with_role_customer_read_write_can_only_access_assigned_customer(): void
-    {
-        $user = $this->createAndAuthenticateUserCustomerReadWrite();
+        $user = $this->createAndAuthenticateUserwithCustomer();
 
         $customerTwo = Customer::factory()->create(['slug' => 'othercustomer']);
 
@@ -40,22 +34,10 @@ class PermissionsTest extends TestCase
         $response->assertStatus(403);
     }
 
-    public function test_user_with_role_customer_read_only_can_only_access_assigned_customer(): void
+
+    public function test_user_without_customer_can_access_all_customer(): void
     {
-        $user = $this->createAndAuthenticateUserCustomerReadOnly();
-
-        $customerTwo = Customer::factory()->create(['slug' => 'othercustomer']);
-
-        $response = $this->get($user->customer->slug);
-        $response->assertStatus(200);
-
-        $response = $this->get($customerTwo->slug);
-        $response->assertStatus(403);
-    }
-
-    public function test_user_with_role_techniker_can_access_all_customer(): void
-    {
-        $user = $this->createAndAuthenticateUserTechniker();
+        $user = $this->createAndAuthenticateUserwithoutCustomer();
 
         $customerOne = Customer::factory()->create(['slug' => 'customerone']);
         $customerTwo = Customer::factory()->create(['slug' => 'customertwo']);

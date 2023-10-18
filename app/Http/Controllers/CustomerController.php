@@ -60,8 +60,7 @@ class CustomerController extends Controller
             'customer' => $customer,
         ],);
 
-
-
+        //return view('pdf.customer', compact('customer'));
 
         return $pdf->stream();
     }

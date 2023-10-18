@@ -19,12 +19,11 @@ abstract class TestCase extends BaseTestCase
     }
 
 
-    protected function createAndAuthenticateUserCustomerReadWrite()
+    protected function createAndAuthenticateUserWithCustomer()
     {
         $role = Role::factory()->create([
-            'id' => 99,
+            'id' => '123',
         ]);
-
         $customer = Customer::factory()->create();
 
         $user = User::factory()->create([
@@ -37,31 +36,11 @@ abstract class TestCase extends BaseTestCase
         return $user;
     }
 
-    protected function createAndAuthenticateUserCustomerReadOnly()
+    protected function createAndAuthenticateUserWithoutCustomer()
     {
         $role = Role::factory()->create([
-            'id' => 98,
+            'id' => '123',
         ]);
-
-        $customer = Customer::factory()->create();
-
-        $user = User::factory()->create([
-            'role_id' => $role->id,
-            'customer_id' => $customer->id,
-        ]);
-
-        $this->actingAs($user);
-
-        return $user;
-    }
-
-    protected function createAndAuthenticateUserTechniker()
-    {
-        $role = Role::factory()->create([
-            'id' => 2,
-        ]);
-
-        $customer = Customer::factory()->create();
 
         $user = User::factory()->create([
             'role_id' => $role->id
