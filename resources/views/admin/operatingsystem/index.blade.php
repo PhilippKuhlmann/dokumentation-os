@@ -31,6 +31,7 @@
                     ]"
 
                     editUrl="/{{ Request::path() }}/{{ $operatingSystem->id }}/edit"
+                    can="isAdmin"
                 />
 
             @endforeach
