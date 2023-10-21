@@ -18,7 +18,7 @@ return new class extends Migration
             $table->foreignId('customer_id')->constrained('customers')->onDelete('cascade');
             $table->foreignId('site_id')->constrained('sites')->onDelete('cascade');
             $table->string('ssid');
-            $table->bigInteger('vlan');
+            $table->foreignId('network_id')->constrained('networks')->onDelete('cascade');
             $table->string('password');
             $table->string('encryption');
             $table->timestamps();

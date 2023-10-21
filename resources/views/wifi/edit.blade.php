@@ -11,7 +11,7 @@
 
         <x-create.singlerow label="Verschlüsselung" name="encryption" default="{{ $wifi->encryption }}" />
 
-        <x-create.singlerow label="VLAN ID" name="vlan" default="{{ $wifi->vlan }}" />
+        <x-edit.select.network selector="{{ $wifi->network->id }}" :$networks/>
 
     </x-create.main>
 

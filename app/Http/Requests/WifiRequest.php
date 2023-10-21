@@ -27,7 +27,7 @@ class WifiRequest extends FormRequest
             'site_id' => 'required',
             'ssid' => 'required|max:255',
             'password' => 'nullable|max:255',
-            'vlan' => 'required|max:4096',
+            'network_id' => 'required',
             'encryption' => 'required|max:255',
         ];
     }
@@ -38,7 +38,7 @@ class WifiRequest extends FormRequest
             'site_id' => 'Standort',
             'ssid' => 'SSID',
             'password' => 'Passwort',
-            'vlan' => 'VLAN',
+            'network_id' => 'Netzwerk',
             'encryption' => 'Verschlüsselung',
         ];
     }

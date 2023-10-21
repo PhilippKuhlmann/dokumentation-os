@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Network;
 use App\Models\Site;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Bus\DispatchesJobs;
@@ -25,5 +26,11 @@ class Controller extends BaseController
     {
         return Site::where('customer_id', $customer->id)->get();
     }
+
+    protected function getNetworksForCustomer($customer)
+    {
+        return Network::where('customer_id', $customer->id)->get();
+    }
+
 
 }

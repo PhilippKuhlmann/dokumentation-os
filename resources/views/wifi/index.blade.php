@@ -6,7 +6,7 @@
 
     <div class="m-3">
         <x-table.main>
-            <x-table.head :labels="['SSID', 'VLAN', 'Verschlüsselung', 'Passwort', '', ]" />
+            <x-table.head :labels="['SSID', 'Netzwerk', 'Verschlüsselung', 'Passwort', '', ]" />
 
             <x-table.body>
 
@@ -15,7 +15,7 @@
                     <x-table.datarow
                         :values="[
                             $wifi->ssid,
-                            $wifi->vlan,
+                            $wifi->network->vlanId. ' - ' . $wifi->network->description,
                             $wifi->encryption,
                             'password' => $wifi->password,
                         ]"

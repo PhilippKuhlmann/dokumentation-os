@@ -24,7 +24,9 @@ class WifiController extends Controller
 
         $sites = $this->getSitesForCustomer($customer);
 
-        return view('wifi.create', compact('customer', 'sites'));
+        $networks = $this->getNetworksForCustomer($customer);
+
+        return view('wifi.create', compact('customer', 'sites', 'networks'));
     }
 
     public function store(Customer $customer, WifiRequest $request)
@@ -42,7 +44,9 @@ class WifiController extends Controller
 
         $sites = $this->getSitesForCustomer($customer);
 
-        return view('wifi.edit', compact('customer', 'wifi', 'sites'));
+        $networks = $this->getNetworksForCustomer($customer);
+
+        return view('wifi.edit', compact('customer', 'wifi', 'sites', 'networks'));
     }
 
     public function update(Customer $customer, Wifi $wifi, WifiRequest $request)

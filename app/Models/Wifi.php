@@ -22,4 +22,8 @@ class Wifi extends Model
         );
     }
 
+    public function network()
+    {
+        return $this->belongsTo(Network::class);
+    }
 }

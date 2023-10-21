@@ -19,7 +19,7 @@ class WifiFactory extends Factory
         return [
             'ssid' => fake()->domainWord(),
             'password' => fake()->password($minLength = 6, $maxLength = 12),
-            'vlan' => fake()->numberBetween($min = 10, $max = 4000),
+            'network_id' => \App\Models\Network::inRandomOrder()->first()->id,
             'encryption' => fake()->randomElement(['WPA2', 'WPA3', 'offen']),
         ];
     }

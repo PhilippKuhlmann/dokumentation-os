@@ -5,6 +5,7 @@
 ### Changes
 
 - Seeder erweitert
+- Wifi mit Netzwerk verbunden
 
 
 

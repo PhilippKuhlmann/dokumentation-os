@@ -9,7 +9,7 @@
 
             <x-create.singlerow label="Verschlüsselung" name="encryption" />
 
-            <x-create.singlerow label="VLAN ID" name="vlan" default="1" />
+            <x-create.select.network :$networks/>
 
     </x-create.main>
 </x-app-layout>
