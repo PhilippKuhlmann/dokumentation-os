@@ -1,5 +1,13 @@
 # Changelog
 
+## 23.10.21
+
+### Changes
+
+- Seeder erweitert
+
+
+
 ## 23.10.18
 
 ### Added

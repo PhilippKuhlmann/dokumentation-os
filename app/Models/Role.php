@@ -13,7 +13,7 @@ class Role extends Model
     protected $guarded = [];
 
     public const IS_ADMIN = 1;
-    public const IS_TECHNIKER = 2;
+    public const IS_TECHNIKER = 10;
 
 
     public function permissions()

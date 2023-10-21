@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Role;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -19,7 +20,7 @@ class UserSeeder extends Seeder
             'name' => 'Admin',
             'username' => 'admin',
             'password' => bcrypt('password'),
-            'role_id' => 1,
+            'role_id' => Role::IS_ADMIN,
         ]);
 
         \App\Models\User::factory()->create([
@@ -27,7 +28,7 @@ class UserSeeder extends Seeder
             'username' => 'p.kuhlmann',
             'email' => 'p.kuhlmann@stadel.info',
             'password' => bcrypt('password'),
-            'role_id' => 2,
+            'role_id' => Role::IS_TECHNIKER,
         ]);
 
         \App\Models\User::factory()->create([
@@ -35,7 +36,7 @@ class UserSeeder extends Seeder
             'username' => 'sem',
             'email' => 'sem@stadel.info',
             'password' => bcrypt('password'),
-            'role_id' => 2,
+            'role_id' => Role::IS_TECHNIKER,
         ]);
 
         \App\Models\User::factory()->create([
@@ -43,7 +44,7 @@ class UserSeeder extends Seeder
             'username' => 'j.schillmoeller',
             'email' => 'j.schillmoeller@stadel.info',
             'password' => bcrypt('password'),
-            'role_id' => 2,
+            'role_id' => Role::IS_TECHNIKER,
         ]);
 
         \App\Models\User::factory()->create([
@@ -51,7 +52,7 @@ class UserSeeder extends Seeder
             'username' => 'andreas',
             'email' => 'a.sieverding@stadel.info',
             'password' => bcrypt('password'),
-            'role_id' => 2,
+            'role_id' => Role::IS_TECHNIKER,
         ]);
 
 

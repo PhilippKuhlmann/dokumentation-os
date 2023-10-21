@@ -54,5 +54,25 @@ class MailboxProvidorsSeeder extends Seeder
             'smtpport' => '465',
         ]);
 
+        \App\Models\MailboxProvider::factory()->create([
+            'name' => 'Hetzner',
+            'pop3server' => 'mail.your-server.de',
+            'pop3port' => '995',
+            'imapserver' => 'mail.your-server.de',
+            'imapport' => '993',
+            'smtpserver' => 'mail.your-server.de',
+            'smtpport' => '465',
+        ]);
+
+        \App\Models\MailboxProvider::factory()->create([
+            'name' => 'Jimdo',
+            'pop3server' => 'secure.emailsrvr.com',
+            'pop3port' => '995',
+            'imapserver' => 'secure.emailsrvr.com',
+            'imapport' => '993',
+            'smtpserver' => 'secure.emailsrvr.com',
+            'smtpport' => '465',
+        ]);
+
     }
 }

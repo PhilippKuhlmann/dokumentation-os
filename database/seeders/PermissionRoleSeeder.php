@@ -23,25 +23,25 @@ class PermissionRoleSeeder extends Seeder
         ]);
 
         $techniker = \App\Models\Role::factory()->create([
-            'id' => 2,
+            'id' => 10,
             'name' => 'Techniker',
         ]);
 
-        \App\Models\Role::factory()->create([
-            'id' => 98,
-            'name' => 'Kunde R',
+        $customerViewAny = \App\Models\Role::factory()->create([
+            'name' => 'general_read',
+            'description' => 'Standard Kunde lesen',
         ]);
 
-        \App\Models\Role::factory()->create([
-            'id' => 99,
-            'name' => 'Kunde RW',
+        $customerDelete = \App\Models\Role::factory()->create([
+            'name' => 'general_full',
+            'description' => 'Standard Kunde Vollzugriff',
         ]);
 
 
 
 
 
-        // Permission'
+        // Permissions
         $models = config('custom.permissions');
 
         $permissions = [
@@ -53,16 +53,12 @@ class PermissionRoleSeeder extends Seeder
 
 
         foreach ($models as $model) {
-
             foreach ($permissions as $p => $pn) {
-
                 ${strtolower($model).'_'.$p} = \App\Models\Permission::factory()->create([
                     'name' => strtolower($model).'_'.$p,
                     'description' => $model.' '.$pn,
                 ]);
-
             }
-
         }
 
 
@@ -77,21 +73,45 @@ class PermissionRoleSeeder extends Seeder
         ]);
 
 
-
-
-
-
         // PermissionRole
 
         // admin
-        $permissionns = Permission::all();
-        foreach ($permissionns as $permission) {
+        $permissions = Permission::all();
+        foreach ($permissions as $permission) {
             $admin->assignPermission($permission);
         }
 
         // techniker
-        foreach ($permissionns as $permission) {
+        $permissions = Permission::all();
+        foreach ($permissions as $permission) {
             $techniker->assignPermission($permission);
+        }
+
+        // standard kunde lesen
+        $permissions = Permission::getviewAny()->get();
+        foreach ($permissions as $permission) {
+            $customerViewAny->assignPermission($permission);
+        }
+
+        // standard kunde lesen schreiben
+        $permissions = Permission::getviewAny()->get();
+        foreach ($permissions as $permission) {
+            $customerDelete->assignPermission($permission);
+        }
+
+        $permissions = Permission::getcreate()->get();
+        foreach ($permissions as $permission) {
+            $customerDelete->assignPermission($permission);
+        }
+
+        $permissions = Permission::getupdate()->get();
+        foreach ($permissions as $permission) {
+            $customerDelete->assignPermission($permission);
+        }
+
+        $permissions = Permission::getdelete()->get();
+        foreach ($permissions as $permission) {
+            $customerDelete->assignPermission($permission);
         }
 
 

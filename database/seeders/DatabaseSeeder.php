@@ -3,6 +3,8 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+
+use App\Models\Role;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -53,7 +55,7 @@ class DatabaseSeeder extends Seeder
             'name' => 'Max RW',
             'username' => 'maxrw',
             'password' => bcrypt('password'),
-            'role_id' => 99,
+            'role_id' => Role::where('name', 'general_full')->firstOrFail()->id,
             'customer_id' => $customer->id,
         ]);
 
@@ -61,7 +63,7 @@ class DatabaseSeeder extends Seeder
             'name' => 'Max R',
             'username' => 'maxr',
             'password' => bcrypt('password'),
-            'role_id' => 98,
+            'role_id' => Role::where('name', 'general_read')->firstOrFail()->id,
             'customer_id' => $customer->id,
         ]);
 
