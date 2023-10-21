@@ -189,6 +189,11 @@ class Customer extends Model
         return $this->hasMany(LicenseAccess::class);
     }
 
+    public function iotdevices()
+    {
+        return $this->hasMany(IoTDevice::class);
+    }
+
 
 
 }

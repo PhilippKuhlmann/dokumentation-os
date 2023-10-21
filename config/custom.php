@@ -12,6 +12,7 @@ return [
         'Network',
         'Wifi',
         'Computer',
+        'IoTDevice',
         'Printer',
         'ADDomain',
         'ADUser',

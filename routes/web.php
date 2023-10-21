@@ -16,6 +16,7 @@ use App\Http\Controllers\DECTController;
 use App\Http\Controllers\DynDNSController;
 use App\Http\Controllers\FileController;
 use App\Http\Controllers\FTPServerController;
+use App\Http\Controllers\IoTDeviceController;
 use App\Http\Controllers\LicenseAccessController;
 use App\Http\Controllers\LicenseWindowsController;
 use App\Http\Controllers\LicenseSoftwareController;
@@ -172,6 +173,7 @@ Route::middleware(['auth', 'isCustomer'])->group(function () {
             Route::resource('mailbox', MailboxController::class)->except(['show']);
             Route::resource('wifi', WifiController::class)->except(['show']);
             Route::resource('computer', ComputerController::class)->except(['show']);
+            Route::resource('iotdevice', IoTDeviceController::class)->except(['show']);
             Route::resource('printer', PrinterController::class)->except(['show']);
             Route::resource('ftpserver', FTPServerController::class)->except(['show']);
             Route::resource('recorder', RecorderController::class)->except(['show']);

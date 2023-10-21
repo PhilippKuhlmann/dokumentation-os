@@ -2,6 +2,10 @@
 
 ## 23.10.21
 
+## Added
+
+- IoT Geräte
+
 ### Changes
 
 - Seeder erweitert

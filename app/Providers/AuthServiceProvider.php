@@ -51,7 +51,7 @@ class AuthServiceProvider extends ServiceProvider
 
 
 
-        $resources = ['Site','Contactperson','Server','VM','NAS','SecurepointUTM','Router','Network','Wifi','Computer','Printer','ADDomain','ADUser','ADGroup','PhoneSystem','Phone','DECT','LoginGeneral','LoginNAS','LoginWebsite','SecurepointUMA','Mailbox','Recorder','Camera','LicenseSoftware','LicenseWindows','LicenseAccess','FTPServer','DynDNS','File'];
+        $resources = config('custom.permissions');
 
         foreach ($resources as $resource) {
             $policyClass = "App\Policies\\{$resource}Policy";
