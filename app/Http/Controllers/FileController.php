@@ -34,6 +34,8 @@ class FileController extends Controller
                 'name' => $request->name,
                 'extension' => $request->file->extension(),
             ]);
+        }else{
+            return redirect('/' . $customer->slug . '/file')->withErrors('Fehler');
         }
 
 
@@ -43,6 +45,8 @@ class FileController extends Controller
 
     public function download(Customer $customer, File $file)
     {
+        $this->authorize('viewAny', File::class);
+
         $name = $file->name . '.' . $file->extension;
 
         return Storage::download($file->file_path, $name);
