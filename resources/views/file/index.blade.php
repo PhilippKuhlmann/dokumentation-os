@@ -29,6 +29,9 @@
                             'download' =>  '/' . $customer->slug . '/file/' . $file->id,
                             $file->created_at->diffForHumans()
                         ]"
+                        delUrl="{{ route('file.destroy', [$customer, $file]) }}"
+                        can="file_update"
+                        canDel="file_delete"
 
                     />
 

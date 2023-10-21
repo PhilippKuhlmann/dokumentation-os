@@ -1,4 +1,4 @@
-@props(['values', 'values', 'editUrl', 'can'])
+@props(['values', 'values', 'editUrl', 'can', 'canDel' => '', 'delUrl' => ''])
 
 <tr class="bg-gray-200 border-b border-gray-900 dark:bg-gray-800 dark:border-gray-700">
     @foreach ($values as $key => $value)
@@ -49,18 +49,30 @@
 
 
     <td class="py-4 px-6">
-        @can($can)
-            @isset($editUrl)
+
+        @isset($editUrl)
+            @can($can)
                 <div class="flex flex-row space-x-2">
                     <a href="{{ $editUrl }}" class="font-medium text-cerulean-500 dark:text-cerulean-500 hover:text-cerulean-600 hover:dark:text-cerulean-600">
                         <x-svg.edit class="h-5 w-5" />
                     </a>
                 </div>
-            @endisset
-            @isset($delUrl)
+            @endcan
+        @endisset
 
-            @endisset
-        @endcan
+
+
+        @isset($delUrl)
+            @can($canDel)
+                <div class="flex flex-row space-x-2">
+                    <form method="POST" action="{{ $delUrl }}">
+                        @csrf
+                        @method('delete')
+                        <x-input.button color="red" label="Löschen!" class="py-0 px-0" />
+                    </form>
+                </div>
+            @endcan
+        @endisset
 
 
     </td>

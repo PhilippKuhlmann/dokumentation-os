@@ -27,7 +27,7 @@ class FileController extends Controller
 
         $filePath = '';
         if ($request->hasFile('file')) {
-            $filePath = $request->file('file')->store($customer->slug, 'local');
+            $filePath = $request->file('file')->store($customer->slug . '/files', 'local');
 
             $customer->files()->create([
                 'file_path' => $filePath,

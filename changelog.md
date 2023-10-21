@@ -11,6 +11,10 @@
 - Seeder erweitert
 - Wifi mit Netzwerk verbunden
 
+### Fixed
+
+- Datei Upload
+
 
 
 ## 23.10.18
