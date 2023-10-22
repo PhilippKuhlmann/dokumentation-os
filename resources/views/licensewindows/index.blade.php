@@ -6,7 +6,7 @@
 
     <div class="m-3">
         <x-table.main>
-            <x-table.head :labels="['Betriebsystem', 'Key', '', ]" />
+            <x-table.head :labels="['Betriebsystem', 'Key', 'Download', '', ]" />
 
             <x-table.body>
 
@@ -16,6 +16,8 @@
                         :values="[
                             $licensewindows->operatingSystem->name,
                             $licensewindows->key,
+                            'download' => $licensewindows->file_path ?  route('licensewindows.download', [$customer, $licensewindows]) : NULL,
+
                         ]"
 
                         editUrl="{{ route('licensewindows.edit', [$customer, $licensewindows]) }}"

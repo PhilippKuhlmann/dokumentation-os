@@ -6,6 +6,7 @@ use App\Http\Requests\LicenseAccessRequest;
 use App\Models\Customer;
 use App\Models\LicenseAccess;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class LicenseAccessController extends Controller
 {
@@ -27,7 +28,18 @@ class LicenseAccessController extends Controller
     {
         $this->authorize('create', LicenseAccess::class);
 
-        $customer->licenseaccesses()->create($request->validated());
+        if ($request->hasFile('file')) {
+            $file = $request->file('file');
+            $fileName = time() . '_' . $request->file_name . '.' . $file->getClientOriginalExtension();
+            $filePath = $file->storeAs($customer->slug . '/licenseaccess', $fileName, 'local');
+        } else {
+            $filePath = null;
+        }
+
+        $data = $request->validated();
+        $data['file_path'] = $filePath;
+
+        $customer->licenseaccesses()->create($data);
 
         return redirect(route('licenseaccess.index', $customer));
     }
@@ -43,7 +55,19 @@ class LicenseAccessController extends Controller
     {
         $this->authorize('update', LicenseAccess::class);
 
-        $licenseaccess->update($request->validated());
+        if ($request->hasFile('file')) {
+            $file = $request->file('file');
+            $fileName = time() . '_' . $request->file_name . '.' . $file->getClientOriginalExtension();
+            $filePath = $file->storeAs($customer->slug . '/licenseaccess', $fileName, 'local');
+            if ($licenseaccess->file_path) {
+                Storage::delete($licenseaccess->file_path);
+            }
+            $data = $request->validated();
+            $data['file_path'] = $filePath;
+            $licenseaccess->update($data);
+        } else {
+            $licenseaccess->update($request->validated());
+        }
 
         return redirect(route('licenseaccess.index', $customer));
     }
@@ -52,8 +76,16 @@ class LicenseAccessController extends Controller
     {
         $this->authorize('delete', LicenseAccess::class);
 
+        Storage::delete($licenseaccess->file_path);
         $licenseaccess->delete();
 
         return redirect(route('licenseaccess.index', $customer));
+    }
+
+    public function download(Customer $customer, LicenseAccess $licenseaccess)
+    {
+        $this->authorize('viewAny', LicenseAccess::class);
+
+        return Storage::download($licenseaccess->file_path);
     }
 }

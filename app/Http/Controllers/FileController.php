@@ -27,12 +27,14 @@ class FileController extends Controller
 
         $filePath = '';
         if ($request->hasFile('file')) {
-            $filePath = $request->file('file')->store($customer->slug . '/files', 'local');
+            $file = $request->file('file');
+            $fileName = time() . '_' . $request->name . '.' . $file->getClientOriginalExtension();
+            $filePath = $request->file('file')->storeAs($customer->slug . '/files', $fileName, 'local');
 
             $customer->files()->create([
                 'file_path' => $filePath,
                 'name' => $request->name,
-                'extension' => $request->file->extension(),
+                'extension' => $request->file->getClientOriginalExtension(),
             ]);
         }else{
             return redirect('/' . $customer->slug . '/file')->withErrors('Fehler');

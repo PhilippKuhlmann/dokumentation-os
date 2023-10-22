@@ -6,6 +6,11 @@
 
         <x-create.singlerow label="Key" name="key" default="{{ $licenseaccess->key }}" />
 
+        <x-input.label value="Datei" class="mt-2" />
+        <x-input.file name="file" />
+
+        <x-create.singlerow label="Datei Name" name="file_name" />
+
     </x-create.main>
 
     @can('licenseaccess_delete')

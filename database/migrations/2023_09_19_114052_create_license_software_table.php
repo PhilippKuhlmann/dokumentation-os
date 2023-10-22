@@ -18,6 +18,8 @@ return new class extends Migration
             $table->string('key')->nullable();
             $table->string('username')->nullable();
             $table->string('password')->nullable();
+            $table->string('file_path')->nullable();
+            $table->string('file_name')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

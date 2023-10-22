@@ -6,7 +6,7 @@
 
     <div class="m-3">
         <x-table.main>
-            <x-table.head :labels="['Name', 'Key', '', ]" />
+            <x-table.head :labels="['Name', 'Key', 'Download', '', ]" />
 
             <x-table.body>
 
@@ -16,6 +16,7 @@
                         :values="[
                             $licenseaccess->name,
                             $licenseaccess->key,
+                            'download' => $licenseaccess->file_path ?  route('licenseaccess.download', [$customer, $licenseaccess]) : NULL,
                         ]"
 
                         editUrl="{{ route('licenseaccess.edit', [$customer, $licenseaccess]) }}"

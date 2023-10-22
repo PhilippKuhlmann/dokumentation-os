@@ -7,6 +7,7 @@ use App\Models\Customer;
 use App\Models\LicenseWindows;
 use App\Models\OperatingSystem;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class LicenseWindowsController extends Controller
 {
@@ -34,7 +35,18 @@ class LicenseWindowsController extends Controller
     {
         $this->authorize('create', LicenseWindows::class);
 
-        $customer->licensewindows()->create($request->validated());
+        if ($request->hasFile('file')) {
+            $file = $request->file('file');
+            $fileName = time() . '_' . $request->file_name . '.' . $file->getClientOriginalExtension();
+            $filePath = $file->storeAs($customer->slug . '/licensewindows', $fileName, 'local');
+        } else {
+            $filePath = null;
+        }
+
+        $data = $request->validated();
+        $data['file_path'] = $filePath;
+
+        $customer->licensewindows()->create($data);
 
         return redirect(route('licensewindows.index', $customer));
     }
@@ -52,7 +64,19 @@ class LicenseWindowsController extends Controller
     {
         $this->authorize('update', LicenseWindows::class);
 
-        $licensewindows->update($request->validated());
+        if ($request->hasFile('file')) {
+            $file = $request->file('file');
+            $fileName = time() . '_' . $request->file_name . '.' . $file->getClientOriginalExtension();
+            $filePath = $file->storeAs($customer->slug . '/licensewindows', $fileName, 'local');
+            if ($licensewindows->file_path) {
+                Storage::delete($licensewindows->file);
+            }
+            $data = $request->validated();
+            $data['file_path'] = $filePath;
+            $licensewindows->update($data);
+        } else {
+            $licensewindows->update($request->validated());
+        }
 
         return redirect(route('licensewindows.index', $customer));
     }
@@ -61,8 +85,16 @@ class LicenseWindowsController extends Controller
     {
         $this->authorize('delete', LicenseWindows::class);
 
+        Storage::delete($licensewindows->file);
         $licensewindows->delete();
 
         return redirect(route('licensewindows.index', $customer));
+    }
+
+    public function download(Customer $customer, LicenseWindows $licensewindows)
+    {
+        $this->authorize('viewAny', LicenseWindows::class);
+
+        return Storage::download($licensewindows->file_path);
     }
 }

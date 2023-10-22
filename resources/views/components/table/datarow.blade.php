@@ -7,9 +7,15 @@
                 <a href="{{ $value }}" target="_blank"  class=" text-cerulean-500 hover:text-cerulean-600">{{ $value }}</a>
             </td>
         @elseif ($key == 'download')
-            <td scope="row" class="py-4 px-6">
-                <a href="{{ $value }}" target="_blank"  class="text-cerulean-500 hover:text-cerulean-600">Download</a>
-            </td>
+            @if ($value)
+                <td scope="row" class="py-4 px-6">
+                    <a href="{{ $value }}" target="_blank"  class="text-cerulean-500 hover:text-cerulean-600">Download</a>
+                </td>
+            @else
+                <td scope="row" class="py-4 px-6">
+                    <a disabled class="text-gray-500">Download</a>
+                </td>
+            @endif
         @elseif ($key == 'password')
         <td scope="row" class="py-4 px-6">
             <div class="" x-data="{ show: true }">

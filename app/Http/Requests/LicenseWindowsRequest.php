@@ -24,6 +24,8 @@ class LicenseWindowsRequest extends FormRequest
         return [
             'operating_system_id' => '',
             'key' => 'required|max:255',
+            'file_path' => 'nullable',
+            'file_name' => 'nullable',
         ];
     }
 
@@ -32,6 +34,8 @@ class LicenseWindowsRequest extends FormRequest
         return [
             'operating_system_id' => 'Betriebsystem',
             'key' => 'Key',
+            'file_path' => 'Datei',
+            'file_name' => 'Datei Name',
         ];
     }
 }

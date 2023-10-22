@@ -2,6 +2,12 @@
 
 ## 23.10.22
 
+### Added
+
+- Datei Upload für Windows Lizenzen
+- Datei Upload für CAL Lizenzen
+- Datei Upload für Software Lizenzen
+
 ### Changed
 
 - Desing anpassung
@@ -21,7 +27,7 @@
 
 ### Fixed
 
-- Datei Upload
+- Datein Datei Upload
 
 
 

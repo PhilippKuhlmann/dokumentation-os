@@ -7,7 +7,7 @@
 
 
 <div class="md:flex xs:flex-col">
-    <form method="post" action="{{ $action }}" class="p-5">
+    <form method="post" action="{{ $action }}" class="p-5" enctype="multipart/form-data">
         @csrf
 
     <div class="md:flex xs:flex-col md:w-128">

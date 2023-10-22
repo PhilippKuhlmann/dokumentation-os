@@ -26,6 +26,8 @@ class LicenseSoftwareRequest extends FormRequest
             'key' => '',
             'username' => '',
             'password' => '',
+            'file_path' => 'nullable',
+            'file_name' => 'nullable',
         ];
     }
 
@@ -36,6 +38,8 @@ class LicenseSoftwareRequest extends FormRequest
             'key' => 'Key',
             'username' => 'Benutzername',
             'password' => 'Passwort',
+            'file_path' => 'Datei',
+            'file_name' => 'Datei Name',
         ];
     }
 }

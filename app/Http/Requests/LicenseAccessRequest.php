@@ -24,6 +24,8 @@ class LicenseAccessRequest extends FormRequest
         return [
             'name' => 'required|max:255',
             'key' => 'required|max:255',
+            'file_path' => 'nullable',
+            'file_name' => 'nullable',
         ];
     }
 
@@ -32,6 +34,8 @@ class LicenseAccessRequest extends FormRequest
         return [
             'name' => 'Name',
             'key' => 'Key',
+            'file_path' => 'Datei',
+            'file_name' => 'Datei Name',
         ];
     }
 }

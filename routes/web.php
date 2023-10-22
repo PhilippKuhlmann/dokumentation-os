@@ -173,6 +173,7 @@ Route::middleware(['auth', 'isCustomer'])->group(function () {
             Route::post('licensesoftware', [LicenseSoftwareController::class, 'store'])->name('licensesoftware.store');
             Route::get('licensesoftware/create', [LicenseSoftwareController::class, 'create'])->name('licensesoftware.create');
             Route::get('licensesoftware/{licensesoftware}/edit', [LicenseSoftwareController::class, 'edit'])->name('licensesoftware.edit');
+            Route::get('licensesoftware/{licensesoftware}/download', [LicenseSoftwareController::class, 'download'])->name('licensesoftware.download');
             Route::patch('licensesoftware/{licensesoftware}', [LicenseSoftwareController::class, 'update'])->name('licensesoftware.update');
             Route::delete('licensesoftware/{licensesoftware}', [LicenseSoftwareController::class, 'destroy'])->name('licensesoftware.destroy');
 
@@ -182,6 +183,7 @@ Route::middleware(['auth', 'isCustomer'])->group(function () {
             Route::post('licensewindows', [LicenseWindowsController::class, 'store'])->name('licensewindows.store');
             Route::get('licensewindows/create', [LicenseWindowsController::class, 'create'])->name('licensewindows.create');
             Route::get('licensewindows/{licensewindows}/edit', [LicenseWindowsController::class, 'edit'])->name('licensewindows.edit');
+            Route::get('licensewindows/{licensewindows}/download', [LicenseWindowsController::class, 'download'])->name('licensewindows.download');
             Route::patch('licensewindows/{licensewindows}', [LicenseWindowsController::class, 'update'])->name('licensewindows.update');
             Route::delete('licensewindows/{licensewindows}', [LicenseWindowsController::class, 'destroy'])->name('licensewindows.destroy');
 
@@ -191,6 +193,7 @@ Route::middleware(['auth', 'isCustomer'])->group(function () {
             Route::post('licenseaccess', [LicenseAccessController::class, 'store'])->name('licenseaccess.store');
             Route::get('licenseaccess/create', [LicenseAccessController::class, 'create'])->name('licenseaccess.create');
             Route::get('licenseaccess/{licenseaccess}/edit', [LicenseAccessController::class, 'edit'])->name('licenseaccess.edit');
+            Route::get('licenseaccess/{licenseaccess}/download', [LicenseAccessController::class, 'download'])->name('licenseaccess.download');
             Route::patch('licenseaccess/{licenseaccess}', [LicenseAccessController::class, 'update'])->name('licenseaccess.update');
             Route::delete('licenseaccess/{licenseaccess}', [LicenseAccessController::class, 'destroy'])->name('licenseaccess.destroy');
 
