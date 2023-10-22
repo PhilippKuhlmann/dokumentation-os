@@ -14,22 +14,12 @@ class CustomerController extends Controller
 {
     public function __construct(Customer $customer)
     {
-        $this->middleware(['auth', 'isCustomerRW', 'isCustomerR', 'isCustomer']);
+        $this->middleware(['auth', 'isCustomer']);
     }
 
     public function search()
     {
         session()->put('site', 'all');
-
-        if (auth()->user()->role->id == 99)
-        {
-            return redirect('/' . auth()->user()->customer_id);
-        }
-
-        if (auth()->user()->role->id == 1)
-        {
-            return redirect('/admin');
-        }
 
         $customers = NULL;
 

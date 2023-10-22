@@ -2,6 +2,7 @@
 
 namespace App\Http\Middleware;
 
+use App\Models\Role;
 use Closure;
 use Illuminate\Http\Request;
 
@@ -17,7 +18,7 @@ class isAdmin
     public function handle(Request $request, Closure $next)
     {
 
-        if (auth()->user()?->role->id !== 1)
+        if (auth()->user()?->role->id !== Role::IS_ADMIN)
         {
             abort(403);
         }

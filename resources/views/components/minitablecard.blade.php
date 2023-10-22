@@ -15,7 +15,7 @@
 
                                 <div class="relative">
                                     <input placeholder="" :type="show ? 'password' : 'text'"
-                                        class="text-sm w-full p-0 text-gray-900 bg-gray-100 dark:text-gray-100 dark:bg-gray-800 border-0"
+                                        class="text-sm w-full p-0 text-gray-900 bg-white dark:text-gray-100 dark:bg-gray-800 border-0"
                                         value="{{ $value }}" disabled>
                                     <div class="absolute inset-y-0 right-0 pr-3 flex items-center text-sm leading-5">
 
@@ -43,7 +43,7 @@
                         </td>
                     @elseif ($key == 'URL' || $key == 'Admin URL' || $key == 'User URL' || $key == 'Externe URL')
                        <td>
-                            <a href="{{ $value }}" target="_blank" class="hover:text-blue-600">
+                            <a href="{{ $value }}" target="_blank" class="hover:text-cerulean-500">
                                 {{ $value }}
                             </a>
                         </td>

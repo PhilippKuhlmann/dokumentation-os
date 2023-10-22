@@ -1,12 +1,20 @@
 # Changelog
 
+## 23.10.22
+
+### Changed
+
+- Desing anpassung
+
+
+
 ## 23.10.21
 
 ## Added
 
 - IoT Geräte
 
-### Changes
+### Changed
 
 - Seeder erweitert
 - Wifi mit Netzwerk verbunden
@@ -23,7 +31,7 @@
 
 - Permission Tests
 
-### Changes
+### Changed
 
 - Rustdesk Logo
 - UTM Logo

@@ -13,7 +13,7 @@
     <div class="md:flex xs:flex-col md:w-128">
 
         <div class="flex flex-col text-cerulean-950 dark:text-cerulean-500 w-full">
-            <div class="text-2xl font-CoconPro pl-5 mt-5">
+            <div class="text-2xl font-CoconPro">
                 {{ $header }}
             </div>
 
