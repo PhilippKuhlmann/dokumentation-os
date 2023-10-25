@@ -1,5 +1,14 @@
 # Changelog
 
+## 23.10.25
+
+### Added
+
+- Maschinen
+- Zusätzliche Logins für Recorder
+
+
+
 ## 23.10.22
 
 ### Added
@@ -16,7 +25,7 @@
 
 ## 23.10.21
 
-## Added
+### Added
 
 - IoT Geräte
 

@@ -104,6 +104,11 @@ class Customer extends Model
         return $this->hasMany(LoginNAS::class);
     }
 
+    public function loginrecorders()
+    {
+        return $this->hasMany(LoginRecorder::class);
+    }
+
     public function phonesystems()
     {
         return $this->hasMany(PhoneSystem::class);
@@ -192,6 +197,11 @@ class Customer extends Model
     public function iotdevices()
     {
         return $this->hasMany(IoTDevice::class);
+    }
+
+    public function machines()
+    {
+        return $this->hasMany(Machine::class);
     }
 
 

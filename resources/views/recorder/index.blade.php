@@ -1,7 +1,9 @@
 <x-app-layout :$customer>
 
     @can('recorder_create')
-        <x-sitetopmenu />
+        <x-sitetopmenu>
+            <x-input.linkbutton label="Weitere Logins" link="{{ route('loginrecorder.index', $customer) }}" />
+        </x-sitetopmenu>
     @endcan
 
     @foreach ($recorders as $recorder)

@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Barryvdh\DomPDF\Facade\Pdf;
 use App\Http\Requests\CustomerRequest;
 use App\Models\ContactPerson;
+use App\Models\Role;
 use App\Models\Site;
 
 class CustomerController extends Controller
@@ -19,6 +20,11 @@ class CustomerController extends Controller
 
     public function search()
     {
+
+        if (auth()->user()->role_id === Role::IS_ADMIN) {
+            return redirect('/admin');
+        }
+
         session()->put('site', 'all');
 
         $customers = NULL;

@@ -22,9 +22,11 @@ use App\Http\Controllers\LicenseWindowsController;
 use App\Http\Controllers\LicenseSoftwareController;
 use App\Http\Controllers\LoginGeneralController;
 use App\Http\Controllers\LoginNASController;
+use App\Http\Controllers\LoginRecorderController;
 use App\Http\Controllers\OperatingSystemController;
 use App\Http\Controllers\VMController;
 use App\Http\Controllers\LoginWebsiteController;
+use App\Http\Controllers\MachineController;
 use App\Http\Controllers\MailboxController;
 use App\Http\Controllers\NASController;
 use App\Http\Controllers\PhoneController;
@@ -41,7 +43,6 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\WifiController;
 use App\Http\Livewire\RemoteSearch;
 use App\Http\Livewire\UtmSearch;
-
 
 require __DIR__.'/auth.php';
 
@@ -145,6 +146,7 @@ Route::middleware(['auth', 'isCustomer'])->group(function () {
             Route::resource('adgroup', ADGroupController::class)->except(['show']);
             Route::resource('loginwebsite', LoginWebsiteController::class)->except(['show']);
             Route::resource('logingeneral', LoginGeneralController::class)->except(['show']);
+            Route::resource('loginrecorder', LoginRecorderController::class)->except(['show']);
 
             // LoginNAS
             //Route::resource('loginnas', LoginNASController::class)->except(['show']);
@@ -162,6 +164,7 @@ Route::middleware(['auth', 'isCustomer'])->group(function () {
             Route::resource('wifi', WifiController::class)->except(['show']);
             Route::resource('computer', ComputerController::class)->except(['show']);
             Route::resource('iotdevice', IoTDeviceController::class)->except(['show']);
+            Route::resource('machine', MachineController::class)->except(['show']);
             Route::resource('printer', PrinterController::class)->except(['show']);
             Route::resource('ftpserver', FTPServerController::class)->except(['show']);
             Route::resource('recorder', RecorderController::class)->except(['show']);

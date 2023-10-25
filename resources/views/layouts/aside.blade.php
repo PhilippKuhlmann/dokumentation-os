@@ -71,7 +71,7 @@
                 </x-aside.dropdown>
             @endcanany
 
-            @canany(['computer_viewAny', 'printer_viewAny', 'iotdevice_viewAny'])
+            @canany(['computer_viewAny', 'printer_viewAny', 'iotdevice_viewAny', 'machine_viewAny'])
                 <x-aside.dropdown label="Clients" svg="svg.computer">
                     <x-slot:links>
                         @can('computer_viewAny')
@@ -82,6 +82,9 @@
                         @endcan
                         @can('iotdevice_viewAny')
                             <x-aside.dropdownlink label="IoT-Gerät" href="{{ route('iotdevice.index', $customer) }}" />
+                        @endcan
+                        @can('machine_viewAny')
+                            <x-aside.dropdownlink label="Maschinen" href="{{ route('machine.index', $customer) }}" />
                         @endcan
                     </x-slot:links>
                 </x-aside.dropdown>
@@ -119,7 +122,7 @@
                 </x-aside.dropdown>
             @endcanany
 
-            @canany(['logingeneral_viewAny', 'loginwebsite_viewAny', 'loginnas_viewAny'])
+            @canany(['logingeneral_viewAny', 'loginwebsite_viewAny', 'loginnas_viewAny', 'loginrecorder_viewAny'])
                 <x-aside.dropdown label="Logins" svg="svg.login">
                     <x-slot:links>
                         @can('logingeneral_viewAny')
@@ -130,6 +133,9 @@
                         @endcan
                         @can('loginnas_viewAny')
                             <x-aside.dropdownlink label="NAS" href="{{ route('loginnas.index', $customer) }}" />
+                        @endcan
+                        @can('loginrecorder_viewAny')
+                            <x-aside.dropdownlink label="Recorder" href="{{ route('loginrecorder.index', $customer) }}" />
                         @endcan
                     </x-slot:links>
                 </x-aside.dropdown>
