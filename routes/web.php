@@ -29,6 +29,7 @@ use App\Http\Controllers\LoginWebsiteController;
 use App\Http\Controllers\MachineController;
 use App\Http\Controllers\MailboxController;
 use App\Http\Controllers\NASController;
+use App\Http\Controllers\OtherClientController;
 use App\Http\Controllers\PhoneController;
 use App\Http\Controllers\PhoneSystemController;
 use App\Http\Controllers\PrinterController;
@@ -165,6 +166,7 @@ Route::middleware(['auth', 'isCustomer'])->group(function () {
             Route::resource('computer', ComputerController::class)->except(['show']);
             Route::resource('iotdevice', IoTDeviceController::class)->except(['show']);
             Route::resource('machine', MachineController::class)->except(['show']);
+            Route::resource('otherclient', OtherClientController::class)->except(['show']);
             Route::resource('printer', PrinterController::class)->except(['show']);
             Route::resource('ftpserver', FTPServerController::class)->except(['show']);
             Route::resource('recorder', RecorderController::class)->except(['show']);

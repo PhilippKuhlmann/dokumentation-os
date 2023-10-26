@@ -14,6 +14,7 @@ return [
         'Computer',
         'IoTDevice',
         'Machine',
+        'OtherClient',
         'Printer',
         'ADDomain',
         'ADUser',

@@ -1,5 +1,13 @@
 # Changelog
 
+## 23.10.26
+
+### Added
+
+- Sonstige Clients
+
+
+
 ## 23.10.25
 
 ### Added

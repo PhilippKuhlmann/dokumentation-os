@@ -204,6 +204,11 @@ class Customer extends Model
         return $this->hasMany(Machine::class);
     }
 
+    public function otherclients()
+    {
+        return $this->hasMany(OtherClient::class);
+    }
+
 
 
 }
