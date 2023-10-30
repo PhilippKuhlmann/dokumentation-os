@@ -1,5 +1,21 @@
 # Changelog
 
+## 23.10.28
+
+### Changed
+
+- PDF Desing
+
+
+
+## 23.10.28
+
+### Added
+
+- API-Schnitstelle
+
+
+
 ## 23.10.26
 
 ### Added

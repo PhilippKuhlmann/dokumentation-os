@@ -17,5 +17,13 @@ class AdminController extends Controller
         return view('admin.index');
     }
 
+    public function apitoken()
+    {
+        $user = auth()->user();
+        $token = $user->createToken('optin');
+
+        return ['token' => $token->plainTextToken];
+    }
+
 
 }

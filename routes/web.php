@@ -65,6 +65,8 @@ Route::middleware(['auth', 'isTechniker'])->group(function () {
 Route::middleware(['auth', 'isAdmin'])->group(function () {
     Route::prefix('admin')->group(function () {
 
+        Route::get('/apitoken', [AdminController::class, 'apitoken']);
+
         Route::get('/', [AdminController::class, 'index'])->name('admin.dashboard');
 
         // Kunden

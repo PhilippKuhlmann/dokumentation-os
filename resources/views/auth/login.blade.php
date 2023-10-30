@@ -7,7 +7,7 @@
             <div class="flex flex-col justify-center items-center">
                 <img src="/images/icon_stadel.png" class="w-32 h-32">
                 <span class="mb-10 text-4xl text-chathams-blue-800 font-CoconPro">
-                    Dokumentation
+                    {{ config('app.name'); }}
                 </span>
             </div>
 
