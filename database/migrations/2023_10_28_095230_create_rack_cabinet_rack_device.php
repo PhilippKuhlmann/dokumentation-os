@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('rack_cabinet_rack_device', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('rack_cabinets');
-            $table->unsignedBigInteger('rack_devices');
+            $table->unsignedBigInteger('rack_cabinet_id');
+            $table->unsignedBigInteger('rack_device_id');
             $table->foreign('rack_cabinet_id')->references('id')->on('rack_cabinets')->onDelete('cascade');
             $table->foreign('rack_device_id')->references('id')->on('rack_devices')->onDelete('cascade');
             $table->integer('position');
