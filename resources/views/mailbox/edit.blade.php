@@ -17,6 +17,8 @@
             </x-input.select>
         </div>
 
+        <x-edit.hidden hidden="{{ $mailbox->hidden }}" />
+
     </x-create.main>
 
     @can('mailbox_delete')

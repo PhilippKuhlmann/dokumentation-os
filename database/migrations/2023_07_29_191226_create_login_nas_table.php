@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('description')->nullable();
             $table->string('username');
             $table->string('password');
+            $table->boolean('hidden')->default(false);
             $table->timestamps();
             $table->softDeletes();
         });

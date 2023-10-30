@@ -7,5 +7,7 @@
 
         <x-create.singlerow label="Beschreibung" name="description" />
 
+        <x-create.hidden />
+
     </x-create.main>
 </x-app-layout>

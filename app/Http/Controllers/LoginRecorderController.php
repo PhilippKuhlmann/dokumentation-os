@@ -50,9 +50,9 @@ class LoginRecorderController extends Controller
     {
         $this->authorize('update', LoginRecorder::class);
 
-        $loginrecorder = Recorder::where('customer_id', $customer->id)->get();
+        $recorder = Recorder::where('customer_id', $customer->id)->get();
 
-        return view('loginrecorder.edit', compact('customer', 'loginrecorder', 'nas'));
+        return view('loginrecorder.edit', compact('customer', 'loginrecorder', 'recorder'));
     }
 
     public function update(Customer $customer, LoginRecorder $loginrecorder, LoginRecorderRequest $request)

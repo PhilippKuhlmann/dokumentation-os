@@ -1,5 +1,13 @@
 # Changelog
 
+## 23.10.30
+
+### Added
+
+- Es können jetzt mehr Objekte versteckt werden
+
+
+
 ## 23.10.28
 
 ### Changed

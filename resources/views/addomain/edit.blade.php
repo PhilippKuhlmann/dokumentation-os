@@ -8,6 +8,8 @@
 
         <x-create.singlerow label="DSRM Passwort" name="dsrmpassword" default="{!! $addomain->dsrmpassword !!}" />
 
+        <x-edit.hidden hidden="{{ $addomain->hidden }}" />
+
     </x-create.main>
 
     @can('addomain_delete')

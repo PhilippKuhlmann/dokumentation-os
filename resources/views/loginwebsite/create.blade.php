@@ -7,5 +7,7 @@
 
         <x-create.doublerow label1="Benutzername" name1="username" label2="Passwort" name2="password" />
 
+        <x-create.hidden />
+
     </x-create.main>
 </x-app-layout>

@@ -7,5 +7,7 @@
 
         <x-create.singlerow label="DSRM Passwort" name="dsrmpassword" />
 
+        <x-create.hidden />
+
     </x-create.main>
 </x-app-layout>

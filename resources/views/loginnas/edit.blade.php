@@ -8,6 +8,8 @@
 
         <x-create.singlerow label="Beschreibung" name="description" default="{{ $loginnas->description }}" />
 
+        <x-edit.hidden hidden="{{ $loginnas->hidden }}" />
+
     </x-create.main>
 
     @can('loginnas_delete')

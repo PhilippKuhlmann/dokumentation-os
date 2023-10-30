@@ -16,7 +16,7 @@
                         :values="[
                             $addomain->domain,
                             $addomain->netbios,
-                            $addomain->dsrmpassword,
+                            'password' => $addomain->dsrmpassword,
                         ]"
 
                         editUrl="{{ route('addomain.edit', [$customer, $addomain]) }}"

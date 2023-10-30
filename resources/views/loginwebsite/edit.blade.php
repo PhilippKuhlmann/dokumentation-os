@@ -8,6 +8,8 @@
 
         <x-create.doublerow label1="Benutzername" name1="username" default1="{{ $loginwebsite->username }}" label2="Passwort" name2="password" default2="{!! $loginwebsite->password !!}" />
 
+        <x-edit.hidden hidden="{{ $loginwebsite->hidden }}" />
+
     </x-create.main>
 
     @can('loginwebsite_delete')

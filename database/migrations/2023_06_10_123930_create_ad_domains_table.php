@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('domain');
             $table->string('netbios');
             $table->string('dsrmpassword');
+            $table->boolean('hidden')->default(false);
             $table->timestamps();
             $table->softDeletes();
         });

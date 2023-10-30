@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('url');
             $table->string('username');
             $table->string('password');
+            $table->boolean('hidden')->default(false);
             $table->timestamps();
             $table->softDeletes();
         });

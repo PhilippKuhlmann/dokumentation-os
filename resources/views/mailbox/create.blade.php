@@ -16,5 +16,7 @@
             </x-input.select>
         </div>
 
+        <x-create.hidden />
+
     </x-create.main>
 </x-app-layout>
