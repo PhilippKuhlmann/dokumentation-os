@@ -21,6 +21,7 @@ class DatabaseSeeder extends Seeder
             UserSeeder::class,
             OperatingSystemsSeeder::class,
             MailboxProvidorsSeeder::class,
+            RackDevicesSeeder::class,
         ]);
 
         $customer = \App\Models\Customer::factory()->create([
