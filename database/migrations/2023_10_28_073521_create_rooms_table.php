@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('site_id')->constrained('sites')->onDelete('cascade');
             $table->string('name');
-            $table->string('floor');
+            $table->string('floor')->nullable();
             $table->timestamps();
         });
     }
