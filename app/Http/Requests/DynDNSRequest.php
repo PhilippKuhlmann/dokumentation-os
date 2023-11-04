@@ -24,6 +24,7 @@ class DynDNSRequest extends FormRequest
         return [
             'host' => 'max:255',
             'providor' => 'max:255',
+            'domain' => 'max:255',
             'username' => 'required|max:255',
             'password' => 'required|max:255',
         ];
@@ -34,6 +35,7 @@ class DynDNSRequest extends FormRequest
         return [
             'host' => 'Host',
             'providor' => 'Anbieter',
+            'domain' => 'Domain',
             'username' => 'Benutzername',
             'password' => 'Passwort'
         ];

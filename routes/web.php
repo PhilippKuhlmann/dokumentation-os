@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AccesspointController;
 use App\Http\Controllers\ADDomainController;
 use App\Http\Controllers\ADGroupController;
 use App\Http\Controllers\AdminController;
@@ -30,6 +31,7 @@ use App\Http\Controllers\MachineController;
 use App\Http\Controllers\MailboxController;
 use App\Http\Controllers\MailboxProviderController;
 use App\Http\Controllers\NASController;
+use App\Http\Controllers\NetworkSwitchController;
 use App\Http\Controllers\OtherClientController;
 use App\Http\Controllers\PhoneController;
 use App\Http\Controllers\PhoneSystemController;
@@ -138,6 +140,8 @@ Route::middleware(['auth', 'isCustomer'])->group(function () {
             Route::resource('securepointutm', SecurepointUTMController::class)->except(['show']);
             Route::resource('securepointuma', SecurepointUMAController::class)->except(['show']);
             Route::resource('network', NetworkController::class)->except(['show']);
+            Route::resource('networkswitch', NetworkSwitchController::class)->except(['show']);
+            Route::resource('accesspoint', AccesspointController::class)->except(['show']);
             Route::resource('server', ServerController::class)->except(['show']);
             Route::resource('vm', VMController::class)->except(['show']);
 

@@ -4,6 +4,8 @@
 
         <x-create.singlerow label="Anbieter" name="providor" default="{{ $dyndns->providor }}" />
 
+        <x-create.singlerow label="Domain" name="domain" default="{{ $dyndns->domain }}" />
+
         <x-create.singlerow label="Host" name="host" default="{{ $dyndns->host }}" />
 
         <x-create.singlerow label="Benutzername" name="username" default="{{ $dyndns->username }}" />

@@ -7,7 +7,7 @@
 
     <div class="m-3">
         <x-table.main>
-            <x-table.head :labels="['Anbieter', 'Host', 'Benutzername', 'Passwort', '', ]" />
+            <x-table.head :labels="['Domain', 'Anbieter', 'Host', 'Benutzername', 'Passwort', '', ]" />
 
             <x-table.body>
 
@@ -15,6 +15,7 @@
 
                     <x-table.datarow
                         :values="[
+                            $dyndns->domain,
                             $dyndns->providor,
                             $dyndns->host,
                             $dyndns->username,

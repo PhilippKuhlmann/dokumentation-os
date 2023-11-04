@@ -1,0 +1,38 @@
+<x-app-layout :$customer>
+
+    @can('accesspoint_create')
+        <x-sitetopmenu />
+    @endcan
+
+
+    @foreach ($accesspoints as $accesspoint)
+        <x-card>
+            <x-slot:head>
+                <x-show.header can="accesspoint_update" editUrl="{{ route('accesspoint.edit', [$customer, $accesspoint]) }}">
+                    {{ $accesspoint->name }}
+                </x-show.header>
+            </x-slot>
+
+            <x-slot:body>
+
+                <x-minitablecard title="Allgemein" :array="[
+                    'Hersteller' => $accesspoint->manufacturer,
+                    'Modell' => $accesspoint->model,
+                    'Seriennummer' => $accesspoint->serialNumber,
+                ]" />
+
+                <x-minitablecard title="Login" :array="[
+                    'Benutzername' => $accesspoint->username,
+                    'Passwort' => $accesspoint->password,
+                ]" />
+
+                <x-minitablecard title="Netzwerk" :array="[
+                    'IP' => $accesspoint->ip,
+                    'Port' => $accesspoint->port,
+                ]" />
+
+            </x-slot>
+        </x-card>
+    @endforeach
+
+</x-app-layout>

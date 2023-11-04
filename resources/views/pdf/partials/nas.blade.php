@@ -1,30 +1,50 @@
 <div class="heading">
-    Router
+    NAS
 </div>
 
-@foreach ($customer->routers as $router)
+@foreach ($customer->nas as $nas)
     <div class="card">
         <div class="card-title">
-            {{ $router->name }}
+            {{ $nas->name }}
         </div>
         <div class="card-container">
 
             <div class="card-table" style="float: left; width: 30%;">
                 <div class="card-table-title">
-                    Allgemein
+                    Hardware
                 </div>
                 <table>
                     <tr>
                         <td class="w-120">Hersteller</td>
-                        <td>{{ $router->manufacturer }}</td>
+                        <td>{{ $nas->manufacturer }}</td>
                     </tr>
                     <tr>
                         <td class="w-120">Modell</td>
-                        <td>{{ $router->model }}</td>
+                        <td>{{ $nas->model }}</td>
                     </tr>
                     <tr>
                         <td class="w-120">Seriennummer</td>
-                        <td>{{ $router->serialNumber }}</td>
+                        <td>{{ $nas->serialNumber }}</td>
+                    </tr>
+                </table>
+            </div>
+
+            <div class="card-table" style="float: left; width: 30%;">
+                <div class="card-table-title">
+                    Netzwerk
+                </div>
+                <table>
+                    <tr>
+                        <td class="w-120">IP-Adresse 1</td>
+                        <td>{{ $nas->ip1 }}</td>
+                    </tr>
+                    <tr>
+                        <td class="w-120">IP-Adresse 2</td>
+                        <td>{{ $nas->ip2 }}</td>
+                    </tr>
+                    <tr>
+                        <td class="w-120">Port</td>
+                        <td>{{ $nas->port }}</td>
                     </tr>
                 </table>
             </div>
@@ -36,31 +56,15 @@
                 <table>
                     <tr>
                         <td class="w-120">Benutzername</td>
-                        <td>{{ $router->username }}</td>
+                        <td>{{ $nas->username }}</td>
                     </tr>
                     <tr>
                         <td class="w-120">Passwort</td>
-                        <td>{{ $router->password }}</td>
+                        <td>{{ $nas->password }}</td>
                     </tr>
                 </table>
             </div>
 
-
-            <div class="card-table" style="float: left; width: 30%;">
-                <div class="card-table-title">
-                    Netzwerk
-                </div>
-                <table>
-                    <tr>
-                        <td class="w-120">IP</td>
-                        <td>{{ $router->ip }}</td>
-                    </tr>
-                    <tr>
-                        <td class="w-120">Port</td>
-                        <td>{{ $router->port }}</td>
-                    </tr>
-                </table>
-            </div>
 
             <div style="clear: both;"></div>
 

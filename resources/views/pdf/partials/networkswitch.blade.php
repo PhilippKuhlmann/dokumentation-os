@@ -1,11 +1,11 @@
 <div class="heading">
-    Router
+    Switch
 </div>
 
-@foreach ($customer->routers as $router)
+@foreach ($customer->networkswitches as $networkswitch)
     <div class="card">
         <div class="card-title">
-            {{ $router->name }}
+            {{ $networkswitch->name }}
         </div>
         <div class="card-container">
 
@@ -16,15 +16,15 @@
                 <table>
                     <tr>
                         <td class="w-120">Hersteller</td>
-                        <td>{{ $router->manufacturer }}</td>
+                        <td>{{ $networkswitch->manufacturer }}</td>
                     </tr>
                     <tr>
                         <td class="w-120">Modell</td>
-                        <td>{{ $router->model }}</td>
+                        <td>{{ $networkswitch->model }}</td>
                     </tr>
                     <tr>
                         <td class="w-120">Seriennummer</td>
-                        <td>{{ $router->serialNumber }}</td>
+                        <td>{{ $networkswitch->serialNumber }}</td>
                     </tr>
                 </table>
             </div>
@@ -36,11 +36,11 @@
                 <table>
                     <tr>
                         <td class="w-120">Benutzername</td>
-                        <td>{{ $router->username }}</td>
+                        <td>{{ $networkswitch->username }}</td>
                     </tr>
                     <tr>
                         <td class="w-120">Passwort</td>
-                        <td>{{ $router->password }}</td>
+                        <td>{{ $networkswitch->password }}</td>
                     </tr>
                 </table>
             </div>
@@ -53,11 +53,11 @@
                 <table>
                     <tr>
                         <td class="w-120">IP</td>
-                        <td>{{ $router->ip }}</td>
+                        <td>{{ $networkswitch->ip }}</td>
                     </tr>
                     <tr>
                         <td class="w-120">Port</td>
-                        <td>{{ $router->port }}</td>
+                        <td>{{ $networkswitch->port }}</td>
                     </tr>
                 </table>
             </div>

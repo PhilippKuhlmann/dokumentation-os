@@ -1,5 +1,5 @@
 <x-app-layout :$customer>
-    <x-create.main header="Neuer Router" action="{{ route('router.store', $customer) }}">
+    <x-create.main header="Neuer Switch" action="{{ route('networkswitch.store', $customer) }}">
 
         <x-create.select name="site_id" value="Standort" :array="$sites" />
 

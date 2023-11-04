@@ -1,11 +1,11 @@
 <div class="heading">
-    Router
+    Accesspoints
 </div>
 
-@foreach ($customer->routers as $router)
+@foreach ($customer->accesspoints as $accesspoint)
     <div class="card">
         <div class="card-title">
-            {{ $router->name }}
+            {{ $accesspoint->name }}
         </div>
         <div class="card-container">
 
@@ -16,15 +16,15 @@
                 <table>
                     <tr>
                         <td class="w-120">Hersteller</td>
-                        <td>{{ $router->manufacturer }}</td>
+                        <td>{{ $accesspoint->manufacturer }}</td>
                     </tr>
                     <tr>
                         <td class="w-120">Modell</td>
-                        <td>{{ $router->model }}</td>
+                        <td>{{ $accesspoint->model }}</td>
                     </tr>
                     <tr>
                         <td class="w-120">Seriennummer</td>
-                        <td>{{ $router->serialNumber }}</td>
+                        <td>{{ $accesspoint->serialNumber }}</td>
                     </tr>
                 </table>
             </div>
@@ -36,11 +36,11 @@
                 <table>
                     <tr>
                         <td class="w-120">Benutzername</td>
-                        <td>{{ $router->username }}</td>
+                        <td>{{ $accesspoint->username }}</td>
                     </tr>
                     <tr>
                         <td class="w-120">Passwort</td>
-                        <td>{{ $router->password }}</td>
+                        <td>{{ $accesspoint->password }}</td>
                     </tr>
                 </table>
             </div>
@@ -53,11 +53,11 @@
                 <table>
                     <tr>
                         <td class="w-120">IP</td>
-                        <td>{{ $router->ip }}</td>
+                        <td>{{ $accesspoint->ip }}</td>
                     </tr>
                     <tr>
                         <td class="w-120">Port</td>
-                        <td>{{ $router->port }}</td>
+                        <td>{{ $accesspoint->port }}</td>
                     </tr>
                 </table>
             </div>

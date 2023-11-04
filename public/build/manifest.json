@@ -7,6 +7,10 @@
     "file": "assets/DINPro-Regular.617311af.otf",
     "src": "public/fonts/DINPro-Regular.otf"
   },
+  "public/fonts/DINPro-Light.otf": {
+    "file": "assets/DINPro-Light.f26fe203.otf",
+    "src": "public/fonts/DINPro-Light.otf"
+  },
   "public/fonts/DINPro-Medium.otf": {
     "file": "assets/DINPro-Medium.4f353e87.otf",
     "src": "public/fonts/DINPro-Medium.otf"
@@ -14,10 +18,6 @@
   "public/fonts/DINPro-Bold.otf": {
     "file": "assets/DINPro-Bold.e67ddf8c.otf",
     "src": "public/fonts/DINPro-Bold.otf"
-  },
-  "public/fonts/DINPro-Light.otf": {
-    "file": "assets/DINPro-Light.f26fe203.otf",
-    "src": "public/fonts/DINPro-Light.otf"
   },
   "resources/js/app.js": {
     "file": "assets/app.fba26824.js",

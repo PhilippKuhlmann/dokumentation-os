@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class RouterRequest extends FormRequest
+class AccesspointRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -17,20 +17,20 @@ class RouterRequest extends FormRequest
     /**
      * Get the validation rules that apply to the request.
      *
-     * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array|string>
+     * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array<mixed>|string>
      */
     public function rules()
     {
         return [
             'site_id' => 'required',
             'name' => 'required|max:255',
-            'manufacturer' => ['nullable',],
+            'manufacturer' => 'nullable',
             'model' => 'nullable|max:255',
             'serialNumber' => 'nullable|max:255',
-            'username' => 'required|max:255',
-            'password' => 'required|max:255',
+            'username' => 'nullable|max:255',
+            'password' => 'nullable|max:255',
             'ip' => 'required|ipv4|max:255',
-            'port' => 'required|numeric'
+            'port' => 'nullable|numeric'
         ];
     }
 

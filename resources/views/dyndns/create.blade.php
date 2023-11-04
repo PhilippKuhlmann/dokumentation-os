@@ -3,6 +3,8 @@
 
         <x-create.singlerow label="Anbieter" name="providor" />
 
+        <x-create.singlerow label="Domain" name="domain" />
+
         <x-create.singlerow label="Host" name="host" />
 
         <x-create.singlerow label="Benutzername" name="username" />

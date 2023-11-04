@@ -124,6 +124,7 @@
             padding-top: 4px;
             padding-bottom: 4px;
         }
+
     </style>
 </head>
 
@@ -164,6 +165,26 @@
     <div class="page-break"></div>
 
     @include('pdf.partials.wifi')
+
+    <div class="page-break"></div>
+
+    @include('pdf.partials.networkswitch')
+
+    <div class="page-break"></div>
+
+    @include('pdf.partials.accesspoint')
+
+    <div class="page-break"></div>
+
+    @include('pdf.partials.server')
+
+    <div class="page-break"></div>
+
+    @include('pdf.partials.vm')
+
+    <div class="page-break"></div>
+
+    @include('pdf.partials.nas')
 
     <div class="page-break"></div>
 

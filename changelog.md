@@ -1,5 +1,18 @@
 # Changelog
 
+## 23.11.04
+
+### Added
+
+- Switche
+- Accesspoints
+
+### Changed
+
+- Bei einigen Objekten Type gegen Modell getauscht. 
+
+
+
 ## 23.10.31
 
 ### Added

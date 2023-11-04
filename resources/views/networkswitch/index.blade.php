@@ -1,0 +1,38 @@
+<x-app-layout :$customer>
+
+    @can('networkswitch_create')
+        <x-sitetopmenu />
+    @endcan
+
+
+    @foreach ($networkswitches as $networkswitch)
+        <x-card>
+            <x-slot:head>
+                <x-show.header can="networkswitch_update" editUrl="{{ route('networkswitch.edit', [$customer, $networkswitch]) }}">
+                    {{ $networkswitch->name }}
+                </x-show.header>
+            </x-slot>
+
+            <x-slot:body>
+
+                <x-minitablecard title="Allgemein" :array="[
+                    'Hersteller' => $networkswitch->manufacturer,
+                    'Modell' => $networkswitch->model,
+                    'Seriennummer' => $networkswitch->serialNumber,
+                ]" />
+
+                <x-minitablecard title="Login" :array="[
+                    'Benutzername' => $networkswitch->username,
+                    'Passwort' => $networkswitch->password,
+                ]" />
+
+                <x-minitablecard title="Netzwerk" :array="[
+                    'IP' => $networkswitch->ip,
+                    'Port' => $networkswitch->port,
+                ]" />
+
+            </x-slot>
+        </x-card>
+    @endforeach
+
+</x-app-layout>

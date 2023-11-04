@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('routers', function (Blueprint $table) {
+        Schema::create('accesspoints', function (Blueprint $table) {
             $table->id();
             $table->foreignId('customer_id')->constrained('customers')->onDelete('cascade');
             $table->foreignId('site_id')->constrained('sites')->onDelete('cascade');
@@ -20,8 +20,8 @@ return new class extends Migration
             $table->string('model')->nullable();
             $table->string('serialNumber')->nullable();
             $table->string('username')->nullable();
-            $table->string('password');
-            $table->string('ip');
+            $table->string('password')->nullable();
+            $table->string('ip')->nullable();
             $table->string('port')->nullable();
             $table->timestamps();
             $table->softDeletes();
@@ -33,6 +33,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('routers');
+        Schema::dropIfExists('accesspoints');
     }
 };

@@ -54,6 +54,16 @@ class Customer extends Model
         return $this->hasMany(Network::class);
     }
 
+    public function networkswitches()
+    {
+        return $this->hasMany(NetworkSwitch::class);
+    }
+
+    public function accesspoints()
+    {
+        return $this->hasMany(Accesspoint::class);
+    }
+
     public function servers()
     {
         return $this->hasMany(Server::class);

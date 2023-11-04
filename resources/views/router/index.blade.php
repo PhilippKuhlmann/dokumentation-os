@@ -16,7 +16,8 @@
             <x-slot:body>
 
                 <x-minitablecard title="Allgemein" :array="[
-                    'Art' => $router->type,
+                    'Hersteller' => $router->manufacturer,
+                    'Modell' => $router->model,
                     'Seriennummer' => $router->serialNumber,
                 ]" />
 

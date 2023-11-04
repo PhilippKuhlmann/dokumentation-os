@@ -18,7 +18,8 @@ class RouterFactory extends Factory
     {
         return [
             'name' => fake()->domainName(),
-            'type' => 'TP1245',
+            'manufacturer' => fake()->randomElement(['TP-Link', 'Netgear', 'Unifi']),
+            'model' => 'TP1245',
             'username' => 'admin',
             'password' => fake()->password($minLength = 6, $maxLength = 12),
             'ip' => '192.168.175.1',

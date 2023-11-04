@@ -6,7 +6,9 @@
 
         <x-create.singlerow label="Name" name="name" default="{{ $router->name }}" />
 
-        <x-create.doublerow label1="Type" name1="type" default1="{{ $router->type }}" label2="Seriennummer" name2="serialNumber" default2="{{ $router->serialNumber }}" />
+        <x-create.singlerow label="Hersteller" name="manufacturer" default="{{ $router->manufacturer }}" />
+
+        <x-create.doublerow label1="Modell" name1="model" default1="{{ $router->model }}" label2="Seriennummer" name2="serialNumber" default2="{{ $router->serialNumber }}" />
 
         <x-create.singlerow label="Benutzername" name="username" default="{{ $router->username }}" />
 

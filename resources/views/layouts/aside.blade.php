@@ -35,7 +35,7 @@
                 </x-aside.dropdown>
             @endcanany
 
-            @canany(['securepointutm_viewAny', 'router_viewAny', 'network_viewAny', 'wifi_viewAny'])
+            @canany(['securepointutm_viewAny', 'router_viewAny', 'network_viewAny', 'wifi_viewAny', 'networkswitch_viewAny', 'accesspoint_viewAny'])
                 <x-aside.dropdown label="Netzwerk" svg="svg.wifi">
                     <x-slot:links>
                         @can('securepointutm_viewAny')
@@ -49,7 +49,13 @@
                             <x-aside.dropdownlink label="VLAN" href="{{ route('network.index', $customer) }}" />
                         @endcan
                         @can('wifi_viewAny')
-                            <x-aside.dropdownlink label="WLAN" href="{{ route('wifi.index', $customer) }}" />
+                            <x-aside.dropdownlink label="WLAN Netze" href="{{ route('wifi.index', $customer) }}" />
+                        @endcan
+                        @can('networkswitch_viewAny')
+                            <x-aside.dropdownlink label="Switch" href="{{ route('networkswitch.index', $customer) }}" />
+                        @endcan
+                        @can('accesspoint_viewAny')
+                            <x-aside.dropdownlink label="Accesspoint" href="{{ route('accesspoint.index', $customer) }}" />
                         @endcan
                     </x-slot:links>
                 </x-aside.dropdown>
