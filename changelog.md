@@ -2,6 +2,10 @@
 
 ## 23.10.31
 
+### Added
+
+- Mail Anbieter im Admin bereich
+
 ### Changed
 
 - Etage zum Raum hinzugefügt

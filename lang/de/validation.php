@@ -5,4 +5,5 @@ return [
     'email' => 'Das Feld :attribute muss eine gültige E-Mail-Adresse enthalten.',
     'ipv4' => 'Das  Feld :attribute muss eine gültige IPv4-Adresse sein.',
     'url' => 'Das Feld URL muss eine gültige URL sein.',
+    'integer' => 'Das Feld :attribute muss eine Zahl sein',
 ];

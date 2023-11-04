@@ -28,6 +28,7 @@ use App\Http\Controllers\VMController;
 use App\Http\Controllers\LoginWebsiteController;
 use App\Http\Controllers\MachineController;
 use App\Http\Controllers\MailboxController;
+use App\Http\Controllers\MailboxProviderController;
 use App\Http\Controllers\NASController;
 use App\Http\Controllers\OtherClientController;
 use App\Http\Controllers\PhoneController;
@@ -94,10 +95,17 @@ Route::middleware(['auth', 'isAdmin'])->group(function () {
 
         // Operating Systems
         Route::get('/operatingsystem', [operatingSystemController::class, 'index'])->name('admin.operatingsystem.index');
-        Route::post('/create/operatingsystem', [operatingSystemController::class, 'store'])->name('admin.operatingsystem.store');
+        Route::post('/operatingsystem/create', [operatingSystemController::class, 'store'])->name('admin.operatingsystem.store');
         Route::get('/operatingsystem/create', [operatingSystemController::class, 'create'])->name('admin.operatingsystem.create');
         Route::get('/operatingsystem/{operatingSystem}/edit', [operatingSystemController::class, 'edit'])->name('admin.operatingsystem.edit');
         Route::patch('/operatingsystem/{operatingSystem}', [operatingSystemController::class, 'update'])->name('admin.operatingsystem.update');
+
+        // Mailbox Providor
+        Route::get('/mailboxprovider', [MailboxProviderController::class, 'index'])->name('admin.mailboxprovider.index');
+        Route::post('/mailboxprovider/create', [MailboxProviderController::class, 'store'])->name('admin.mailboxprovider.store');
+        Route::get('/mailboxprovider/create', [MailboxProviderController::class, 'create'])->name('admin.mailboxprovider.create');
+        Route::get('/mailboxprovider/{mailboxprovider}/edit', [MailboxProviderController::class, 'edit'])->name('admin.mailboxprovider.edit');
+        Route::patch('/mailboxprovider/{mailboxprovider}', [MailboxProviderController::class, 'update'])->name('admin.mailboxprovider.update');
 
 
     });
