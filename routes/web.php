@@ -140,10 +140,18 @@ Route::middleware(['auth', 'isCustomer'])->group(function () {
             Route::resource('securepointutm', SecurepointUTMController::class)->except(['show']);
             Route::resource('securepointuma', SecurepointUMAController::class)->except(['show']);
             Route::resource('network', NetworkController::class)->except(['show']);
-            Route::resource('networkswitch', NetworkSwitchController::class)->except(['show']);
             Route::resource('accesspoint', AccesspointController::class)->except(['show']);
             Route::resource('server', ServerController::class)->except(['show']);
             Route::resource('vm', VMController::class)->except(['show']);
+
+            // NetworkSwitch
+            // Route::resource('networkswitch', NetworkSwitchController::class)->except(['show']);
+            Route::get('networkswitch', [NetworkSwitchController::class, 'index'])->name('networkswitch.index');
+            Route::post('networkswitch', [NetworkSwitchController::class, 'store'])->name('networkswitch.store');
+            Route::get('networkswitch/create', [NetworkSwitchController::class, 'create'])->name('networkswitch.create');
+            Route::get('networkswitch/{networkswitch}/edit', [NetworkSwitchController::class, 'edit'])->name('networkswitch.edit');
+            Route::patch('networkswitch/{networkswitch}', [NetworkSwitchController::class, 'update'])->name('networkswitch.update');
+            Route::delete('networkswitch/{networkswitch}', [NetworkSwitchController::class, 'destroy'])->name('networkswitch.destroy');
 
             // NAS
             //Route::resource('nas', NASController::class)->except(['show']);

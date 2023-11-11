@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\AccesspointController;
 use App\Http\Controllers\API\CustomerController;
 use App\Http\Controllers\API\RackCabinetController;
 use App\Http\Controllers\API\RackDeviceController;
@@ -64,6 +65,14 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::post('servers', [ServerController::class, 'store']);
     Route::put('servers/{server}', [ServerController::class, 'update']);
     Route::delete('servers/{server}', [ServerController::class, 'delete']);
+
+
+    // Accesspoint
+    Route::get('/accesspoints', [AccesspointController::class, 'index']);
+    Route::get('{customer}/accesspoints/{accesspoint}', [AccesspointController::class, 'show']);
+    Route::post('{customer}/accesspoints', [AccesspointController::class, 'store']);
+    Route::put('{customer}/accesspoints/{accesspoint}', [AccesspointController::class, 'update']);
+    Route::delete('{customer}/accesspoints/{accesspoint}', [AccesspointController::class, 'delete']);
 
 
 });
