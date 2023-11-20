@@ -24,6 +24,9 @@ class AccesspointController extends Controller
         return response()->json($accesspoints, 200);
     }
 
+
+
+
     public function show(Customer $customer, Accesspoint $accesspoint)
     {
         return $accesspoint;

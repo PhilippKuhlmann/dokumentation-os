@@ -143,43 +143,15 @@ Route::middleware(['auth', 'isCustomer'])->group(function () {
             Route::resource('accesspoint', AccesspointController::class)->except(['show']);
             Route::resource('server', ServerController::class)->except(['show']);
             Route::resource('vm', VMController::class)->except(['show']);
-
-            // NetworkSwitch
-            // Route::resource('networkswitch', NetworkSwitchController::class)->except(['show']);
-            Route::get('networkswitch', [NetworkSwitchController::class, 'index'])->name('networkswitch.index');
-            Route::post('networkswitch', [NetworkSwitchController::class, 'store'])->name('networkswitch.store');
-            Route::get('networkswitch/create', [NetworkSwitchController::class, 'create'])->name('networkswitch.create');
-            Route::get('networkswitch/{networkswitch}/edit', [NetworkSwitchController::class, 'edit'])->name('networkswitch.edit');
-            Route::patch('networkswitch/{networkswitch}', [NetworkSwitchController::class, 'update'])->name('networkswitch.update');
-            Route::delete('networkswitch/{networkswitch}', [NetworkSwitchController::class, 'destroy'])->name('networkswitch.destroy');
-
-            // NAS
-            //Route::resource('nas', NASController::class)->except(['show']);
-            Route::get('nas', [NASController::class, 'index'])->name('nas.index');
-            Route::post('nas', [NASController::class, 'store'])->name('nas.store');
-            Route::get('nas/create', [NASController::class, 'create'])->name('nas.create');
-            Route::get('nas/{nas}/edit', [NASController::class, 'edit'])->name('nas.edit');
-            Route::patch('nas/{nas}', [NASController::class, 'update'])->name('nas.update');
-            Route::delete('nas/{nas}', [NASController::class, 'destroy'])->name('nas.destroy');
-
-
-
+            Route::resource('networkswitch', NetworkSwitchController::class, ['parameters' => ['networkswitch' => 'networkswitch']])->except(['show']);
+            Route::resource('nas', NASController::class, ['parameters' => ['nas' => 'nas']])->except(['show']);
             Route::resource('addomain', ADDomainController::class)->except(['show']);
             Route::resource('aduser', ADUserController::class)->except(['show']);
             Route::resource('adgroup', ADGroupController::class)->except(['show']);
             Route::resource('loginwebsite', LoginWebsiteController::class)->except(['show']);
             Route::resource('logingeneral', LoginGeneralController::class)->except(['show']);
             Route::resource('loginrecorder', LoginRecorderController::class)->except(['show']);
-
-            // LoginNAS
-            //Route::resource('loginnas', LoginNASController::class)->except(['show']);
-            Route::get('loginnas', [LoginNASController::class, 'index'])->name('loginnas.index');
-            Route::post('loginnas', [LoginNASController::class, 'store'])->name('loginnas.store');
-            Route::get('loginnas/create', [LoginNASController::class, 'create'])->name('loginnas.create');
-            Route::get('loginnas/{loginnas}/edit', [LoginNASController::class, 'edit'])->name('loginnas.edit');
-            Route::patch('loginnas/{loginnas}', [LoginNASController::class, 'update'])->name('loginnas.update');
-            Route::delete('loginnas/{loginnas}', [LoginNASController::class, 'destroy'])->name('loginnas.destroy');
-
+            Route::resource('loginnas', LoginNASController::class, ['parameters' => ['loginnas' => 'loginnas']])->except(['show']);
             Route::resource('phoneSystem', PhoneSystemController::class)->except(['show']);
             Route::resource('phone', PhoneController::class)->except(['show']);
             Route::resource('dect', DECTController::class)->except(['show']);
@@ -193,45 +165,10 @@ Route::middleware(['auth', 'isCustomer'])->group(function () {
             Route::resource('ftpserver', FTPServerController::class)->except(['show']);
             Route::resource('recorder', RecorderController::class)->except(['show']);
             Route::resource('camera', CameraController::class)->except(['show']);
-
-            // Lizenz Software
-            //Route::resource('licensesoftware', LicenseSoftwareController::class)->except(['show']);
-            Route::get('licensesoftware', [LicenseSoftwareController::class, 'index'])->name('licensesoftware.index');
-            Route::post('licensesoftware', [LicenseSoftwareController::class, 'store'])->name('licensesoftware.store');
-            Route::get('licensesoftware/create', [LicenseSoftwareController::class, 'create'])->name('licensesoftware.create');
-            Route::get('licensesoftware/{licensesoftware}/edit', [LicenseSoftwareController::class, 'edit'])->name('licensesoftware.edit');
-            Route::get('licensesoftware/{licensesoftware}/download', [LicenseSoftwareController::class, 'download'])->name('licensesoftware.download');
-            Route::patch('licensesoftware/{licensesoftware}', [LicenseSoftwareController::class, 'update'])->name('licensesoftware.update');
-            Route::delete('licensesoftware/{licensesoftware}', [LicenseSoftwareController::class, 'destroy'])->name('licensesoftware.destroy');
-
-            // Lizenz Windows
-            //Route::resource('licensewindows', LicenseWindowsController::class)->except(['show']);
-            Route::get('licensewindows', [LicenseWindowsController::class, 'index'])->name('licensewindows.index');
-            Route::post('licensewindows', [LicenseWindowsController::class, 'store'])->name('licensewindows.store');
-            Route::get('licensewindows/create', [LicenseWindowsController::class, 'create'])->name('licensewindows.create');
-            Route::get('licensewindows/{licensewindows}/edit', [LicenseWindowsController::class, 'edit'])->name('licensewindows.edit');
-            Route::get('licensewindows/{licensewindows}/download', [LicenseWindowsController::class, 'download'])->name('licensewindows.download');
-            Route::patch('licensewindows/{licensewindows}', [LicenseWindowsController::class, 'update'])->name('licensewindows.update');
-            Route::delete('licensewindows/{licensewindows}', [LicenseWindowsController::class, 'destroy'])->name('licensewindows.destroy');
-
-            // Lizenz Access
-            //Route::resource('licenseaccess', LicenseAccessController::class)->except(['show']);
-            Route::get('licenseaccess', [LicenseAccessController::class, 'index'])->name('licenseaccess.index');
-            Route::post('licenseaccess', [LicenseAccessController::class, 'store'])->name('licenseaccess.store');
-            Route::get('licenseaccess/create', [LicenseAccessController::class, 'create'])->name('licenseaccess.create');
-            Route::get('licenseaccess/{licenseaccess}/edit', [LicenseAccessController::class, 'edit'])->name('licenseaccess.edit');
-            Route::get('licenseaccess/{licenseaccess}/download', [LicenseAccessController::class, 'download'])->name('licenseaccess.download');
-            Route::patch('licenseaccess/{licenseaccess}', [LicenseAccessController::class, 'update'])->name('licenseaccess.update');
-            Route::delete('licenseaccess/{licenseaccess}', [LicenseAccessController::class, 'destroy'])->name('licenseaccess.destroy');
-
-            // DynDNS
-            //Route::resource('dyndns', DynDNSController::class)->except(['show']);
-            Route::get('dyndns', [DynDNSController::class, 'index'])->name('dyndns.index');
-            Route::post('dyndns', [DynDNSController::class, 'store'])->name('dyndns.store');
-            Route::get('dyndns/create', [DynDNSController::class, 'create'])->name('dyndns.create');
-            Route::get('dyndns/{dyndns}/edit', [DynDNSController::class, 'edit'])->name('dyndns.edit');
-            Route::patch('dyndns/{dyndns}', [DynDNSController::class, 'update'])->name('dyndns.update');
-            Route::delete('dyndns/{dyndns}', [DynDNSController::class, 'destroy'])->name('dyndns.destroy');
+            Route::resource('licensesoftware', LicenseSoftwareController::class, ['parameters' => ['licensesoftware' => 'licensesoftware']])->except(['show']);
+            Route::resource('licensewindows', LicenseWindowsController::class, ['parameters' => ['licensewindows' => 'licensewindows']])->except(['show']);
+            Route::resource('licenseaccess', LicenseAccessController::class, ['parameters' => ['licenseaccess' => 'licenseaccess']])->except(['show']);
+            Route::resource('dyndns', DynDNSController::class, ['parameters' => ['dyndns' => 'dyndns']])->except(['show']);
 
 
             // File

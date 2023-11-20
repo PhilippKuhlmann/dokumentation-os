@@ -1,5 +1,13 @@
 # Changelog
 
+## 23.11.18
+
+### Changed
+
+- Routen verkürzt
+
+
+
 ## 23.11.04
 
 ### Added

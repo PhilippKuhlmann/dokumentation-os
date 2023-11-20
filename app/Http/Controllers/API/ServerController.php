@@ -4,8 +4,12 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ServerRequest;
+use App\Models\RackCabinet;
+use App\Models\RackCabinetRackDevice;
+use App\Models\RackDevice;
 use App\Models\Server;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 class ServerController extends Controller
 {
@@ -21,7 +25,23 @@ class ServerController extends Controller
 
     public function store(ServerRequest $request)
     {
-        $server = Server::create($request->all());
+        $server = Server::create($request->except(['rackdevice', 'rackcabinet', 'position']));
+
+        if ($request->has('rackdevice')) {
+
+            $rackcabinetId = $request['rackcabinet'];
+            $rackdeviceId = $request['rackdevice'];
+            $position = $request['position'];
+
+            $pivot = RackCabinetRackDevice::where('rack_cabinet_id', $rackcabinetId)
+                                          ->where('rack_device_id', $rackdeviceId)
+                                          ->where('position', $position)
+                                          ->first();
+
+            $pivot->filled_id = $server->id;
+            $pivot->save();
+
+        }
 
         return response()->json($server, 201);
     }

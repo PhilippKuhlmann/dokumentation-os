@@ -13,6 +13,8 @@ class RackDevice extends Model
 
     public function cabinets()
     {
-        return $this->belongsToMany(RackCabinet::class, 'rack_cabinet_rack_device')->withPivot('position', 'filled_id');
+        return $this->belongsToMany(RackCabinet::class, 'rack_cabinet_rack_device')
+                    ->withTimestamps()
+                    ->withPivot(['position', 'filled_id']);
     }
 }

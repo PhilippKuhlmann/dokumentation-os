@@ -26,13 +26,13 @@ class Customer extends Model
         return 'slug';
     }
 
+
+
+
     public function sites()
     {
         return $this->hasMany(Site::class);
     }
-
-
-
 
     public function securepointutms()
     {

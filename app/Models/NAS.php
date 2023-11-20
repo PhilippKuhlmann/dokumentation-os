@@ -16,6 +16,7 @@ class NAS extends Model
 
     protected $guarded = [];
 
+
     protected function password(): Attribute
     {
         return new Attribute(
