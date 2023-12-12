@@ -17,13 +17,6 @@ class UserSeeder extends Seeder
     {
 
         \App\Models\User::factory()->create([
-            'name' => 'Admin',
-            'username' => 'admin',
-            'password' => bcrypt('password'),
-            'role_id' => Role::IS_ADMIN,
-        ]);
-
-        \App\Models\User::factory()->create([
             'name' => 'Philipp Kuhlmann',
             'username' => 'p.kuhlmann',
             'email' => 'p.kuhlmann@stadel.info',

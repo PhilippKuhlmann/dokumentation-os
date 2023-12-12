@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 
 class CustomerController extends Controller
 {
-    public function getAllCustomers(Request $request)
+    public function index(Request $request)
     {
 
         $name = $request->query('name');
@@ -24,5 +24,10 @@ class CustomerController extends Controller
         $customer = Customer::create($request->all());
 
         return response()->json($customer, 201);
+    }
+
+    public function show(Customer $customer)
+    {
+        return $customer;
     }
 }

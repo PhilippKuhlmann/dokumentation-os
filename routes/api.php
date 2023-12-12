@@ -30,13 +30,23 @@ Route::get('/test', [RackCabinetController::class, 'deletePosition']);
 
 Route::middleware(['auth:sanctum'])->group(function () {
 
-    // Customer
-    Route::get('/customers', [CustomerController::class, 'getAllCustomers']);
+    Route::get('/customers', [CustomerController::class, 'index']);
+    Route::get('/{customer}', [CustomerController::class, 'show']);
     Route::post('/customers', [CustomerController::class, 'store']);
 
-    // Site
-    Route::get('/sites', [SiteController::class, 'customerSites']);
-    Route::post('/sites', [SiteController::class, 'store']);
+
+    Route::prefix('{customer}')->group(function () {
+
+        Route::get('/accesspoints', [AccesspointController::class, 'index']);
+        Route::get('/{site}/{room}/accesspoints/{accesspoint}', [AccesspointController::class, 'show']);
+        Route::post('/{site}/{room}/accesspoints', [AccesspointController::class, 'store']);
+        Route::put('/{site}/{room}/accesspoints/{accesspoint}', [AccesspointController::class, 'update']);
+        Route::delete('/{site}/{room}/accesspoints/{accesspoint}', [AccesspointController::class, 'delete']);
+
+        Route::get('/sites', [SiteController::class, 'index']);
+        Route::post('/sites', [SiteController::class, 'store']);
+    });
+
 
     // Rooms
     Route::get('/rooms', [RoomController::class, 'customerRooms']);
@@ -67,12 +77,9 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::delete('servers/{server}', [ServerController::class, 'delete']);
 
 
-    // Accesspoint
-    Route::get('/accesspoints', [AccesspointController::class, 'index']);
-    Route::get('{customer}/accesspoints/{accesspoint}', [AccesspointController::class, 'show']);
-    Route::post('{customer}/accesspoints', [AccesspointController::class, 'store']);
-    Route::put('{customer}/accesspoints/{accesspoint}', [AccesspointController::class, 'update']);
-    Route::delete('{customer}/accesspoints/{accesspoint}', [AccesspointController::class, 'delete']);
+
+
+
 
 
 });

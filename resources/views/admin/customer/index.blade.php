@@ -11,16 +11,6 @@
 
         </div>
 
-        <div class="h-20 w-64 border border-cerulean-500 rounded-sm">
-            <div class="h-8 text-cerulean-500 text-center font-CoconPro">
-                Zuletzt hinzugefügt
-            </div>
-            <div class="h-10 text-chathams-blue-800 dark:text-gray-100 text-center font-CoconPro text-2xl">
-                {{ $customerLastAdded->name }}
-            </div>
-
-        </div>
-
     </div>
 
 

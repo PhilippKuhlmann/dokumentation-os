@@ -6,20 +6,26 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\AccesspointRequest;
 use App\Models\Accesspoint;
 use App\Models\Customer;
+use App\Models\Room;
+use App\Models\Site;
 use Illuminate\Http\Request;
 
 class AccesspointController extends Controller
 {
-    public function index(Request $request)
+    public function index(Customer $customer, Request $request)
     {
-        $customerId = $request->query('customer');
-        $siteId = $request->query('site');
-        $roomId = $request->query('room');
+        $accesspoints = $customer->accesspoints();
 
-        $accesspoints = Accesspoint::where('customer_id', $customerId)
-                            ->where('site_id', $siteId)
-                            ->where('room_id', $roomId)
-                            ->get();
+        $filters = ['room_id', 'site_id'];
+
+        foreach ($filters as $filter) {
+            if ($request->has($filter)) {
+                $value = $request->input($filter);
+                $accesspoints->where($filter, $value);
+            }
+        }
+
+        $accesspoints = $accesspoints->get();
 
         return response()->json($accesspoints, 200);
     }
@@ -27,26 +33,31 @@ class AccesspointController extends Controller
 
 
 
-    public function show(Customer $customer, Accesspoint $accesspoint)
+    public function show(Customer $customer, Site $site, Room $room, Accesspoint $accesspoint)
     {
         return $accesspoint;
     }
 
-    public function store(Customer $customer, AccesspointRequest $request)
+    public function store(Customer $customer, Site $site, Room $room, AccesspointRequest $request)
     {
-        $accesspoint = $customer->accesspoints()->create($request->all());
+        $validated = $request->validated();
+        $validated['customer_id'] = $customer->id;
+        $validated['site_id'] = $site->id;
+        $validated['room_id'] = $room->id;
+
+        $accesspoint = Accesspoint::create($validated);
 
         return response()->json($accesspoint, 201);
     }
 
-    public function update(Customer $customer, AccesspointRequest $request, Accesspoint $accesspoint)
+    public function update(Customer $customer, Site $site, Room $room, AccesspointRequest $request, Accesspoint $accesspoint)
     {
         $accesspoint->update($request->all());
 
         return response()->json($accesspoint, 200);
     }
 
-    public function delete(Customer $customer, Accesspoint $accesspoint)
+    public function delete(Customer $customer, Site $site, Room $room, Accesspoint $accesspoint)
     {
         $accesspoint->delete();
 

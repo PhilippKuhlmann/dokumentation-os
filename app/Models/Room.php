@@ -10,4 +10,9 @@ class Room extends Model
     use HasFactory;
 
     protected $guarded = [];
+
+    public function accesspoints()
+    {
+        return $this->hasMany(Accesspoint::class);
+    }
 }

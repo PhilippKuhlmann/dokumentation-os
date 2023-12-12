@@ -67,9 +67,8 @@ class CustomerController extends Controller
     {
         $customers = Customer::paginate(20);
         $customersCount = Customer::all()->count();
-        $customerLastAdded = Customer::latest('created_at')->first();
 
-        return view('admin.customer.index', compact('customers', 'customersCount', 'customerLastAdded'));
+        return view('admin.customer.index', compact('customers', 'customersCount'));
     }
 
     public function create()

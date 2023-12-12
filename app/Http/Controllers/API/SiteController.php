@@ -4,18 +4,17 @@ namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\SiteRequest;
+use App\Models\Customer;
 use App\Models\Site;
 use Illuminate\Http\Request;
 
 class SiteController extends Controller
 {
-    public function customerSites(Request $request)
+    public function index(Customer $customer)
     {
-        $customer = $request->query('customer');
+        $sites = $customer->sites()->get();
 
-        $data = Site::where('customer_id', $customer)->get();
-
-        return response()->json($data);
+        return response()->json($sites, 200);
     }
 
     public function store(SiteRequest $request)
