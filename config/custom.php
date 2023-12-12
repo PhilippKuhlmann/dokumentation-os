@@ -3,7 +3,7 @@
 return [
     'permissions' => [
         'Site',
-        'Contactperson',
+        'ContactPerson',
         'Server',
         'VM',
         'NAS',

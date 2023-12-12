@@ -6,7 +6,7 @@ use App\Models\User;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
-class ContactpersonPolicy
+class ContactPersonPolicy
 {
     use HandlesAuthorization;
 
