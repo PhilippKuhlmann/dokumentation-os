@@ -37,25 +37,32 @@ Route::middleware(['auth:sanctum'])->group(function () {
 
     Route::prefix('{customer}')->group(function () {
 
-        Route::get('/accesspoints', [AccesspointController::class, 'index']);
-        Route::get('/{site}/{room}/accesspoints/{accesspoint}', [AccesspointController::class, 'show']);
-        Route::post('/{site}/{room}/accesspoints', [AccesspointController::class, 'store']);
-        Route::put('/{site}/{room}/accesspoints/{accesspoint}', [AccesspointController::class, 'update']);
-        Route::delete('/{site}/{room}/accesspoints/{accesspoint}', [AccesspointController::class, 'delete']);
-
         Route::get('/sites', [SiteController::class, 'index']);
         Route::post('/sites', [SiteController::class, 'store']);
+        Route::get('/sites/{site}', [SiteController::class, 'show']);
+
+        Route::get('/{site}/rooms', [RoomController::class, 'index']);
+        Route::post('/{site}/rooms', [RoomController::class, 'store']);
+        Route::get('/{site}/rooms/{room}', [RoomController::class, 'show']);
+
+        Route::get('/accesspoints', [AccesspointController::class, 'index']);
+        Route::get('/accesspoints/{accesspoint}', [AccesspointController::class, 'show']);
+        Route::post('/accesspoints', [AccesspointController::class, 'store']);
+        Route::put('/accesspoints/{accesspoint}', [AccesspointController::class, 'update']);
+        Route::delete('/accesspoints/{accesspoint}', [AccesspointController::class, 'delete']);
+
+        Route::get('/rackcabinets', [RackCabinetController::class, 'index']);
+        Route::post('/rackcabinets', [RackCabinetController::class, 'store']);
+
+
     });
 
 
-    // Rooms
-    Route::get('/rooms', [RoomController::class, 'customerRooms']);
-    Route::post('/rooms', [RoomController::class, 'store']);
-    Route::get('/room/{room}', [RoomController::class, 'show']);
+
 
     // RackCabinets
     Route::get('/rackcabinets', [RackCabinetController::class, 'customerRackCabinets']);
-    Route::post('/rackcabinets', [RackCabinetController::class, 'store']);
+
     Route::get('/rackcabinets/devices', [RackCabinetController::class, 'getRackCabinetDevices']);
 
     Route::get('/rackcabinets/update', [RackCabinetController::class, 'update']);

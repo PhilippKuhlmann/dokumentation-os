@@ -10,6 +10,17 @@
 
         <x-create.singlerow label="Passwort" name="password" default="{{ $licensesoftware->password }}" />
 
+        <x-create.doublerow
+            type1="date" label1="Start Datum" name1="start_date" default1="{{ $licensesoftware->start_date }}"
+            type2="date" label2="End Datum" name2="end_date" default2="{{ $licensesoftware->end_date }}"
+        />
+
+        <x-edit.radio label="Abonnement" name="abo" selector="{{ $licensesoftware->abo }}" :radios="[
+            'Kein Abo' => null,
+            'Jährlich' => 'Jährlich',
+            'Monatlich' => 'Monatlich',
+        ]" />
+
         <x-input.label value="Datei" class="mt-2" />
         <x-input.file name="file" />
 
@@ -22,4 +33,3 @@
     @endcan
 
 </x-app-layout>
-

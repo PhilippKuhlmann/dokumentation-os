@@ -35,17 +35,18 @@ class AccesspointController extends Controller
 
     public function show(Customer $customer, Site $site, Room $room, Accesspoint $accesspoint)
     {
-        return $accesspoint;
+        if ($accesspoint->customer_id == $customer->id) {
+            // Der Accesspoint gehört zum Kunden
+            return $accesspoint;
+        } else {
+            // Der Accesspoint gehört nicht zum Kunden
+            return response()->json(['error' => 'Unauthorized'], 401);
+        }
     }
 
     public function store(Customer $customer, Site $site, Room $room, AccesspointRequest $request)
     {
-        $validated = $request->validated();
-        $validated['customer_id'] = $customer->id;
-        $validated['site_id'] = $site->id;
-        $validated['room_id'] = $room->id;
-
-        $accesspoint = Accesspoint::create($validated);
+        $accesspoint = $customer->accesspoints()->create($request->validated());
 
         return response()->json($accesspoint, 201);
     }

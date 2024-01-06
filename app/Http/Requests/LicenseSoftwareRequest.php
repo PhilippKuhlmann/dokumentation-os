@@ -23,9 +23,12 @@ class LicenseSoftwareRequest extends FormRequest
     {
         return [
             'name' => 'required|max:255',
-            'key' => '',
-            'username' => '',
-            'password' => '',
+            'key' => 'nullable',
+            'username' => 'nullable',
+            'password' => 'nullable',
+            'start_date' => 'nullable',
+            'end_date' => 'nullable',
+            'abo' => 'nullable',
             'file_path' => 'nullable',
             'file_name' => 'nullable',
         ];
@@ -38,6 +41,9 @@ class LicenseSoftwareRequest extends FormRequest
             'key' => 'Key',
             'username' => 'Benutzername',
             'password' => 'Passwort',
+            'start_data' => 'Start Datum',
+            'end_date' => 'End Datum',
+            'abo' => 'Abomemount',
             'file_path' => 'Datei',
             'file_name' => 'Datei Name',
         ];

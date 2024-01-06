@@ -22,7 +22,7 @@ class RoomRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'site_id' => 'required',
+            'site_id' => '',
             'name' => 'required',
         ];
     }

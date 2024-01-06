@@ -9,6 +9,14 @@
 
         <x-create.singlerow label="Passwort" name="password" />
 
+        <x-create.doublerow type1="date" label1="Start Datum" name1="start_date" type2="date" label2="End Datum" name2="end_date" />
+
+        <x-create.radio label="Abonnement" name="abo" :radios="[
+            'Kein Abo' => null,
+            'Jährlich' => 'Jährlich',
+            'Monatlich' => 'Monatlich',
+        ]" />
+
         <x-input.label value="Datei" class="mt-2" />
         <x-input.file name="file" />
 

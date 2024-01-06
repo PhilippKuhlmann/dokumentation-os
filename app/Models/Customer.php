@@ -13,11 +13,22 @@ class Customer extends Model
 
     protected $guarded = [];
 
-    protected static function boot() {
+    protected static function boot()
+    {
         parent::boot();
 
         static::creating(function ($customer) {
-            $customer->slug = Str::slug($customer->name);
+            $baseSlug = Str::slug($customer->name);
+
+            // Eindeutigkeit sicherstellen
+            $slug = $baseSlug;
+            $counter = 1;
+            while (static::where('slug', $slug)->exists()) {
+                $slug = $baseSlug . '-' . $counter;
+                $counter++;
+            }
+
+            $customer->slug = $slug;
         });
     }
 
@@ -32,6 +43,11 @@ class Customer extends Model
     public function sites()
     {
         return $this->hasMany(Site::class);
+    }
+
+    public function rackcabinets()
+    {
+        return $this->hasMany(RackCabinet::class);
     }
 
     public function securepointutms()
@@ -218,7 +234,4 @@ class Customer extends Model
     {
         return $this->hasMany(OtherClient::class);
     }
-
-
-
 }

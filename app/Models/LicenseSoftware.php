@@ -18,7 +18,7 @@ class LicenseSoftware extends Model
     {
         return new Attribute(
             get: fn ($value) => !empty($value) ? Crypt::decryptString($value) : null,
-            set: fn ($value) => Crypt::encryptString($value),
+            set: fn ($value) => !empty($value) ? Crypt::encryptString($value) : null,
         );
     }
 

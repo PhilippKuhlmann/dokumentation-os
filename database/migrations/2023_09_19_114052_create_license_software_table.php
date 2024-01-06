@@ -18,6 +18,9 @@ return new class extends Migration
             $table->string('key')->nullable();
             $table->string('username')->nullable();
             $table->string('password')->nullable();
+            $table->date('start_date')->nullable();
+            $table->date('end_date')->nullable();
+            $table->string('abo')->nullable();
             $table->string('file_path')->nullable();
             $table->string('file_name')->nullable();
             $table->timestamps();

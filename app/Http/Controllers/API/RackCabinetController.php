@@ -4,27 +4,41 @@ namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\RackCabinetRequest;
+use App\Models\Customer;
 use App\Models\RackCabinet;
 use App\Models\RackDevice;
+use App\Models\Room;
+use App\Models\Site;
 use Illuminate\Http\Request;
 
 class RackCabinetController extends Controller
 {
-    public function customerRackCabinets(Request $request)
+    public function index(Customer $customer, Request $request)
     {
-        $room = $request->query('room');
+        $rackcabinets = $customer->rackcabinets();
 
-        $data = RackCabinet::where('room_id', $room)->get();
+        $filters = ['room_id', 'site_id'];
 
-        return response()->json($data);
+        foreach ($filters as $filter) {
+            if ($request->has($filter)) {
+                $value = $request->input($filter);
+                $rackcabinets->where($filter, $value);
+            }
+        }
+
+        $rackcabinets = $rackcabinets->get();
+
+        return response()->json($rackcabinets, 200);
     }
 
-    public function store(RackCabinetRequest $request)
+    public function store(Customer $customer, Site $site, Room $room, RackCabinetRequest $request)
     {
-        $rackcabinet = RackCabinet::create($request->all());
+        $rackcabinets = $customer->rackcabinets()->create($request->validated());
 
-        return response()->json($rackcabinet, 201);
+        return response()->json($rackcabinets, 201);
     }
+
+
 
     public function getRackCabinetDevices(Request $request)
     {

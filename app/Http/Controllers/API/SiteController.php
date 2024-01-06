@@ -17,9 +17,14 @@ class SiteController extends Controller
         return response()->json($sites, 200);
     }
 
-    public function store(SiteRequest $request)
+    public function show(Customer $customer, Site $site)
     {
-        $site = Site::create($request->all());
+        return $site;
+    }
+
+    public function store(Customer $customer, SiteRequest $request)
+    {
+        $site = $customer->sites()->create($request->all());
 
         return response()->json($site, 201);
     }

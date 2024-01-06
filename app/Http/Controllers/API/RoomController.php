@@ -4,29 +4,31 @@ namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\RoomRequest;
+use App\Models\Customer;
 use App\Models\Room;
+use App\Models\Site;
 use Illuminate\Http\Request;
 
 class RoomController extends Controller
 {
-    public function customerRooms(Request $request)
+    public function index(Customer $customer, Site $site)
     {
-        $site = $request->query('site');
+        $rooms = $site->rooms()->get();
 
-        $data = Room::where('site_id', $site)->get();
-
-        return response()->json($data);
+        return response()->json($rooms, 200);
     }
 
-    public function store(RoomRequest $request)
+    public function show(Customer $customer, Site $site, Room $room)
     {
-        $room = Room::create($request->all());
+        return response()->json($room);
+    }
+
+    public function store(Customer $customer, Site $site, RoomRequest $request)
+    {
+        $room = $site->rooms()->create($request->all());
 
         return response()->json($room, 201);
     }
 
-    public function show(Room $room, Request $request)
-    {
-        return response()->json($room);
-    }
+
 }

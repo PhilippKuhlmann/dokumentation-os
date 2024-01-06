@@ -26,7 +26,15 @@ class CustomerRequest extends FormRequest
         return [
             'name' => 'required|max:255',
             'customer_number' => '',
-            'slug' => '',
+            'slug' => 'unique:customers',
+        ];
+    }
+
+    public function attributes()
+    {
+        return [
+            'name' => 'Name',
+            'customer_number' => 'Kundennummer',
         ];
     }
 }

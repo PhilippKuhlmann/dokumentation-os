@@ -22,6 +22,7 @@ class RackCabinetRequest extends FormRequest
     public function rules(): array
     {
         return [
+            'site_id' => '',
             'room_id' => 'required',
             'name' => 'required',
         ];

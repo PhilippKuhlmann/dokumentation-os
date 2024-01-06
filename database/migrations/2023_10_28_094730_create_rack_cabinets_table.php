@@ -13,6 +13,8 @@ return new class extends Migration
     {
         Schema::create('rack_cabinets', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('customer_id')->constrained('customers')->onDelete('cascade');
+            $table->foreignId('site_id')->constrained('sites')->onDelete('cascade');
             $table->foreignId('room_id')->constrained('rooms')->onDelete('cascade');
             $table->string('name');
             $table->timestamps();

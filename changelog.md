@@ -1,5 +1,17 @@
 # Changelog
 
+## 24.01.06
+
+### Added
+
+- Lizenzen haben Ein Start und Enddatum
+
+### Fixed
+
+- Lizenzen lassen sich wieder runterladen
+
+
+
 ## 23.11.18
 
 ### Changed

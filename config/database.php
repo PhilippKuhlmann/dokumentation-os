@@ -93,6 +93,15 @@ return [
             // 'trust_server_certificate' => env('DB_TRUST_SERVER_CERTIFICATE', 'false'),
         ],
 
+        'influxdb' => [
+            'driver' => 'influxdb',
+            'host' => env('INFLUXDB_HOST', 'localhost'),
+            'port' => env('INFLUXDB_PORT', 8086),
+            'username' => env('INFLUXDB_USERNAME', 'username'),
+            'password' => env('INFLUXDB_PASSWORD', 'password'),
+            'database' => env('INFLUXDB_DATABASE', 'database'),
+        ],
+
     ],
 
     /*

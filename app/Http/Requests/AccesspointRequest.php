@@ -22,6 +22,7 @@ class AccesspointRequest extends FormRequest
     public function rules()
     {
         return [
+            'room_id' => '',
             'site_id' => 'required',
             'name' => 'required|max:255',
             'manufacturer' => 'nullable',
