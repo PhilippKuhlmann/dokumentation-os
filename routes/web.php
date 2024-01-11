@@ -167,11 +167,11 @@ Route::middleware(['auth', 'isCustomer'])->group(function () {
             Route::resource('camera', CameraController::class)->except(['show']);
             Route::resource('dyndns', DynDNSController::class, ['parameters' => ['dyndns' => 'dyndns']])->except(['show']);
 
-            Route::get('/{licensesoftware}/download', [LicenseSoftwareController::class, 'download'])->name('licensesoftware.download');
+            Route::get('/licensesoftware/{licensesoftware}/download', [LicenseSoftwareController::class, 'download'])->name('licensesoftware.download');
             Route::resource('licensesoftware', LicenseSoftwareController::class, ['parameters' => ['licensesoftware' => 'licensesoftware']])->except(['show']);
-            Route::get('/{licensewindows}/download', [LicenseWindowsController::class, 'download'])->name('licensewindows.download');
+            Route::get('/licensewindows/{licensewindows}/download', [LicenseWindowsController::class, 'download'])->name('licensewindows.download');
             Route::resource('licensewindows', LicenseWindowsController::class, ['parameters' => ['licensewindows' => 'licensewindows']])->except(['show']);
-            Route::get('/{licenseaccess}/download', [LicenseAccessController::class, 'download'])->name('licenseaccess.download');
+            Route::get('/licenseaccess/{licenseaccess}/download', [LicenseAccessController::class, 'download'])->name('licenseaccess.download');
             Route::resource('licenseaccess', LicenseAccessController::class, ['parameters' => ['licenseaccess' => 'licenseaccess']])->except(['show']);
 
 
