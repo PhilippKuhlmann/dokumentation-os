@@ -6,6 +6,7 @@
 
 - Wenn NAS gelöscht wurde war die Loginseite nicht mehr aufrufbar
 - Drucker konnten nicht bearbeitet werden
+- Dateien Konnten nicht runtergeladen werden
 
 
 ## 24.01.06
