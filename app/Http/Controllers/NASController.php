@@ -59,6 +59,12 @@ class NASController extends Controller
     {
         $this->authorize('delete', NAS::class);
 
+        $logins = $nas->loginnas()->get();
+
+        foreach($logins as $login) {
+            $login->delete();
+        }
+
         $nas->delete();
 
         return redirect(route('nas.index', $customer));

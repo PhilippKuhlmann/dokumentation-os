@@ -25,7 +25,7 @@ class MailboxRequest extends FormRequest
     {
         return [
             'name' => 'max:255',
-            'mailAdress' => 'max:255',
+            'mailAdress' => 'email|max:255',
             'username' => 'max:255',
             'password' => 'max:255',
             'mailbox_provider_id' => '',

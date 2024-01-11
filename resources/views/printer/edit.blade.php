@@ -2,7 +2,7 @@
     <x-create.main header="Drucker bearbeiten" labelsubmit="Speichern" action="{{ route('printer.update', [$customer, $printer]) }}">
         @method('PATCH')
 
-        <x-edit.select name="site_id" value="Standort" selector="{{ $nas->site_id }}" :array="$sites" />
+        <x-edit.select name="site_id" value="Standort" selector="{{ $printer->site_id }}" :array="$sites" />
 
         <x-create.singlerow label="Name" name="name" default="{{ $printer->name }}" />
 

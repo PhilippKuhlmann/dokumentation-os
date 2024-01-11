@@ -59,6 +59,12 @@ class RecorderController extends Controller
     {
         $this->authorize('delete', Recorder::class);
 
+        $logins = $recorder->loginrecorders()->get();
+
+        foreach($logins as $login) {
+            $login->delete();
+        }
+
         $recorder->delete();
 
         return redirect(route('recorder.index', $customer))->withSuccess('Gelöscht!');

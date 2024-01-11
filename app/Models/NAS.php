@@ -27,6 +27,6 @@ class NAS extends Model
 
     public function loginnas()
     {
-        return $this->hasMany(NAS::class);
+        return $this->hasMany(LoginNAS::class, 'nas_id');
     }
 }

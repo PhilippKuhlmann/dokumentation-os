@@ -4,7 +4,7 @@
 
         <x-create.singlerow label="Name" name="name" default="{{ $mailbox->name }}" />
 
-        <x-create.singlerow label="E-Mail Adresse" name="mailAdress" default="{{ $mailbox->mailAdress }}" />
+        <x-create.singlerow label="E-Mail Adresse" name="mailAdress" type="email" default="{{ $mailbox->mailAdress }}" />
 
         <x-create.doublerow label1="Benutzername" name1="username" default1="{{ $mailbox->username }}" label2="Passwort" name2="password" default2="{!! $mailbox->password !!}" />
 

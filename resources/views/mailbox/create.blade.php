@@ -3,7 +3,7 @@
 
         <x-create.singlerow label="Name" name="name" />
 
-        <x-create.singlerow label="E-Mail Adresse" name="mailAdress" />
+        <x-create.singlerow label="E-Mail Adresse" type="email" name="mailAdress" />
 
         <x-create.doublerow label1="Benutzername" name1="username" label2="Passwort" name2="password" />
 

@@ -21,4 +21,9 @@ class Recorder extends Model
             set: fn ($value) => Crypt::encryptString($value),
         );
     }
+
+    public function loginrecorders()
+    {
+        return $this->hasMany(LoginRecorder::class);
+    }
 }

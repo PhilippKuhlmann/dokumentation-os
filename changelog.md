@@ -1,5 +1,13 @@
 # Changelog
 
+## 24.01.11
+
+### Fixed
+
+- Wenn NAS gelöscht wurde war die Loginseite nicht mehr aufrufbar
+- Drucker konnten nicht bearbeitet werden
+
+
 ## 24.01.06
 
 ### Added
