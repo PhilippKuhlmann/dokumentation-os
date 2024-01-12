@@ -1,55 +1,33 @@
 <?php
 
-namespace Tests\Feature;
+uses(\Illuminate\Foundation\Testing\RefreshDatabase::class);
 
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
-use Tests\TestCase;
+test('login user with role admin and assert redirect to admin page', function () {
+    $this->createAndAuthenticateUserAdmin();
 
-class LoginTest extends TestCase
-{
-    use RefreshDatabase;
+    $response = $this->get('/');
 
-    public function test_login_user_with_role_admin(): void
-    {
-        $user = $this->createAndAuthenticateUserAdmin();
+    $this->assertAuthenticated();
 
-        $response = $this->post('/login', [
-            'username' => $user->username,
-            'password' => 'password',
-        ]);
+    $this->followRedirects($response)->assertViewIs('admin.index');
+});
 
-        $this->assertAuthenticated();
+test('login user without customer and assert redirect to customer search page', function () {
+    $this->createAndAuthenticateUserWithoutCustomer();
 
-        $this->followRedirects($response)->assertViewIs('admin.index');
-    }
+    $response = $this->get('/');
 
-    public function test_login_user_without_customer(): void
-    {
-        $user = $this->createAndAuthenticateUserWithoutCustomer();
+    $this->assertAuthenticated();
 
-        $response = $this->post('/login', [
-            'username' => $user->username,
-            'password' => 'password',
-        ]);
+    $this->followRedirects($response)->assertViewIs('customer.search');
+});
 
-        $this->assertAuthenticated();
+test('login user with role customer and assert redirect to customer dashboard page', function () {
+    $this->createAndAuthenticateUserWithCustomer();
 
-        $this->followRedirects($response)->assertViewIs('customer.search');
-    }
+    $response = $this->get('/');
 
-    public function test_login_user_with_role_customer(): void
-    {
-        $user = $this->createAndAuthenticateUserWithCustomer();
+    $this->assertAuthenticated();
 
-        $response = $this->post('/login', [
-            'username' => $user->username,
-            'password' => 'password',
-        ]);
-
-        $this->assertAuthenticated();
-
-        $this->followRedirects($response)->assertViewIs('customer.dashboard');
-    }
-
-}
+    $this->followRedirects($response)->assertViewIs('customer.dashboard');
+});

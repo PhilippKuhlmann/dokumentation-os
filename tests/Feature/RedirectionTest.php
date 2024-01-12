@@ -1,47 +1,33 @@
 <?php
 
-namespace Tests\Feature;
+uses(\Illuminate\Foundation\Testing\RefreshDatabase::class);
 
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use Tests\TestCase;
+test('the application redirect to login on default url for unauthenticated user', function () {
+    $response = $this->get('/');
+    $response->assertRedirect('/login');
+});
 
-class RedirectionTest extends TestCase
-{
-    use RefreshDatabase;
+test('the application redirect to login on customer url for unauthenticated user', function () {
+    $response = $this->get('/mustermann');
+    $response->assertRedirect('/login');
+});
 
-    public function test_the_application_redirect_to_login_on_default_url_for_unauthenticated_user()
-    {
-        $response = $this->get('/');
-        $response->assertRedirect('/login');
-    }
+test('the application redirect to login on admin url for unauthenticated user', function () {
+    $response = $this->get('/admin');
+    $response->assertRedirect('/login');
+});
 
-    public function test_the_application_redirect_to_login_on_customer_url_for_unauthenticated_user()
-    {
-        $response = $this->get('/mustermann');
-        $response->assertRedirect('/login');
-    }
+test('the application redirect to login on profile url for unauthenticated user', function () {
+    $response = $this->get('/profile');
+    $response->assertRedirect('/login');
+});
 
-    public function test_the_application_redirect_to_login_on_admin_url_for_unauthenticated_user()
-    {
-        $response = $this->get('/admin');
-        $response->assertRedirect('/login');
-    }
+test('the application redirect to login on utmsearch url for unauthenticated user', function () {
+    $response = $this->get('/utmsearch');
+    $response->assertRedirect('/login');
+});
 
-    public function test_the_application_redirect_to_login_on_profile_url_for_unauthenticated_user()
-    {
-        $response = $this->get('/profile');
-        $response->assertRedirect('/login');
-    }
-
-    public function test_the_application_redirect_to_login_on_utmsearch_url_for_unauthenticated_user()
-    {
-        $response = $this->get('/utmsearch');
-        $response->assertRedirect('/login');
-    }
-
-    public function test_the_application_redirect_to_login_on_remotesearch_url_for_unauthenticated_user()
-    {
-        $response = $this->get('/remotesearch');
-        $response->assertRedirect('/login');
-    }
-}
+test('the application redirect to login on remotesearch url for unauthenticated user', function () {
+    $response = $this->get('/remotesearch');
+    $response->assertRedirect('/login');
+});
