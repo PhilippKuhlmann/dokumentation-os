@@ -24,7 +24,7 @@ class UserRequest extends FormRequest
         return [
             'name' => 'required',
             'username' => 'required',
-            'password' => 'required',
+            'password' => $this->isMethod('post') ? 'required|min:6' : 'nullable|min:6',
             'email' => 'nullable',
             'role_id' => 'required',
             'customer_id' => 'required_if:role_id,98,99'

@@ -5,6 +5,7 @@
 ### Changed
 
 - Migration from Unit Test to Pest
+- Man konnte einen Benutzer nur bearbeiten indem man ein neues Passwort vergibt
 
 
 

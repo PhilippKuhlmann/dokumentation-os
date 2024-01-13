@@ -52,7 +52,12 @@ class UserController extends Controller
     public function update(User $user, UserRequest $request)
     {
         $userData = $request->validated();
-        $userData['password'] = Hash::make($request->password);
+
+        if (!empty($userData['password'])) {
+            $userData['password'] = Hash::make($request->password);
+        } else {
+            unset($userData['password']);
+        }
 
         $user->update($userData);
 
