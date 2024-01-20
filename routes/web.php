@@ -37,6 +37,7 @@ use App\Http\Controllers\PhoneController;
 use App\Http\Controllers\PhoneSystemController;
 use App\Http\Controllers\PrinterController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\RadiocenterController;
 use App\Http\Controllers\RecorderController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\RouterController;
@@ -152,7 +153,7 @@ Route::middleware(['auth', 'isCustomer'])->group(function () {
             Route::resource('logingeneral', LoginGeneralController::class)->except(['show']);
             Route::resource('loginrecorder', LoginRecorderController::class)->except(['show']);
             Route::resource('loginnas', LoginNASController::class, ['parameters' => ['loginnas' => 'loginnas']])->except(['show']);
-            Route::resource('phoneSystem', PhoneSystemController::class)->except(['show']);
+            Route::resource('phonesystem', PhoneSystemController::class)->except(['show']);
             Route::resource('phone', PhoneController::class)->except(['show']);
             Route::resource('dect', DECTController::class)->except(['show']);
             Route::resource('mailbox', MailboxController::class)->except(['show']);
@@ -165,6 +166,7 @@ Route::middleware(['auth', 'isCustomer'])->group(function () {
             Route::resource('ftpserver', FTPServerController::class)->except(['show']);
             Route::resource('recorder', RecorderController::class)->except(['show']);
             Route::resource('camera', CameraController::class)->except(['show']);
+            Route::resource('radiocenter', RadiocenterController::class)->except(['show']);
             Route::resource('dyndns', DynDNSController::class, ['parameters' => ['dyndns' => 'dyndns']])->except(['show']);
 
             Route::get('/licensesoftware/{licensesoftware}/download', [LicenseSoftwareController::class, 'download'])->name('licensesoftware.download');

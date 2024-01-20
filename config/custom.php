@@ -37,6 +37,7 @@ return [
         'LicenseAccess',
         'FTPServer',
         'DynDNS',
-        'File'
+        'File',
+        'Radiocenter'
     ],
 ];

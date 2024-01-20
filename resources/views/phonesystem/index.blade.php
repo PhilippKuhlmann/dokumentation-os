@@ -7,7 +7,7 @@
     @foreach ($phoneSystems as $phoneSystem)
         <x-card>
             <x-slot:head>
-                <x-show.header can="phonesystem_update" editUrl="{{ route('phoneSystem.edit', [$customer, $phoneSystem]) }}">
+                <x-show.header can="phonesystem_update" editUrl="{{ route('phonesystem.edit', [$customer, $phoneSystem]) }}">
                     {{ $phoneSystem->manufacturer }}
                 </x-show.header>
             </x-slot>

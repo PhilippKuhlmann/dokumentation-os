@@ -1,7 +1,5 @@
 <?php
 
-uses(\Illuminate\Foundation\Testing\RefreshDatabase::class);
-
 test('the application redirect to login on default url for unauthenticated user', function () {
     $response = $this->get('/');
     $response->assertRedirect('/login');

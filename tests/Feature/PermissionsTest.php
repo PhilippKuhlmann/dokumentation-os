@@ -2,8 +2,6 @@
 
 use App\Models\Customer;
 
-uses(\Illuminate\Foundation\Testing\RefreshDatabase::class);
-
 test('user without admin role cannot access admin page', function () {
     $user = $this->createAndAuthenticateUserwithoutCustomer();
 

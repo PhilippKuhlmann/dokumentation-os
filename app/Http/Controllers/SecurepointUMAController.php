@@ -13,14 +13,12 @@ class SecurepointUMAController extends Controller
     {
         $this->authorize('viewAny', SecurepointUMA::class);
 
-        return view('securepointuma.index', [
-            'customer' => $customer
-        ]);
+        return view('securepointuma.index', compact('customer'));
     }
 
     public function create(Customer $customer)
     {
-        $this->authorize('create', Router::class);
+        $this->authorize('create', SecurepointUMA::class);
 
         return view('securepointuma.create', [
             'customer' => $customer,

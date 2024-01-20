@@ -1,5 +1,5 @@
 <x-app-layout :$customer>
-    <x-create.main header="Neue Telefonanlage" action="{{ route('phoneSystem.store', $customer) }}">
+    <x-create.main header="Neue Telefonanlage" action="{{ route('phonesystem.store', $customer) }}">
 
         <x-create.select name="site_id" value="Standort" :array="$sites" />
 

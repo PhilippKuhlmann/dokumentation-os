@@ -1,5 +1,13 @@
 # Changelog
 
+## 24.01.20
+
+### Added
+
+- Funk mit Funkzentrale
+
+
+
 ## 24.01.12
 
 ### Changed

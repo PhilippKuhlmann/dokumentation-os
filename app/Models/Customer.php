@@ -234,4 +234,9 @@ class Customer extends Model
     {
         return $this->hasMany(OtherClient::class);
     }
+
+    public function radiocenters()
+    {
+        return $this->hasMany(Radiocenter::class);
+    }
 }

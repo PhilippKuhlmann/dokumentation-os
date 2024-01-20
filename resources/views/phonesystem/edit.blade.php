@@ -1,5 +1,5 @@
 <x-app-layout :$customer>
-    <x-create.main header="TK-Anlage bearbeiten" labelsubmit="Speichern" action="{{ route('phoneSystem.update', [$customer, $phoneSystem]) }}">
+    <x-create.main header="TK-Anlage bearbeiten" labelsubmit="Speichern" action="{{ route('phonesystem.update', [$customer, $phoneSystem]) }}">
         @method('PATCH')
 
         <x-edit.select name="site_id" value="Standort" selector="{{ $phoneSystem->site_id }}" :array="$sites" />

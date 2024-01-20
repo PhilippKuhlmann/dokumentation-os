@@ -119,7 +119,7 @@
                 <x-aside.dropdown label="Telefon" svg="svg.phone">
                     <x-slot:links>
                         @can('phonesystem_viewAny')
-                            <x-aside.dropdownlink label="TK-Anlage" href="{{ route('phoneSystem.index', $customer) }}" />
+                            <x-aside.dropdownlink label="TK-Anlage" href="{{ route('phonesystem.index', $customer) }}" />
                         @endcan
                         @can('phone_viewAny')
                             <x-aside.dropdownlink label="Telefon" href="{{ route('phone.index', $customer) }}" />
@@ -171,6 +171,16 @@
                         @endcan
                         @can('camera_viewAny')
                             <x-aside.dropdownlink label="Kamera" href="{{ route('camera.index', $customer) }}" />
+                        @endcan
+                    </x-slot:links>
+                </x-aside.dropdown>
+            @endcanany
+
+            @canany(['radiocenter_viewAny'])
+                <x-aside.dropdown label="Funk" svg="svg.signal">
+                    <x-slot:links>
+                        @can('radiocenter_viewAny')
+                            <x-aside.dropdownlink label="Funkzentrale" href="{{ route('radiocenter.index', $customer) }}" />
                         @endcan
                     </x-slot:links>
                 </x-aside.dropdown>

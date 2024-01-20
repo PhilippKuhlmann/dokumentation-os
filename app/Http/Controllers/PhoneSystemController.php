@@ -51,7 +51,7 @@ class PhoneSystemController extends Controller
 
         $phoneSystem->update($request->validated());
 
-        return redirect(route('phoneSystem.index', $customer));
+        return redirect(route('phonesystem.index', $customer));
     }
 
     public function destroy(Customer $customer, PhoneSystem $phoneSystem)
@@ -60,6 +60,6 @@ class PhoneSystemController extends Controller
 
         $phoneSystem->delete();
 
-        return redirect(route('phoneSystem.index', $customer));
+        return redirect(route('phonesystem.index', $customer));
     }
 }

@@ -1,7 +1,5 @@
 <?php
 
-uses(\Illuminate\Foundation\Testing\RefreshDatabase::class);
-
 test('login user with role admin and assert redirect to admin page', function () {
     $this->createAndAuthenticateUserAdmin();
 
