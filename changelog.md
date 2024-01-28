@@ -1,5 +1,13 @@
 # Changelog
 
+## 24.01.28
+
+### Changed
+
+- Livewire Version 2 -> 3
+
+
+
 ## 24.01.20
 
 ### Added

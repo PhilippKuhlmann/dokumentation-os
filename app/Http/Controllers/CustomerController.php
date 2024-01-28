@@ -3,9 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Customer;
-use Illuminate\Support\Str;
-use Illuminate\Http\Request;
 use Barryvdh\DomPDF\Facade\Pdf;
+// use function Spatie\LaravelPdf\Support\pdf;
 use App\Http\Requests\CustomerRequest;
 use App\Models\ContactPerson;
 use App\Models\Role;
@@ -57,6 +56,12 @@ class CustomerController extends Controller
         ],);
 
         return $pdf->stream();
+
+
+        // return pdf()
+        //     ->view('pdf.customer', compact('customer'))
+        //     ->footerView('pdf.footer')
+        //     ->name('dokumentation.pdf');
     }
 
 

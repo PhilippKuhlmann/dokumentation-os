@@ -30,6 +30,10 @@ class OperatingSystemsSeeder extends Seeder
             'Windows Server 2008 Standard',
             'Windows Server 2008 Datacenter',
 
+            'Proxmox Virtual Environment',
+            'Proxmox Backup Server',
+            'Proxmox Mail Gateway',
+
             'Debian 12',
             'Debian 11',
             'Debian 10',

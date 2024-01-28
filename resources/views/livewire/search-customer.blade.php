@@ -4,7 +4,7 @@
 
         <div class="text-center">
             <div class="flex">
-                <input wire:model.debounce.300ms="search" type="search" name="search" placeholder="Kundensuche"
+                <input wire:model.live.debounce.300ms="search" type="search" name="search" placeholder="Kundensuche"
                     class=" w-full px-4  bg-white text-gray-900
                                     dark:bg-gray-900 dark:text-gray-100 dark:border-gray-900
                                      focus:ring-0 focus:border-white border-white"

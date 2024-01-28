@@ -12,9 +12,9 @@
         "laravel/framework": "^10.0",
         "laravel/sanctum": "^3.2",
         "laravel/tinker": "^2.7",
-        "livewire/livewire": "^2.10",
+        "livewire/livewire": "^3.0",
         "spatie/laravel-backup": "^8.4",
-        "wire-elements/modal": "^1.0"
+        "spatie/laravel-pdf": "^1.1"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.7",

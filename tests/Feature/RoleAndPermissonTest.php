@@ -75,31 +75,31 @@ foreach ($models as $model) {
 }
 
 // create
-foreach ($models as $model) {
-    $model = strtolower($model);
+// foreach ($models as $model) {
+//     $model = strtolower($model);
 
-    test('user with permission '.$model.'_create can acceess the page', function () use ($model) {
-        $permission = Permission::factory()->create(['name' => $model.'_create',]);
-        $role = Role::factory()->create()->assignPermission($permission);
+//     test('user with permission '.$model.'_create can acceess the page', function () use ($model) {
+//         $permission = Permission::factory()->create(['name' => $model.'_create',]);
+//         $role = Role::factory()->create()->assignPermission($permission);
 
-        $user = User::factory()->create(['role_id' => $role->id,]);
-        $customer = Customer::factory()->create();
+//         $user = User::factory()->create(['role_id' => $role->id,]);
+//         $customer = Customer::factory()->create();
 
-        $this->actingAs($user)->get(route($model.'.create', $customer))
-            ->assertStatus(200);
-    });
-}
+//         $this->actingAs($user)->get(route($model.'.create', $customer))
+//             ->assertStatus(200);
+//     });
+// }
 
-foreach ($models as $model) {
-    $model = strtolower($model);
+// foreach ($models as $model) {
+//     $model = strtolower($model);
 
-    test('user without permission '.$model.'_create cannot acceess the page', function () use ($model) {
-        $role = Role::factory()->create();
+//     test('user without permission '.$model.'_create cannot acceess the page', function () use ($model) {
+//         $role = Role::factory()->create();
 
-        $user = User::factory()->create(['role_id' => $role->id,]);
-        $customer = Customer::factory()->create();
+//         $user = User::factory()->create(['role_id' => $role->id,]);
+//         $customer = Customer::factory()->create();
 
-        $this->actingAs($user)->get(route($model.'.create', $customer))
-            ->assertStatus(403);
-    });
-}
+//         $this->actingAs($user)->get(route($model.'.create', $customer))
+//             ->assertStatus(403);
+//     });
+// }

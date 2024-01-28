@@ -46,8 +46,8 @@ use App\Http\Controllers\SecurepointUTMController;
 use App\Http\Controllers\SiteController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\WifiController;
-use App\Http\Livewire\RemoteSearch;
-use App\Http\Livewire\UtmSearch;
+use App\Livewire\RemoteSearch;
+use App\Livewire\UtmSearch;
 
 require __DIR__.'/auth.php';
 
