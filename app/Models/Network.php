@@ -11,4 +11,9 @@ class Network extends Model
     use HasFactory, SoftDeletes;
 
     protected $guarded = [];
+
+    public function wifis()
+    {
+        return $this->hasMany(Wifi::class);
+    }
 }

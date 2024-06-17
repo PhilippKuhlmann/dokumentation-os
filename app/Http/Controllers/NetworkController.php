@@ -61,6 +61,13 @@ class NetworkController extends Controller
     {
         $this->authorize('delete', Network::class);
 
+        $wifis = $network->wifis()->get();
+
+        foreach($wifis as $wifi)
+        {
+            $wifi->delete();
+        }
+
         $network->delete();
 
         return redirect(route('network.index', $customer))->withSuccess('Gelöscht!');

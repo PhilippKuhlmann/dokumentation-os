@@ -33,7 +33,7 @@ class PhoneSystemController extends Controller
 
         $customer->phonesystems()->create($request->validated());
 
-        return redirect(route('phoneSystem.index', $customer));
+        return redirect(route('phonesystem.index', $customer));
     }
 
     public function edit(Customer $customer, PhoneSystem $phoneSystem)

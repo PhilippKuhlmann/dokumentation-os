@@ -1,5 +1,13 @@
 # Changelog
 
+## 24.06.17
+
+### Fixed
+
+- Bug Fixes
+
+
+
 ## 24.01.28
 
 ### Changed
