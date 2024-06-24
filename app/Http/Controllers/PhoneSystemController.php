@@ -36,29 +36,29 @@ class PhoneSystemController extends Controller
         return redirect(route('phonesystem.index', $customer));
     }
 
-    public function edit(Customer $customer, PhoneSystem $phoneSystem)
+    public function edit(Customer $customer, PhoneSystem $phonesystem)
     {
         $this->authorize('update', PhoneSystem::class);
 
         $sites = $this->getSitesForCustomer($customer);
 
-        return view('phonesystem.edit', compact('customer', 'sites', 'phoneSystem'));
+        return view('phonesystem.edit', compact('customer', 'sites', 'phonesystem'));
     }
 
-    public function update(Customer $customer, PhoneSystem $phoneSystem, PhoneSystemRequest $request)
+    public function update(Customer $customer, PhoneSystem $phonesystem, PhoneSystemRequest $request)
     {
         $this->authorize('update', PhoneSystem::class);
 
-        $phoneSystem->update($request->validated());
+        $phonesystem->update($request->validated());
 
         return redirect(route('phonesystem.index', $customer));
     }
 
-    public function destroy(Customer $customer, PhoneSystem $phoneSystem)
+    public function destroy(Customer $customer, PhoneSystem $phonesystem)
     {
         $this->authorize('delete', PhoneSystem::class);
 
-        $phoneSystem->delete();
+        $phonesystem->delete();
 
         return redirect(route('phonesystem.index', $customer));
     }
