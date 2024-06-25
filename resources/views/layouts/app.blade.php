@@ -38,6 +38,7 @@
     @include('layouts.success')
     @include('layouts.errors')
 
+    @livewireScriptConfig
 </body>
 
 </html>
