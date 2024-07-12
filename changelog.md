@@ -6,6 +6,10 @@
 
 - DHCP Start DHCP End muss jetzt eine IP und keine Zahl mehr sein
 
+### Fixed
+
+- NAS Port konnte nicht richtig eingegeben werden
+
 
 
 ## 24.06.17
