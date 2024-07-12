@@ -1,5 +1,13 @@
 # Changelog
 
+## 24.07.12
+
+### Changed
+
+- DHCP Start DHCP End muss jetzt eine IP und keine Zahl mehr sein
+
+
+
 ## 24.06.17
 
 ### Fixed

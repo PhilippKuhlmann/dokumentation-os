@@ -33,8 +33,8 @@ class NetworkRequest extends FormRequest
             'gateway' => 'nullable|ipv4',
             'dns1' => 'nullable|ipv4',
             'dns2' => 'nullable|ipv4',
-            'dhcpStart' => 'nullable|integer|min:1|max:255',
-            'dhcpEnd' => 'nullable|integer|min:1|max:255',
+            'dhcpStart' => 'nullable|ipv4',
+            'dhcpEnd' => 'nullable|ipv4',
         ];
     }
 
