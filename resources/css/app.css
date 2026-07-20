@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+[x-cloak] {
+    display: none !important;
+}
+
 @font-face {
     font-family: "CoconPro";
     src: url("/public/fonts/CoconPro-Regular.otf") format('opentype');

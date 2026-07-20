@@ -2,6 +2,24 @@ import './bootstrap';
 
 import 'flowbite';
 
+// Text in die Zwischenablage kopieren – mit Fallback für unsichere Kontexte
+// (z. B. lokale .test-Domain über http, wo navigator.clipboard fehlt).
+window.copyText = function (text) {
+    if (navigator.clipboard && window.isSecureContext) {
+        return navigator.clipboard.writeText(text);
+    }
+    const area = document.createElement('textarea');
+    area.value = text;
+    area.style.position = 'fixed';
+    area.style.opacity = '0';
+    document.body.appendChild(area);
+    area.focus();
+    area.select();
+    try { document.execCommand('copy'); } catch (e) { /* ignore */ }
+    document.body.removeChild(area);
+    return Promise.resolve();
+};
+
 import Alpine from 'alpinejs';
 
 window.Alpine = Alpine;
