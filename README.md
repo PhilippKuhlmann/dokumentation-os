@@ -1,6 +1,6 @@
 # IT-Dokumentation
 
-![Tests](https://github.com/PhilippKuhlmann/it-dokumentation/actions/workflows/tests.yml/badge.svg)
+![Tests](https://github.com/PhilippKuhlmann/dokumentation-os/actions/workflows/tests.yml/badge.svg)
 
 Ein Open-Source-System zur **IT-Dokumentation und Asset-Verwaltung** für Managed Service Provider
 (MSPs), gebaut mit Laravel 10 und Livewire.
@@ -30,8 +30,8 @@ Ein LAMP-Stack (PHP 8.0.2+, MySQL/MariaDB) sowie Grundkenntnisse in Webserver, P
 
 ### Repository klonen
 
-    git clone https://github.com/PhilippKuhlmann/it-dokumentation.git
-    cd it-dokumentation
+    git clone https://github.com/PhilippKuhlmann/dokumentation-os.git
+    cd dokumentation-os
 
 ### Abhängigkeiten installieren
 
