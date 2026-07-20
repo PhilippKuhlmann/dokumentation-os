@@ -10,7 +10,7 @@
 
             <x-table.body>
 
-                @foreach ($customer->adgroups as $adgroup)
+                @forelse ($customer->adgroups as $adgroup)
 
                     <x-table.datarow
                         :values="[
@@ -22,7 +22,9 @@
                         can="adgroup_update"
                     />
 
-                @endforeach
+                @empty
+    <tr><td colspan="100" class="px-4 py-8 text-center text-sm text-gray-400 dark:text-gray-500">Noch keine Einträge vorhanden.</td></tr>
+@endforelse
 
             </x-table.body>
         </x-table.main>

@@ -4,7 +4,7 @@
     @endcan
 
 
-    @foreach ($securepointutms as $securepointutm)
+    @forelse ($securepointutms as $securepointutm)
         <x-card>
             <x-slot:head>
                 <x-show.header can="securepointutm_update" editUrl="{{ route('securepointutm.edit', [$customer, $securepointutm]) }}">
@@ -35,7 +35,9 @@
 
             </x-slot>
         </x-card>
-    @endforeach
+    @empty
+    <x-emptystate />
+@endforelse
 
     <div class="px-3 pb-3">
         {{ $securepointutms->links() }}

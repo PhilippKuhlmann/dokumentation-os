@@ -5,7 +5,7 @@
     @endcan
 
 
-    @foreach ($networks as $network)
+    @forelse ($networks as $network)
         <x-card>
             <x-slot:head>
                 <x-show.header can="network_update" editUrl="{{ route('network.edit', [$customer, $network]) }}">
@@ -34,7 +34,9 @@
 
             </x-slot>
         </x-card>
-    @endforeach
+    @empty
+    <x-emptystate />
+@endforelse
 
     <div class="px-3 pb-3">
         {{ $networks->links() }}

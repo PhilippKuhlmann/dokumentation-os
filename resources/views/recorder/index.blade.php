@@ -6,7 +6,7 @@
         </x-sitetopmenu>
     @endcan
 
-    @foreach ($recorders as $recorder)
+    @forelse ($recorders as $recorder)
         <x-card>
             <x-slot:head>
                 <x-show.header can="recorder_update" editUrl="{{ route('recorder.edit', [$customer, $recorder]) }}">
@@ -34,7 +34,9 @@
 
             </x-slot>
         </x-card>
-    @endforeach
+    @empty
+    <x-emptystate />
+@endforelse
 
     <div class="px-3 pb-3">
         {{ $recorders->links() }}

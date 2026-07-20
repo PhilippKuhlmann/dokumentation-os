@@ -2,7 +2,7 @@
     @can('certificate_create')
         <x-sitetopmenu />
     @endcan
-    @foreach ($certificates as $certificate)
+    @forelse ($certificates as $certificate)
     <x-card>
         <x-slot:head>
             <x-show.header can="certificate_update" editUrl="{{ route('certificate.edit', [$customer, $certificate]) }}">
@@ -24,6 +24,8 @@
             @endif
         </x-slot>
     </x-card>
-    @endforeach
+    @empty
+    <x-emptystate />
+@endforelse
     <div class="px-3 pb-3">{{ $certificates->links() }}</div>
 </x-app-layout>

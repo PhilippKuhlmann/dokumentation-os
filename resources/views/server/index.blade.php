@@ -5,7 +5,7 @@
     @endcan
 
 
-    @foreach ($servers as $server)
+    @forelse ($servers as $server)
         <x-card>
             <x-slot:head>
                 <x-show.header can="server_update" editUrl="{{ route('server.edit', [$customer, $server]) }}">
@@ -47,7 +47,9 @@
 
             </x-slot>
         </x-card>
-    @endforeach
+    @empty
+    <x-emptystate />
+@endforelse
     <div class="px-3 pb-3">
         {{ $servers->links() }}
     </div>

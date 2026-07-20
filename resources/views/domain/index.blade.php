@@ -2,7 +2,7 @@
     @can('domain_create')
         <x-sitetopmenu />
     @endcan
-    @foreach ($domains as $domain)
+    @forelse ($domains as $domain)
     <x-card>
         <x-slot:head>
             <x-show.header can="domain_update" editUrl="{{ route('domain.edit', [$customer, $domain]) }}">
@@ -23,6 +23,8 @@
             @endif
         </x-slot>
     </x-card>
-    @endforeach
+    @empty
+    <x-emptystate />
+@endforelse
     <div class="px-3 pb-3">{{ $domains->links() }}</div>
 </x-app-layout>

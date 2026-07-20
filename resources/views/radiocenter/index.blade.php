@@ -4,7 +4,7 @@
         <x-sitetopmenu />
     @endcan
 
-    @foreach ($radiocenters as $radiocenter)
+    @forelse ($radiocenters as $radiocenter)
     <x-card>
         <x-slot:head>
             <x-show.header can="radiocenter_update" editUrl="{{ route('radiocenter.edit', [$customer, $radiocenter]) }}">
@@ -36,7 +36,9 @@
 
         </x-slot>
     </x-card>
-@endforeach
+@empty
+    <x-emptystate />
+@endforelse
 
 
     <div class="px-3 pb-3">

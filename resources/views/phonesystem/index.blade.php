@@ -4,7 +4,7 @@
         <x-sitetopmenu />
     @endcan
 
-    @foreach ($phoneSystems as $phoneSystem)
+    @forelse ($phoneSystems as $phoneSystem)
         <x-card>
             <x-slot:head>
                 <x-show.header can="phonesystem_update" editUrl="{{ route('phonesystem.edit', [$customer, $phoneSystem]) }}">
@@ -36,7 +36,9 @@
 
             </x-slot>
         </x-card>
-    @endforeach
+    @empty
+    <x-emptystate />
+@endforelse
 
     <div class="px-3 pb-3">
         {{ $phoneSystems->links() }}

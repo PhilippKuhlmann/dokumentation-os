@@ -4,7 +4,7 @@
         <x-sitetopmenu />
     @endcan
 
-    @foreach ($printers as $printer)
+    @forelse ($printers as $printer)
     <x-card>
         <x-slot:head>
             <x-show.header can="printer_update" editUrl="{{ route('printer.edit', [$customer, $printer]) }}">
@@ -32,7 +32,9 @@
 
         </x-slot>
     </x-card>
-@endforeach
+@empty
+    <x-emptystate />
+@endforelse
 
 
     <div class="px-3 pb-3">

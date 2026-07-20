@@ -5,7 +5,7 @@
     @endcan
 
 
-    @foreach ($networkswitches as $networkswitch)
+    @forelse ($networkswitches as $networkswitch)
         <x-card>
             <x-slot:head>
                 <x-show.header can="networkswitch_update" editUrl="{{ route('networkswitch.edit', [$customer, $networkswitch]) }}">
@@ -33,7 +33,9 @@
 
             </x-slot>
         </x-card>
-    @endforeach
+    @empty
+    <x-emptystate />
+@endforelse
 
     <div class="px-3 pb-3">
         {{ $networkswitches->links() }}

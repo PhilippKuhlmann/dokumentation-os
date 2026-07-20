@@ -4,7 +4,7 @@
         <x-sitetopmenu />
     @endcan
 
-    @foreach ($customer->securepointumas as $securepointuma)
+    @forelse ($customer->securepointumas as $securepointuma)
         <x-card>
             <x-slot:head>
                 <x-show.header can="securepointuma_update" editUrl="{{ route('securepointuma.edit', [$customer, $securepointuma]) }}">
@@ -32,6 +32,8 @@
 
             </x-slot>
         </x-card>
-    @endforeach
+    @empty
+    <x-emptystate />
+@endforelse
 
 </x-app-layout>

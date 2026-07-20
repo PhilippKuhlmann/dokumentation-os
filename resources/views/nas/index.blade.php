@@ -7,7 +7,7 @@
     @endcan
 
 
-    @foreach ($nasList as $nas)
+    @forelse ($nasList as $nas)
         <x-card>
             <x-slot:head>
                 <x-show.header can="nas_update" editUrl="{{ route('nas.edit', [$customer, $nas]) }}" >
@@ -37,7 +37,9 @@
 
             </x-slot>
         </x-card>
-    @endforeach
+    @empty
+    <x-emptystate />
+@endforelse
     <div class="px-3 pb-3">
         {{ $nasList->links() }}
     </div>

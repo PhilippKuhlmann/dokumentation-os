@@ -2,7 +2,7 @@
     @can('ups_create')
         <x-sitetopmenu />
     @endcan
-    @foreach ($ups as $usv)
+    @forelse ($ups as $usv)
     <x-card>
         <x-slot:head>
             <x-show.header can="ups_update" editUrl="{{ route('ups.edit', [$customer, $usv]) }}">
@@ -25,6 +25,8 @@
             @endif
         </x-slot>
     </x-card>
-    @endforeach
+    @empty
+    <x-emptystate />
+@endforelse
     <div class="px-3 pb-3">{{ $ups->links() }}</div>
 </x-app-layout>

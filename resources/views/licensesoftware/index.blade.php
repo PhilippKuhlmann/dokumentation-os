@@ -4,7 +4,7 @@
        <x-sitetopmenu />
     @endcan
 
-    @foreach ($customer->licensesoftware as $licensesoftware)
+    @forelse ($customer->licensesoftware as $licensesoftware)
         <x-card>
             <x-slot:head>
                 <x-show.header can="licensesoftware_update" editUrl="{{ route('licensesoftware.edit', [$customer, $licensesoftware]) }}">
@@ -41,7 +41,9 @@
 
             </x-slot>
         </x-card>
-    @endforeach
+    @empty
+        <x-emptystate />
+    @endforelse
 
     {{-- <div class="m-3">
         <x-table.main>

@@ -4,7 +4,7 @@
         <x-sitetopmenu />
     @endcan
 
-    @foreach ($dectList as $dect)
+    @forelse ($dectList as $dect)
         <x-card>
             <x-slot:head>
                 <x-show.header can="dect_update" editUrl="{{ route('dect.edit', [$customer, $dect]) }}">
@@ -36,7 +36,9 @@
 
             </x-slot>
         </x-card>
-    @endforeach
+    @empty
+    <x-emptystate />
+@endforelse
 
     <div class="px-3 pb-3">
         {{ $dectList->links() }}

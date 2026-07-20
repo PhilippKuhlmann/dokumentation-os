@@ -4,7 +4,7 @@
         <x-sitetopmenu />
     @endcan
 
-    @foreach ($customer->mailboxes as $mailbox)
+    @forelse ($customer->mailboxes as $mailbox)
         <x-card>
             <x-slot:head>
                 <x-show.header can="mailbox_update" editUrl="{{ route('mailbox.edit', [$customer, $mailbox]) }}">
@@ -38,7 +38,9 @@
 
             </x-slot>
         </x-card>
-    @endforeach
+    @empty
+    <x-emptystate />
+@endforelse
 
 
 </x-app-layout>

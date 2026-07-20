@@ -4,7 +4,7 @@
         <x-sitetopmenu />
     @endcan
 
-    @foreach ($vms as $vm)
+    @forelse ($vms as $vm)
         <x-card>
             <x-slot:head>
                 <x-show.header can="vm_update" editUrl="{{ route('vm.edit', [$customer, $vm]) }}">
@@ -38,7 +38,9 @@
 
             </x-slot>
         </x-card>
-    @endforeach
+    @empty
+    <x-emptystate />
+@endforelse
     <div class="px-3 pb-3">
         {{ $vms->links() }}
     </div>

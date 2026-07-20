@@ -5,7 +5,7 @@
     @endcan
 
 
-    @foreach ($iotdevices as $iotdevice)
+    @forelse ($iotdevices as $iotdevice)
     <x-card>
         <x-slot:head>
             <x-show.header can="iotdevice_update" editUrl="{{ route('iotdevice.edit', [$customer, $iotdevice]) }}">
@@ -34,7 +34,9 @@
 
         </x-slot>
     </x-card>
-@endforeach
+@empty
+    <x-emptystate />
+@endforelse
 
 
     <div class="px-3 pb-3">

@@ -82,7 +82,7 @@
         @isset($delUrl)
             @can($canDel)
                 <div class="flex flex-row space-x-2">
-                    <form method="POST" action="{{ $delUrl }}">
+                    <form method="POST" action="{{ $delUrl }}" onsubmit="return confirm('Objekt wirklich unwiderruflich löschen?')">
                         @csrf
                         @method('delete')
                         <x-input.button color="red" size="sm" label="Löschen!" />

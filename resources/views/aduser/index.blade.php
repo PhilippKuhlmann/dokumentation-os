@@ -10,7 +10,7 @@
 
             <x-table.body>
 
-                @foreach ($adusers as $aduser)
+                @forelse ($adusers as $aduser)
 
                     <x-table.datarow
                         :values="[
@@ -24,7 +24,9 @@
                         can="aduser_update"
                     />
 
-                @endforeach
+                @empty
+    <tr><td colspan="100" class="px-4 py-8 text-center text-sm text-gray-400 dark:text-gray-500">Noch keine Einträge vorhanden.</td></tr>
+@endforelse
 
             </x-table.body>
         </x-table.main>

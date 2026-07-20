@@ -21,7 +21,7 @@
 
             <x-table.body>
 
-                @foreach ($files as $file)
+                @forelse ($files as $file)
 
                     <x-table.datarow
                         :values="[
@@ -35,7 +35,9 @@
 
                     />
 
-                @endforeach
+                @empty
+    <tr><td colspan="100" class="px-4 py-8 text-center text-sm text-gray-400 dark:text-gray-500">Noch keine Einträge vorhanden.</td></tr>
+@endforelse
 
             </x-table.body>
         </x-table.main>

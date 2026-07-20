@@ -2,7 +2,7 @@
     @can('internetconnection_create')
         <x-sitetopmenu />
     @endcan
-    @foreach ($internetconnections as $ic)
+    @forelse ($internetconnections as $ic)
     <x-card>
         <x-slot:head>
             <x-show.header can="internetconnection_update" editUrl="{{ route('internetconnection.edit', [$customer, $ic]) }}">
@@ -27,6 +27,8 @@
             @endif
         </x-slot>
     </x-card>
-    @endforeach
+    @empty
+    <x-emptystate />
+@endforelse
     <div class="px-3 pb-3">{{ $internetconnections->links() }}</div>
 </x-app-layout>

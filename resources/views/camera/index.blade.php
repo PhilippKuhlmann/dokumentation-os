@@ -3,7 +3,7 @@
         <x-sitetopmenu />
     @endcan
 
-    @foreach ($cameras as $camera)
+    @forelse ($cameras as $camera)
         <x-card>
             <x-slot:head>
                 <x-show.header can="camera_update" editUrl="{{ route('camera.edit', [$customer, $camera]) }}">
@@ -31,7 +31,9 @@
 
             </x-slot>
         </x-card>
-    @endforeach
+    @empty
+    <x-emptystate />
+@endforelse
 
     <div class="px-3 pb-3">
         {{ $cameras->links() }}

@@ -5,7 +5,7 @@
     @endcan
 
 
-    @foreach ($otherclients as $otherclient)
+    @forelse ($otherclients as $otherclient)
         <x-card>
             <x-slot:head>
                 <x-show.header can="otherclient_update" editUrl="{{ route('otherclient.edit', [$customer, $otherclient]) }}">
@@ -33,7 +33,9 @@
 
             </x-slot>
         </x-card>
-    @endforeach
+    @empty
+    <x-emptystate />
+@endforelse
 
 
     <div class="px-3 pb-3">

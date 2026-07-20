@@ -58,6 +58,10 @@
                                 {{ $value }}
                             </a>
                         </td>
+                    @elseif (\Illuminate\Support\Str::contains($key, ['IP', 'MAC', 'Serien']))
+                        <td class="py-1 text-gray-900 dark:text-gray-100">
+                            <x-copy :value="$value" />
+                        </td>
                     @else
                         <td class="py-1 text-gray-900 dark:text-gray-100">{{ $value }}</td>
                     @endif

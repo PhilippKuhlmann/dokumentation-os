@@ -5,7 +5,7 @@
     @endcan
 
 
-    @foreach ($accesspoints as $accesspoint)
+    @forelse ($accesspoints as $accesspoint)
         <x-card>
             <x-slot:head>
                 <x-show.header can="accesspoint_update" editUrl="{{ route('accesspoint.edit', [$customer, $accesspoint]) }}">
@@ -33,7 +33,9 @@
 
             </x-slot>
         </x-card>
-    @endforeach
+    @empty
+    <x-emptystate />
+@endforelse
 
     <div class="px-3 pb-3">
         {{ $accesspoints->links() }}

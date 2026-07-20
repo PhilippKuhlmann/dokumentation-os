@@ -5,7 +5,7 @@
     @endcan
 
 
-    @foreach ($computers as $computer)
+    @forelse ($computers as $computer)
     <x-card>
         <x-slot:head>
             <x-show.header can="computer_update" editUrl="{{ route('computer.edit', [$customer, $computer]) }}">
@@ -34,7 +34,9 @@
 
         </x-slot>
     </x-card>
-@endforeach
+@empty
+    <x-emptystate />
+@endforelse
 
 
     <div class="px-3 pb-3">

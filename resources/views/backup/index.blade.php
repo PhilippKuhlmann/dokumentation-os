@@ -2,7 +2,7 @@
     @can('backup_create')
         <x-sitetopmenu />
     @endcan
-    @foreach ($backups as $backup)
+    @forelse ($backups as $backup)
     <x-card>
         <x-slot:head>
             <x-show.header can="backup_update" editUrl="{{ route('backup.edit', [$customer, $backup]) }}">
@@ -28,6 +28,8 @@
             @endif
         </x-slot>
     </x-card>
-    @endforeach
+    @empty
+    <x-emptystate />
+@endforelse
     <div class="px-3 pb-3">{{ $backups->links() }}</div>
 </x-app-layout>

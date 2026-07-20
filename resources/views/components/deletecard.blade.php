@@ -11,7 +11,7 @@
             Mit dem Klick auf Löschen wird das Objekt unwiederruflich gelöscht!
         </div>
         <div class="flex">
-            <form method="POST" action="{{ $action }}">
+            <form method="POST" action="{{ $action }}" onsubmit="return confirm('Objekt wirklich unwiderruflich löschen?')">
                 @csrf
                 @method('delete')
                 <x-input.button color="red" label="Löschen!" />
