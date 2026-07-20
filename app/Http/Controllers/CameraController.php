@@ -14,7 +14,7 @@ class CameraController extends Controller
         $this->authorize('viewAny', Camera::class);
 
         $cameras = $this->getFilteredQuery(Camera::class, $customer)
-                        ->get();
+                        ->latest()->paginate(25);
 
         return view('camera.index', compact('customer', 'cameras'));
     }

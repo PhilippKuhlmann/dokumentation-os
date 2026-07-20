@@ -4,27 +4,27 @@ namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-/**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Camera>
- */
 class CameraFactory extends Factory
 {
-    /**
-     * Define the model's default state.
-     *
-     * @return array<string, mixed>
-     */
-    public function definition(): array
+    public function definition()
     {
+        [$manufacturer, $model] = fake()->randomElement([
+            ['Hikvision', 'DS-2CD2143G2-I'],
+            ['Axis', 'M3057-PLVE'],
+            ['Dahua', 'IPC-HDW3549'],
+            ['Ubiquiti', 'G4 Pro'],
+            ['Mobotix', 'M16B'],
+        ]);
+
         return [
-            'name' => 'CAM-' . fake()->randomElement(['Werkstatt', 'Hof', 'Parkplatz', 'Büro', 'Tor', 'Tür', 'Flur', 'Garten']),
-            'manufacturer' => fake()->randomElement(['UniFi', 'Hikvison', 'DLink']),
-            'model' => fake()->ean8(),
-            'serialNumber' => fake()->ean13(),
-            'ip' => fake()->localIpv4,
+            'name' => 'CAM-' . fake()->randomElement(['Werkstatt', 'Hof', 'Parkplatz', 'Buero', 'Tor', 'Eingang', 'Flur', 'Lager']),
+            'manufacturer' => $manufacturer,
+            'model' => $model,
+            'serialNumber' => strtoupper(fake()->bothify('??########')),
+            'ip' => fake()->localIpv4(),
             'port' => '80',
-            'username' => fake()->userName(),
-            'password' => fake()->password($minLength = 6, $maxLength = 12),
+            'username' => 'admin',
+            'password' => fake()->password(8, 12),
         ];
     }
 }

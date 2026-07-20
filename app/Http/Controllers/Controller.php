@@ -15,11 +15,16 @@ class Controller extends BaseController
 
     protected function getFilteredQuery($model, $customer)
     {
-        if (session()->get('site') == "all" || !session()->get('site')) {
-            return $model::where('customer_id', $customer->id);
-        } else {
-            return $model::where('customer_id', $customer->id)->where('site_id', session()->get('site'));
+        $site = session()->get('site');
+
+        // Standortfilter nur anwenden, wenn ein Standort gewählt ist UND dieser zum
+        // aktuellen Kunden gehört. Sonst (nicht gesetzt / "all" / fremder Standort aus
+        // einem vorherigen Kunden) alle Datensätze des Kunden zurückgeben.
+        if ($site && $site !== 'all' && $customer->sites()->whereKey($site)->exists()) {
+            return $model::where('customer_id', $customer->id)->where('site_id', $site);
         }
+
+        return $model::where('customer_id', $customer->id);
     }
 
     protected function getSitesForCustomer($customer)

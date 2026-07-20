@@ -24,10 +24,10 @@ class WifiRequest extends FormRequest
     public function rules()
     {
         return [
-            'site_id' => 'required',
+            'site_id' => ['required', new \App\Rules\BelongsToCustomer('sites')],
             'ssid' => 'required|max:255',
             'password' => 'nullable|max:255',
-            'network_id' => 'required',
+            'network_id' => ['required', new \App\Rules\BelongsToCustomer('networks')],
             'encryption' => 'required|max:255',
         ];
     }

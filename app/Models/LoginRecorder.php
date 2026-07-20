@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Crypt;
 class LoginRecorder extends Model
 {
     use HasFactory, SoftDeletes;
+    use \App\Models\Concerns\TracksChanges;
 
     protected $guarded = [];
 

@@ -22,7 +22,7 @@ class CameraRequest extends FormRequest
     public function rules()
     {
         return [
-            'site_id' => 'required',
+            'site_id' => ['required', new \App\Rules\BelongsToCustomer('sites')],
             'name' => 'required',
             'manufacturer' => '',
             'model' => '',

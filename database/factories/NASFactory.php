@@ -4,27 +4,29 @@ namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-/**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\NAS>
- */
 class NASFactory extends Factory
 {
-    /**
-     * Define the model's default state.
-     *
-     * @return array<string, mixed>
-     */
-    public function definition(): array
+    protected $model = \App\Models\NAS::class;
+
+    public function definition()
     {
+        [$manufacturer, $model] = fake()->randomElement([
+            ['Synology', 'DS1821+'],
+            ['Synology', 'DS923+'],
+            ['Synology', 'RS1221+'],
+            ['QNAP', 'TS-873A'],
+            ['QNAP', 'TVS-h874'],
+        ]);
+
         return [
-            'name' => 'NAS-' . fake()->domainWord(),
-            'manufacturer' => fake()->company(),
-            'model' => fake()->ean8(),
-            'serialNumber' => fake()->ean13(),
+            'name' => 'NAS-' . fake()->randomElement(['Backup', 'Archiv', 'Kameras', 'Fileserver']),
+            'manufacturer' => $manufacturer,
+            'model' => $model,
+            'serialNumber' => strtoupper(fake()->bothify('????########')),
             'ip1' => fake()->localIpv4(),
-            'port' => '80',
+            'port' => '5001',
             'username' => 'admin',
-            'password' => fake()->password($minLength = 6, $maxLength = 14),
+            'password' => fake()->password(8, 14),
         ];
     }
 }

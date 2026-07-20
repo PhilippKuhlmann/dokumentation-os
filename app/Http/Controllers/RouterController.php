@@ -14,7 +14,7 @@ class RouterController extends Controller
         $this->authorize('viewAny', Router::class);
 
         $routers = $this->getFilteredQuery(Router::class, $customer)
-                        ->get();
+                        ->latest()->paginate(25);
 
         return view('router.index', compact('customer', 'routers'));
     }

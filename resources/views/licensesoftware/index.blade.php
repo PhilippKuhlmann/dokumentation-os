@@ -27,7 +27,9 @@
                 ]" />
 
                 <x-minitextcard title="Datei">
-                    {!! $licensesoftware->file_path ? '<a href="'.route('licensesoftware.download', [$customer, $licensesoftware]).'" class="hover:text-cerulean-500">'.$licensesoftware->file_name.' - Download</a>' : '' !!}
+                    @if ($licensesoftware->file_path)
+                        <a href="{{ route('licensesoftware.download', [$customer, $licensesoftware]) }}" class="text-cerulean-600 hover:text-cerulean-700 hover:underline">{{ $licensesoftware->file_name }} – Download</a>
+                    @endif
                 </x-minitextcard>
 
                 <x-minitextcard title="Key">

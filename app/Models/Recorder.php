@@ -11,6 +11,8 @@ use Illuminate\Support\Facades\Crypt;
 class Recorder extends Model
 {
     use HasFactory, SoftDeletes;
+    use \App\Models\Concerns\TracksChanges;
+    use \App\Models\Concerns\HasIpAddresses;
 
     protected $guarded = [];
 
@@ -25,5 +27,10 @@ class Recorder extends Model
     public function loginrecorders()
     {
         return $this->hasMany(LoginRecorder::class);
+    }
+
+    public function customer()
+    {
+        return $this->belongsTo(Customer::class);
     }
 }

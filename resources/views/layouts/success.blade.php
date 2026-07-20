@@ -1,7 +1,7 @@
 @if (session('success'))
 <div x-data="{ show: true }" x-show="show" x-init="setTimeout(() => show = false, 3000)"
     id="toast-success"
-    class="z-50 fixed bottom-2 right-3 flex items-center p-4 w-full max-w-xs text-gray-500 bg-green-200 rounded-lg shadow dark:text-gray-100 dark:bg-green-900"
+    class="z-50 fixed bottom-4 right-4 flex items-center p-4 w-full max-w-xs text-gray-700 bg-white border border-gray-100 rounded-xl shadow-lg dark:text-gray-200 dark:bg-gray-800 dark:border-gray-700"
     role="alert">
     <div
         class="inline-flex flex-shrink-0 justify-center items-center w-8 h-8 text-green-500 bg-green-100 rounded-lg dark:bg-green-800 dark:text-green-200">

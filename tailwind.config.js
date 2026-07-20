@@ -20,62 +20,61 @@ module.exports = {
             },
 
             colors: {
-                'blau-900': '#194b7e',
-                'blau-500': '#1D70A0',
-                'blau-300': '#4EA5DD',
-                'blau-100': '#01b1ec',
-                'sdarkblue': '#0C2E5E',
-                'ssystemblue': '#01B0EC',
+                // Namen aus historischen Gründen beibehalten (in vielen Views referenziert),
+                // Werte auf ein von Stadel abweichendes Royal-/Navy-Blau umgestellt.
+                'blau-900': '#1b4176',
+                'blau-500': '#1f73d6',
+                'blau-300': '#59b0ff',
+                'blau-100': '#bce0ff',
+                'sdarkblue': '#122748',
+                'ssystemblue': '#3391f0',
 
                 'cerulean': {
-                    '50': '#effaff',
-                    '100': '#def4ff',
-                    '200': '#b6ebff',
-                    '300': '#75deff',
-                    '400': '#2dcdff',
-                    '500': '#01b0ec', // systeme blue
-                    '600': '#0094d3',
-                    '700': '#0075aa',
-                    '800': '#00638c',
-                    '900': '#065274',
-                    '950': '#04344d',
+                    '50': '#eef7ff',
+                    '100': '#d9edff',
+                    '200': '#bce0ff',
+                    '300': '#8ecdff',
+                    '400': '#59b0ff',
+                    '500': '#3391f0', // primary accent (Royal-Blau)
+                    '600': '#1f73d6',
+                    '700': '#1a5cad',
+                    '800': '#1b4d8e',
+                    '900': '#1b4176',
+                    '950': '#122748',
                 },
 
                 'chathams-blue': {
-                    '50': '#f2f7fd',
-                    '100': '#e4eefa',
-                    '200': '#c3dbf4',
-                    '300': '#8dbeec',
-                    '400': '#519ddf',
-                    '500': '#2a81cd',
-                    '600': '#1b65ae',
-                    '700': '#17518d',
-                    '800': '#194b7e', // dark Blue
-                    '900': '#193c61',
-                    '950': '#102541',
+                    '50': '#f1f6fc',
+                    '100': '#e0ecf8',
+                    '200': '#c7dbf1',
+                    '300': '#9ec2e7',
+                    '400': '#6fa1da',
+                    '500': '#4d82cd',
+                    '600': '#3967b3',
+                    '700': '#305392',
+                    '800': '#1f3d6e', // dark heading (Navy)
+                    '900': '#1c3358',
+                    '950': '#131f38',
                 },
 
                 'hawkes-blue': {
-                    '50': '#f0faff',
-                    '100': '#dff2fd', // Table Card
-                    '200': '#bce7fb',
-                    '300': '#81d6f8',
-                    '400': '#3ec1f2',
-                    '500': '#14aae3',
-                    '600': '#0888c1',
-                    '700': '#086d9c',
-                    '800': '#0b5c81',
-                    '900': '#0f4c6b',
-                    '950': '#0a3147',
+                    '50': '#f0f8ff',
+                    '100': '#dceffd', // Table Card (Hellblau)
+                    '200': '#bce0fb',
+                    '300': '#82cbf8',
+                    '400': '#40b1f2',
+                    '500': '#1795e3',
+                    '600': '#0877c1',
+                    '700': '#085f9c',
+                    '800': '#0b5081',
+                    '900': '#0f426b',
+                    '950': '#0a2b47',
                 },
 
             },
             width: {
                 '128': '32rem',
             },
-            backgroundImage: {
-                'loginbackground': "url('/images/background.png')",
-            }
         },
 
     },

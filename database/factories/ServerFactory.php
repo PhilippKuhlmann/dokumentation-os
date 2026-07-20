@@ -4,31 +4,32 @@ namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-/**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Server>
- */
 class ServerFactory extends Factory
 {
-    /**
-     * Define the model's default state.
-     *
-     * @return array<string, mixed>
-     */
     public function definition()
     {
+        [$manufacturer, $model] = fake()->randomElement([
+            ['Dell', 'PowerEdge R650'],
+            ['Dell', 'PowerEdge R750'],
+            ['HPE', 'ProLiant DL360 Gen10'],
+            ['HPE', 'ProLiant DL380 Gen11'],
+            ['Lenovo', 'ThinkSystem SR650'],
+            ['Fujitsu', 'PRIMERGY RX2540 M6'],
+        ]);
+
         return [
-            'name' => 'SRV-' . fake()->domainWord(),
-            'manufacturer' => fake()->company(),
-            'model' => fake()->ean8(),
-            'serialNumber' => fake()->ean13(),
+            'name' => 'SRV-' . fake()->randomElement(['DC01', 'FS01', 'HV01', 'APP01', 'SQL01', 'BAK01']),
+            'manufacturer' => $manufacturer,
+            'model' => $model,
+            'serialNumber' => strtoupper(fake()->bothify('??######')),
             'ip1' => fake()->localIpv4(),
             'bmcIp' => fake()->localIpv4(),
             'bmcUser' => 'root',
-            'bmcPassword' => fake()->password($minLength = 6, $maxLength = 14),
-            'services' => 'Hyper-V,DNS,AD',
-            'operating_system_id' => fake()->numberBetween($min = 1, $max = 10),
-            'remoteID' => fake()->numberBetween($min = 100000000, $max = 999999999),
-            'remotePassword' => fake()->password($minLength = 10, $maxLength = 14),
+            'bmcPassword' => fake()->password(10, 14),
+            'services' => fake()->randomElement(['Hyper-V,DNS,AD', 'Fileserver,DFS', 'SQL,Backup', 'RDS,Print']),
+            'operating_system_id' => fake()->numberBetween(1, 10),
+            'remoteID' => fake()->numberBetween(100000000, 999999999),
+            'remotePassword' => fake()->password(10, 14),
         ];
     }
 }

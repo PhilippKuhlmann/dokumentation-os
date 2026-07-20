@@ -22,7 +22,7 @@ class RadiocenterRequest extends FormRequest
     public function rules()
     {
         return [
-            'site_id' => 'required',
+            'site_id' => ['required', new \App\Rules\BelongsToCustomer('sites')],
             'frequency' => 'required',
             'channel_spacing' => 'required',
             'power' => 'nullable',

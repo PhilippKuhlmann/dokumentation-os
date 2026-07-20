@@ -48,4 +48,8 @@
             </x-slot>
         </x-card>
     @endforeach
+    <div class="px-3 pb-3">
+        {{ $servers->links() }}
+    </div>
+
 </x-app-layout>

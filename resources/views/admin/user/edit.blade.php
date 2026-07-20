@@ -1,12 +1,12 @@
 <x-admin-layout>
-    <x-create.main header="Benutzer bearbeiten" labelsubmit="Ändern" action="{{ route('admin.user.update', $user) }}">
+    <x-create.main header="Benutzer bearbeiten" labelsubmit="Speichern" action="{{ route('admin.user.update', $user) }}">
         @method('PATCH')
 
-        <x-create.singlerow label="Name" name="name" default="{{ $user->name }}" />
+        <x-create.singlerow label="Name" name="name" :default="$user->name" />
 
-        <x-create.doublerow label1="Benutzername" name1="username" default1="{{ $user->username }}" label2="Passwort" name2="password" />
+        <x-create.doublerow label1="Benutzername" name1="username" :default1="$user->username" label2="Passwort" name2="password" />
 
-        <x-create.singlerow label="E-Mail" name="email" default="{{ $user->email }}" />
+        <x-create.singlerow label="E-Mail" name="email" :default="$user->email" />
 
         <x-edit.select.role selector="{{ $user->role_id }}" :$roles/>
 

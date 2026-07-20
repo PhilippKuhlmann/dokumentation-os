@@ -4,7 +4,7 @@
 
         <x-create.select name="site_id" value="Standort" :array="$sites" />
 
-        <x-create.singlerow label="Frequenz in Mhz" name="frequency" default="{{ $radiocenter->frequency }}" />
+        <x-create.singlerow label="Frequenz in Mhz" name="frequency" :default="$radiocenter->frequency" />
 
         <div class="flex flex-col mt-2">
             <x-input.label for="channel_spacing" value="Kanalabstand in kHz" />
@@ -15,13 +15,13 @@
             </x-input.select>
         </div>
 
-        <x-create.singlerow label="Leistung in W" name="power" default="{{ $radiocenter->power }}" />
+        <x-create.singlerow label="Leistung in W" name="power" :default="$radiocenter->power" />
 
-        <x-create.singlerow label="Auswerter" name="evaluator" default="{{ $radiocenter->evaluator }}" />
+        <x-create.singlerow label="Auswerter" name="evaluator" :default="$radiocenter->evaluator" />
 
-        <x-create.singlerow label="Geber" name="encoder" default="{{ $radiocenter->encoder }}" />
+        <x-create.singlerow label="Geber" name="encoder" :default="$radiocenter->encoder" />
 
-        <x-create.singlerow label="Quittung" name="receipt" default="{{ $radiocenter->receipt }}" />
+        <x-create.singlerow label="Quittung" name="receipt" :default="$radiocenter->receipt" />
 
         <div class="flex flex-col mt-2">
             <x-input.label for="pilot_tone" value="Pilotton in Hz" />

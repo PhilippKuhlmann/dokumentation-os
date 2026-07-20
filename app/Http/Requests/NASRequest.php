@@ -22,7 +22,7 @@ class NASRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'site_id' => 'required',
+            'site_id' => ['required', new \App\Rules\BelongsToCustomer('sites')],
             'name' => 'max:255',
             'manufacturer' => 'max:255',
             'model' => 'max:255',

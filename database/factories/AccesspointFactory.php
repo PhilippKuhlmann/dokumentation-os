@@ -1,23 +1,19 @@
 <?php
-
 namespace Database\Factories;
-
 use Illuminate\Database\Eloquent\Factories\Factory;
-
-/**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Accesspoint>
- */
-class AccesspointFactory extends Factory
-{
-    /**
-     * Define the model's default state.
-     *
-     * @return array<string, mixed>
-     */
-    public function definition(): array
-    {
+class AccesspointFactory extends Factory {
+    protected $model = \App\Models\Accesspoint::class;
+    public function definition(): array {
+        [$m,$mo] = fake()->randomElement([
+            ['Ubiquiti','U6-Pro'],['Ubiquiti','U6-Lite'],['HPE Aruba','AP-515'],
+            ['Cisco Meraki','MR46'],['TP-Link Omada','EAP670'],
+        ]);
         return [
-            //
+            'name' => 'AP-' . fake()->randomElement(['Empfang','Buero-1','Buero-2','Lager','Besprechung','Werkstatt']),
+            'manufacturer' => $m, 'model' => $mo,
+            'serialNumber' => strtoupper(fake()->bothify('??####-######')),
+            'username' => 'admin', 'password' => fake()->password(8,14),
+            'ip' => fake()->localIpv4(), 'port' => '443',
         ];
     }
 }

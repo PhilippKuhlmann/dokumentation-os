@@ -22,7 +22,7 @@ class LoginRecorderRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'recorder_id' => 'required',
+            'recorder_id' => ['required', new \App\Rules\BelongsToCustomer('recorders')],
             'username' => 'required|max:255',
             'password' => 'required|max:255',
             'hidden' => '',

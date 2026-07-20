@@ -16,11 +16,13 @@ class ADUserController extends Controller
 
         if (Auth::user()->can('see_hidden')) {
             $adusers = ADUser::where('customer_id', $customer->id)
-                                ->get();
+                                ->latest()
+                                ->paginate(25);
         } else {
             $adusers = ADUser::where('customer_id', $customer->id)
                                 ->where('hidden', false)
-                                ->get();
+                                ->latest()
+                                ->paginate(25);
         }
 
         return view('aduser.index', compact('customer', 'adusers'));

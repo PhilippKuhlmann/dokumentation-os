@@ -16,7 +16,7 @@ class FileController extends Controller
 
         $files = $this->getFilteredQuery(File::class, $customer)
                       ->orderBy('created_at')
-                      ->get();
+                      ->paginate(25);
 
         return view('file.index', compact('customer', 'files'));
     }

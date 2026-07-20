@@ -36,4 +36,8 @@
     @endforeach
 
 
+    <div class="px-3 pb-3">
+        {{ $otherclients->links() }}
+    </div>
+
 </x-app-layout>

@@ -16,7 +16,7 @@ class NetworkController extends Controller
 
         $networks = $this->getFilteredQuery(Network::class, $customer)
                          ->orderBy('vlanId')
-                         ->get();
+                         ->paginate(25);
 
         return view('network.index', compact('customer', 'networks'));
     }

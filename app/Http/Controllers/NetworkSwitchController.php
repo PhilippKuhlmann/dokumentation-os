@@ -14,7 +14,7 @@ class NetworkSwitchController extends Controller
         $this->authorize('viewAny', NetworkSwitch::class);
 
         $networkswitches = $this->getFilteredQuery(NetworkSwitch::class, $customer)
-                        ->get();
+                        ->latest()->paginate(25);
 
         return view('networkswitch.index', compact('customer', 'networkswitches'));
     }

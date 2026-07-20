@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('type')->nullable();
             $table->string('username');
             $table->string('password');
-            $table->string('encryptionkey');
+            $table->longText('encryptionkey');
             $table->string('ip');
             $table->string('urlAdmin');
             $table->string('urlUser')->nullable();

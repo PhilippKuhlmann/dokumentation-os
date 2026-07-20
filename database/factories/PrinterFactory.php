@@ -19,7 +19,7 @@ class PrinterFactory extends Factory
         return [
             'name' => 'prt-' . fake()->numberBetween($min = 1, $max = 100),
             'manufacturer' => fake()->randomElement(['Brother', 'HP', 'Kyocera']),
-            'model' => fake()->ean8(),
+            'model' => fake()->randomElement(['MFC-L8900CDW', 'LaserJet M480', 'ECOSYS M5526cdw', 'WorkForce Pro WF-C5790']),
             'serialNumber' => fake()->ean13(),
             'ip' => fake()->localIpv4(),
             'port' => fake()->randomElement(['443', '80', '8080']),

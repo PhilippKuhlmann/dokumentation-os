@@ -14,6 +14,8 @@ class LoginNASController extends Controller
     {
         $this->authorize('viewAny', LoginNAS::class);
 
+        $customer->load('loginnas.nas');
+
         return view('loginnas.index', compact('customer'));
     }
 

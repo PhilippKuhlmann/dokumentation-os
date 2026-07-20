@@ -1,23 +1,13 @@
 <?php
-
 namespace Database\Factories;
-
 use Illuminate\Database\Eloquent\Factories\Factory;
-
-/**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\LoginNAS>
- */
-class LoginNASFactory extends Factory
-{
-    /**
-     * Define the model's default state.
-     *
-     * @return array<string, mixed>
-     */
-    public function definition(): array
-    {
+class LoginNASFactory extends Factory {
+    protected $model = \App\Models\LoginNAS::class;
+    public function definition(): array {
         return [
-            //
+            'description' => fake()->randomElement(['Backup-Konto','Kamera-Aufzeichnung','Abteilungslaufwerk','Admin']),
+            'username' => fake()->userName(),
+            'password' => fake()->password(8, 14),
         ];
     }
 }

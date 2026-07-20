@@ -11,6 +11,8 @@ use Illuminate\Support\Facades\Crypt;
 class IoTDevice extends Model
 {
     use HasFactory, SoftDeletes;
+    use \App\Models\Concerns\TracksChanges;
+    use \App\Models\Concerns\HasIpAddresses;
 
     protected $table = 'iot_devices';
 
@@ -24,4 +26,9 @@ class IoTDevice extends Model
         );
     }
 
+
+    public function customer()
+    {
+        return $this->belongsTo(Customer::class);
+    }
 }

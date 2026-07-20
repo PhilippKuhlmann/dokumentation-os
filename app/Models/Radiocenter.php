@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Radiocenter extends Model
 {
     use HasFactory, SoftDeletes;
+    use \App\Models\Concerns\TracksChanges;
 
     protected $guarded = [];
 

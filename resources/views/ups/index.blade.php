@@ -1,0 +1,30 @@
+<x-app-layout :$customer>
+    @can('ups_create')
+        <x-sitetopmenu />
+    @endcan
+    @foreach ($ups as $usv)
+    <x-card>
+        <x-slot:head>
+            <x-show.header can="ups_update" editUrl="{{ route('ups.edit', [$customer, $usv]) }}">
+                {{ $usv->name }}
+            </x-show.header>
+        </x-slot>
+        <x-slot:body>
+            <x-minitablecard title="Allgemein" :array="[
+                'Hersteller' => $usv->manufacturer,
+                'Modell' => $usv->model,
+                'Seriennummer' => $usv->serialNumber,
+            ]" />
+            <x-minitablecard title="Technik" :array="[
+                'IP-Adresse' => $usv->ip,
+                'Kapazität' => $usv->capacity,
+                'Laufzeit' => $usv->runtime,
+            ]" />
+            @if ($usv->notes)
+                <x-minitextcard title="Notizen">{{ $usv->notes }}</x-minitextcard>
+            @endif
+        </x-slot>
+    </x-card>
+    @endforeach
+    <div class="px-3 pb-3">{{ $ups->links() }}</div>
+</x-app-layout>

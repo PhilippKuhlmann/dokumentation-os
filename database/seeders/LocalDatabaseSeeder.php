@@ -31,26 +31,12 @@ class LocalDatabaseSeeder extends Seeder
 
         $site1 = \App\Models\Site::factory()->create([
             'customer_id' => $customer->id,
-            'name' => 'Island',
+            'name' => 'Zentrale Hamburg',
         ]);
 
         $site2 = \App\Models\Site::factory()->create([
             'customer_id' => $customer->id,
-            'name' => 'Norwegen',
-        ]);
-
-        $customer2 = \App\Models\Customer::factory()->create([
-            'name' => 'Kuhlmann',
-        ]);
-
-        $site3 = \App\Models\Site::factory()->create([
-            'customer_id' => $customer2->id,
-            'name' => 'main',
-        ]);
-
-        $site4 = \App\Models\Site::factory()->create([
-            'customer_id' => $customer2->id,
-            'name' => 'second',
+            'name' => 'Filiale München',
         ]);
 
         \App\Models\User::factory()->create([
@@ -100,15 +86,49 @@ class LocalDatabaseSeeder extends Seeder
             'site_id' => $site2->id,
         ]);
 
-        \App\Models\Network::factory(2)->create([
-            'customer_id' => $customer2->id,
-            'site_id' => $site3->id,
+        // Kohärentes Management-VLAN mit passend adressierten Geräten (für einen
+        // aussagekräftigen IP-Plan: Gateway, Server, DHCP-Bereich, freie Bereiche).
+        \App\Models\Network::factory()->create([
+            'customer_id' => $customer->id,
+            'site_id' => $site1->id,
+            'description' => 'Server & Management',
+            'vlanId' => 30,
+            'network' => '10.10.30.0',
+            'cidr' => '24',
+            'subnetmask' => '255.255.255.0',
+            'gateway' => '10.10.30.1',
+            'dns1' => '10.10.30.10',
+            'dns2' => '8.8.8.8',
+            'dhcpStart' => '100',
+            'dhcpEnd' => '200',
         ]);
 
-        \App\Models\Network::factory(1)->create([
-            'customer_id' => $customer2->id,
-            'site_id' => $site4->id,
+        // Clients-VLAN (der Router ist auch hier Gateway -> zweite IP)
+        $clientsVlan = \App\Models\Network::factory()->create([
+            'customer_id' => $customer->id,
+            'site_id' => $site1->id,
+            'description' => 'Clients',
+            'vlanId' => 20,
+            'network' => '10.10.20.0',
+            'cidr' => '24',
+            'subnetmask' => '255.255.255.0',
+            'gateway' => '10.10.20.1',
+            'dhcpStart' => '100',
+            'dhcpEnd' => '200',
         ]);
+
+        $rtrCore = \App\Models\Router::factory()->create(['customer_id' => $customer->id, 'site_id' => $site1->id, 'name' => 'RTR-Core', 'ip' => '10.10.30.1']);
+        // Router hängt in mehreren VLANs -> zusätzliche Gateway-IP im Clients-VLAN
+        $rtrCore->ipAddresses()->create(['customer_id' => $customer->id, 'network_id' => $clientsVlan->id, 'address' => '10.10.20.1', 'label' => 'Gateway Clients']);
+
+        \App\Models\NetworkSwitch::factory()->create(['customer_id' => $customer->id, 'site_id' => $site1->id, 'name' => 'SW-Core', 'ip' => '10.10.30.2']);
+        // ein Client im Clients-VLAN, damit dort auch etwas belegt ist
+        \App\Models\Computer::factory()->create(['customer_id' => $customer->id, 'site_id' => $site1->id, 'name' => 'PC-Empfang', 'ip' => '10.10.20.50']);
+        \App\Models\Server::factory()->create(['customer_id' => $customer->id, 'site_id' => $site1->id, 'name' => 'SRV-DC01', 'ip1' => '10.10.30.10', 'bmcIp' => '10.10.30.210']);
+        \App\Models\Server::factory()->create(['customer_id' => $customer->id, 'site_id' => $site1->id, 'name' => 'SRV-FS01', 'ip1' => '10.10.30.11', 'bmcIp' => '10.10.30.211']);
+        \App\Models\Server::factory()->create(['customer_id' => $customer->id, 'site_id' => $site1->id, 'name' => 'SRV-HV01', 'ip1' => '10.10.30.12', 'bmcIp' => '10.10.30.212']);
+        \App\Models\NAS::factory()->create(['customer_id' => $customer->id, 'site_id' => $site1->id, 'name' => 'NAS-Backup', 'ip1' => '10.10.30.20']);
+        \App\Models\Accesspoint::factory()->create(['customer_id' => $customer->id, 'site_id' => $site1->id, 'name' => 'AP-Serverraum', 'ip' => '10.10.30.30']);
 
         \App\Models\ADUser::factory(10)->create([
             'customer_id' => $customer->id,
@@ -118,31 +138,67 @@ class LocalDatabaseSeeder extends Seeder
             'customer_id' => $customer->id,
         ]);
 
-        \App\Models\Server::factory(3)->create([
+        // Server – Referenzen für die VM-Hosts merken
+        $servers = \App\Models\Server::factory(3)->create([
             'customer_id' => $customer->id,
             'site_id' => $site1->id,
         ]);
 
-        \App\Models\VM::factory(5)->create([
+        // VMs, jeweils einem physischen Host-Server zugeordnet
+        \App\Models\VM::factory(6)->create([
+            'customer_id' => $customer->id,
+            'site_id' => $site1->id,
+        ])->each(function ($vm) use ($servers) {
+            $vm->update(['server_id' => $servers->random()->id]);
+        });
+
+        // NAS – für die NAS-Logins gemerkt
+        $nasList = \App\Models\NAS::factory(2)->create([
             'customer_id' => $customer->id,
             'site_id' => $site1->id,
         ]);
 
-        \App\Models\NAS::factory(3)->create([
+        \App\Models\NetworkSwitch::factory(4)->create([
             'customer_id' => $customer->id,
             'site_id' => $site1->id,
         ]);
 
-        \App\Models\LoginWebsite::factory(5)->create([
-            'customer_id' => $customer->id,
-        ]);
-
-        \App\Models\PhoneSystem::factory(3)->create([
+        \App\Models\Accesspoint::factory(5)->create([
             'customer_id' => $customer->id,
             'site_id' => $site1->id,
         ]);
 
-        \App\Models\Phone::factory(10)->create([
+        \App\Models\Computer::factory(12)->create([
+            'customer_id' => $customer->id,
+            'site_id' => $site1->id,
+        ]);
+
+        \App\Models\Printer::factory(4)->create([
+            'customer_id' => $customer->id,
+            'site_id' => $site1->id,
+        ]);
+
+        \App\Models\IoTDevice::factory(4)->create([
+            'customer_id' => $customer->id,
+            'site_id' => $site1->id,
+        ]);
+
+        \App\Models\Machine::factory(3)->create([
+            'customer_id' => $customer->id,
+            'site_id' => $site1->id,
+        ]);
+
+        \App\Models\OtherClient::factory(3)->create([
+            'customer_id' => $customer->id,
+            'site_id' => $site1->id,
+        ]);
+
+        \App\Models\PhoneSystem::factory(1)->create([
+            'customer_id' => $customer->id,
+            'site_id' => $site1->id,
+        ]);
+
+        \App\Models\Phone::factory(12)->create([
             'customer_id' => $customer->id,
             'site_id' => $site1->id,
         ]);
@@ -152,7 +208,7 @@ class LocalDatabaseSeeder extends Seeder
             'site_id' => $site1->id,
         ]);
 
-        \App\Models\Mailbox::factory(3)->create([
+        \App\Models\Mailbox::factory(6)->create([
             'customer_id' => $customer->id,
         ]);
 
@@ -161,22 +217,18 @@ class LocalDatabaseSeeder extends Seeder
             'site_id' => $site1->id,
         ]);
 
-        \App\Models\Computer::factory(3)->create([
+        // Recorder – für die Recorder-Logins gemerkt
+        $recorders = \App\Models\Recorder::factory(2)->create([
             'customer_id' => $customer->id,
             'site_id' => $site1->id,
         ]);
 
-        \App\Models\Printer::factory(3)->create([
+        \App\Models\Camera::factory(12)->create([
             'customer_id' => $customer->id,
             'site_id' => $site1->id,
         ]);
 
-        \App\Models\Recorder::factory(2)->create([
-            'customer_id' => $customer->id,
-            'site_id' => $site1->id,
-        ]);
-
-        \App\Models\Camera::factory(10)->create([
+        \App\Models\Radiocenter::factory(1)->create([
             'customer_id' => $customer->id,
             'site_id' => $site1->id,
         ]);
@@ -185,12 +237,116 @@ class LocalDatabaseSeeder extends Seeder
             'customer_id' => $customer->id,
         ]);
 
-        \App\Models\LicenseWindows::factory(10)->create([
+        // Logins
+        \App\Models\LoginGeneral::factory(6)->create([
             'customer_id' => $customer->id,
         ]);
 
-        \App\Models\LicenseSoftware::factory(5)->create([
+        \App\Models\LoginWebsite::factory(6)->create([
             'customer_id' => $customer->id,
+        ]);
+
+        foreach ($nasList as $nas) {
+            \App\Models\LoginNAS::factory(2)->create([
+                'customer_id' => $customer->id,
+                'nas_id' => $nas->id,
+            ]);
+        }
+
+        foreach ($recorders as $recorder) {
+            \App\Models\LoginRecorder::factory(1)->create([
+                'customer_id' => $customer->id,
+                'recorder_id' => $recorder->id,
+            ]);
+        }
+
+        // Lizenzen
+        \App\Models\LicenseWindows::factory(8)->create([
+            'customer_id' => $customer->id,
+        ]);
+
+        \App\Models\LicenseSoftware::factory(6)->create([
+            'customer_id' => $customer->id,
+        ]);
+
+        \App\Models\LicenseAccess::factory(3)->create([
+            'customer_id' => $customer->id,
+        ]);
+
+        // Dienste
+        \App\Models\FTPServer::factory(2)->create([
+            'customer_id' => $customer->id,
+        ]);
+
+        \App\Models\DynDNS::factory(1)->create([
+            'customer_id' => $customer->id,
+        ]);
+
+        // Internet-Anschlüsse je Standort
+        \App\Models\InternetConnection::factory()->create([
+            'customer_id' => $customer->id,
+            'site_id' => $site1->id,
+            'provider' => 'Deutsche Telekom',
+            'product' => 'DeutschlandLAN Glasfaser 1000',
+            'connection_type' => 'Glasfaser',
+            'bandwidth_down' => '1000 Mbit/s',
+            'bandwidth_up' => '500 Mbit/s',
+        ]);
+
+        \App\Models\InternetConnection::factory()->create([
+            'customer_id' => $customer->id,
+            'site_id' => $site2->id,
+            'provider' => 'Vodafone',
+            'product' => 'Business Kabel 500',
+            'connection_type' => 'Kabel',
+            'bandwidth_down' => '500 Mbit/s',
+            'bandwidth_up' => '50 Mbit/s',
+        ]);
+
+        // USV
+        \App\Models\Ups::factory(2)->create([
+            'customer_id' => $customer->id,
+            'site_id' => $site1->id,
+        ]);
+
+        // Domains (eine läuft demnächst ab -> Dashboard-Warnung)
+        \App\Models\Domain::factory()->create([
+            'customer_id' => $customer->id,
+            'name' => 'mustermann.de',
+            'registrar' => 'IONOS',
+            'expiry_date' => now()->addMonths(4)->toDateString(),
+            'nameserver1' => 'ns1.ionos.de',
+            'nameserver2' => 'ns2.ionos.de',
+        ]);
+
+        \App\Models\Domain::factory()->create([
+            'customer_id' => $customer->id,
+            'name' => 'mustermann-gmbh.de',
+            'registrar' => 'united-domains',
+            'expiry_date' => now()->addYear()->toDateString(),
+        ]);
+
+        // Backup-Konzepte
+        \App\Models\Backup::factory()->create([
+            'customer_id' => $customer->id,
+            'name' => 'Veeam – VMs täglich',
+            'software' => 'Veeam Backup & Replication',
+            'source' => 'Hyper-V (alle VMs)',
+            'destination' => 'NAS-Backup',
+            'schedule' => 'täglich 22:00',
+            'retention' => '30 Tage',
+            'last_success' => now()->subDay()->toDateString(),
+        ]);
+
+        \App\Models\Backup::factory()->create([
+            'customer_id' => $customer->id,
+            'name' => 'Cloud-Backup Fileserver',
+            'software' => 'Synology Hyper Backup',
+            'source' => 'NAS-Fileserver',
+            'destination' => 'Wasabi Cloud',
+            'schedule' => 'täglich 01:00',
+            'retention' => '90 Tage',
+            'last_success' => now()->toDateString(),
         ]);
 
 

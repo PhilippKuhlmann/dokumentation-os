@@ -1,9 +1,9 @@
 @props(['labels'])
 
-<thead class=" text-gray-100 bg-chathams-blue-800 dark:bg-gray-700 dark:text-gray-100">
+<thead class="text-xs uppercase tracking-wide text-gray-500 bg-gray-50 border-b border-gray-200 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-600">
     <tr>
         @foreach ($labels as $label)
-            <th scope="col" class="py-3 px-6">
+            <th scope="col" class="py-2.5 px-4 font-semibold">
                 {{ $label }}
             </th>
         @endforeach

@@ -24,7 +24,7 @@ class SecurepointUTMRequest extends FormRequest
     public function rules()
     {
         return [
-            'site_id' => 'required',
+            'site_id' => ['required', new \App\Rules\BelongsToCustomer('sites')],
             'name' => 'required|max:255',
             'type' => 'nullable|max:255',
             'serialNumber' => 'nullable|max:255',

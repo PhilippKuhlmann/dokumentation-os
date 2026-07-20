@@ -14,7 +14,7 @@ class OtherClientController extends Controller
     {
         $this->authorize('viewAny', OtherClient::class);
 
-        $otherclients = $this->getFilteredQuery(OtherClient::class, $customer)->get();
+        $otherclients = $this->getFilteredQuery(OtherClient::class, $customer)->latest()->paginate(25);
 
         return view('otherclient.index', compact('customer', 'otherclients'));
     }

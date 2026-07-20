@@ -1,23 +1,12 @@
 <?php
-
 namespace Database\Factories;
-
 use Illuminate\Database\Eloquent\Factories\Factory;
-
-/**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\LoginRecorder>
- */
-class LoginRecorderFactory extends Factory
-{
-    /**
-     * Define the model's default state.
-     *
-     * @return array<string, mixed>
-     */
-    public function definition(): array
-    {
+class LoginRecorderFactory extends Factory {
+    protected $model = \App\Models\LoginRecorder::class;
+    public function definition(): array {
         return [
-            //
+            'username' => fake()->userName(),
+            'password' => fake()->password(8, 14),
         ];
     }
 }

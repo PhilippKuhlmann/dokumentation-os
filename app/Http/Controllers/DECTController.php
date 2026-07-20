@@ -13,10 +13,10 @@ class DECTController extends Controller
     {
         $this->authorize('viewAny', DECT::class);
 
-        $dect = $this->getFilteredQuery(DECT::class, $customer)
-                       ->get();
+        $dectList = $this->getFilteredQuery(DECT::class, $customer)
+                       ->latest()->paginate(25);
 
-        return view('dect.index', compact('customer', 'dect'));
+        return view('dect.index', compact('customer', 'dectList'));
     }
 
     public function create(Customer $customer)

@@ -4,9 +4,9 @@
 
         <x-edit.select.recorder selector="{{ $loginrecorder->recorder->id }}" :$recorder/>
 
-        <x-create.doublerow label1="Benutzer" name1="username" default1="{{ $loginrecorder->username }}" label2="Passwort" name2="password" default2="{{ $loginrecorder->password }}" />
+        <x-create.doublerow label1="Benutzer" name1="username" :default1="$loginrecorder->username" label2="Passwort" name2="password" :default2="$loginrecorder->password" />
 
-        <x-create.singlerow label="Beschreibung" name="description" default="{{ $loginrecorder->description }}" />
+        <x-create.singlerow label="Beschreibung" name="description" :default="$loginrecorder->description" />
 
         <x-edit.hidden hidden="{{ $loginrecorder->hidden }}" />
 

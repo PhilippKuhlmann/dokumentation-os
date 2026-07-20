@@ -10,7 +10,7 @@
         <x-slot:head>
             <x-show.header can="computer_update" editUrl="{{ route('computer.edit', [$customer, $computer]) }}">
                 @if ($computer->remoteID AND $computer->remotePassword)
-                    <a href="rustdesk://connection/new/{{ $computer->remoteID }}?password={{ $computer->remotePassword }}" class=" bg-ssystemblue text-gray-100 rounded-md px-4 py-2 text-sm mr-5 hover:bg-blue-600">Verbinden</a>
+                    <a href="rustdesk://connection/new/{{ $computer->remoteID }}?password={{ $computer->remotePassword }}" class="bg-cerulean-600 text-white rounded-lg px-4 py-2 text-sm mr-5 hover:bg-cerulean-700">Verbinden</a>
                 @endif
                 {{ $computer->name }}
             </x-show.header>
@@ -36,5 +36,9 @@
     </x-card>
 @endforeach
 
+
+    <div class="px-3 pb-3">
+        {{ $computers->links() }}
+    </div>
 
 </x-app-layout>

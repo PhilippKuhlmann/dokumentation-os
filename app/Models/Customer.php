@@ -10,6 +10,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 class Customer extends Model
 {
     use HasFactory, SoftDeletes;
+    use \App\Models\Concerns\TracksChanges;
 
     protected $guarded = [];
 
@@ -238,5 +239,25 @@ class Customer extends Model
     public function radiocenters()
     {
         return $this->hasMany(Radiocenter::class);
+    }
+
+    public function ups()
+    {
+        return $this->hasMany(Ups::class);
+    }
+
+    public function internetconnections()
+    {
+        return $this->hasMany(InternetConnection::class);
+    }
+
+    public function domains()
+    {
+        return $this->hasMany(Domain::class);
+    }
+
+    public function backups()
+    {
+        return $this->hasMany(Backup::class);
     }
 }

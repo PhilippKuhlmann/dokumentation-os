@@ -35,4 +35,8 @@
         </x-card>
     @endforeach
 
+    <div class="px-3 pb-3">
+        {{ $networkswitches->links() }}
+    </div>
+
 </x-app-layout>

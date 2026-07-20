@@ -1,24 +1,19 @@
-<aside id="logo-sidebar" class="fixed top-0 left-0 z-40 w-64 h-screen pt-20 transition-transform -translate-x-full text-gray-900 bg-white sm:translate-x-0 dark:bg-gray-900 " aria-label="Sidebar">
+<aside id="logo-sidebar" class="fixed top-0 left-0 z-40 w-64 h-screen pt-20 transition-transform -translate-x-full text-gray-900 bg-white border-r border-gray-200 sm:translate-x-0 dark:bg-gray-900 dark:border-gray-700" aria-label="Sidebar">
     <div class="flex justify-between flex-col h-full px-3 pb-4 overflow-y-auto bg-white dark:bg-gray-900">
-        <ul class="space-y-2">
+        <ul class="space-y-1">
 
-            <form method="post" action="{{ route('filter.site', $customer) }}">
+            <form method="post" action="{{ route('filter.site', $customer) }}" class="pb-3 mb-2 border-b border-gray-200 dark:border-gray-700">
                 @csrf
                 <div class="flex flex-col">
-                    <div class="">
-                        <x-input.label value="Standort" />
-                    </div>
-                    <div class="flex gap-2">
-                        <x-input.select name="site" class="w-full">
-                            <option value="all">Alle</option>
-                            @foreach ($customer->sites as $site)
-                                <option value="{{ $site->id }}"
-                                    {{ $site->id == session()->get('site') ? 'selected' : '' }}>{{ $site->name }}
-                                </option>
-                            @endforeach
-                        </x-input.select>
-                        <x-input.button label="Filtern" />
-                    </div>
+                    <x-input.label value="Standort" />
+                    <x-input.select name="site" class="w-full mt-1" onchange="this.form.submit()">
+                        <option value="all">Alle</option>
+                        @foreach ($customer->sites as $site)
+                            <option value="{{ $site->id }}"
+                                {{ $site->id == session()->get('site') ? 'selected' : '' }}>{{ $site->name }}
+                            </option>
+                        @endforeach
+                    </x-input.select>
                 </div>
             </form>
 
@@ -35,9 +30,12 @@
                 </x-aside.dropdown>
             @endcanany
 
-            @canany(['securepointutm_viewAny', 'router_viewAny', 'network_viewAny', 'wifi_viewAny', 'networkswitch_viewAny', 'accesspoint_viewAny'])
+            @canany(['securepointutm_viewAny', 'router_viewAny', 'network_viewAny', 'wifi_viewAny', 'networkswitch_viewAny', 'accesspoint_viewAny', 'internetconnection_viewAny'])
                 <x-aside.dropdown label="Netzwerk" svg="svg.wifi">
                     <x-slot:links>
+                        @can('internetconnection_viewAny')
+                            <x-aside.dropdownlink label="Internet / WAN" href="{{ route('internetconnection.index', $customer) }}" />
+                        @endcan
                         @can('securepointutm_viewAny')
                             <x-aside.dropdownlink label="Securepoint UTM"
                                 href="{{ route('securepointutm.index', $customer) }}" />
@@ -47,6 +45,7 @@
                         @endcan
                         @can('network_viewAny')
                             <x-aside.dropdownlink label="VLAN" href="{{ route('network.index', $customer) }}" />
+                            <x-aside.dropdownlink label="IPAM" href="{{ route('ipplan.index', $customer) }}" />
                         @endcan
                         @can('wifi_viewAny')
                             <x-aside.dropdownlink label="WLAN Netze" href="{{ route('wifi.index', $customer) }}" />
@@ -202,7 +201,7 @@
                 </x-aside.dropdown>
             @endcanany
 
-            @canany(['ftpserver_viewAny', 'dyndns_viewAny'])
+            @canany(['ftpserver_viewAny', 'dyndns_viewAny', 'domain_viewAny', 'backup_viewAny'])
                 <x-aside.dropdown label="Dienste" svg="svg.settings">
                     <x-slot:links>
                         @can('ftpserver_viewAny')
@@ -211,15 +210,27 @@
                         @can('dyndns_viewAny')
                             <x-aside.dropdownlink label="DynDNS" href="{{ route('dyndns.index', $customer) }}" />
                         @endcan
+                        @can('domain_viewAny')
+                            <x-aside.dropdownlink label="Domains" href="{{ route('domain.index', $customer) }}" />
+                        @endcan
+                        @can('backup_viewAny')
+                            <x-aside.dropdownlink label="Backup" href="{{ route('backup.index', $customer) }}" />
+                        @endcan
                     </x-slot:links>
                 </x-aside.dropdown>
             @endcanany
 
-            @canany(['file_viewAny'])
+            @canany(['file_viewAny', 'ups_viewAny', 'see_hidden'])
                 <x-aside.dropdown label="Sonstiges" svg="svg.settings">
                     <x-slot:links>
+                        @can('ups_viewAny')
+                            <x-aside.dropdownlink label="USV" href="{{ route('ups.index', $customer) }}" />
+                        @endcan
                         @can('file_viewAny')
                             <x-aside.dropdownlink label="Dateien" href="{{ route('file.index', $customer) }}" />
+                        @endcan
+                        @can('see_hidden')
+                            <x-aside.dropdownlink label="Papierkorb" href="{{ route('trash.index', $customer) }}" />
                         @endcan
                     </x-slot:links>
                 </x-aside.dropdown>
@@ -228,7 +239,7 @@
 
 
         </ul>
-        <a href="{{ route('changelog') }}" target="_blank" class="mt-10 text-center text-gray-700">
+        <a href="{{ route('changelog') }}" target="_blank" class="mt-10 pt-3 text-center text-xs text-gray-400 border-t border-gray-200 hover:text-cerulean-600 dark:border-gray-700 dark:text-gray-500">
             v{{ $version }}
         </a>
     </div>

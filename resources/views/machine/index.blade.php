@@ -28,4 +28,8 @@
         </x-table.main>
     </div>
 
+    <div class="px-3 pb-3">
+        {{ $machines->links() }}
+    </div>
+
 </x-app-layout>

@@ -12,6 +12,8 @@ use Illuminate\Support\Facades\Crypt;
 class VM extends Model
 {
     use HasFactory, SoftDeletes;
+    use \App\Models\Concerns\TracksChanges;
+    use \App\Models\Concerns\HasIpAddresses;
 
     protected $table = 'vms';
 
@@ -35,6 +37,11 @@ class VM extends Model
     public function operatingSystem()
     {
         return $this->belongsTo(OperatingSystem::class);
+    }
+
+    public function host()
+    {
+        return $this->belongsTo(Server::class, 'server_id');
     }
 
     public function customer()

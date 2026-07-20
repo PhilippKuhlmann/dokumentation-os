@@ -7,6 +7,7 @@ use Barryvdh\DomPDF\Facade\Pdf;
 // use function Spatie\LaravelPdf\Support\pdf;
 use App\Http\Requests\CustomerRequest;
 use App\Models\ContactPerson;
+use App\Models\LicenseSoftware;
 use App\Models\Role;
 use App\Models\Site;
 
@@ -46,7 +47,33 @@ class CustomerController extends Controller
         $sites = Site::where('customer_id', $customer->id)->get();
         $contactpersons = ContactPerson::where('customer_id', $customer->id)->get();
 
-        return view('customer.dashboard', compact('customer', 'sites', 'contactpersons'));
+        // Inventar-Zähler (in einer Abfrage via loadCount)
+        $customer->loadCount([
+            'servers', 'computers', 'vms', 'nas', 'networks',
+            'wifis', 'printers', 'cameras', 'phones', 'adusers',
+        ]);
+
+        $tiles = [
+            ['label' => 'Server',    'icon' => 'svg.servers',  'count' => $customer->servers_count,   'route' => route('server.index', $customer),   'can' => 'server_viewAny'],
+            ['label' => 'Computer',  'icon' => 'svg.computer', 'count' => $customer->computers_count, 'route' => route('computer.index', $customer), 'can' => 'computer_viewAny'],
+            ['label' => 'VMs',       'icon' => 'svg.server',   'count' => $customer->vms_count,       'route' => route('vm.index', $customer),       'can' => 'vm_viewAny'],
+            ['label' => 'NAS',       'icon' => 'svg.db',       'count' => $customer->nas_count,       'route' => route('nas.index', $customer),      'can' => 'nas_viewAny'],
+            ['label' => 'Netzwerke', 'icon' => 'svg.wifi',     'count' => $customer->networks_count,  'route' => route('network.index', $customer), 'can' => 'network_viewAny'],
+            ['label' => 'WLAN',      'icon' => 'svg.signal',   'count' => $customer->wifis_count,     'route' => route('wifi.index', $customer),     'can' => 'wifi_viewAny'],
+            ['label' => 'Drucker',   'icon' => 'svg.printer',  'count' => $customer->printers_count,  'route' => route('printer.index', $customer), 'can' => 'printer_viewAny'],
+            ['label' => 'Kameras',   'icon' => 'svg.cam',      'count' => $customer->cameras_count,   'route' => route('camera.index', $customer),  'can' => 'camera_viewAny'],
+            ['label' => 'Telefone',  'icon' => 'svg.phone',    'count' => $customer->phones_count,    'route' => route('phone.index', $customer),   'can' => 'phone_viewAny'],
+            ['label' => 'AD-User',   'icon' => 'svg.user',     'count' => $customer->adusers_count,   'route' => route('aduser.index', $customer),  'can' => 'aduser_viewAny'],
+        ];
+
+        // Software-Lizenzen, die in den nächsten 60 Tagen ablaufen oder bereits abgelaufen sind
+        $expiringLicenses = LicenseSoftware::where('customer_id', $customer->id)
+            ->whereNotNull('end_date')
+            ->whereDate('end_date', '<=', now()->addDays(60))
+            ->orderBy('end_date')
+            ->get();
+
+        return view('customer.dashboard', compact('customer', 'sites', 'contactpersons', 'tiles', 'expiringLicenses'));
     }
 
     public function viewPDF(Customer $customer)

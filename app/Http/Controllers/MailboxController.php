@@ -13,6 +13,8 @@ class MailboxController extends Controller
     {
         $this->authorize('viewAny', Mailbox::class);
 
+        $customer->load('mailboxes.mailboxProvider');
+
         return view('mailbox.index', [
             'customer' => $customer,
         ]);

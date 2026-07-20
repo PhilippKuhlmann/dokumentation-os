@@ -14,12 +14,10 @@ class ComputerController extends Controller
     {
         $this->authorize('viewAny', Computer::class);
 
-        if (session()->get('site') == "all") {
-            $computers = Computer::where('customer_id', $customer->id)->get();
-
-        } else {
-            $computers = Computer::where('customer_id', $customer->id)->where('site_id', session()->get('site'))->get();
-        }
+        $computers = $this->getFilteredQuery(Computer::class, $customer)
+                          ->with('operatingSystem')
+                          ->latest()
+                          ->paginate(25);
 
         return view('computer.index', compact('customer', 'computers'));
     }

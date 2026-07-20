@@ -11,6 +11,8 @@ use Illuminate\Support\Facades\Crypt;
 class Router extends Model
 {
     use HasFactory, SoftDeletes;
+    use \App\Models\Concerns\TracksChanges;
+    use \App\Models\Concerns\HasIpAddresses;
 
     protected $guarded = [];
 
@@ -22,4 +24,9 @@ class Router extends Model
         );
     }
 
+
+    public function customer()
+    {
+        return $this->belongsTo(Customer::class);
+    }
 }

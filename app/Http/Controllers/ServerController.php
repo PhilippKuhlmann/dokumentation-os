@@ -17,7 +17,7 @@ class ServerController extends Controller
 
         $servers = $this->getFilteredQuery(Server::class, $customer)
                         ->with('operatingSystem')
-                        ->get();
+                        ->latest()->paginate(25);
 
         return view('server.index', compact('customer', 'servers'));
     }

@@ -24,7 +24,7 @@ class NetworkRequest extends FormRequest
     public function rules()
     {
         return [
-            'site_id' => 'required',
+            'site_id' => ['required', new \App\Rules\BelongsToCustomer('sites')],
             'vlanId' => 'integer|min:1|max:4094',
             'description' => 'required',
             'network' => 'required|ipv4',

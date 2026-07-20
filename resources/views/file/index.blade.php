@@ -41,4 +41,8 @@
         </x-table.main>
     </div>
 
+    <div class="px-3 pb-3">
+        {{ $files->links() }}
+    </div>
+
 </x-app-layout>

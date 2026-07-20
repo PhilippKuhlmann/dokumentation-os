@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class RackCabinet extends Model
 {
     use HasFactory;
+    use \App\Models\Concerns\TracksChanges;
 
     protected $guarded = [];
 

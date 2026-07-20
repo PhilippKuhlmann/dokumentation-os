@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Permission extends Model
 {
     use HasFactory;
+    use \App\Models\Concerns\TracksChanges;
 
     public function scopeGetViewAny($query)
     {

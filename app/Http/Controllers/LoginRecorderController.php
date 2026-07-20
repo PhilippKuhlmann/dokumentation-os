@@ -18,11 +18,15 @@ class LoginRecorderController extends Controller
 
         if (Auth::user()->can('see_hidden')) {
             $loginrecorders = LoginRecorder::where('customer_id', $customer->id)
-                                            ->get();
+                                            ->with('recorder')
+                                            ->latest()
+                                            ->paginate(25);
         } else {
             $loginrecorders = LoginRecorder::where('customer_id', $customer->id)
                                             ->where('hidden', false)
-                                            ->get();
+                                            ->with('recorder')
+                                            ->latest()
+                                            ->paginate(25);
         }
 
         return view('loginrecorder.index', compact('customer', 'loginrecorders'));

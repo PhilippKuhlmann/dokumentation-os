@@ -14,7 +14,7 @@ class IoTDeviceController extends Controller
     {
         $this->authorize('viewAny', IoTDevice::class);
 
-        $iotdevices = $this->getFilteredQuery(IoTDevice::class, $customer)->get();
+        $iotdevices = $this->getFilteredQuery(IoTDevice::class, $customer)->latest()->paginate(25);
 
         return view('iotdevice.index', compact('customer', 'iotdevices'));
     }

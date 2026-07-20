@@ -13,7 +13,7 @@ class ContactPersonController extends Controller
     {
         $this->authorize('viewAny', ContactPerson::class);
 
-        $contactpersons = ContactPerson::where('customer_id', $customer->id)->get();
+        $contactpersons = ContactPerson::where('customer_id', $customer->id)->latest()->paginate(25);
 
         return view('contactperson.index', compact('customer', 'contactpersons'));
     }

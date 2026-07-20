@@ -14,7 +14,7 @@ class AccesspointController extends Controller
         $this->authorize('viewAny', Accesspoint::class);
 
         $accesspoints = $this->getFilteredQuery(Accesspoint::class, $customer)
-                        ->get();
+                        ->latest()->paginate(25);
 
         return view('accesspoint.index', compact('customer', 'accesspoints'));
     }

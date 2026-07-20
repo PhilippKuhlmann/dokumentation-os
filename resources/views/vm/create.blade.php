@@ -3,6 +3,16 @@
 
         <x-create.select name="site_id" value="Standort" :array="$sites" />
 
+        <div class="flex flex-col mt-2">
+            <x-input.label for="server_id" value="Host (Server)" />
+            <x-input.select id="server_id" name="server_id">
+                <option value="">— kein Host —</option>
+                @foreach ($servers as $server)
+                    <option value="{{ $server->id }}" {{ $server->id == old('server_id') ? 'selected' : '' }}>{{ $server->name }}</option>
+                @endforeach
+            </x-input.select>
+        </div>
+
         <x-create.singlerow label="Name" name="name" />
 
         <x-create.doublerow label1="IP 1" name1="ip1" label2="IP 2" name2="ip2" />

@@ -14,7 +14,6 @@
                     </svg>
                 </button>
                 <a href="/" class="flex ml-2 md:mr-24">
-                    <img src="/images/icon_stadel.png" class="h-10 mr-3" alt="STADEL Logo" />
                     <span class="self-center text-xl text-chathams-blue-800 dark:text-white font-CoconPro sm:text-2xl whitespace-nowrap ">
                         {{ config('app.name') }}
                     </span>
@@ -34,7 +33,7 @@
                             class="flex text-sm w-10 h-10 overflow-hidden relative bg-gray-800 rounded-full focus:ring-2 focus:ring-gray-300 dark:focus:ring-gray-600"
                             aria-expanded="false" data-dropdown-toggle="dropdown-user">
                             <span class="sr-only">Open user menu</span>
-                            <img src="{{ auth()->user()->getAvatar() }}" />
+                            <svg class="w-full h-full text-gray-300" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 12a5 5 0 100-10 5 5 0 000 10zm0 2c-4.42 0-8 2.239-8 5v1h16v-1c0-2.761-3.58-5-8-5z"/></svg>
                         </button>
                     </div>
                     <div class="z-50 hidden my-4 text-base list-none bg-white divide-y divide-gray-100 rounded shadow dark:bg-gray-700 dark:divide-gray-600"

@@ -15,11 +15,11 @@ class LicenseWindowsController extends Controller
     {
         $this->authorize('viewAny', LicenseWindows::class);
 
-        $licensewindows = $this->getFilteredQuery(LicenseWindows::class, $customer)
+        $licensewindowsList = $this->getFilteredQuery(LicenseWindows::class, $customer)
                         ->with('operatingSystem')
-                        ->get();
+                        ->latest()->paginate(25);
 
-        return view('licensewindows.index', compact('customer', 'licensewindows'));
+        return view('licensewindows.index', compact('customer', 'licensewindowsList'));
     }
 
     public function create(Customer $customer)

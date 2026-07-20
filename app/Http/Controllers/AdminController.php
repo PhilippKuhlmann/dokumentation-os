@@ -14,7 +14,14 @@ class AdminController extends Controller
 
     public function index()
     {
-        return view('admin.index');
+        $tiles = [
+            ['label' => 'Benutzer', 'icon' => 'svg.user',     'count' => \App\Models\User::count(),     'route' => route('admin.user.index')],
+            ['label' => 'Kunden',   'icon' => 'svg.office',   'count' => \App\Models\Customer::count(), 'route' => route('admin.customer.index')],
+            ['label' => 'Rollen',   'icon' => 'svg.group',    'count' => \App\Models\Role::count(),     'route' => route('admin.role.index')],
+            ['label' => 'Aktivitäten', 'icon' => 'svg.document', 'count' => \Spatie\Activitylog\Models\Activity::count(), 'route' => route('admin.activity.index')],
+        ];
+
+        return view('admin.index', compact('tiles'));
     }
 
     public function apitoken()

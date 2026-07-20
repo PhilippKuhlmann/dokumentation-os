@@ -10,7 +10,7 @@
 
             <x-table.body>
 
-                @foreach ($licensewindows as $licensewindows)
+                @foreach ($licensewindowsList as $licensewindows)
 
                     <x-table.datarow
                         :values="[
@@ -28,6 +28,10 @@
 
             </x-table.body>
         </x-table.main>
+    </div>
+
+    <div class="px-3 pb-3">
+        {{ $licensewindowsList->links() }}
     </div>
 
 </x-app-layout>

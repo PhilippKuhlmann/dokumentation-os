@@ -1,8 +1,8 @@
 {
-    "name": "laravel/laravel",
+    "name": "philippkuhlmann/it-dokumentation",
     "type": "project",
-    "description": "The Laravel Framework.",
-    "keywords": ["framework", "laravel"],
+    "description": "IT-Dokumentations- und Asset-Management-System für Managed Service Provider, gebaut mit Laravel.",
+    "keywords": ["laravel", "documentation", "msp", "it-documentation", "asset-management"],
     "license": "MIT",
     "require": {
         "php": "^8.0.2",
@@ -13,6 +13,7 @@
         "laravel/sanctum": "^3.2",
         "laravel/tinker": "^2.7",
         "livewire/livewire": "^3.5",
+        "spatie/laravel-activitylog": "^4.12",
         "spatie/laravel-backup": "^8.4",
         "spatie/laravel-pdf": "^1.1"
     },

@@ -22,7 +22,7 @@ class MachineRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'site_id' => 'required',
+            'site_id' => ['required', new \App\Rules\BelongsToCustomer('sites')],
             'name' => 'required|max:255',
             'ip' => 'required|ipv4',
         ];

@@ -1,29 +1,19 @@
 <?php
-
 namespace Database\Factories;
-
 use Illuminate\Database\Eloquent\Factories\Factory;
-
-/**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\PhoneSystem>
- */
-class PhoneSystemFactory extends Factory
-{
-    /**
-     * Define the model's default state.
-     *
-     * @return array<string, mixed>
-     */
-    public function definition()
-    {
+class PhoneSystemFactory extends Factory {
+    public function definition() {
+        [$m,$mo] = fake()->randomElement([
+            ['Auerswald','COMpact 5500'],['3CX','v20 PRO'],
+            ['Starface','Compact'],['Panasonic','KX-NS700'],
+        ]);
         return [
-            'manufacturer' => fake()->randomElement(['reventix', '3cx', 'Panasonic']),
-            'model' => fake()->ean8(),
-            'serialNumber' => fake()->ean13(),
+            'manufacturer' => $m, 'model' => $mo,
+            'serialNumber' => strtoupper(fake()->bothify('??########')),
             'ip1' => fake()->localIpv4(),
             'port' => '443',
             'username' => fake()->userName(),
-            'password' => fake()->password($minLength = 6, $maxLength = 12),
+            'password' => fake()->password(6, 12),
         ];
     }
 }

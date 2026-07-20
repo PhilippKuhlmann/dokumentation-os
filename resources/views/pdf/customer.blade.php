@@ -1,198 +1,276 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="de">
 
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dokumentation - {{ $customer->name }}</title>
 
     <style>
-        @font-face {
-            font-family: 'CoconPro';
-            src: url('fonts/CoconPro.otf');
-        }
+        @font-face { font-family: 'CoconPro'; src: url('fonts/CoconPro.otf'); }
+        @font-face { font-family: 'DINPro-Regular'; src: url('fonts/DINPro-Regular.otf'); }
 
-        @font-face {
-            font-family: 'DINPro-Regular';
-            src: url('fonts/DINPro-Regular.otf');
-        }
+        * { box-sizing: border-box; }
+        html { font-family: 'DINPro-Regular'; color: #111827; font-size: 12px; }
+        /* In DomPDF wird der body-Rand als Seitenrand auf JEDER Seite angewendet
+           -> Druckränder für Drucker ohne Randlosdruck */
+        body { margin: 10mm; }
+        .CoconPro { font-family: 'CoconPro'; }
 
-        html {
-            font-family: 'DINPro-Regular';
-        }
+        /* Deckblatt */
+        .cover { text-align: center; padding-top: 240px; }
+        .cover-app { font-family: 'CoconPro'; font-size: 20px; color: #3391f0; margin-bottom: 14px; }
+        .cover-bar { width: 110px; height: 5px; background: #3391f0; margin: 0 auto 26px; }
+        .cover-title { font-family: 'CoconPro'; font-size: 54px; color: #1f3d6e; }
+        .cover-customer { font-size: 26px; color: #6b7280; margin-top: 6px; }
+        .cover-date { margin-top: 36px; font-size: 12px; color: #9ca3af; }
 
-        .CoconPro {
-            font-family: 'CoconPro';
-        }
+        .page-break { page-break-after: always; }
 
-        .center {
-            text-align: center;
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-        }
+        /* Abschnitte: jeder Abschnitt beginnt auf einer neuen Seite
+           -> maximal eine Überschrift pro Seite */
+        .section { page-break-before: always; }
+        .heading { font-family: 'CoconPro'; font-size: 23px; color: #1f3d6e; border-bottom: 2px solid #3391f0; padding-bottom: 4px; margin-bottom: 10px; }
 
+        .card { border: 1px solid #e5e7eb; border-radius: 6px; margin-bottom: 10px; page-break-inside: avoid; }
+        .card-title { font-family: 'CoconPro'; font-size: 15px; color: #1f3d6e; background: #f3f6fb; padding: 6px 10px; border-bottom: 1px solid #e5e7eb; border-radius: 6px 6px 0 0; }
+        .card-body { padding: 8px 10px; }
 
+        .card-table { float: left; margin-right: 3%; margin-bottom: 6px; }
+        .card-table-title { font-size: 10px; text-transform: uppercase; letter-spacing: 0.5px; color: #9ca3af; margin-bottom: 3px; }
+        .card-table table { width: 100%; border-collapse: collapse; }
+        .card-table td { padding: 2px 0; font-size: 11px; vertical-align: top; }
+        .card-table td.key { color: #6b7280; width: 45%; padding-right: 8px; }
+        .card-table td.val { color: #111827; }
 
-        .title {
-            font-size: 60px;
-            color: #194b7e;
-        }
-
-        .customer {
-            font-size: 30px;
-        }
-
-        .logocontailer {
-            text-align: center;
-        }
-
-        .logo {
-            height: 250px;
-            margin-left: auto;
-            margin-right: auto;
-            margin-top: 200px;
-            display: block;
-        }
-
-        .date {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-        }
-
-        .page-break {
-            page-break-after: always;
-        }
-
-        .heading {
-            font-family: 'CoconPro';
-            font-size: 32px;
-            color: #01b0ec;
-        }
-
-
-        .card {
-            margin-top: 25px;
-            width: 100%;
-            border: 1px solid #01b0ec;
-            padding: 5px;
-
-        }
-
-        .card-title {
-            font-size: 20px;
-        }
-
-        .card-container {
-            width: 100%;
-
-        }
-
-        .card-table {
-            font-size: 12px;
-            margin-right: 3%;
-        }
-
-        .card-table-title {
-            font-size: 12px;
-            color: #9ca3af;
-        }
-
-        .w-120 {
-            min-width: 120px;
-        }
-
-        .table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-
-        .table th {
-            font-family: 'DINPro-Regular';
-            font-weight: 400;
-            text-align: left;
-            padding-top: 8px;
-            padding-bottom: 8px;
-            background-color: #194b7e;
-            color: white;
-        }
-
-        .table td {
-            border-bottom: 1px solid #01b0ec;
-            padding-top: 4px;
-            padding-bottom: 4px;
-        }
-
+        .clear { clear: both; }
+        .empty { color: #9ca3af; font-size: 12px; font-style: italic; padding: 2px 0 6px; }
     </style>
 </head>
 
 <body>
-    <div class="date">
-        <span>Stand: {{ date('d.m.Y') }}</span>
-    </div>
-    <div class="logocontailer">
-        <img src="./images/stadel_systeme_logo.svg" class="logo" />
-    </div>
 
-    <div class="center">
-
-        <div class="CoconPro title">
-            Dokumentation
-        </div>
-        <div class="customer">
-            {{ $customer->name }}
-        </div>
-
+    {{-- Deckblatt --}}
+    <div class="cover">
+        <div class="cover-app">{{ config('app.name') }}</div>
+        <div class="cover-bar"></div>
+        <div class="cover-title">Dokumentation</div>
+        <div class="cover-customer">{{ $customer->name }}</div>
+        <div class="cover-date">Stand: {{ date('d.m.Y') }}</div>
     </div>
 
+    @php
+        $deviceTitle = fn ($x) => $x->name ?: (trim(($x->manufacturer ?? '') . ' ' . ($x->model ?? '')) ?: '#' . $x->id);
+        $date = fn ($d) => $d ? \Carbon\Carbon::parse($d)->format('d.m.Y') : '';
+    @endphp
 
+    {{-- Stammdaten --}}
+    <x-pdf.section title="Standorte" :items="$customer->sites" :groups="[
+        'Adresse' => ['Straße' => fn($s) => trim(($s->street ?? '').' '.($s->house_number ?? '')), 'PLZ / Ort' => fn($s) => trim(($s->zip ?? '').' '.($s->city ?? ''))],
+    ]" />
 
+    <x-pdf.section title="Ansprechpartner" :items="$customer->contactpersons" :titleField="fn($c) => trim(($c->first_name ?? '').' '.($c->last_name ?? ''))" :groups="[
+        'Kontakt' => ['Telefon' => 'phone', 'E-Mail' => 'mail'],
+    ]" />
 
-    <div class="page-break"></div>
+    {{-- Netzwerk --}}
+    <x-pdf.section title="Internet / WAN" :items="$customer->internetconnections" :titleField="fn($i) => trim(($i->provider ?? '').' '.($i->product ? '– '.$i->product : ''))" :groups="[
+        'Vertrag' => ['Anbieter' => 'provider', 'Produkt' => 'product', 'Vertragsnummer' => 'contract_number', 'Anschlussart' => 'connection_type'],
+        'Technik' => ['Download' => 'bandwidth_down', 'Upload' => 'bandwidth_up', 'WAN-IP' => 'wan_ip', 'Hotline' => 'hotline'],
+    ]" />
 
-    @include('pdf.partials.securepointutm')
+    <x-pdf.section title="Securepoint UTM" :items="$customer->securepointutms" :titleField="fn($u) => $u->type ?: 'UTM #'.$u->id" :groups="[
+        'Allgemein' => ['Art' => 'type', 'Seriennummer' => 'serialNumber'],
+        'Login' => ['Benutzername' => 'username', 'Passwort' => 'password', 'Cloud Backup' => 'cloudBackupPassword', 'USC-PIN' => 'uscpin'],
+        'URL' => ['IP' => 'ip', 'Admin URL' => 'urlAdmin', 'User URL' => 'urlUser', 'Externe URL' => 'urlExternal'],
+    ]" />
 
-    <div class="page-break"></div>
+    <x-pdf.section title="Router" :items="$customer->routers" :titleField="$deviceTitle" :groups="[
+        'Allgemein' => ['Hersteller' => 'manufacturer', 'Modell' => 'model', 'Seriennummer' => 'serialNumber'],
+        'Login' => ['Benutzername' => 'username', 'Passwort' => 'password'],
+        'Netzwerk' => ['IP' => 'ip', 'Port' => 'port'],
+    ]" />
 
-    @include('pdf.partials.router')
+    <x-pdf.section title="Netzwerke (VLAN)" :items="$customer->networks" :titleField="fn($n) => $n->description ?: $n->network ?: 'VLAN '.$n->vlanId" :groups="[
+        'Netzwerk' => ['VLAN-ID' => 'vlanId', 'Netz' => 'network', 'Subnetzmaske' => 'subnetmask', 'Gateway' => 'gateway'],
+        'DHCP' => ['Start' => 'dhcpStart', 'Ende' => 'dhcpEnd'],
+        'DNS' => ['DNS 1' => 'dns1', 'DNS 2' => 'dns2'],
+    ]" />
 
-    <div class="page-break"></div>
+    <x-pdf.section title="WLAN-Netze" :items="$customer->wifis" titleField="ssid" :groups="[
+        'WLAN' => ['SSID' => 'ssid', 'Passwort' => 'password', 'Verschlüsselung' => 'encryption'],
+    ]" />
 
-    @include('pdf.partials.network')
+    <x-pdf.section title="Switches" :items="$customer->networkswitches" :titleField="$deviceTitle" :groups="[
+        'Allgemein' => ['Hersteller' => 'manufacturer', 'Modell' => 'model', 'Seriennummer' => 'serialNumber'],
+        'Login' => ['Benutzername' => 'username', 'Passwort' => 'password'],
+        'Netzwerk' => ['IP' => 'ip', 'Port' => 'port'],
+    ]" />
 
-    <div class="page-break"></div>
+    <x-pdf.section title="Accesspoints" :items="$customer->accesspoints" :titleField="$deviceTitle" :groups="[
+        'Allgemein' => ['Hersteller' => 'manufacturer', 'Modell' => 'model', 'Seriennummer' => 'serialNumber'],
+        'Login' => ['Benutzername' => 'username', 'Passwort' => 'password'],
+        'Netzwerk' => ['IP' => 'ip', 'Port' => 'port'],
+    ]" />
 
-    @include('pdf.partials.wifi')
+    {{-- Server & Storage --}}
+    <x-pdf.section title="Server" :items="$customer->servers" :groups="[
+        'Hardware' => ['Hersteller' => 'manufacturer', 'Modell' => 'model', 'Seriennummer' => 'serialNumber', 'Betriebssystem' => fn($s) => $s->operatingSystem?->name],
+        'Netzwerk' => ['IP 1' => 'ip1', 'IP 2' => 'ip2'],
+        'BMC' => ['IP' => 'bmcIp', 'Benutzer' => 'bmcUser', 'Passwort' => 'bmcPassword'],
+    ]" />
 
-    <div class="page-break"></div>
+    <x-pdf.section title="VMs" :items="$customer->vms" :groups="[
+        'Allgemein' => ['Host' => fn($v) => $v->host?->name],
+        'Netzwerk' => ['IP 1' => 'ip1', 'IP 2' => 'ip2'],
+        'Betriebssystem' => ['OS' => fn($v) => $v->operatingSystem?->name],
+    ]" />
 
-    @include('pdf.partials.networkswitch')
+    <x-pdf.section title="NAS" :items="$customer->nas" :groups="[
+        'Hardware' => ['Hersteller' => 'manufacturer', 'Modell' => 'model', 'Seriennummer' => 'serialNumber'],
+        'Netzwerk' => ['IP 1' => 'ip1', 'IP 2' => 'ip2', 'Port' => 'port'],
+        'Login' => ['Benutzer' => 'username', 'Passwort' => 'password'],
+    ]" />
 
-    <div class="page-break"></div>
+    {{-- Clients --}}
+    <x-pdf.section title="Computer" :items="$customer->computers" :groups="[
+        'Allgemein' => ['Hersteller' => 'manufacturer', 'Modell' => 'model', 'Seriennummer' => 'serialNumber'],
+        'Netzwerk' => ['IP-Adresse' => 'ip'],
+        'Betriebssystem' => ['OS' => fn($c) => $c->operatingSystem?->name],
+    ]" />
 
-    @include('pdf.partials.accesspoint')
+    <x-pdf.section title="Drucker" :items="$customer->printers" :groups="[
+        'Allgemein' => ['Hersteller' => 'manufacturer', 'Modell' => 'model', 'Seriennummer' => 'serialNumber'],
+        'Netzwerk' => ['IP' => 'ip', 'Port' => 'port'],
+        'Login' => ['Benutzer' => 'username', 'Passwort' => 'password'],
+    ]" />
 
-    <div class="page-break"></div>
+    <x-pdf.section title="IoT-Geräte" :items="$customer->iotdevices" :titleField="$deviceTitle" :groups="[
+        'Allgemein' => ['Hersteller' => 'manufacturer', 'Modell' => 'model', 'Seriennummer' => 'serialNumber'],
+        'Netzwerk' => ['IP' => 'ip', 'Port' => 'port', 'URL' => 'url'],
+        'Login' => ['Benutzer' => 'username', 'Passwort' => 'password'],
+    ]" />
 
-    @include('pdf.partials.server')
+    <x-pdf.section title="Maschinen" :items="$customer->machines" :groups="[
+        'Allgemein' => ['IP-Adresse' => 'ip'],
+    ]" />
 
-    <div class="page-break"></div>
+    <x-pdf.section title="Sonstige Clients" :items="$customer->otherclients" :titleField="$deviceTitle" :groups="[
+        'Allgemein' => ['Hersteller' => 'manufacturer', 'Modell' => 'model', 'Seriennummer' => 'serialNumber'],
+        'Netzwerk' => ['IP' => 'ip', 'Port' => 'port'],
+        'Login' => ['Benutzer' => 'username', 'Passwort' => 'password'],
+    ]" />
 
-    @include('pdf.partials.vm')
+    {{-- Active Directory --}}
+    <x-pdf.section title="AD-Domänen" :items="$customer->addomains" titleField="domain" :groups="[
+        'Domäne' => ['Domäne' => 'domain', 'NetBIOS' => 'netbios', 'DSRM-Passwort' => 'dsrmpassword'],
+    ]" />
 
-    <div class="page-break"></div>
+    <x-pdf.section title="AD-Benutzer" :items="$customer->adusers" :titleField="fn($u) => trim(($u->firstName ?? '').' '.($u->lastName ?? ''))" :groups="[
+        'Login' => ['Benutzer' => 'username', 'Passwort' => 'password'],
+    ]" />
 
-    @include('pdf.partials.nas')
+    <x-pdf.section title="AD-Gruppen" :items="$customer->adgroups" :groups="[
+        'Gruppe' => ['Name' => 'name', 'Beschreibung' => 'description'],
+    ]" />
 
-    <div class="page-break"></div>
+    {{-- Telefonie --}}
+    <x-pdf.section title="Telefonanlagen" :items="$customer->phonesystems" :titleField="$deviceTitle" :groups="[
+        'Allgemein' => ['Modell' => 'model', 'Seriennummer' => 'serialNumber'],
+        'Netzwerk' => ['IP 1' => 'ip1', 'IP 2' => 'ip2'],
+    ]" />
 
-    @include('pdf.partials.aduser')
+    <x-pdf.section title="Telefone" :items="$customer->phones" :titleField="$deviceTitle" :groups="[
+        'Allgemein' => ['Hersteller' => 'manufacturer', 'Modell' => 'model', 'Durchwahl' => 'extension'],
+        'Netzwerk' => ['IP' => 'ip', 'MAC' => 'mac'],
+        'Login' => ['Benutzer' => 'username', 'Passwort' => 'password'],
+    ]" />
 
+    <x-pdf.section title="DECT" :items="$customer->dects" :titleField="$deviceTitle" :groups="[
+        'Allgemein' => ['Hersteller' => 'manufacturer', 'Modell' => 'model', 'Seriennummer' => 'serialNumber'],
+        'Netzwerk' => ['IP' => 'ip', 'MAC' => 'mac'],
+        'Login' => ['Benutzer' => 'username', 'Passwort' => 'password'],
+    ]" />
 
+    {{-- E-Mail --}}
+    <x-pdf.section title="Securepoint UMA" :items="$customer->securepointumas" :titleField="fn($u) => $u->type ?: 'UMA #'.$u->id" :groups="[
+        'Allgemein' => ['Art' => 'type'],
+        'Login' => ['Benutzername' => 'username', 'Passwort' => 'password', 'Verschlüsselungscode' => 'encryptionkey'],
+        'URL' => ['IP' => 'ip', 'Admin URL' => 'urlAdmin', 'User URL' => 'urlUser'],
+    ]" />
 
+    <x-pdf.section title="E-Mail Postfächer" :items="$customer->mailboxes" titleField="mailAdress" :groups="[
+        'Login' => ['E-Mail' => 'mailAdress', 'Benutzer' => 'username', 'Passwort' => 'password'],
+        'Server' => ['POP3' => fn($m) => $m->mailboxProvider?->pop3server, 'IMAP' => fn($m) => $m->mailboxProvider?->imapserver, 'SMTP' => fn($m) => $m->mailboxProvider?->smtpserver],
+    ]" />
 
+    {{-- Kamera / Funk --}}
+    <x-pdf.section title="Recorder" :items="$customer->recorders" :titleField="$deviceTitle" :groups="[
+        'Allgemein' => ['Hersteller' => 'manufacturer', 'Modell' => 'model', 'Seriennummer' => 'serialNumber'],
+        'Netzwerk' => ['IP' => 'ip', 'Port' => 'port'],
+        'Login' => ['Benutzer' => 'username', 'Passwort' => 'password'],
+    ]" />
+
+    <x-pdf.section title="Kameras" :items="$customer->cameras" :titleField="$deviceTitle" :groups="[
+        'Allgemein' => ['Hersteller' => 'manufacturer', 'Modell' => 'model', 'Seriennummer' => 'serialNumber'],
+        'Netzwerk' => ['IP' => 'ip', 'Port' => 'port'],
+        'Login' => ['Benutzer' => 'username', 'Passwort' => 'password'],
+    ]" />
+
+    <x-pdf.section title="Funkzentrale" :items="$customer->radiocenters" :titleField="fn($r) => $r->frequency ? 'Funk '.$r->frequency : 'Funkzentrale #'.$r->id" :groups="[
+        'Technik' => ['Frequenz' => 'frequency', 'Kanalabstand' => 'channel_spacing', 'Leistung' => 'power'],
+        'Selektivruf' => ['Auswerter' => 'evaluator', 'Geber' => 'encoder', 'Quittung' => 'receipt'],
+        'Übertragung' => ['Pilotton' => 'pilot_tone', 'Art' => 'transmission_type'],
+    ]" />
+
+    {{-- Logins --}}
+    <x-pdf.section title="Logins – Allgemein" :items="$customer->logingenerals" :groups="[
+        'Login' => ['Beschreibung' => 'description', 'Benutzer' => 'username', 'Passwort' => 'password'],
+    ]" />
+
+    <x-pdf.section title="Logins – Webseiten" :items="$customer->loginwebsites" :groups="[
+        'Login' => ['URL' => 'url', 'Benutzer' => 'username', 'Passwort' => 'password'],
+    ]" />
+
+    {{-- Lizenzen --}}
+    <x-pdf.section title="Lizenzen – Windows" :items="$customer->licensewindows" :titleField="fn($l) => $l->operatingSystem?->name ?: 'Windows-Lizenz #'.$l->id" :groups="[
+        'Lizenz' => ['Key' => 'key'],
+    ]" />
+
+    <x-pdf.section title="Lizenzen – Software" :items="$customer->licensesoftware" :groups="[
+        'Login' => ['Benutzer' => 'username', 'Passwort' => 'password'],
+        'Laufzeit' => ['Start' => fn($l) => $date($l->start_date), 'Ende' => fn($l) => $date($l->end_date), 'Abrechnung' => 'abo'],
+        'Key' => ['Key' => 'key'],
+    ]" />
+
+    <x-pdf.section title="Lizenzen – CAL" :items="$customer->licenseaccesses" :groups="[
+        'Lizenz' => ['Key' => 'key'],
+    ]" />
+
+    {{-- Dienste --}}
+    <x-pdf.section title="FTP-Server" :items="$customer->ftpservers" :titleField="$deviceTitle" :groups="[
+        'Login' => ['Host' => 'ip', 'Benutzer' => 'username', 'Passwort' => 'password'],
+    ]" />
+
+    <x-pdf.section title="DynDNS" :items="$customer->dyndns" :groups="[
+        'Login' => ['Anbieter' => 'provider', 'Benutzer' => 'username', 'Passwort' => 'password'],
+    ]" />
+
+    <x-pdf.section title="Domains" :items="$customer->domains" :groups="[
+        'Allgemein' => ['Registrar' => 'registrar', 'Ablaufdatum' => fn($d) => $date($d->expiry_date)],
+        'Nameserver' => ['NS 1' => 'nameserver1', 'NS 2' => 'nameserver2'],
+    ]" />
+
+    {{-- Sonstiges --}}
+    <x-pdf.section title="USV" :items="$customer->ups" :groups="[
+        'Allgemein' => ['Hersteller' => 'manufacturer', 'Modell' => 'model', 'Seriennummer' => 'serialNumber'],
+        'Technik' => ['IP' => 'ip', 'Kapazität' => 'capacity', 'Laufzeit' => 'runtime'],
+    ]" />
+
+    <x-pdf.section title="Backup" :items="$customer->backups" :groups="[
+        'Konfiguration' => ['Software' => 'software', 'Quelle' => 'source', 'Ziel' => 'destination'],
+        'Zeitplan' => ['Zeitplan' => 'schedule', 'Aufbewahrung' => 'retention', 'Letzter Erfolg' => fn($b) => $date($b->last_success)],
+        'Login' => ['Passwort' => 'password'],
+    ]" />
 
 </body>
 

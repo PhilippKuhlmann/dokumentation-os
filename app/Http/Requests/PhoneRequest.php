@@ -24,7 +24,7 @@ class PhoneRequest extends FormRequest
     public function rules()
     {
         return [
-            'site_id' => 'required',
+            'site_id' => ['required', new \App\Rules\BelongsToCustomer('sites')],
             'extension' => 'max:255',
             'manufacturer' => 'max:255',
             'model' => 'max:255',

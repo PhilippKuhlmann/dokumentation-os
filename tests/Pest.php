@@ -42,8 +42,23 @@ expect()->extend('toBeOne', function () {
 |
 */
 
-function something()
+/**
+ * Legt einen authentifizierbaren Nutzer mit den angegebenen Permissions an
+ * (ohne customer_id => Zugriff auf alle Kunden, wie ein Techniker).
+ */
+function userWithPermissions(array $names): \App\Models\User
 {
-    // ..
+    // Explizite hohe ID, damit die Rolle nie versehentlich die Admin- (1)
+    // oder Techniker-Rolle (10) per Auto-Increment erwischt.
+    $role = \App\Models\Role::factory()->create([
+        'id' => (\App\Models\Role::max('id') ?? 0) + 100,
+    ]);
+
+    foreach ($names as $name) {
+        $permission = \App\Models\Permission::factory()->create(['name' => $name]);
+        $role->permissions()->attach($permission->id);
+    }
+
+    return \App\Models\User::factory()->create(['role_id' => $role->id]);
 }
 

@@ -1,12 +1,21 @@
 @props(['label', 'svg', 'links'])
 
+@php
+    // Gruppe automatisch geöffnet, wenn ein Link exakt auf die aktuelle Seite zeigt
+    // (exakter href-Treffer, damit Präfix-URLs wie /admin nicht alle Gruppen öffnen)
+    $open = str_contains((string) $links, 'href="' . request()->url() . '"');
+@endphp
+
 <li>
-    <button type="button" class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-sm group hover:bg-cerulean-500 hover:text-white dark:text-white dark:hover:bg-gray-700" aria-controls="dropdown-{{ $label }}" data-collapse-toggle="dropdown-{{ $label }}">
-        <x-dynamic-component :component="$svg" class="w-6 h-6" />
+    <button type="button"
+        class="group flex items-center w-full p-2 rounded-lg text-sm font-medium text-gray-700 transition-colors hover:bg-gray-100 hover:text-cerulean-700 dark:text-gray-200 dark:hover:bg-gray-800"
+        aria-expanded="{{ $open ? 'true' : 'false' }}"
+        aria-controls="dropdown-{{ $label }}" data-collapse-toggle="dropdown-{{ $label }}">
+        <x-dynamic-component :component="$svg" class="w-5 h-5 text-gray-400 transition-colors group-hover:text-cerulean-600 dark:text-gray-500" />
         <span class="flex-1 ml-3 text-left whitespace-nowrap" sidebar-toggle-item>{{ $label }}</span>
-        <x-svg.arrowdown class="w-6 h-6" />
+        <x-svg.arrowdown class="w-4 h-4 text-gray-400 transition-transform group-aria-expanded:rotate-180" />
     </button>
-    <ul id="dropdown-{{ $label }}" class="hidden py-2 space-y-2">
+    <ul id="dropdown-{{ $label }}" @class(['mt-1 ml-4 space-y-0.5 border-l border-gray-200 dark:border-gray-700', 'hidden' => !$open])>
         {{ $links }}
     </ul>
- </li>
+</li>

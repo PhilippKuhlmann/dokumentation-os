@@ -4,7 +4,7 @@
 
         <x-edit.select.operatingsystem selector="{{ $licensewindows->operatingSystem->id }}" :$operatingSystems/>
 
-        <x-create.singlerow label="Key" name="key" default="{{ $licensewindows->key }}" />
+        <x-create.singlerow label="Key" name="key" :default="$licensewindows->key" />
 
         <x-input.label value="Datei" class="mt-2" />
         <x-input.file name="file" />

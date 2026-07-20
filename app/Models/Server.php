@@ -11,6 +11,8 @@ use Illuminate\Support\Facades\Crypt;
 class Server extends Model
 {
     use HasFactory, SoftDeletes;
+    use \App\Models\Concerns\TracksChanges;
+    use \App\Models\Concerns\HasIpAddresses;
 
     protected $guarded = [];
 

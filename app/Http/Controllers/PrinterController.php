@@ -13,7 +13,7 @@ class PrinterController extends Controller
         $this->authorize('viewAny', Printer::class);
 
         $printers = $this->getFilteredQuery(Printer::class, $customer)
-                         ->get();
+                         ->latest()->paginate(25);
 
         return view('printer.index', compact('customer', 'printers'));
     }

@@ -1,5 +1,5 @@
 <aside id="logo-sidebar"
-        class="fixed top-0 left-0 z-40 w-64 h-screen pt-20 transition-transform -translate-x-full text-gray-900 bg-white sm:translate-x-0 dark:bg-gray-900 "
+        class="fixed top-0 left-0 z-40 w-64 h-screen pt-20 transition-transform -translate-x-full text-gray-900 bg-white border-r border-gray-200 sm:translate-x-0 dark:bg-gray-900 dark:border-gray-700"
         aria-label="Sidebar">
         <div class="h-full px-3 pb-4 overflow-y-auto bg-white dark:bg-gray-900">
             <ul class="space-y-2">
@@ -21,6 +21,12 @@
                 <x-slot:links>
                     <x-aside.dropdownlink label="Betriebsysteme" href="{{ route('admin.operatingsystem.index') }}" />
                     <x-aside.dropdownlink label="Mail Anbieter" href="{{ route('admin.mailboxprovider.index') }}" />
+                </x-slot:links>
+            </x-aside.dropdown>
+
+            <x-aside.dropdown label="Protokoll" svg="svg.document" >
+                <x-slot:links>
+                    <x-aside.dropdownlink label="Aktivitäten" href="{{ route('admin.activity.index') }}" />
                 </x-slot:links>
             </x-aside.dropdown>
 

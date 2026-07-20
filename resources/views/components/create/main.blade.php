@@ -2,7 +2,7 @@
 
 
 <div class="md:flex xs:flex-col">
-    <form method="post" action="{{ $action }}" class="p-5" enctype="multipart/form-data">
+    <form method="post" action="{{ $action }}" class="m-3 p-5 sm:p-6 rounded-xl border border-gray-200 bg-white shadow-sm dark:bg-gray-800 dark:border-gray-700" enctype="multipart/form-data">
         @csrf
 
         <div class="md:flex xs:flex-col md:w-128">
@@ -14,9 +14,9 @@
 
                 {{ $slot }}
 
-                <div class="flex flex-row justify-between gap-3 mt-5">
+                <div class="flex flex-row justify-end gap-3 mt-6">
                     <a href="{{ redirect()->back()->getTargetUrl() }}"
-                        class="font-DINPro-bold text-gray-600 hover:text-gray-500 px-4 py-2 text-center">Abbrechen</a>
+                        class="inline-flex items-center justify-center px-4 py-2 rounded-lg text-sm font-DINPro-bold text-gray-700 bg-white border border-gray-300 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-cerulean-500 focus:ring-offset-2 transition-colors dark:bg-gray-700 dark:text-gray-200 dark:border-gray-600 dark:hover:bg-gray-600">Abbrechen</a>
                     <x-input.button label="{{ $labelsubmit }}" />
                 </div>
 

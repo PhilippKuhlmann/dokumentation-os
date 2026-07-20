@@ -17,16 +17,12 @@
     "tailwindcss": "^3.2.7",
     "vite": "^3.2.4"
   },
-  "name": "dokumentation",
-  "description": "<p align=\"center\"><a href=\"https://laravel.com\" target=\"_blank\"><img src=\"https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg\" width=\"400\" alt=\"Laravel Logo\"></a></p>",
+  "name": "it-dokumentation",
+  "description": "IT-Dokumentations- und Asset-Management-System für Managed Service Provider.",
   "version": "1.0.0",
-  "main": "postcss.config.js",
-  "directories": {
-    "test": "tests"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "keywords": ["laravel", "documentation", "msp", "asset-management"],
+  "author": "Philipp Kuhlmann",
+  "license": "MIT",
   "dependencies": {
     "puppeteer": "^22.12.0"
   }

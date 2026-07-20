@@ -35,4 +35,8 @@
 @endforeach
 
 
+    <div class="px-3 pb-3">
+        {{ $printers->links() }}
+    </div>
+
 </x-app-layout>

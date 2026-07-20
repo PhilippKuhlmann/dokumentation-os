@@ -14,7 +14,7 @@ class MachineController extends Controller
     {
         $this->authorize('viewAny', Machine::class);
 
-        $machines = $this->getFilteredQuery(Machine::class, $customer)->get();
+        $machines = $this->getFilteredQuery(Machine::class, $customer)->latest()->paginate(25);
 
         return view('machine.index', compact('customer', 'machines'));
     }

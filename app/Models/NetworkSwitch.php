@@ -12,6 +12,8 @@ use Illuminate\Support\Facades\Crypt;
 class NetworkSwitch extends Model
 {
     use HasFactory, SoftDeletes;
+    use \App\Models\Concerns\TracksChanges;
+    use \App\Models\Concerns\HasIpAddresses;
 
     protected $guarded = [];
 
@@ -21,5 +23,10 @@ class NetworkSwitch extends Model
             get: fn ($value) => !empty($value) ? Crypt::decryptString($value) : null,
             set: fn ($value) => Crypt::encryptString($value),
         );
+    }
+
+    public function customer()
+    {
+        return $this->belongsTo(Customer::class);
     }
 }

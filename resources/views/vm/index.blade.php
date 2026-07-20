@@ -21,6 +21,10 @@
 
             <x-slot:body>
 
+                <x-minitablecard title="Allgemein" :array="[
+                    'Host' => $vm->host?->name,
+                ]" />
+
                 <x-minitablecard title="Netzwerk" :array="[
                     'IP-Adresse 1' => $vm->ip1,
                     'IP-Adresse 2' => $vm->ip2,
@@ -35,4 +39,8 @@
             </x-slot>
         </x-card>
     @endforeach
+    <div class="px-3 pb-3">
+        {{ $vms->links() }}
+    </div>
+
 </x-app-layout>

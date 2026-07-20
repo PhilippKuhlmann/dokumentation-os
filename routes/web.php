@@ -1,9 +1,16 @@
 <?php
 
 use App\Http\Controllers\AccesspointController;
+use App\Http\Controllers\BackupController;
+use App\Http\Controllers\DomainController;
+use App\Http\Controllers\InternetConnectionController;
+use App\Http\Controllers\UpsController;
 use App\Http\Controllers\ADDomainController;
 use App\Http\Controllers\ADGroupController;
+use App\Http\Controllers\ActivityController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\IpPlanController;
+use App\Http\Controllers\TrashController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\ServerController;
@@ -46,6 +53,7 @@ use App\Http\Controllers\SecurepointUTMController;
 use App\Http\Controllers\SiteController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\WifiController;
+use App\Livewire\GlobalSearch;
 use App\Livewire\RemoteSearch;
 use App\Livewire\UtmSearch;
 
@@ -68,6 +76,9 @@ Route::middleware(['auth', 'isTechniker'])->group(function () {
 // Admin Bereich
 Route::middleware(['auth', 'isAdmin'])->group(function () {
     Route::prefix('admin')->group(function () {
+
+        // Aktivitätsprotokoll
+        Route::get('/activity', [ActivityController::class, 'index'])->name('admin.activity.index');
 
         Route::get('/apitoken', [AdminController::class, 'apitoken']);
 
@@ -122,6 +133,7 @@ Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.
 
 
 // Customer
+Route::middleware('auth')->get('/search', GlobalSearch::class)->name('search.global');
 Route::get('/customer/search', [CustomerController::class, 'search'])->name('customer.search');
 Route::get('/{customer}', [CustomerController::class, 'dashboard'])->name('customer.dashboard');
 Route::post('/{customer}/view-pdf', [CustomerController::class, 'viewPDF'])->name('customer.view-pdf');
@@ -133,6 +145,13 @@ Route::middleware(['auth', 'isCustomer'])->group(function () {
 
             // Site
             Route::post('filter', [SiteController::class, 'filter'])->name('filter.site');
+
+            // IP-Plan je VLAN
+            Route::get('ip-plan', [IpPlanController::class, 'index'])->name('ipplan.index');
+
+            // Papierkorb
+            Route::get('trash', [TrashController::class, 'index'])->name('trash.index');
+            Route::post('trash/{type}/{id}/restore', [TrashController::class, 'restore'])->name('trash.restore');
 
             Route::resource('site', SiteController::class)->except(['show']);
             Route::resource('contactperson', ContactPersonController::class)->except(['show']);
@@ -167,6 +186,10 @@ Route::middleware(['auth', 'isCustomer'])->group(function () {
             Route::resource('recorder', RecorderController::class)->except(['show']);
             Route::resource('camera', CameraController::class)->except(['show']);
             Route::resource('radiocenter', RadiocenterController::class)->except(['show']);
+            Route::resource('ups', UpsController::class, ['parameters' => ['ups' => 'ups']])->except(['show']);
+            Route::resource('internetconnection', InternetConnectionController::class)->except(['show']);
+            Route::resource('domain', DomainController::class)->except(['show']);
+            Route::resource('backup', BackupController::class)->except(['show']);
             Route::resource('dyndns', DynDNSController::class, ['parameters' => ['dyndns' => 'dyndns']])->except(['show']);
 
             Route::get('/licensesoftware/{licensesoftware}/download', [LicenseSoftwareController::class, 'download'])->name('licensesoftware.download');

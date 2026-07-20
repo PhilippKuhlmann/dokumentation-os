@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Crypt;
 class DynDNS extends Model
 {
     use HasFactory, SoftDeletes;
+    use \App\Models\Concerns\TracksChanges;
 
     protected $table = 'dyndns';
 

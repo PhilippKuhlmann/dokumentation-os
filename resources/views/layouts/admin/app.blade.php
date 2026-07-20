@@ -4,7 +4,6 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-    <link rel="icon" type="image/png" href="/images/favicon.png">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>{{ config('app.name') }}</title>
@@ -19,12 +18,14 @@
         }
     </script>
 
+    <style>[x-cloak]{display:none!important}</style>
+
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 
     @livewireStyles
 </head>
 
-<body class="antialiased font-DINPro bg-white dark:bg-gray-900">
+<body class="antialiased font-DINPro bg-gray-100 dark:bg-gray-900">
 
     @include('layouts.admin.navigation')
     @include('layouts.admin.aside')

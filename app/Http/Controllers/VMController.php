@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\VMRequest;
 use App\Models\Customer;
 use App\Models\OperatingSystem;
+use App\Models\Server;
 use App\Models\VM;
 
 class VMController extends Controller
@@ -15,8 +16,8 @@ class VMController extends Controller
         $this->authorize('viewAny', VM::class);
 
         $vms = $this->getFilteredQuery(VM::class, $customer)
-                    ->with('operatingSystem')
-                    ->get();
+                    ->with('operatingSystem', 'host')
+                    ->latest()->paginate(25);
 
         return view('vm.index', compact('customer', 'vms'));
     }
@@ -27,8 +28,9 @@ class VMController extends Controller
 
         $sites = $this->getSitesForCustomer($customer);
         $operatingSystems = OperatingSystem::all();
+        $servers = Server::where('customer_id', $customer->id)->get();
 
-        return view('vm.create', compact('customer', 'sites', 'operatingSystems'));
+        return view('vm.create', compact('customer', 'sites', 'operatingSystems', 'servers'));
     }
 
     public function store(Customer $customer, VMRequest $request)
@@ -46,8 +48,9 @@ class VMController extends Controller
 
         $sites = $this->getSitesForCustomer($customer);
         $operatingSystems = OperatingSystem::all();
+        $servers = Server::where('customer_id', $customer->id)->get();
 
-        return view('vm.edit', compact('customer', 'sites', 'operatingSystems', 'vm'));
+        return view('vm.edit', compact('customer', 'sites', 'operatingSystems', 'servers', 'vm'));
     }
 
     public function update(Customer $customer, VM $vm, VMRequest $request)

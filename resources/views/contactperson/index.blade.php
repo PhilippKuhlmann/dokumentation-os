@@ -31,5 +31,9 @@
         </x-table.main>
     </div>
 
+    <div class="px-3 pb-3">
+        {{ $contactpersons->links() }}
+    </div>
+
 </x-app-layout>
 

@@ -23,7 +23,7 @@ class AccesspointRequest extends FormRequest
     {
         return [
             'room_id' => '',
-            'site_id' => 'required',
+            'site_id' => ['required', new \App\Rules\BelongsToCustomer('sites')],
             'name' => 'required|max:255',
             'manufacturer' => 'nullable',
             'model' => 'nullable|max:255',

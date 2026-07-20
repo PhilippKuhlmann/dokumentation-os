@@ -13,10 +13,10 @@ class NASController extends Controller
     {
         $this->authorize('viewAny', NAS::class);
 
-        $nas = $this->getFilteredQuery(NAS::class, $customer)
-                    ->get();
+        $nasList = $this->getFilteredQuery(NAS::class, $customer)
+                    ->latest()->paginate(25);
 
-        return view('nas.index', compact('customer', 'nas'));
+        return view('nas.index', compact('customer', 'nasList'));
     }
 
     public function create(Customer $customer)

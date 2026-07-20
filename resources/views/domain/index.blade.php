@@ -1,0 +1,28 @@
+<x-app-layout :$customer>
+    @can('domain_create')
+        <x-sitetopmenu />
+    @endcan
+    @foreach ($domains as $domain)
+    <x-card>
+        <x-slot:head>
+            <x-show.header can="domain_update" editUrl="{{ route('domain.edit', [$customer, $domain]) }}">
+                {{ $domain->name }}
+            </x-show.header>
+        </x-slot>
+        <x-slot:body>
+            <x-minitablecard title="Allgemein" :array="[
+                'Registrar' => $domain->registrar,
+                'Ablaufdatum' => $domain->expiry_date ? \Carbon\Carbon::parse($domain->expiry_date)->format('d.m.Y') : null,
+            ]" />
+            <x-minitablecard title="Nameserver" :array="[
+                'NS 1' => $domain->nameserver1,
+                'NS 2' => $domain->nameserver2,
+            ]" />
+            @if ($domain->notes)
+                <x-minitextcard title="Notizen">{{ $domain->notes }}</x-minitextcard>
+            @endif
+        </x-slot>
+    </x-card>
+    @endforeach
+    <div class="px-3 pb-3">{{ $domains->links() }}</div>
+</x-app-layout>

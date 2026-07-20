@@ -22,7 +22,7 @@ class NetworkSwitchRequest extends FormRequest
     public function rules()
     {
         return [
-            'site_id' => 'required',
+            'site_id' => ['required', new \App\Rules\BelongsToCustomer('sites')],
             'name' => 'required|max:255',
             'manufacturer' => 'nullable',
             'model' => 'nullable|max:255',

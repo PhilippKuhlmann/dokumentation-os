@@ -22,7 +22,7 @@ class LoginNASRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'nas_id' => 'required',
+            'nas_id' => ['required', new \App\Rules\BelongsToCustomer('nas')],
             'username' => 'required|max:255',
             'password' => 'required|max:255',
             'description' => 'max:255',

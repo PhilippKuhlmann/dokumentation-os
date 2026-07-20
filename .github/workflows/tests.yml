@@ -1,0 +1,30 @@
+name: tests
+
+on: [push, pull_request]
+
+jobs:
+  tests:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.2'
+          extensions: pdo_sqlite, sqlite3, gd, zip
+
+      - name: Install Composer dependencies
+        run: composer install --prefer-dist --no-progress
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: npm
+
+      - name: Build frontend assets (Vite manifest wird von Feature-Tests benötigt)
+        run: |
+          npm ci
+          npm run build
+
+      - name: Run tests
+        run: php artisan test

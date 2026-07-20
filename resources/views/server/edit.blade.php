@@ -4,25 +4,27 @@
 
         <x-edit.select name="site_id" value="Standort" selector="{{ $server->site_id }}" :array="$sites" />
 
-        <x-create.singlerow label="Name" name="name" default="{{ $server->name }}" />
+        <x-create.singlerow label="Name" name="name" :default="$server->name" />
 
-        <x-create.doublerow label1="Hersteller" name1="manufacturer" default1="{{ $server->manufacturer }}" label2="Model" name2="model" default2="{{ $server->model }}" />
+        <x-create.doublerow label1="Hersteller" name1="manufacturer" :default1="$server->manufacturer" label2="Model" name2="model" :default2="$server->model" />
 
-        <x-create.singlerow label="Seriennummer" name="serialNumber" default="{{ $server->serialNumber }}" />
+        <x-create.singlerow label="Seriennummer" name="serialNumber" :default="$server->serialNumber" />
 
-        <x-create.doublerow label1="IP 1" name1="ip1" default1="{{ $server->ip1 }}" label2="IP 2" name2="ip2" default2="{{ $server->ip2 }}" />
+        <x-create.doublerow label1="IP 1" name1="ip1" :default1="$server->ip1" label2="IP 2" name2="ip2" :default2="$server->ip2" />
 
-        <x-create.singlerow label="BMC IP" name="bmcIp" default="{{ $server->bmcIp }}" />
+        <x-create.singlerow label="BMC IP" name="bmcIp" :default="$server->bmcIp" />
 
-        <x-create.doublerow label1="BMC User" name1="bmcUser" default1="{{ $server->bmcUser }}" label2="BMC Passwort" name2="bmcPassword" default2="{!! $server->bmcPassword !!}" />
+        <x-create.doublerow label1="BMC User" name1="bmcUser" :default1="$server->bmcUser" label2="BMC Passwort" name2="bmcPassword" :default2="$server->bmcPassword" />
 
-        <x-create.doublerow label1="Rustdesk ID" name1="remoteID" default1="{{ $server->remoteID }}" label2="Rustdesk Passwort" name2="remotePassword" default2="{!! $server->remotePassword !!}" />
+        <x-create.doublerow label1="Rustdesk ID" name1="remoteID" :default1="$server->remoteID" label2="Rustdesk Passwort" name2="remotePassword" :default2="$server->remotePassword" />
 
         <x-edit.select.operatingsystem selector="{{ $server->operatingSystem->id }}" :$operatingSystems/>
 
-        <x-create.singlerow label="Dienste Bitte mit komma getrennt angeben (eins,zwei,drei)" name="services" default="{{ implode(',', $server->services) }}" />
+        <x-create.singlerow label="Dienste Bitte mit komma getrennt angeben (eins,zwei,drei)" name="services" :default="implode(',', $server->services)" />
 
     </x-create.main>
+
+    <livewire:device-ip-addresses :model="$server" :customer="$customer" />
 
     @can('server_delete')
         <x-deletecard action="{{ route('server.destroy', [$customer, $server]) }}" />

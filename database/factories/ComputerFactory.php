@@ -19,7 +19,7 @@ class ComputerFactory extends Factory
         return [
             'name' => 'PC-' . fake()->numberBetween($min = 1, $max = 100),
             'manufacturer' => fake()->randomElement(['Wortmann', 'HP', 'Lenovo']),
-            'model' => fake()->ean8(),
+            'model' => fake()->randomElement(['TERRA PC-Business', 'EliteDesk 800 G9', 'ThinkCentre M70q', 'OptiPlex 7010']),
             'serialNumber' => fake()->ean13(),
             'ip' => fake()->localIpv4(),
             'operating_system_id' => fake()->numberBetween($min = 1, $max = 10),

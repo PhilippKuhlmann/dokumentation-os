@@ -11,6 +11,7 @@ use Illuminate\Database\Eloquent\Casts\Attribute;
 class LoginNAS extends Model
 {
     use HasFactory, SoftDeletes;
+    use \App\Models\Concerns\TracksChanges;
 
     protected $table = 'login_nas';
 

@@ -12,8 +12,8 @@ class RadiocenterController extends Controller
     {
         $this->authorize('viewAny', Radiocenter::class);
 
-        $radiocenters = $this->getFilteredQuery(Radiocenter::class, $customer)
-                        ->get();
+        $radiocenters = $this->getFilteredQuery(Radiocenter::class, $customer)->with('site')
+                        ->latest()->paginate(25);
 
         return view('radiocenter.index', compact('customer', 'radiocenters'));
     }

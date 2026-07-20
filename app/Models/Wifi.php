@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Crypt;
 class Wifi extends Model
 {
     use HasFactory, SoftDeletes;
+    use \App\Models\Concerns\TracksChanges;
 
     protected $guarded = [];
 
@@ -25,5 +26,10 @@ class Wifi extends Model
     public function network()
     {
         return $this->belongsTo(Network::class);
+    }
+
+    public function customer()
+    {
+        return $this->belongsTo(Customer::class);
     }
 }

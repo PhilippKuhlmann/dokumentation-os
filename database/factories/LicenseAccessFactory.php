@@ -1,24 +1,17 @@
 <?php
-
 namespace Database\Factories;
-
 use Illuminate\Database\Eloquent\Factories\Factory;
-
-/**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\LicenseAccess>
- */
-class LicenseAccessFactory extends Factory
-{
-    /**
-     * Define the model's default state.
-     *
-     * @return array<string, mixed>
-     */
-    public function definition(): array
-    {
+class LicenseAccessFactory extends Factory {
+    public function definition(): array {
         return [
-            'name' => fake()->name(),
-            'key' => fake()->uuid(),
+            'name' => fake()->randomElement([
+                'Windows Server 2022 User CAL (25)',
+                'Windows Server 2022 Device CAL (50)',
+                'RDS User CAL (20)',
+                'Exchange Server Standard CAL (25)',
+                'SQL Server 2022 CAL (10)',
+            ]),
+            'key' => strtoupper(fake()->bothify('?????-?????-?????-?????-?????')),
         ];
     }
 }

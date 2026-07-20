@@ -36,4 +36,8 @@
         </x-card>
     @endforeach
 
+    <div class="px-3 pb-3">
+        {{ $recorders->links() }}
+    </div>
+
 </x-app-layout>

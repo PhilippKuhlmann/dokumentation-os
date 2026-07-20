@@ -1,14 +1,14 @@
 @props(['title', 'array' => []])
 
-<div class="w-96 mb-3">
-    <div class="text-sm text-gray-500">
+<div class="w-80">
+    <div class="mb-1.5 text-xs font-semibold uppercase tracking-wide text-gray-500 dark:text-gray-400">
         {{ $title }}
     </div>
     <div class="text-sm dark:text-gray-100">
         <table class="w-full">
             @foreach ($array as $key => $value)
-                <tr>
-                    <td>{{ $key }}</td>
+                <tr class="border-b border-gray-100 last:border-0 dark:border-gray-700/50">
+                    <td class="py-1 pr-6 align-top whitespace-nowrap text-gray-500 dark:text-gray-400">{{ $key }}</td>
                     @if ($key == 'Passwort' || $key == 'BMC Passwort' || $key == 'DSRM Passwort' || $key == 'Cloud Backup Passwort' || $key == 'Verschlüsselungscode' || $key == 'USC-PIN')
                         <td scope="row" class="">
                             <div class="" x-data="{ show: true }">
@@ -42,13 +42,13 @@
                             </div>
                         </td>
                     @elseif ($key == 'URL' || $key == 'Admin URL' || $key == 'User URL' || $key == 'Externe URL')
-                       <td>
-                            <a href="{{ $value }}" target="_blank" class="hover:text-cerulean-500">
+                       <td class="py-1">
+                            <a href="{{ $value }}" target="_blank" class="text-cerulean-600 hover:text-cerulean-700 hover:underline">
                                 {{ $value }}
                             </a>
                         </td>
                     @else
-                        <td>{{ $value }}</td>
+                        <td class="py-1 text-gray-900 dark:text-gray-100">{{ $value }}</td>
                     @endif
 
                 </tr>

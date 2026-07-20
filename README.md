@@ -1,54 +1,83 @@
 # IT-Dokumentation
 
-Gitlab
+![Tests](https://github.com/PhilippKuhlmann/it-dokumentation/actions/workflows/tests.yml/badge.svg)
 
-## Voraussetzung 
-Es wird ein LAMP-Stack und Grundkenntnisse in Webserver, php und mysql  vorausgesetzt. 
+Ein Open-Source-System zur **IT-Dokumentation und Asset-Verwaltung** für Managed Service Provider
+(MSPs), gebaut mit Laravel 10 und Livewire.
+
+Die Anwendung verwaltet die komplette IT-Infrastruktur je Kunde – von Standorten über Server und
+Netzwerk bis zu Lizenzen und Zugangsdaten – und erzeugt daraus PDF-Dokumentationen.
+
+## Features
+
+- **Kunden & Standorte** – Mehrmandantenfähige Struktur je Kunde
+- **Infrastruktur** – Server, VMs, NAS, Computer, Racks
+- **Netzwerk** – Router, Switches, Access Points, WLAN-Netze
+- **Active Directory** – Domains, Benutzer, Gruppen
+- **Kommunikation** – Telefonanlagen, DECT, Mailboxen
+- **Sicherheit** – Securepoint UTM/UMA (Firewalls), VPN
+- **Geräte** – Kameras, Recorder, Drucker, FTP
+- **Lizenzverwaltung** – Software-, Windows- und Zugriffslizenzen inkl. Ablaufdaten
+- **Zugangsdaten** – Verschlüsselte Speicherung von Logins
+- **Dateiablage** je Kunde
+- **PDF-Export** der Dokumentation
+
+## Voraussetzungen
+
+Ein LAMP-Stack (PHP 8.0.2+, MySQL/MariaDB) sowie Grundkenntnisse in Webserver, PHP und MySQL.
 
 ## Installation
-### Git-Repo Clonen
-Das Repository in den Webserver clonen
 
-    https://github.com/PhilippKuhlmann/dokumentation.git
+### Repository klonen
 
-### Composer
+    git clone https://github.com/PhilippKuhlmann/it-dokumentation.git
+    cd it-dokumentation
+
+### Abhängigkeiten installieren
 
     composer install
-
-### NPM
-
     npm install
 
-### Konfigurationsdatei anpassen
-Hier die Datei anpassen und mit eurer Datenbank ausfüllen.
+### Konfiguration
 
     cp .env.example .env
-    nano .env
+    # .env anpassen (Datenbank-Zugangsdaten etc.)
 
-### App Key erstellen
+### App-Key erzeugen
 
     php artisan key:generate
 
-### Datenbank migrieren
+### Datenbank migrieren und mit Demo-Daten befüllen
 
     php artisan migrate:fresh --seed
 
+### Frontend bauen / Dev-Server
 
+    npm run dev
 
+## Rollen
 
-# Default Gruppen und Login
-**Admin**
-Kann Einstellung am System ändern und hat Zugriff auf alle Kunden
+| Rolle         | Rechte                                              |
+| ------------- | --------------------------------------------------- |
+| **Admin**     | Systemeinstellungen ändern, Zugriff auf alle Kunden |
+| **Techniker** | Zugriff auf alle Kunden                             |
+| **Kunde**     | Sieht nur die eigenen Daten                         |
 
-**Techniker**
-Hat Zugriff auf alle Kunden
+## Demo-Zugänge
 
-**Kunde**
-Kann nur seine eigenen Daten sehen
+> ⚠️ **Nur für lokale Test-/Demo-Umgebungen.** Diese Accounts werden vom Seeder angelegt.
+> Für den Produktivbetrieb unbedingt eigene Benutzer anlegen und die Demo-Accounts entfernen.
 
+| Benutzername | Passwort | Rolle     |
+| ------------ | -------- | --------- |
+| admin        | password | Admin     |
+| techniker    | password | Techniker |
 
-|Benutzername|Passwort|Rolle|
-|--|--|--|
-|admin|password|Admin|
-|p.kuhlmann|password|Techniker|
-|mustermann|password|Kunde|
+## Mitwirken & Sicherheit
+
+- Beiträge sind willkommen — siehe [CONTRIBUTING.md](CONTRIBUTING.md) und [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md).
+- Sicherheitslücken bitte gemäß [SECURITY.md](SECURITY.md) melden (nicht als öffentliches Issue).
+
+## Lizenz
+
+Veröffentlicht unter der [MIT-Lizenz](LICENSE).

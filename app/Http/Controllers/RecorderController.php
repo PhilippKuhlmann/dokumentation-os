@@ -14,7 +14,7 @@ class RecorderController extends Controller
         $this->authorize('viewAny', Recorder::class);
 
         $recorders = $this->getFilteredQuery(Recorder::class, $customer)
-                          ->get();
+                          ->latest()->paginate(25);
 
         return view('recorder.index', compact('customer', 'recorders'));
     }

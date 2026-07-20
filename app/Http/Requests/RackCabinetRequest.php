@@ -22,7 +22,7 @@ class RackCabinetRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'site_id' => '',
+            'site_id' => ['nullable', new \App\Rules\BelongsToCustomer('sites')],
             'room_id' => 'required',
             'name' => 'required',
         ];

@@ -11,6 +11,8 @@ use Illuminate\Support\Facades\Crypt;
 class NAS extends Model
 {
     use HasFactory, SoftDeletes;
+    use \App\Models\Concerns\TracksChanges;
+    use \App\Models\Concerns\HasIpAddresses;
 
     protected $table = 'nas';
 
@@ -28,5 +30,10 @@ class NAS extends Model
     public function loginnas()
     {
         return $this->hasMany(LoginNAS::class, 'nas_id');
+    }
+
+    public function customer()
+    {
+        return $this->belongsTo(Customer::class);
     }
 }

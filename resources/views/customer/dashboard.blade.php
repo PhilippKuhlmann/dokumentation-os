@@ -1,48 +1,100 @@
 <x-app-layout :$customer>
-    <div class="p-3">
+    <div class="p-3 sm:p-5">
 
-        <div class="flex justify-between">
+        <div class="flex items-center justify-between mb-5">
             <div class="text-3xl font-CoconPro text-gray-900 dark:text-gray-100">
                 {{ $customer->name }}
             </div>
             @can('create_pdf')
-                <div class="">
-                    <form action="{{ route('customer.view-pdf', $customer) }}" method="POST" target="__blank">
-                        @csrf
-                        <x-input.button label="PDF erstellen" />
-                    </form>
+                <form action="{{ route('customer.view-pdf', $customer) }}" method="POST" target="__blank">
+                    @csrf
+                    <x-input.button label="PDF erstellen" />
+                </form>
+            @endcan
+        </div>
+
+        {{-- Inventar-Übersicht --}}
+        <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-3 mb-6">
+            @foreach ($tiles as $tile)
+                @can($tile['can'])
+                    <a href="{{ $tile['route'] }}"
+                        class="group flex items-center gap-3 p-4 bg-white rounded-xl border border-gray-200 shadow-sm transition hover:border-cerulean-300 hover:shadow-md dark:bg-gray-800 dark:border-gray-700 dark:hover:border-cerulean-500">
+                        <span class="flex items-center justify-center w-11 h-11 rounded-lg bg-cerulean-50 text-cerulean-600 transition-colors group-hover:bg-cerulean-100 dark:bg-gray-700 dark:text-cerulean-400 shrink-0">
+                            <x-dynamic-component :component="$tile['icon']" class="w-6 h-6" />
+                        </span>
+                        <span class="flex flex-col">
+                            <span class="text-2xl font-bold leading-none text-chathams-blue-800 dark:text-gray-100">{{ $tile['count'] }}</span>
+                            <span class="mt-1 text-sm text-gray-500 dark:text-gray-400">{{ $tile['label'] }}</span>
+                        </span>
+                    </a>
+                @endcan
+            @endforeach
+        </div>
+
+        <div class="flex flex-wrap gap-5">
+
+            {{-- Ablaufende Lizenzen --}}
+            @can('licensesoftware_viewAny')
+                <div class="w-full sm:w-96 p-5 bg-white rounded-xl border border-gray-200 shadow-sm dark:bg-gray-800 dark:border-gray-700">
+                    <div class="text-2xl font-CoconPro text-gray-900 dark:text-gray-100 mb-4">Ablaufende Lizenzen</div>
+                    <div class="divide-y divide-gray-100 dark:divide-gray-700">
+                        @forelse ($expiringLicenses as $license)
+                            @php
+                                $end = \Carbon\Carbon::parse($license->end_date)->startOfDay();
+                                $days = now()->startOfDay()->diffInDays($end, false);
+                            @endphp
+                            <a href="{{ route('licensesoftware.index', $customer) }}"
+                                class="flex items-center justify-between py-2.5 -mx-2 px-2 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors">
+                                <span class="text-gray-800 dark:text-gray-100">{{ $license->name }}</span>
+                                @if ($days < 0)
+                                    <span class="text-sm font-medium text-red-600 dark:text-red-400">abgelaufen</span>
+                                @elseif ($days == 0)
+                                    <span class="text-sm font-medium text-red-600 dark:text-red-400">heute</span>
+                                @elseif ($days <= 14)
+                                    <span class="text-sm font-medium text-amber-600 dark:text-amber-400">in {{ $days }} Tagen</span>
+                                @else
+                                    <span class="text-sm text-gray-500 dark:text-gray-400">in {{ $days }} Tagen</span>
+                                @endif
+                            </a>
+                        @empty
+                            <div class="py-3 text-sm text-gray-400 dark:text-gray-500">Keine ablaufenden Lizenzen 🎉</div>
+                        @endforelse
+                    </div>
                 </div>
             @endcan
 
-        </div>
-
-        <div class="flex">
-            <div class="flex flex-col text-gray-900 dark:text-gray-100 w-64 p-5">
-                <div class="text-2xl font-CoconPro mt-5">Standorte</div>
-
-                @foreach ($sites as $site)
-                    <div class="mt-5">
-                        <div class="text-xl">{{ $site->name }}</div>
-                        <div class="text-sm text-gray-700 dark:text-gray-400">{{ $site->street }} {{ $site->house_number }}</div>
-                        <div class="text-sm text-gray-700 dark:text-gray-400">{{ $site->zip }} {{ $site->city }}</div>
-                    </div>
-                @endforeach
-
+            {{-- Standorte --}}
+            <div class="w-full sm:w-80 p-5 bg-white rounded-xl border border-gray-200 shadow-sm dark:bg-gray-800 dark:border-gray-700">
+                <div class="text-2xl font-CoconPro text-gray-900 dark:text-gray-100 mb-4">Standorte</div>
+                <div class="space-y-4">
+                    @forelse ($sites as $site)
+                        <div>
+                            <div class="text-lg text-gray-900 dark:text-gray-100">{{ $site->name }}</div>
+                            <div class="text-sm text-gray-500 dark:text-gray-400">{{ $site->street }} {{ $site->house_number }}</div>
+                            <div class="text-sm text-gray-500 dark:text-gray-400">{{ $site->zip }} {{ $site->city }}</div>
+                        </div>
+                    @empty
+                        <div class="text-sm text-gray-400 dark:text-gray-500">Keine Standorte</div>
+                    @endforelse
+                </div>
             </div>
 
-            <div class="flex flex-col text-gray-900 dark:text-gray-100 w-64 p-5">
-                <div class="text-2xl font-CoconPro mt-5">Ansprechpartner</div>
-
-                @foreach ($contactpersons as $contactperson)
-                    <div class="mt-5">
-                        <div class="text-xl">{{ $contactperson->first_name }} {{ $contactperson->last_name }}</div>
-                        <div class="text-sm text-gray-700 dark:text-gray-400">{{ $contactperson->phone }}</div>
-                        <div class="text-sm text-gray-700 dark:text-gray-400">{{ $contactperson->mail }}</div>
-                    </div>
-                @endforeach
-
+            {{-- Ansprechpartner --}}
+            <div class="w-full sm:w-80 p-5 bg-white rounded-xl border border-gray-200 shadow-sm dark:bg-gray-800 dark:border-gray-700">
+                <div class="text-2xl font-CoconPro text-gray-900 dark:text-gray-100 mb-4">Ansprechpartner</div>
+                <div class="space-y-4">
+                    @forelse ($contactpersons as $contactperson)
+                        <div>
+                            <div class="text-lg text-gray-900 dark:text-gray-100">{{ $contactperson->first_name }} {{ $contactperson->last_name }}</div>
+                            <div class="text-sm text-gray-500 dark:text-gray-400">{{ $contactperson->phone }}</div>
+                            <div class="text-sm text-gray-500 dark:text-gray-400">{{ $contactperson->mail }}</div>
+                        </div>
+                    @empty
+                        <div class="text-sm text-gray-400 dark:text-gray-500">Keine Ansprechpartner</div>
+                    @endforelse
+                </div>
             </div>
-        </div>
 
+        </div>
     </div>
 </x-app-layout>

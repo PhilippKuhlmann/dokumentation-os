@@ -22,7 +22,7 @@ class RoomRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'site_id' => '',
+            'site_id' => ['nullable', new \App\Rules\BelongsToCustomer('sites')],
             'name' => 'required',
         ];
     }

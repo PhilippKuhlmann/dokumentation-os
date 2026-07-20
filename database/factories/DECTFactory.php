@@ -1,31 +1,21 @@
 <?php
-
 namespace Database\Factories;
-
 use Illuminate\Database\Eloquent\Factories\Factory;
-
-/**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\DECT>
- */
-class DECTFactory extends Factory
-{
-    /**
-     * Define the model's default state.
-     *
-     * @return array<string, mixed>
-     */
-    public function definition()
-    {
+class DECTFactory extends Factory {
+    public function definition() {
+        [$m,$mo] = fake()->randomElement([
+            ['Yealink','W60B'],['Yealink','W80B'],['Snom','M700'],
+            ['Gigaset','N870 IP'],['Grandstream','DP720'],
+        ]);
         return [
             'role' => fake()->randomElement(['Master', 'Slave']),
-            'manufacturer' => fake()->randomElement(['Yealink', 'Snom', 'Gigaset']),
-            'model' => fake()->ean8(),
-            'serialNumber' => fake()->ean13(),
+            'manufacturer' => $m, 'model' => $mo,
+            'serialNumber' => strtoupper(fake()->bothify('??########')),
             'ip' => fake()->localIpv4(),
             'mac' => fake()->macAddress(),
             'port' => '443',
             'username' => fake()->userName(),
-            'password' => fake()->password($minLength = 6, $maxLength = 12),
+            'password' => fake()->password(6, 12),
         ];
     }
 }

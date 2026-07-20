@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Room extends Model
 {
     use HasFactory;
+    use \App\Models\Concerns\TracksChanges;
 
     protected $guarded = [];
 

@@ -12,8 +12,8 @@ class WifiController extends Controller
     {
         $this->authorize('viewAny', Wifi::class);
 
-        $wifis = $this->getFilteredQuery(Wifi::class, $customer)
-                      ->get();
+        $wifis = $this->getFilteredQuery(Wifi::class, $customer)->with('network')
+                      ->latest()->paginate(25);
 
         return view('wifi.index', compact('customer', 'wifis'));
     }
