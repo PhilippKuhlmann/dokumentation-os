@@ -25,7 +25,8 @@
                 @if ($plan['error'] ?? null)
                     <div class="px-5 py-4 text-sm text-amber-600 dark:text-amber-400">{{ $plan['error'] }} — bitte Netzadresse und CIDR/Subnetzmaske prüfen.</div>
                 @else
-                    <table class="w-full text-sm text-left">
+                    <div class="overflow-x-auto">
+                    <table class="w-full min-w-max text-sm text-left sm:min-w-0">
                         <thead class="text-xs uppercase tracking-wide text-gray-400 bg-gray-50 border-b border-gray-100 dark:bg-gray-700 dark:text-gray-400 dark:border-gray-700">
                             <tr>
                                 <th class="py-2 px-5 font-semibold w-1/3">IP-Adresse</th>
@@ -57,6 +58,7 @@
                             @endforeach
                         </tbody>
                     </table>
+                    </div>
 
                     @if ($plan['truncated'] ?? false)
                         <div class="px-5 py-3 text-xs text-gray-400 border-t border-gray-100 dark:border-gray-700">
