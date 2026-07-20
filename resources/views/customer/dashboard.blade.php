@@ -63,6 +63,36 @@
                 </div>
             @endcan
 
+            {{-- Ablaufende Zertifikate --}}
+            @can('certificate_viewAny')
+                <div class="w-full sm:w-96 p-5 bg-white rounded-xl border border-gray-200 shadow-sm dark:bg-gray-800 dark:border-gray-700">
+                    <div class="text-2xl font-CoconPro text-gray-900 dark:text-gray-100 mb-4">Ablaufende Zertifikate</div>
+                    <div class="divide-y divide-gray-100 dark:divide-gray-700">
+                        @forelse ($expiringCertificates as $certificate)
+                            @php
+                                $end = \Carbon\Carbon::parse($certificate->expiry_date)->startOfDay();
+                                $days = now()->startOfDay()->diffInDays($end, false);
+                            @endphp
+                            <a href="{{ route('certificate.index', $customer) }}"
+                                class="flex items-center justify-between py-2.5 -mx-2 px-2 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors">
+                                <span class="text-gray-800 dark:text-gray-100">{{ $certificate->name }}</span>
+                                @if ($days < 0)
+                                    <span class="text-sm font-medium text-red-600 dark:text-red-400">abgelaufen</span>
+                                @elseif ($days == 0)
+                                    <span class="text-sm font-medium text-red-600 dark:text-red-400">heute</span>
+                                @elseif ($days <= 14)
+                                    <span class="text-sm font-medium text-amber-600 dark:text-amber-400">in {{ $days }} Tagen</span>
+                                @else
+                                    <span class="text-sm text-gray-500 dark:text-gray-400">in {{ $days }} Tagen</span>
+                                @endif
+                            </a>
+                        @empty
+                            <div class="py-3 text-sm text-gray-400 dark:text-gray-500">Keine ablaufenden Zertifikate 🎉</div>
+                        @endforelse
+                    </div>
+                </div>
+            @endcan
+
             {{-- Standorte --}}
             <div class="w-full sm:w-80 p-5 bg-white rounded-xl border border-gray-200 shadow-sm dark:bg-gray-800 dark:border-gray-700">
                 <div class="text-2xl font-CoconPro text-gray-900 dark:text-gray-100 mb-4">Standorte</div>

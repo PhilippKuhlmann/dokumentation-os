@@ -260,6 +260,11 @@
         'Nameserver' => ['NS 1' => 'nameserver1', 'NS 2' => 'nameserver2'],
     ]" />
 
+    <x-pdf.section title="Zertifikate" :items="$customer->certificates" :groups="[
+        'Allgemein' => ['Domain / CN' => 'common_name', 'Aussteller' => 'issuer', 'Typ' => 'type'],
+        'Gültigkeit' => ['Ausgestellt am' => fn($c) => $date($c->issued_date), 'Ablaufdatum' => fn($c) => $date($c->expiry_date)],
+    ]" />
+
     {{-- Sonstiges --}}
     <x-pdf.section title="USV" :items="$customer->ups" :groups="[
         'Allgemein' => ['Hersteller' => 'manufacturer', 'Modell' => 'model', 'Seriennummer' => 'serialNumber'],

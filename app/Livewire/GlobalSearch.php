@@ -36,6 +36,7 @@ class GlobalSearch extends Component
         'ups' => [\App\Models\Ups::class, 'USV', 'ups', ['name', 'ip', 'serialNumber']],
         'internetconnection' => [\App\Models\InternetConnection::class, 'Internet / WAN', 'internetconnection', ['wan_ip']],
         'domain' => [\App\Models\Domain::class, 'Domains', 'domain', ['name']],
+        'certificate' => [\App\Models\Certificate::class, 'Zertifikate', 'certificate', ['name', 'common_name', 'issuer']],
     ];
 
     public function render()

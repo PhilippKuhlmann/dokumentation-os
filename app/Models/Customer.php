@@ -256,6 +256,11 @@ class Customer extends Model
         return $this->hasMany(Domain::class);
     }
 
+    public function certificates()
+    {
+        return $this->hasMany(Certificate::class);
+    }
+
     public function backups()
     {
         return $this->hasMany(Backup::class);

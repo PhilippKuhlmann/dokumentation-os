@@ -73,7 +73,14 @@ class CustomerController extends Controller
             ->orderBy('end_date')
             ->get();
 
-        return view('customer.dashboard', compact('customer', 'sites', 'contactpersons', 'tiles', 'expiringLicenses'));
+        // SSL/TLS-Zertifikate, die in den nächsten 60 Tagen ablaufen oder bereits abgelaufen sind
+        $expiringCertificates = \App\Models\Certificate::where('customer_id', $customer->id)
+            ->whereNotNull('expiry_date')
+            ->whereDate('expiry_date', '<=', now()->addDays(60))
+            ->orderBy('expiry_date')
+            ->get();
+
+        return view('customer.dashboard', compact('customer', 'sites', 'contactpersons', 'tiles', 'expiringLicenses', 'expiringCertificates'));
     }
 
     public function viewPDF(Customer $customer)

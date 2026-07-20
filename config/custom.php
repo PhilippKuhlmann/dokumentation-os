@@ -42,6 +42,7 @@ return [
         'Ups',
         'InternetConnection',
         'Domain',
+        'Certificate',
         'Backup'
     ],
 
@@ -89,6 +90,7 @@ return [
         'ups' => [\App\Models\Ups::class, 'USV'],
         'internetconnection' => [\App\Models\InternetConnection::class, 'Internet-Anschluss'],
         'domain' => [\App\Models\Domain::class, 'Domain'],
+        'certificate' => [\App\Models\Certificate::class, 'Zertifikat'],
         'backup' => [\App\Models\Backup::class, 'Backup'],
     ],
 ];

@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AccesspointController;
 use App\Http\Controllers\BackupController;
+use App\Http\Controllers\CertificateController;
 use App\Http\Controllers\DomainController;
 use App\Http\Controllers\InternetConnectionController;
 use App\Http\Controllers\UpsController;
@@ -189,6 +190,7 @@ Route::middleware(['auth', 'isCustomer'])->group(function () {
             Route::resource('ups', UpsController::class, ['parameters' => ['ups' => 'ups']])->except(['show']);
             Route::resource('internetconnection', InternetConnectionController::class)->except(['show']);
             Route::resource('domain', DomainController::class)->except(['show']);
+            Route::resource('certificate', CertificateController::class)->except(['show']);
             Route::resource('backup', BackupController::class)->except(['show']);
             Route::resource('dyndns', DynDNSController::class, ['parameters' => ['dyndns' => 'dyndns']])->except(['show']);
 

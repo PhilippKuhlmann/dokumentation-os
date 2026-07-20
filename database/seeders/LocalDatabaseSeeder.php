@@ -326,6 +326,27 @@ class LocalDatabaseSeeder extends Seeder
             'expiry_date' => now()->addYear()->toDateString(),
         ]);
 
+        // SSL/TLS-Zertifikate (eines läuft demnächst ab -> Dashboard-Warnung)
+        \App\Models\Certificate::factory()->create([
+            'customer_id' => $customer->id,
+            'name' => 'Wildcard *.mustermann.de',
+            'common_name' => '*.mustermann.de',
+            'issuer' => "Let's Encrypt",
+            'type' => 'Wildcard',
+            'issued_date' => now()->subMonths(2)->toDateString(),
+            'expiry_date' => now()->addWeeks(3)->toDateString(),
+        ]);
+
+        \App\Models\Certificate::factory()->create([
+            'customer_id' => $customer->id,
+            'name' => 'mail.mustermann.de',
+            'common_name' => 'mail.mustermann.de',
+            'issuer' => 'Sectigo',
+            'type' => 'SSL/TLS',
+            'issued_date' => now()->subMonths(1)->toDateString(),
+            'expiry_date' => now()->addYear()->toDateString(),
+        ]);
+
         // Backup-Konzepte
         \App\Models\Backup::factory()->create([
             'customer_id' => $customer->id,

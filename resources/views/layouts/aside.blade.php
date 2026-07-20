@@ -201,7 +201,7 @@
                 </x-aside.dropdown>
             @endcanany
 
-            @canany(['ftpserver_viewAny', 'dyndns_viewAny', 'domain_viewAny', 'backup_viewAny'])
+            @canany(['ftpserver_viewAny', 'dyndns_viewAny', 'domain_viewAny', 'certificate_viewAny', 'backup_viewAny'])
                 <x-aside.dropdown label="Dienste" svg="svg.settings">
                     <x-slot:links>
                         @can('ftpserver_viewAny')
@@ -212,6 +212,9 @@
                         @endcan
                         @can('domain_viewAny')
                             <x-aside.dropdownlink label="Domains" href="{{ route('domain.index', $customer) }}" />
+                        @endcan
+                        @can('certificate_viewAny')
+                            <x-aside.dropdownlink label="Zertifikate" href="{{ route('certificate.index', $customer) }}" />
                         @endcan
                         @can('backup_viewAny')
                             <x-aside.dropdownlink label="Backup" href="{{ route('backup.index', $customer) }}" />
