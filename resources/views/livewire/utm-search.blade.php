@@ -34,10 +34,10 @@
                         <tr class="border-t border-hawkes-blue-200 dark:border-gray-600 bg-hawkes-blue-100 dark:bg-gray-700">
                             <th scope="row"
                                 class="py-3 px-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                {{ $utm->customer->name }}
+                                {{ $utm->customer?->name }}
                             </th>
                             <td class="py-3 px-4">
-                                {{ $utm->site->name }}
+                                {{ $utm->site?->name }}
                             </td>
                             <td class="py-3 px-4">
                                 <a href="{{ $utm->urlExternal }}" target="_blank" class="hover:text-blau-100">

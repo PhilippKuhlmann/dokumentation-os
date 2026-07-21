@@ -15,7 +15,7 @@
                     <x-table.datarow
                         :values="[
                             $wifi->ssid,
-                            $wifi->network->vlanId. ' - ' . $wifi->network->description,
+                            $wifi->network ? ($wifi->network->vlanId . ' - ' . $wifi->network->description) : '—',
                             $wifi->encryption,
                             'password' => $wifi->password,
                         ]"

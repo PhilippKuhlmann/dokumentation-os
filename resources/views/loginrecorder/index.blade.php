@@ -14,7 +14,7 @@
 
                     <x-table.datarow
                         :values="[
-                            $loginrecorder->recorder->name,
+                            $loginrecorder->recorder?->name ?? '—',
                             $loginrecorder->username,
                             'password' => $loginrecorder->password,
                         ]"

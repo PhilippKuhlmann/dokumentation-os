@@ -12,7 +12,7 @@
             <x-input.label for="mailbox_provider_id" value="Anbieter" />
             <x-input.select id="mailbox_provider_id" name="mailbox_provider_id">
                 @foreach ($mailboxProviders as $mailboxprovider)
-                    <option {{ $mailboxprovider->id == $mailbox->mailboxProvider->id ? 'selected' : '' }} value="{{ $mailboxprovider->id }}">{{ $mailboxprovider->name }}</option>
+                    <option {{ $mailboxprovider->id == $mailbox->mailboxProvider?->id ? 'selected' : '' }} value="{{ $mailboxprovider->id }}">{{ $mailboxprovider->name }}</option>
                 @endforeach
             </x-input.select>
         </div>

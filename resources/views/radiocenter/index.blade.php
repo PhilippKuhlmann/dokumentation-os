@@ -8,7 +8,7 @@
     <x-card>
         <x-slot:head>
             <x-show.header can="radiocenter_update" editUrl="{{ route('radiocenter.edit', [$customer, $radiocenter]) }}">
-                Standort: {{ $radiocenter->site->name }}
+                Standort: {{ $radiocenter->site?->name ?? '—' }}
             </x-show.header>
         </x-slot>
 

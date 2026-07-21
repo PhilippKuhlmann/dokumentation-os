@@ -41,7 +41,7 @@
                     :values="[
                         $user->name,
                         $user->username,
-                        $user->role->name,
+                        $user->role?->name ?? '—',
                         $user->customer ? $user->customer->name : ''
                     ]"
 

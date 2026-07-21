@@ -21,16 +21,16 @@
                     'Passwort' => $mailbox->password,
                 ]" />
 
-                <x-minitablecard title="{{ $mailbox->mailboxProvider->name }} - Eingang" :array="[
-                    'POP3-Server' => $mailbox->mailboxProvider->pop3server,
-                    'POP3-Port' => $mailbox->mailboxProvider->pop3port,
-                    'IMAP-Server' => $mailbox->mailboxProvider->imapserver,
-                    'IMAP-Port' => $mailbox->mailboxProvider->imapport,
+                <x-minitablecard title="{{ $mailbox->mailboxProvider?->name }} - Eingang" :array="[
+                    'POP3-Server' => $mailbox->mailboxProvider?->pop3server,
+                    'POP3-Port' => $mailbox->mailboxProvider?->pop3port,
+                    'IMAP-Server' => $mailbox->mailboxProvider?->imapserver,
+                    'IMAP-Port' => $mailbox->mailboxProvider?->imapport,
                 ]" />
 
-                <x-minitablecard title="{{ $mailbox->mailboxProvider->name }} - Ausgang" :array="[
-                    'SMP-Server' => $mailbox->mailboxProvider->smtpserver,
-                    'SMTP-Port' => $mailbox->mailboxProvider->smtpport,
+                <x-minitablecard title="{{ $mailbox->mailboxProvider?->name }} - Ausgang" :array="[
+                    'SMP-Server' => $mailbox->mailboxProvider?->smtpserver,
+                    'SMTP-Port' => $mailbox->mailboxProvider?->smtpport,
                 ]" />
 
 

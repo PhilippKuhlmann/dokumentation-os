@@ -14,7 +14,7 @@
 
                     <x-table.datarow
                         :values="[
-                            $loginnas->nas->name,
+                            $loginnas->nas?->name ?? '—',
                             $loginnas->username,
                             'password' => $loginnas->password,
                             $loginnas->description,
