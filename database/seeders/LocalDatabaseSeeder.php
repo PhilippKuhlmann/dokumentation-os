@@ -231,11 +231,6 @@ class LocalDatabaseSeeder extends Seeder
             'site_id' => $site1->id,
         ]);
 
-        \App\Models\Radiocenter::factory(1)->create([
-            'customer_id' => $customer->id,
-            'site_id' => $site1->id,
-        ]);
-
         \App\Models\ContactPerson::factory(3)->create([
             'customer_id' => $customer->id,
         ]);

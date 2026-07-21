@@ -175,16 +175,6 @@
                 </x-aside.dropdown>
             @endcanany
 
-            @canany(['radiocenter_viewAny'])
-                <x-aside.dropdown label="Funk" svg="svg.signal">
-                    <x-slot:links>
-                        @can('radiocenter_viewAny')
-                            <x-aside.dropdownlink label="Funkzentrale" href="{{ route('radiocenter.index', $customer) }}" />
-                        @endcan
-                    </x-slot:links>
-                </x-aside.dropdown>
-            @endcanany
-
             @canany(['licensewindows_viewAny','licenseaccess_viewAny' , 'licensesoftware_viewAny'])
                 <x-aside.dropdown label="Lizenzen" svg="svg.document">
                     <x-slot:links>

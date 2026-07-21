@@ -216,11 +216,6 @@
         'Login' => ['Benutzer' => 'username', 'Passwort' => 'password'],
     ]" />
 
-    <x-pdf.section title="Funkzentrale" :items="$customer->radiocenters" :titleField="fn($r) => $r->frequency ? 'Funk '.$r->frequency : 'Funkzentrale #'.$r->id" :groups="[
-        'Technik' => ['Frequenz' => 'frequency', 'Kanalabstand' => 'channel_spacing', 'Leistung' => 'power'],
-        'Selektivruf' => ['Auswerter' => 'evaluator', 'Geber' => 'encoder', 'Quittung' => 'receipt'],
-        'Übertragung' => ['Pilotton' => 'pilot_tone', 'Art' => 'transmission_type'],
-    ]" />
 
     {{-- Logins --}}
     <x-pdf.section title="Logins – Allgemein" :items="$customer->logingenerals" :groups="[
