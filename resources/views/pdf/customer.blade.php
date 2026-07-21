@@ -176,7 +176,7 @@
     {{-- Telefonie --}}
     <x-pdf.section title="Telefonanlagen" :items="$customer->phonesystems" :titleField="$deviceTitle" :groups="[
         'Allgemein' => ['Modell' => 'model', 'Seriennummer' => 'serialNumber'],
-        'Netzwerk' => ['IP 1' => 'ip1', 'IP 2' => 'ip2'],
+        'Netzwerk' => ['IP 1' => 'ip1', 'Port' => 'port'],
     ]" />
 
     <x-pdf.section title="Telefone" :items="$customer->phones" :titleField="$deviceTitle" :groups="[

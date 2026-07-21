@@ -16,7 +16,7 @@ class AccesspointController extends Controller
     {
         $accesspoints = $customer->accesspoints();
 
-        $filters = ['room_id', 'site_id'];
+        $filters = ['site_id'];
 
         foreach ($filters as $filter) {
             if ($request->has($filter)) {

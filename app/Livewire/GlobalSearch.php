@@ -25,7 +25,7 @@ class GlobalSearch extends Component
         'recorder' => [\App\Models\Recorder::class, 'Recorder', 'recorder', ['name', 'ip', 'serialNumber']],
         'phone' => [\App\Models\Phone::class, 'Telefone', 'phone', ['ip', 'serialNumber', 'mac']],
         'dect' => [\App\Models\DECT::class, 'DECT', 'dect', ['ip', 'serialNumber', 'mac']],
-        'phonesystem' => [\App\Models\PhoneSystem::class, 'TK-Anlagen', 'phonesystem', ['ip1', 'ip2', 'serialNumber']],
+        'phonesystem' => [\App\Models\PhoneSystem::class, 'TK-Anlagen', 'phonesystem', ['ip1', 'serialNumber']],
         'networkswitch' => [\App\Models\NetworkSwitch::class, 'Switches', 'networkswitch', ['name', 'ip', 'serialNumber']],
         'accesspoint' => [\App\Models\Accesspoint::class, 'Accesspoints', 'accesspoint', ['name', 'ip', 'serialNumber']],
         'router' => [\App\Models\Router::class, 'Router', 'router', ['name', 'ip', 'serialNumber']],

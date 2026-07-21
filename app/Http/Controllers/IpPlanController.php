@@ -15,7 +15,7 @@ class IpPlanController extends Controller
         [\App\Models\Server::class, ['ip1' => '', 'ip2' => ' (IP2)', 'bmcIp' => ' (BMC)']],
         [\App\Models\VM::class, ['ip1' => '', 'ip2' => ' (IP2)']],
         [\App\Models\NAS::class, ['ip1' => '', 'ip2' => ' (IP2)']],
-        [\App\Models\PhoneSystem::class, ['ip1' => '', 'ip2' => ' (IP2)', 'ip3' => ' (IP3)']],
+        [\App\Models\PhoneSystem::class, ['ip1' => '']],
         [\App\Models\Computer::class, ['ip' => '']],
         [\App\Models\Printer::class, ['ip' => '']],
         [\App\Models\Camera::class, ['ip' => '']],

@@ -21,8 +21,6 @@
 
                 <x-minitablecard title="Netzwerk" :array="[
                     'IP-Adresse 1' => $phoneSystem->ip1,
-                    'IP-Adresse 2' => $phoneSystem->ip2,
-                    'IP-Adresse 3' => $phoneSystem->ip3,
                     'Port' => $phoneSystem->port,
                 ]" />
 
