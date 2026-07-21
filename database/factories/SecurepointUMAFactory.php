@@ -17,8 +17,9 @@ class SecurepointUMAFactory extends Factory
     public function definition()
     {
         return [
-            'name' => 'uma.' . fake()->domainName(),
-            'type' => 'VM',
+            'name' => 'mailsec.' . fake()->domainName(),
+            'manufacturer' => 'Reddoxx',
+            'type' => 'Appliance',
             'username' => 'admin',
             'password' => fake()->password($minLength = 6, $maxLength = 12),
             'encryptionkey' => fake()->password($minLength = 10, $maxLength = 20),

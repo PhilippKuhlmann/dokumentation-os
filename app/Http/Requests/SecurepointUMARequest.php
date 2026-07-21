@@ -25,6 +25,7 @@ class SecurepointUMARequest extends FormRequest
     {
         return [
             'name' => 'required|max:255',
+            'manufacturer' => 'nullable|max:255',
             'type' => 'nullable|max:255',
             'username' => 'required|max:255',
             'password' => 'required|max:255',
@@ -39,6 +40,7 @@ class SecurepointUMARequest extends FormRequest
     {
         return [
             'name' => 'Name',
+            'manufacturer' => 'Hersteller / Produkt',
             'type' => 'Typ',
             'username' => 'Benutzername',
             'password' => 'Passwort',

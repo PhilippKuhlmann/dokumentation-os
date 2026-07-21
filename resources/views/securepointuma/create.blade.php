@@ -1,7 +1,9 @@
 <x-app-layout :$customer>
-    <x-create.main header="Neue Securepoint UMA" action="{{ route('securepointuma.store', $customer) }}">
+    <x-create.main header="E-Mail-Security hinzufügen" action="{{ route('securepointuma.store', $customer) }}">
 
         <x-create.singlerow label="Name" name="name" />
+
+        <x-create.singlerow label="Hersteller / Produkt" name="manufacturer" />
 
         <x-create.singlerow label="Type" name="type"  />
 

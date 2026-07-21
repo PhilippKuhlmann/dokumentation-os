@@ -74,6 +74,9 @@ class LocalDatabaseSeeder extends Seeder
 
         \App\Models\SecurepointUMA::factory(1)->create([
             'customer_id' => $customer->id,
+            'name' => 'Reddoxx Mailserver',
+            'manufacturer' => 'Reddoxx',
+            'type' => 'Appliance',
         ]);
 
         \App\Models\Network::factory(5)->create([
