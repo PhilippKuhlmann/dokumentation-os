@@ -192,7 +192,7 @@
     ]" />
 
     {{-- E-Mail --}}
-    <x-pdf.section title="E-Mail-Security" :items="$customer->securepointumas" :titleField="fn($u) => $u->name ?: ($u->manufacturer ?: 'E-Mail-Security #'.$u->id)" :groups="[
+    <x-pdf.section title="E-Mail-Archivierung" :items="$customer->securepointumas" :titleField="fn($u) => $u->name ?: ($u->manufacturer ?: 'E-Mail-Archivierung #'.$u->id)" :groups="[
         'Allgemein' => ['Hersteller / Produkt' => 'manufacturer', 'Art' => 'type'],
         'Login' => ['Benutzername' => 'username', 'Passwort' => 'password', 'Verschlüsselungscode' => 'encryptionkey'],
         'URL' => ['IP' => 'ip', 'Admin URL' => 'urlAdmin', 'User URL' => 'urlUser'],

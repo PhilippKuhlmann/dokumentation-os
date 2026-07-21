@@ -1,5 +1,5 @@
 <x-app-layout :$customer>
-    <x-create.main header="E-Mail-Security hinzufügen" action="{{ route('securepointuma.store', $customer) }}">
+    <x-create.main header="E-Mail-Archivierung hinzufügen" action="{{ route('securepointuma.store', $customer) }}">
 
         <x-create.singlerow label="Name" name="name" />
 

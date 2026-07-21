@@ -153,7 +153,7 @@
                 <x-aside.dropdown label="E-Mail" svg="svg.mail">
                     <x-slot:links>
                         @can('securepointuma_viewAny')
-                           <x-aside.dropdownlink label="E-Mail-Security" href="{{ route('securepointuma.index', $customer) }}" />
+                           <x-aside.dropdownlink label="E-Mail-Archivierung" href="{{ route('securepointuma.index', $customer) }}" />
                         @endcan
                         @can('mailbox_viewAny')
                            <x-aside.dropdownlink label="E-Mail Postfächer" href="{{ route('mailbox.index', $customer) }}" />

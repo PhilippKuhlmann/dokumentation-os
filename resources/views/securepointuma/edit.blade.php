@@ -1,5 +1,5 @@
 <x-app-layout :$customer>
-    <x-create.main header="E-Mail-Security bearbeiten" labelsubmit="Speichern" action="{{ route('securepointuma.update', [$customer, $securepointuma]) }}">
+    <x-create.main header="E-Mail-Archivierung bearbeiten" labelsubmit="Speichern" action="{{ route('securepointuma.update', [$customer, $securepointuma]) }}">
         @method('PATCH')
 
         <x-create.singlerow label="Name" name="name" :default="$securepointuma->name" />
