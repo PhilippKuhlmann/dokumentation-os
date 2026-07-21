@@ -14,7 +14,7 @@
 
                     <x-table.datarow
                         :values="[
-                            $licensewindows->operatingSystem->name,
+                            $licensewindows->operatingSystem?->name ?? '—',
                             $licensewindows->key,
                             'download' => $licensewindows->file_path ?  route('licensewindows.download', [$customer, $licensewindows]) : NULL,
 

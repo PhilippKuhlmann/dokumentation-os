@@ -20,7 +20,7 @@
 
         <x-create.doublerow label1="Rustdesk ID" name1="remoteID" :default1="$vm->remoteID" label2="Rustdesk Passwort" name2="remotePassword" :default2="$vm->remotePassword" />
 
-        <x-edit.select.operatingsystem selector="{{ $vm->operatingSystem->id }}" :$operatingSystems/>
+        <x-edit.select.operatingsystem selector="{{ $vm->operatingSystem?->id }}" :$operatingSystems/>
 
         <x-create.singlerow label="Dienste Bitte mit komma getrennt angeben (eins,zwei,drei)" name="services" :default="implode(',', $vm->services)" />
 

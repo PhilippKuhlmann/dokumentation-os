@@ -19,6 +19,7 @@
 
 ### Fixed
 
+- **Absturz bei fehlendem Betriebssystem behoben**: Wurde ein Betriebssystem in den Papierkorb verschoben (oder war keins zugeordnet), stürzten die Listen- und Bearbeiten-Seiten von Server, VM, Computer und Windows-Lizenz ab (ungeschützter Zugriff auf die leere Beziehung). Die Zugriffe sind jetzt null-sicher; fehlt ein OS, wird „—" angezeigt.
 - **Auth-Seiten repariert**: Passwort-Zurücksetzen, Registrierung, E-Mail-Bestätigung und Passwort-Bestätigen stürzten beim Aufruf ab (verwiesen auf beim Logo-Umbau entfernte Breeze-Komponenten). Die fehlenden Komponenten wurden wiederhergestellt; alle Auth-Seiten laden wieder.
 - Passwort-Feld in Listen/Detail-Karten hob sich beim Überfahren mit der Maus als andersfarbiger Kasten ab (fester weißer Hintergrund statt der Zeilenfarbe) — Hintergrund jetzt transparent, das Feld fügt sich in Normal- und Hover-Zustand nahtlos ein.
 

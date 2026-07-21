@@ -14,7 +14,7 @@
 
         <x-create.doublerow label1="Rustdesk ID" name1="remoteID" :default1="$computer->remoteID" label2="Rustdesk Passwort" name2="remotePassword" :default2="$computer->remotePassword" />
 
-        <x-edit.select.operatingsystem selector="{{ $computer->operatingSystem->id }}" :$operatingSystems/>
+        <x-edit.select.operatingsystem selector="{{ $computer->operatingSystem?->id }}" :$operatingSystems/>
 
     </x-create.main>
 
