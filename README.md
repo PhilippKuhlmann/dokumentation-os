@@ -1,61 +1,144 @@
-# IT-Dokumentation
+<div align="center">
 
-![Tests](https://github.com/PhilippKuhlmann/dokumentation-os/actions/workflows/tests.yml/badge.svg)
+# 📘 Dokumentation OS
 
-Ein Open-Source-System zur **IT-Dokumentation und Asset-Verwaltung** für Managed Service Provider
-(MSPs), gebaut mit Laravel 10 und Livewire.
+### Die Open-Source-IT-Dokumentation für Managed Service Provider
 
-Die Anwendung verwaltet die komplette IT-Infrastruktur je Kunde – von Standorten über Server und
-Netzwerk bis zu Lizenzen und Zugangsdaten – und erzeugt daraus PDF-Dokumentationen.
+Zentrale, mandantenfähige Dokumentation der **kompletten Kunden-IT** – vom Standort über Server,
+Netzwerk und Active Directory bis zu Lizenzen und Zugangsdaten. Mit PDF-Export, globaler Suche
+über alle Kunden und Geräten, die sich per Agent **selbst dokumentieren**.
 
-## Features
+[![Tests](https://github.com/PhilippKuhlmann/dokumentation-os/actions/workflows/tests.yml/badge.svg)](https://github.com/PhilippKuhlmann/dokumentation-os/actions/workflows/tests.yml)
+![PHP](https://img.shields.io/badge/PHP-8.2+-777BB4?logo=php&logoColor=white)
+![Laravel](https://img.shields.io/badge/Laravel-10-FF2D20?logo=laravel&logoColor=white)
+![Livewire](https://img.shields.io/badge/Livewire-3-FB70A9)
+![Tests](https://img.shields.io/badge/Tests-134%20grün-3fb950)
+![License](https://img.shields.io/badge/License-MIT-blue)
 
-- **Kunden & Standorte** – Mehrmandantenfähige Struktur je Kunde
-- **Infrastruktur** – Server, VMs, NAS, Computer, Racks
-- **Netzwerk** – Router, Switches, Access Points, WLAN-Netze
+<br>
+
+<img src="docs/screenshots/dashboard.png" alt="Kunden-Dashboard" width="900">
+
+</div>
+
+---
+
+## ✨ Warum Dokumentation OS?
+
+MSPs verlieren Zeit mit verstreuten Excel-Listen, veralteten Wikis und „wo stand das nochmal?".
+**Dokumentation OS** bündelt alles an einem Ort – strukturiert, durchsuchbar, verschlüsselt und
+immer aktuell.
+
+|  |  |
+| --- | --- |
+| 🏢 **Mandantenfähig** | Jeder Kunde mit eigenen Standorten, Geräten und Zugängen – sauber getrennt |
+| 🔎 **Globale Suche** | Server, IP, Seriennummer oder MAC über **alle** Kunden in Sekunden finden |
+| 🤖 **Auto-Dokumentation** | Ein Script auf dem Gerät – der Rest dokumentiert sich selbst (Proxmox u. a.) |
+| 🌐 **IPAM** | Belegte & freie IP-Adressen je VLAN auf einen Blick, DHCP- und Gateway-Erkennung |
+| 🔐 **Verschlüsselt** | Alle Passwörter verschlüsselt gespeichert, rollenbasierte Zugriffe, Audit-Log |
+| 📄 **PDF-Export** | Komplette Kundendokumentation auf Knopfdruck als PDF |
+| 🌙 **Hell & Dunkel** | Modernes, responsives UI – auch auf dem Smartphone |
+| ⏰ **Ablauf-Warnungen** | Lizenzen, Zertifikate & Domains laufen nie unbemerkt ab |
+
+---
+
+## 📸 Screenshots
+
+<table>
+  <tr>
+    <td width="50%"><img src="docs/screenshots/dashboard.png" alt="Dashboard"><br><sub><b>Kunden-Dashboard</b> – Inventar, ablaufende Lizenzen & Zertifikate auf einen Blick</sub></td>
+    <td width="50%"><img src="docs/screenshots/search.png" alt="Globale Suche"><br><sub><b>Globale Suche</b> – über alle Gerätetypen und Kunden hinweg</sub></td>
+  </tr>
+  <tr>
+    <td width="50%"><img src="docs/screenshots/computers.png" alt="Geräteliste"><br><sub><b>Geräte</b> – übersichtliche Karten, IP/Seriennummer per Klick kopieren</sub></td>
+    <td width="50%"><img src="docs/screenshots/ipam.png" alt="IPAM"><br><sub><b>IPAM</b> – belegte und freie Adressen je VLAN</sub></td>
+  </tr>
+  <tr>
+    <td width="50%"><img src="docs/screenshots/autodoc.png" alt="Auto-Dokumentation"><br><sub><b>Auto-Dokumentation</b> – Agent-Token erzeugen, Script ausführen, fertig</sub></td>
+    <td width="50%"><img src="docs/screenshots/certificates.png" alt="Zertifikate"><br><sub><b>SSL/TLS-Zertifikate</b> – mit Ablauf-Warnung im Dashboard</sub></td>
+  </tr>
+</table>
+
+---
+
+## 🤖 Auto-Dokumentation – Geräte dokumentieren sich selbst
+
+Schluss mit manuellem Abtippen. Erzeuge in der Oberfläche einen **an Kunde und Standort gebundenen
+Agent-Token**, lade das passende Script herunter und führe es auf dem Gerät aus – die Infrastruktur
+landet automatisch in der Doku. Wiederholte Läufe aktualisieren, statt zu duplizieren.
+
+```bash
+# Auf dem Proxmox-Host als root:
+bash proxmox-doku.sh
+```
+
+Der Proxmox-Agent erfasst Host-Hardware, Seriennummer, IP und **alle VMs & LXC-Container** (inkl.
+IP über den QEMU-Gast-Agent) und legt sie als Server samt Gästen an. Der Token darf **ausschließlich
+dokumentieren** – bei einem Leak kein weiterer Zugriff. Weitere Agenten (Windows/Hyper-V …) folgen.
+
+---
+
+## 🧩 Funktionsumfang
+
+- **Kunden & Standorte** – mehrmandantenfähige Struktur je Kunde
+- **Infrastruktur** – Server, VMs (mit Host-Zuordnung), NAS, Computer, Racks, USV, Maschinen, IoT
+- **Netzwerk** – Router, Switches, Access Points, WLAN, VLANs, **IPAM**, Internet/WAN, UTM-Firewalls
 - **Active Directory** – Domains, Benutzer, Gruppen
-- **Kommunikation** – Telefonanlagen, DECT, Mailboxen
-- **Sicherheit** – Securepoint UTM/UMA (Firewalls), VPN
-- **Geräte** – Kameras, Recorder, Drucker, FTP
-- **Lizenzverwaltung** – Software-, Windows- und Zugriffslizenzen inkl. Ablaufdaten
-- **Zugangsdaten** – Verschlüsselte Speicherung von Logins
-- **Dateiablage** je Kunde
-- **PDF-Export** der Dokumentation
+- **Kommunikation** – Telefonanlagen, DECT, E-Mail-Postfächer, E-Mail-Archivierung
+- **Sicherheit & Zertifikate** – SSL/TLS-Zertifikate mit Ablauf-Warnung
+- **Geräte** – Kameras, Recorder, Drucker
+- **Dienste** – FTP, DynDNS, Domains, Backups
+- **Lizenzen** – Software-, Windows- und Zugriffslizenzen inkl. Ablaufdaten & Datei-Upload
+- **Zugangsdaten** – verschlüsselte Logins, Passwort anzeigen & kopieren
+- **Betrieb** – globale Suche, Audit-Log, Papierkorb (Wiederherstellen), PDF-Export, Dateiablage
 
-## Voraussetzungen
+---
 
-Ein LAMP-Stack (PHP 8.0.2+, MySQL/MariaDB) sowie Grundkenntnisse in Webserver, PHP und MySQL.
+## 🔒 Sicherheit
 
-## Installation
+- Passwörter & sensible Felder **verschlüsselt at rest** (`Crypt`)
+- **Rollenbasierte** Zugriffe (Admin / Techniker / Kunde) mit granularen Berechtigungen
+- **Audit-Log** aller Änderungen (ohne Klartext-Passwörter)
+- Schutz gegen **IDOR** (fremde Kunden-/Standortzuweisung), XSS-Härtung, verschlüsselte Sessions
+- Verantwortungsvolle Meldung von Lücken über [SECURITY.md](SECURITY.md)
 
-### Repository klonen
+---
 
-    git clone https://github.com/PhilippKuhlmann/dokumentation-os.git
-    cd dokumentation-os
+## ⚙️ Tech-Stack
 
-### Abhängigkeiten installieren
+**Laravel 10** · **Livewire 3** · **Tailwind CSS 3** · **Alpine.js** · MySQL/MariaDB · Pest (134 Tests) · GitHub Actions CI
 
-    composer install
-    npm install
+---
 
-### Konfiguration
+## 📦 Installation
 
-    cp .env.example .env
-    # .env anpassen (Datenbank-Zugangsdaten etc.)
+Voraussetzungen: PHP 8.2+, Composer, Node.js, MySQL/MariaDB.
 
-### App-Key erzeugen
+```bash
+# 1. Klonen
+git clone https://github.com/PhilippKuhlmann/dokumentation-os.git
+cd dokumentation-os
 
-    php artisan key:generate
+# 2. Abhängigkeiten
+composer install
+npm install
 
-### Datenbank migrieren und mit Demo-Daten befüllen
+# 3. Konfiguration
+cp .env.example .env          # .env anpassen (DB-Zugang etc.)
+php artisan key:generate
 
-    php artisan migrate:fresh --seed
+# 4. Datenbank + Demo-Daten
+php artisan migrate:fresh --seed
 
-### Frontend bauen / Dev-Server
+# 5. Frontend + Start
+npm run dev
+```
 
-    npm run dev
+Danach im Browser öffnen und mit einem der Demo-Zugänge anmelden.
 
-## Rollen
+---
+
+## 👥 Rollen & Demo-Zugänge
 
 | Rolle         | Rechte                                              |
 | ------------- | --------------------------------------------------- |
@@ -63,21 +146,28 @@ Ein LAMP-Stack (PHP 8.0.2+, MySQL/MariaDB) sowie Grundkenntnisse in Webserver, P
 | **Techniker** | Zugriff auf alle Kunden                             |
 | **Kunde**     | Sieht nur die eigenen Daten                         |
 
-## Demo-Zugänge
+> ⚠️ **Nur für lokale Test-/Demo-Umgebungen.** Für den Produktivbetrieb eigene Benutzer anlegen
+> und die Demo-Accounts entfernen.
 
-> ⚠️ **Nur für lokale Test-/Demo-Umgebungen.** Diese Accounts werden vom Seeder angelegt.
-> Für den Produktivbetrieb unbedingt eigene Benutzer anlegen und die Demo-Accounts entfernen.
+| Benutzername | Passwort   | Rolle     |
+| ------------ | ---------- | --------- |
+| `admin`      | `password` | Admin     |
+| `techniker`  | `password` | Techniker |
 
-| Benutzername | Passwort | Rolle     |
-| ------------ | -------- | --------- |
-| admin        | password | Admin     |
-| techniker    | password | Techniker |
+---
 
-## Mitwirken & Sicherheit
+## 🧪 Tests
 
-- Beiträge sind willkommen — siehe [CONTRIBUTING.md](CONTRIBUTING.md) und [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md).
-- Sicherheitslücken bitte gemäß [SECURITY.md](SECURITY.md) melden (nicht als öffentliches Issue).
+```bash
+php artisan test
+```
 
-## Lizenz
+---
+
+## 🤝 Mitwirken & Lizenz
+
+Beiträge sind willkommen – siehe [CONTRIBUTING.md](CONTRIBUTING.md) und
+[CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md). Sicherheitslücken bitte gemäß [SECURITY.md](SECURITY.md)
+melden (nicht als öffentliches Issue).
 
 Veröffentlicht unter der [MIT-Lizenz](LICENSE).
