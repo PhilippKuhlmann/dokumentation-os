@@ -1,11 +1,11 @@
 <?php
 
-use App\Http\Controllers\Api\AccesspointController;
+use App\Http\Controllers\API\AccesspointController;
 use App\Http\Controllers\API\CustomerController;
 use App\Http\Controllers\API\RackCabinetController;
 use App\Http\Controllers\API\RackDeviceController;
 use App\Http\Controllers\API\RoomController;
-use App\Http\Controllers\Api\ServerController;
+use App\Http\Controllers\API\ServerController;
 use App\Http\Controllers\API\SiteController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;

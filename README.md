@@ -10,7 +10,7 @@ Netzwerk und Active Directory bis zu Lizenzen und Zugangsdaten. Mit PDF-Export, 
 
 [![Tests](https://github.com/PhilippKuhlmann/dokumentation-os/actions/workflows/tests.yml/badge.svg)](https://github.com/PhilippKuhlmann/dokumentation-os/actions/workflows/tests.yml)
 ![PHP](https://img.shields.io/badge/PHP-8.2+-777BB4?logo=php&logoColor=white)
-![Laravel](https://img.shields.io/badge/Laravel-10-FF2D20?logo=laravel&logoColor=white)
+![Laravel](https://img.shields.io/badge/Laravel-12-FF2D20?logo=laravel&logoColor=white)
 ![Livewire](https://img.shields.io/badge/Livewire-3-FB70A9)
 ![Tests](https://img.shields.io/badge/Tests-134%20grün-3fb950)
 ![License](https://img.shields.io/badge/License-MIT-blue)
@@ -108,11 +108,11 @@ dokumentieren** – bei einem Leak kein weiterer Zugriff. Weitere Agenten (Windo
 
 | Bereich | Eingesetzt |
 | --- | --- |
-| **Backend** | PHP 8.2 · Laravel 10.48 · Livewire 3.5 · Laravel Sanctum 3.3 *(Agent-/API-Token)* |
-| **Pakete** | spatie/laravel-activitylog 4.12 *(Audit-Log)* · spatie/laravel-pdf 1.5 *(PDF via Browsershot/Puppeteer)* · spatie/laravel-backup 8.8 |
+| **Backend** | PHP 8.2 · Laravel 12 · Livewire 3.8 · Laravel Sanctum 4 *(Agent-/API-Token)* |
+| **Pakete** | spatie/laravel-activitylog 4.12 *(Audit-Log)* · spatie/laravel-pdf 1.9 *(PDF via Browsershot/Puppeteer)* · spatie/laravel-backup 9.4 |
 | **Frontend** | Tailwind CSS 3.2 · Alpine.js 3 · Flowbite 1.6 · Vite 3 |
 | **Datenbank** | MySQL / MariaDB |
-| **Qualität** | Pest *(134 Tests)* · Laravel Pint · GitHub Actions CI |
+| **Qualität** | Pest 3 *(134 Tests)* · Laravel Pint · GitHub Actions CI |
 
 ---
 
