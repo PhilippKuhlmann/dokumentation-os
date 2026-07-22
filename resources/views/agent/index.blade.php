@@ -46,9 +46,20 @@
                         </div>
                     </div>
                     <pre x-ref="script" class="overflow-x-auto rounded-lg bg-gray-900 p-4 text-xs text-gray-100 leading-relaxed">{{ session('proxmoxScript') }}</pre>
-                    <p class="mt-2 text-xs text-gray-500 dark:text-gray-400">
-                        Ausführen auf dem Proxmox-Host: <code>bash proxmox-doku.sh</code> (als root).
-                    </p>
+                    <div class="mt-2 space-y-1 text-xs text-gray-500 dark:text-gray-400">
+                        <p>Ausführen auf dem Proxmox-Host (als root): <code>bash proxmox-doku.sh</code></p>
+                        <p>Ziel-URL im Script: <code class="break-all">{{ url('/api/agent/proxmox') }}</code></p>
+                        <p>
+                            Diese URL muss vom Gerät aus erreichbar sein. Falls nicht, beim Aufruf überschreiben:
+                            <code class="break-all">bash proxmox-doku.sh https://euer-server/api/agent/proxmox</code>
+                        </p>
+                        @if (\Illuminate\Support\Str::contains(url('/'), ['.test', 'localhost', '127.0.0.1']))
+                            <p class="text-amber-600 dark:text-amber-400">
+                                ⚠ Die App-Adresse (APP_URL) sieht nach einer lokalen Entwicklungsumgebung aus
+                                ({{ url('/') }}). Erzeuge den Token auf der produktiven Instanz oder überschreibe die URL beim Aufruf.
+                            </p>
+                        @endif
+                    </div>
                 </div>
             </div>
         @endif

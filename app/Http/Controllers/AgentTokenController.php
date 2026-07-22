@@ -70,7 +70,10 @@ class AgentTokenController extends Controller
 #
 set -euo pipefail
 
-API_URL="__API_URL__"
+# Ziel-URL: 1. Argument  >  Umgebungsvariable DOKU_API_URL  >  eingebettete URL.
+# So kann man die URL ueberschreiben, ohne einen neuen Token zu erzeugen:
+#   ./proxmox-doku.sh https://doku.example/api/agent/proxmox
+API_URL="${1:-${DOKU_API_URL:-__API_URL__}}"
 TOKEN="__AGENT_TOKEN__"
 
 # --- JSON-String sauber escapen (reines Bash) ---
