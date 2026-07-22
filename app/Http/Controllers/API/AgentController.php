@@ -51,11 +51,12 @@ class AgentController extends Controller
 
         $host = $data['host'];
 
-        $osName = $host['pve_version'] ?? null
-            ? 'Proxmox VE '.$host['pve_version']
-            : 'Proxmox VE';
-        $os = OperatingSystem::firstOrCreate(['name' => $osName]);
+        // Betriebssystem bewusst versionslos ("Proxmox VE").
+        $os = OperatingSystem::firstOrCreate(['name' => 'Proxmox VE']);
 
+        // Hinweis: 'services' wird NICHT gesetzt – das Feld pflegt der Nutzer
+        // manuell (Rollen wie AD, FS, DNS, DHCP …). updateOrCreate lässt
+        // nicht angegebene Spalten unverändert.
         $server = Server::updateOrCreate(
             ['customer_id' => $customer->id, 'agent_identifier' => $host['identifier']],
             [
@@ -64,8 +65,8 @@ class AgentController extends Controller
                 'name' => $host['hostname'],
                 'manufacturer' => $host['manufacturer'] ?? null,
                 'model' => $host['model'] ?? null,
+                'serialNumber' => $host['serial'] ?? null,
                 'ip1' => $host['ip'] ?? null,
-                'services' => $this->hostServices($host),
             ]
         );
 
@@ -81,7 +82,7 @@ class AgentController extends Controller
                     'operating_system_id' => $guestOs->id,
                     'name' => $guest['name'] ?? ('VM '.($guest['vmid'] ?? '')),
                     'ip1' => $guest['ip'] ?? null,
-                    'services' => $this->guestServices($guest),
+                    // 'services' bleibt manuell (Rollen der VM)
                 ]
             );
             $guestCount++;
@@ -95,60 +96,6 @@ class AgentController extends Controller
             'server_id' => $server->id,
             'guests_documented' => $guestCount,
         ]);
-    }
-
-    protected function hostServices(array $host): string
-    {
-        $lines = [];
-        if (! empty($host['pve_version'])) {
-            $lines[] = 'Proxmox VE '.$host['pve_version'];
-        }
-        if (! empty($host['kernel'])) {
-            $lines[] = 'Kernel: '.$host['kernel'];
-        }
-        if (! empty($host['cpu'])) {
-            $lines[] = 'CPU: '.$host['cpu'];
-        }
-        if (! empty($host['memory_gb'])) {
-            $lines[] = 'RAM: '.$host['memory_gb'].' GB';
-        }
-        if (! empty($host['serial'])) {
-            $lines[] = 'Seriennummer: '.$host['serial'];
-        }
-        foreach ($host['storages'] ?? [] as $storage) {
-            $lines[] = sprintf(
-                'Storage %s (%s): %s/%s GB',
-                $storage['name'] ?? '?',
-                $storage['type'] ?? '?',
-                isset($storage['used_gb']) ? round($storage['used_gb']) : '?',
-                isset($storage['total_gb']) ? round($storage['total_gb']) : '?'
-            );
-        }
-        $lines[] = 'Automatisch dokumentiert am '.now()->format('d.m.Y H:i');
-
-        return implode("\n", $lines);
-    }
-
-    protected function guestServices(array $guest): string
-    {
-        $parts = [];
-        if (! empty($guest['vmid'])) {
-            $parts[] = 'VMID '.$guest['vmid'];
-        }
-        if (! empty($guest['type'])) {
-            $parts[] = strtoupper($guest['type']);
-        }
-        if (! empty($guest['status'])) {
-            $parts[] = $guest['status'];
-        }
-        if (! empty($guest['cores'])) {
-            $parts[] = $guest['cores'].' Kerne';
-        }
-        if (! empty($guest['memory_gb'])) {
-            $parts[] = $guest['memory_gb'].' GB RAM';
-        }
-
-        return implode(', ', $parts);
     }
 
     protected function mapOstype(?string $ostype): string

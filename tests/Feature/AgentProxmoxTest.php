@@ -14,6 +14,7 @@ function proxmoxPayload(): array
             'hostname' => 'pve01',
             'manufacturer' => 'Dell',
             'model' => 'PowerEdge R740',
+            'serial' => 'SN12345',
             'ip' => '10.0.0.10',
             'pve_version' => '8.2.4',
             'kernel' => '6.8.4-2-pve',
@@ -43,7 +44,27 @@ test('Proxmox-Agent legt Host als Server und Gäste als VMs an', function () {
     expect($server)->not->toBeNull();
     expect($server->site_id)->toBe($site->id);
     expect($server->name)->toBe('pve01');
+    expect($server->serialNumber)->toBe('SN12345');
+    expect($server->operatingSystem->name)->toBe('Proxmox VE');
     expect(VM::where('server_id', $server->id)->count())->toBe(2);
+});
+
+test('Agent überschreibt manuell gepflegte Dienste nicht', function () {
+    $customer = Customer::factory()->create();
+    $site = Site::factory()->create(['customer_id' => $customer->id]);
+    [$token, $plain] = AgentToken::generateFor($customer, $site);
+
+    // Erstlauf legt den Server an
+    $this->withToken($plain)->postJson('/api/agent/proxmox', proxmoxPayload())->assertOk();
+    $server = Server::where('agent_identifier', 'machine-abc')->first();
+
+    // Nutzer trägt Rollen ein (komma-getrennt, so wie im Formular)
+    $server->update(['services' => 'AD,DNS,DHCP,FS']);
+
+    // Erneuter Agent-Lauf darf die Dienste nicht überschreiben
+    $this->withToken($plain)->postJson('/api/agent/proxmox', proxmoxPayload())->assertOk();
+
+    expect($server->fresh()->getRawOriginal('services'))->toBe('AD,DNS,DHCP,FS');
 });
 
 test('erneuter Lauf erzeugt keine Duplikate (Upsert)', function () {
