@@ -125,7 +125,8 @@ if command -v qm >/dev/null 2>&1; then
     cores="$(qm config "$vmid" 2>/dev/null | sed -n 's/^cores:[[:space:]]*//p' | head -n1)"
     memmb="$(qm config "$vmid" 2>/dev/null | sed -n 's/^memory:[[:space:]]*//p' | head -n1)"
     memgb=$(( ${memmb:-0} / 1024 ))
-    add_guest "{\"identifier\":$(json_str "${HOSTNAME}/qemu/${vmid}"),\"vmid\":$(num "$vmid"),\"name\":$(json_str "$name"),\"type\":\"qemu\",\"ostype\":$(json_str "$ostype"),\"status\":$(json_str "$status"),\"cores\":$(num "$cores"),\"memory_gb\":$(num "$memgb")}"
+    ip="$(qm agent "$vmid" network-get-interfaces 2>/dev/null | grep -oE '"ip-address"[[:space:]]*:[[:space:]]*"[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+"' | grep -oE '[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+' | grep -vE '^127\.' | head -n1 || true)"
+    add_guest "{\"identifier\":$(json_str "${HOSTNAME}/qemu/${vmid}"),\"vmid\":$(num "$vmid"),\"name\":$(json_str "$name"),\"type\":\"qemu\",\"ostype\":$(json_str "$ostype"),\"ip\":$(json_str "$ip"),\"status\":$(json_str "$status"),\"cores\":$(num "$cores"),\"memory_gb\":$(num "$memgb")}"
   done < <(qm list 2>/dev/null | awk 'NR>1{print $1" "$2" "$3}')
 fi
 
@@ -138,7 +139,11 @@ if command -v pct >/dev/null 2>&1; then
     cores="$(pct config "$vmid" 2>/dev/null | sed -n 's/^cores:[[:space:]]*//p' | head -n1)"
     memmb="$(pct config "$vmid" 2>/dev/null | sed -n 's/^memory:[[:space:]]*//p' | head -n1)"
     memgb=$(( ${memmb:-0} / 1024 ))
-    add_guest "{\"identifier\":$(json_str "${HOSTNAME}/lxc/${vmid}"),\"vmid\":$(num "$vmid"),\"name\":$(json_str "$name"),\"type\":\"lxc\",\"ostype\":$(json_str "$ostype"),\"status\":$(json_str "$status"),\"cores\":$(num "$cores"),\"memory_gb\":$(num "$memgb")}"
+    ip="$(pct config "$vmid" 2>/dev/null | grep -oE 'ip=[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+' | head -n1 | cut -d= -f2 || true)"
+    if [ -z "${ip:-}" ]; then
+      ip="$(pct exec "$vmid" -- hostname -I 2>/dev/null | awk '{print $1}' || true)"
+    fi
+    add_guest "{\"identifier\":$(json_str "${HOSTNAME}/lxc/${vmid}"),\"vmid\":$(num "$vmid"),\"name\":$(json_str "$name"),\"type\":\"lxc\",\"ostype\":$(json_str "$ostype"),\"ip\":$(json_str "$ip"),\"status\":$(json_str "$status"),\"cores\":$(num "$cores"),\"memory_gb\":$(num "$memgb")}"
   done < <(pct list 2>/dev/null | awk 'NR>1{print $1}')
 fi
 

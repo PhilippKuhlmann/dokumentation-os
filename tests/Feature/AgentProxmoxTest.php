@@ -25,7 +25,7 @@ function proxmoxPayload(): array
             ],
         ],
         'guests' => [
-            ['identifier' => 'pve01/qemu/100', 'vmid' => 100, 'name' => 'web01', 'type' => 'qemu', 'ostype' => 'l26', 'status' => 'running', 'cores' => 4, 'memory_gb' => 8],
+            ['identifier' => 'pve01/qemu/100', 'vmid' => 100, 'name' => 'web01', 'type' => 'qemu', 'ostype' => 'l26', 'ip' => '10.0.0.20', 'status' => 'running', 'cores' => 4, 'memory_gb' => 8],
             ['identifier' => 'pve01/lxc/200', 'vmid' => 200, 'name' => 'db01', 'type' => 'lxc', 'ostype' => 'debian', 'status' => 'running'],
         ],
     ];
@@ -47,6 +47,10 @@ test('Proxmox-Agent legt Host als Server und Gäste als VMs an', function () {
     expect($server->serialNumber)->toBe('SN12345');
     expect($server->operatingSystem->name)->toBe('Proxmox VE');
     expect(VM::where('server_id', $server->id)->count())->toBe(2);
+
+    // Gast-IP landet im VM-Feld
+    $vm = VM::where('agent_identifier', 'pve01/qemu/100')->first();
+    expect($vm->ip1)->toBe('10.0.0.20');
 });
 
 test('Agent überschreibt manuell gepflegte Dienste nicht', function () {
