@@ -223,6 +223,7 @@
                             <x-aside.dropdownlink label="Dateien" href="{{ route('file.index', $customer) }}" />
                         @endcan
                         @can('see_hidden')
+                            <x-aside.dropdownlink label="Auto-Dokumentation" href="{{ route('agent.index', $customer) }}" />
                             <x-aside.dropdownlink label="Papierkorb" href="{{ route('trash.index', $customer) }}" />
                         @endcan
                     </x-slot:links>

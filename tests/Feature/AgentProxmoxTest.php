@@ -1,0 +1,77 @@
+<?php
+
+use App\Models\AgentToken;
+use App\Models\Customer;
+use App\Models\Server;
+use App\Models\Site;
+use App\Models\VM;
+
+function proxmoxPayload(): array
+{
+    return [
+        'host' => [
+            'identifier' => 'machine-abc',
+            'hostname' => 'pve01',
+            'manufacturer' => 'Dell',
+            'model' => 'PowerEdge R740',
+            'ip' => '10.0.0.10',
+            'pve_version' => '8.2.4',
+            'kernel' => '6.8.4-2-pve',
+            'cpu' => 'Intel Xeon Gold (40 Kerne)',
+            'memory_gb' => 256,
+            'storages' => [
+                ['name' => 'local-lvm', 'type' => 'lvmthin', 'total_gb' => 1000, 'used_gb' => 400],
+            ],
+        ],
+        'guests' => [
+            ['identifier' => 'pve01/qemu/100', 'vmid' => 100, 'name' => 'web01', 'type' => 'qemu', 'ostype' => 'l26', 'status' => 'running', 'cores' => 4, 'memory_gb' => 8],
+            ['identifier' => 'pve01/lxc/200', 'vmid' => 200, 'name' => 'db01', 'type' => 'lxc', 'ostype' => 'debian', 'status' => 'running'],
+        ],
+    ];
+}
+
+test('Proxmox-Agent legt Host als Server und Gäste als VMs an', function () {
+    $customer = Customer::factory()->create();
+    $site = Site::factory()->create(['customer_id' => $customer->id]);
+    [$token, $plain] = AgentToken::generateFor($customer, $site, 'PVE');
+
+    $this->withToken($plain)->postJson('/api/agent/proxmox', proxmoxPayload())
+        ->assertOk()
+        ->assertJson(['status' => 'ok', 'guests_documented' => 2]);
+
+    $server = Server::where('customer_id', $customer->id)->where('agent_identifier', 'machine-abc')->first();
+    expect($server)->not->toBeNull();
+    expect($server->site_id)->toBe($site->id);
+    expect($server->name)->toBe('pve01');
+    expect(VM::where('server_id', $server->id)->count())->toBe(2);
+});
+
+test('erneuter Lauf erzeugt keine Duplikate (Upsert)', function () {
+    $customer = Customer::factory()->create();
+    $site = Site::factory()->create(['customer_id' => $customer->id]);
+    [$token, $plain] = AgentToken::generateFor($customer, $site);
+
+    $this->withToken($plain)->postJson('/api/agent/proxmox', proxmoxPayload())->assertOk();
+    $this->withToken($plain)->postJson('/api/agent/proxmox', proxmoxPayload())->assertOk();
+
+    expect(Server::where('agent_identifier', 'machine-abc')->count())->toBe(1);
+    expect(VM::where('agent_identifier', 'pve01/qemu/100')->count())->toBe(1);
+});
+
+test('ohne gültigen Agent-Token: 401', function () {
+    $this->postJson('/api/agent/proxmox', [])->assertUnauthorized();
+
+    $this->withToken('doc_falsch')
+        ->postJson('/api/agent/proxmox', ['host' => ['identifier' => 'x', 'hostname' => 'y']])
+        ->assertUnauthorized();
+});
+
+test('Token aktualisiert last_used_at', function () {
+    $customer = Customer::factory()->create();
+    $site = Site::factory()->create(['customer_id' => $customer->id]);
+    [$token, $plain] = AgentToken::generateFor($customer, $site);
+
+    expect($token->last_used_at)->toBeNull();
+    $this->withToken($plain)->postJson('/api/agent/proxmox', proxmoxPayload())->assertOk();
+    expect($token->fresh()->last_used_at)->not->toBeNull();
+});

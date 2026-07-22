@@ -11,6 +11,7 @@ use App\Http\Controllers\ADGroupController;
 use App\Http\Controllers\ActivityController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\IpPlanController;
+use App\Http\Controllers\AgentTokenController;
 use App\Http\Controllers\TrashController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CustomerController;
@@ -152,6 +153,10 @@ Route::middleware(['auth', 'isCustomer'])->group(function () {
             // Papierkorb
             Route::get('trash', [TrashController::class, 'index'])->name('trash.index');
             Route::post('trash/{type}/{id}/restore', [TrashController::class, 'restore'])->name('trash.restore');
+
+            Route::get('agent', [AgentTokenController::class, 'index'])->name('agent.index');
+            Route::post('agent', [AgentTokenController::class, 'store'])->name('agent.store');
+            Route::delete('agent/{agentToken}', [AgentTokenController::class, 'destroy'])->name('agent.destroy');
 
             Route::resource('site', SiteController::class)->except(['show']);
             Route::resource('contactperson', ContactPersonController::class)->except(['show']);
