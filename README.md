@@ -106,7 +106,13 @@ dokumentieren** – bei einem Leak kein weiterer Zugriff. Weitere Agenten (Windo
 
 ## ⚙️ Tech-Stack
 
-**Laravel 10** · **Livewire 3** · **Tailwind CSS 3** · **Alpine.js** · MySQL/MariaDB · Pest (134 Tests) · GitHub Actions CI
+| Bereich | Eingesetzt |
+| --- | --- |
+| **Backend** | PHP 8.2 · Laravel 10.48 · Livewire 3.5 · Laravel Sanctum 3.3 *(Agent-/API-Token)* |
+| **Pakete** | spatie/laravel-activitylog 4.12 *(Audit-Log)* · spatie/laravel-pdf 1.5 *(PDF via Browsershot/Puppeteer)* · spatie/laravel-backup 8.8 |
+| **Frontend** | Tailwind CSS 3.2 · Alpine.js 3 · Flowbite 1.6 · Vite 3 |
+| **Datenbank** | MySQL / MariaDB |
+| **Qualität** | Pest *(134 Tests)* · Laravel Pint · GitHub Actions CI |
 
 ---
 
