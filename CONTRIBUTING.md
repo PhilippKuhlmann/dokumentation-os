@@ -6,7 +6,7 @@ Danke für dein Interesse, zu diesem Projekt beizutragen!
 
 ```bash
 git clone <repo-url>
-cd it-dokumentation
+cd dokuvault
 composer install
 npm install
 cp .env.example .env

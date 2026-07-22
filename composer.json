@@ -1,7 +1,7 @@
 {
-    "name": "philippkuhlmann/it-dokumentation",
+    "name": "philippkuhlmann/dokuvault",
     "type": "project",
-    "description": "IT-Dokumentations- und Asset-Management-System für Managed Service Provider, gebaut mit Laravel.",
+    "description": "DokuVault – Open-Source-IT-Dokumentation & Asset-Management für Managed Service Provider (Laravel).",
     "keywords": ["laravel", "documentation", "msp", "it-documentation", "asset-management"],
     "license": "MIT",
     "require": {

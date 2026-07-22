@@ -1,6 +1,6 @@
 <div align="center">
 
-# 📘 Dokumentation OS
+# 📘 DokuVault
 
 ### Die Open-Source-IT-Dokumentation für Managed Service Provider
 
@@ -8,7 +8,7 @@ Zentrale, mandantenfähige Dokumentation der **kompletten Kunden-IT** – vom St
 Netzwerk und Active Directory bis zu Lizenzen und Zugangsdaten. Mit PDF-Export, globaler Suche
 über alle Kunden und Geräten, die sich per Agent **selbst dokumentieren**.
 
-[![Tests](https://github.com/PhilippKuhlmann/dokumentation-os/actions/workflows/tests.yml/badge.svg)](https://github.com/PhilippKuhlmann/dokumentation-os/actions/workflows/tests.yml)
+[![Tests](https://github.com/PhilippKuhlmann/dokuvault/actions/workflows/tests.yml/badge.svg)](https://github.com/PhilippKuhlmann/dokuvault/actions/workflows/tests.yml)
 ![PHP](https://img.shields.io/badge/PHP-8.2+-777BB4?logo=php&logoColor=white)
 ![Laravel](https://img.shields.io/badge/Laravel-12-FF2D20?logo=laravel&logoColor=white)
 ![Livewire](https://img.shields.io/badge/Livewire-3-FB70A9)
@@ -23,10 +23,10 @@ Netzwerk und Active Directory bis zu Lizenzen und Zugangsdaten. Mit PDF-Export, 
 
 ---
 
-## ✨ Warum Dokumentation OS?
+## ✨ Warum DokuVault?
 
 MSPs verlieren Zeit mit verstreuten Excel-Listen, veralteten Wikis und „wo stand das nochmal?".
-**Dokumentation OS** bündelt alles an einem Ort – strukturiert, durchsuchbar, verschlüsselt und
+**DokuVault** bündelt alles an einem Ort – strukturiert, durchsuchbar, verschlüsselt und
 immer aktuell.
 
 |  |  |
@@ -122,8 +122,8 @@ Voraussetzungen: PHP 8.2+, Composer, Node.js, MySQL/MariaDB.
 
 ```bash
 # 1. Klonen
-git clone https://github.com/PhilippKuhlmann/dokumentation-os.git
-cd dokumentation-os
+git clone https://github.com/PhilippKuhlmann/dokuvault.git
+cd dokuvault
 
 # 2. Abhängigkeiten
 composer install

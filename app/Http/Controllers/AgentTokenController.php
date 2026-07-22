@@ -64,7 +64,7 @@ class AgentTokenController extends Controller
         $script = <<<'BASH'
 #!/usr/bin/env bash
 #
-# Auto-Dokumentation fuer Proxmox VE  ->  Dokumentation OS
+# Auto-Dokumentation fuer Proxmox VE  ->  DokuVault
 # Als root auf dem Proxmox-Host ausfuehren:
 #   bash proxmox-doku.sh
 #
