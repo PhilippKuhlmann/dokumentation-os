@@ -15,6 +15,11 @@ class LicenseSoftware extends Model
 
     protected $guarded = [];
 
+    public function customer()
+    {
+        return $this->belongsTo(Customer::class);
+    }
+
     protected function password(): Attribute
     {
         return new Attribute(
