@@ -74,5 +74,85 @@ class MailboxProvidorsSeeder extends Seeder
             'smtpport' => '465',
         ]);
 
+        \App\Models\MailboxProvider::factory()->create([
+            'name' => 'Microsoft 365 / Exchange Online',
+            'pop3server' => 'outlook.office365.com',
+            'pop3port' => '995',
+            'imapserver' => 'outlook.office365.com',
+            'imapport' => '993',
+            'smtpserver' => 'smtp.office365.com',
+            'smtpport' => '587',
+        ]);
+
+        \App\Models\MailboxProvider::factory()->create([
+            'name' => 'Google Workspace / Gmail',
+            'pop3server' => 'pop.gmail.com',
+            'pop3port' => '995',
+            'imapserver' => 'imap.gmail.com',
+            'imapport' => '993',
+            'smtpserver' => 'smtp.gmail.com',
+            'smtpport' => '587',
+        ]);
+
+        \App\Models\MailboxProvider::factory()->create([
+            'name' => 'Telekom / T-Online',
+            'pop3server' => 'securepop.t-online.de',
+            'pop3port' => '995',
+            'imapserver' => 'secureimap.t-online.de',
+            'imapport' => '993',
+            'smtpserver' => 'securesmtp.t-online.de',
+            'smtpport' => '465',
+        ]);
+
+        \App\Models\MailboxProvider::factory()->create([
+            'name' => 'GMX',
+            'pop3server' => 'pop.gmx.net',
+            'pop3port' => '995',
+            'imapserver' => 'imap.gmx.net',
+            'imapport' => '993',
+            'smtpserver' => 'mail.gmx.net',
+            'smtpport' => '587',
+        ]);
+
+        \App\Models\MailboxProvider::factory()->create([
+            'name' => 'Web.de',
+            'pop3server' => 'pop3.web.de',
+            'pop3port' => '995',
+            'imapserver' => 'imap.web.de',
+            'imapport' => '993',
+            'smtpserver' => 'smtp.web.de',
+            'smtpport' => '587',
+        ]);
+
+        \App\Models\MailboxProvider::factory()->create([
+            'name' => 'mailbox.org',
+            'pop3server' => 'pop3.mailbox.org',
+            'pop3port' => '995',
+            'imapserver' => 'imap.mailbox.org',
+            'imapport' => '993',
+            'smtpserver' => 'smtp.mailbox.org',
+            'smtpport' => '465',
+        ]);
+
+        \App\Models\MailboxProvider::factory()->create([
+            'name' => 'Posteo',
+            'pop3server' => 'posteo.de',
+            'pop3port' => '995',
+            'imapserver' => 'posteo.de',
+            'imapport' => '993',
+            'smtpserver' => 'posteo.de',
+            'smtpport' => '465',
+        ]);
+
+        \App\Models\MailboxProvider::factory()->create([
+            'name' => 'Vodafone / Arcor',
+            'pop3server' => 'pop.vodafonemail.de',
+            'pop3port' => '995',
+            'imapserver' => 'imap.vodafonemail.de',
+            'imapport' => '993',
+            'smtpserver' => 'smtp.vodafonemail.de',
+            'smtpport' => '587',
+        ]);
+
     }
 }
