@@ -21,9 +21,41 @@ class RoleController extends Controller
 
     public function create()
     {
-        $permissions = Permission::all();
+        [$matrix, $others, $actions] = $this->groupPermissions();
 
-        return view('admin.role.create', compact('permissions'));
+        return view('admin.role.create', compact('matrix', 'others', 'actions'));
+    }
+
+    /**
+     * Gruppiert die Berechtigungen nach Ressource zu einer Matrix
+     * (Zeile = Bereich, Spalten = Sehen/Erstellen/Bearbeiten/Löschen).
+     * Rechte, die nicht in dieses Schema passen, kommen nach $others.
+     */
+    private function groupPermissions(): array
+    {
+        $actions = ['viewAny' => 'Sehen', 'create' => 'Erstellen', 'update' => 'Bearbeiten', 'delete' => 'Löschen'];
+        $matrix = [];
+        $others = [];
+
+        foreach (Permission::orderBy('description')->get() as $p) {
+            $pos = strrpos($p->name, '_');
+            $resource = $pos !== false ? substr($p->name, 0, $pos) : $p->name;
+            $action = $pos !== false ? substr($p->name, $pos + 1) : '';
+
+            if (array_key_exists($action, $actions)) {
+                if (! isset($matrix[$resource])) {
+                    $label = trim(preg_replace('/\s+(sehen|erstellen|bearbeiten|löschen)$/ui', '', $p->description));
+                    $matrix[$resource] = ['label' => $label !== '' ? $label : ucfirst($resource), 'perms' => []];
+                }
+                $matrix[$resource]['perms'][$action] = $p;
+            } else {
+                $others[] = $p;
+            }
+        }
+
+        uasort($matrix, fn ($a, $b) => strcasecmp($a['label'], $b['label']));
+
+        return [$matrix, $others, $actions];
     }
 
     public function store(Request $request)
@@ -42,9 +74,10 @@ class RoleController extends Controller
 
     public function edit(Role $role)
     {
-        $permissions = Permission::all();
+        [$matrix, $others, $actions] = $this->groupPermissions();
+        $selected = $role->permissions->pluck('id')->all();
 
-        return view('admin.role.edit', compact('role', 'permissions'));
+        return view('admin.role.edit', compact('role', 'matrix', 'others', 'actions', 'selected'));
     }
 
     public function update(Role $role, Request $request)

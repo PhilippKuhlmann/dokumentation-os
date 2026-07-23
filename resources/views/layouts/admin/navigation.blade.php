@@ -15,7 +15,7 @@
                 </button>
                 <a href="/" class="flex ml-2 md:mr-24">
                     <span class="self-center text-xl text-chathams-blue-800 dark:text-white font-CoconPro sm:text-2xl whitespace-nowrap ">
-                        Admin - Dokumentation
+                        {{ config('app.name') }} · Admin
                     </span>
                 </a>
             </div>

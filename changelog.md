@@ -1,5 +1,12 @@
 # Changelog
 
+## 26.07.23
+
+### Changed
+
+- **Rollen-Berechtigungen als Matrix**: Im Rollen-Formular (Anlegen/Bearbeiten) sind die ~160 Rechte jetzt als sortierte Tabelle dargestellt – eine Zeile je Bereich, Spalten *Sehen · Erstellen · Bearbeiten · Löschen* – statt als lange, unsortierte Checkbox-Liste. Mit „Alle auswählen" und Klick auf den Bereichsnamen zum Umschalten der ganzen Zeile. Sonderrechte stehen gesammelt darunter.
+- Admin-Kopfzeile zeigt jetzt den App-Namen (statt „Admin - Dokumentation").
+
 ## 26.07.21
 
 ### Added
