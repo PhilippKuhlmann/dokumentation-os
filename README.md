@@ -155,10 +155,12 @@ Danach im Browser öffnen und mit einem der Demo-Zugänge anmelden.
 > ⚠️ **Nur für lokale Test-/Demo-Umgebungen.** Für den Produktivbetrieb eigene Benutzer anlegen
 > und die Demo-Accounts entfernen.
 
-| Benutzername | Passwort   | Rolle     |
-| ------------ | ---------- | --------- |
-| `admin`      | `password` | Admin     |
-| `techniker`  | `password` | Techniker |
+| Benutzername | Passwort   | Rolle     | Hinweis                                    |
+| ------------ | ---------- | --------- | ------------------------------------------ |
+| `admin`      | `password` | Admin     | Vollzugriff, alle Kunden                   |
+| `techniker`  | `password` | Techniker | Zugriff auf alle Kunden                    |
+| `kunde-rw`   | `password` | Kunde     | Nur Demo-Kunde „Mustermann", Lese-/Schreibzugriff |
+| `kunde-r`    | `password` | Kunde     | Nur Demo-Kunde „Mustermann", nur Lesezugriff |
 
 ---
 

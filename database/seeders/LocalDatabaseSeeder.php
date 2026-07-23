@@ -40,16 +40,16 @@ class LocalDatabaseSeeder extends Seeder
         ]);
 
         \App\Models\User::factory()->create([
-            'name' => 'Max RW',
-            'username' => 'maxrw',
+            'name' => 'Kunde Lesen/Schreiben',
+            'username' => 'kunde-rw',
             'password' => bcrypt('password'),
             'role_id' => Role::where('name', 'general_full')->firstOrFail()->id,
             'customer_id' => $customer->id,
         ]);
 
         \App\Models\User::factory()->create([
-            'name' => 'Max R',
-            'username' => 'maxr',
+            'name' => 'Kunde nur Lesen',
+            'username' => 'kunde-r',
             'password' => bcrypt('password'),
             'role_id' => Role::where('name', 'general_read')->firstOrFail()->id,
             'customer_id' => $customer->id,
