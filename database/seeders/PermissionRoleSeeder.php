@@ -17,22 +17,22 @@ class PermissionRoleSeeder extends Seeder
     {
         // Rollen
 
-        $admin = \App\Models\Role::factory()->create([
+        $admin = \App\Models\Role::forceCreate([
             'id' => 1,
             'name' => 'Admin',
         ]);
 
-        $techniker = \App\Models\Role::factory()->create([
+        $techniker = \App\Models\Role::forceCreate([
             'id' => 10,
             'name' => 'Techniker',
         ]);
 
-        $customerViewAny = \App\Models\Role::factory()->create([
+        $customerViewAny = \App\Models\Role::forceCreate([
             'name' => 'general_read',
             'description' => 'Standard Kunde lesen',
         ]);
 
-        $customerDelete = \App\Models\Role::factory()->create([
+        $customerDelete = \App\Models\Role::forceCreate([
             'name' => 'general_full',
             'description' => 'Standard Kunde Vollzugriff',
         ]);
@@ -54,7 +54,7 @@ class PermissionRoleSeeder extends Seeder
 
         foreach ($models as $model) {
             foreach ($permissions as $p => $pn) {
-                ${strtolower($model).'_'.$p} = \App\Models\Permission::factory()->create([
+                ${strtolower($model).'_'.$p} = \App\Models\Permission::forceCreate([
                     'name' => strtolower($model).'_'.$p,
                     'description' => $model.' '.$pn,
                 ]);
@@ -62,12 +62,12 @@ class PermissionRoleSeeder extends Seeder
         }
 
 
-        $see_hidden = \App\Models\Permission::factory()->create([
+        $see_hidden = \App\Models\Permission::forceCreate([
             'name' => 'see_hidden',
             'description' => 'Verstecke Objekte sehen'
         ]);
 
-        $create_pdf = \App\Models\Permission::factory()->create([
+        $create_pdf = \App\Models\Permission::forceCreate([
             'name' => 'create_pdf',
             'description' => 'PDF erstellen'
         ]);

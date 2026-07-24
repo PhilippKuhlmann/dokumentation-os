@@ -78,7 +78,7 @@ class OperatingSystemsSeeder extends Seeder
         ];
 
         foreach ($array as $a) {
-            \App\Models\OperatingSystem::factory()->create([
+            \App\Models\OperatingSystem::create([
                 'name' => $a,
             ]);
         }

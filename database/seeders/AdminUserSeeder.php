@@ -13,7 +13,7 @@ class AdminUserSeeder extends Seeder
      */
     public function run(): void
     {
-        \App\Models\User::factory()->create([
+        \App\Models\User::forceCreate([
             'name' => 'Admin',
             'username' => 'admin',
             'password' => bcrypt('password'),

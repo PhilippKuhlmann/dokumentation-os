@@ -120,27 +120,47 @@ dokumentieren** – bei einem Leak kein weiterer Zugriff. Weitere Agenten (Windo
 
 Voraussetzungen: PHP 8.2+, Composer, Node.js, MySQL/MariaDB.
 
+### Zum Ausprobieren (mit Demo-Daten)
+
+Installiert den Demo-Kunden „Mustermann" samt realistischer Beispieldaten. Die Demo-Daten
+benötigen `fakerphp/faker` – daher hier **mit** Dev-Abhängigkeiten installieren.
+
 ```bash
-# 1. Klonen
 git clone https://github.com/PhilippKuhlmann/dokuvault.git
 cd dokuvault
 
-# 2. Abhängigkeiten
-composer install
-npm install
+composer install                     # inkl. Dev-Pakete (Faker für Demo-Daten)
+npm install && npm run build
 
-# 3. Konfiguration
-cp .env.example .env          # .env anpassen (DB-Zugang etc.)
+cp .env.example .env                 # APP_ENV=local, DB-Zugang etc. anpassen
 php artisan key:generate
 
-# 4. Datenbank + Demo-Daten
-php artisan migrate:fresh --seed
-
-# 5. Frontend + Start
-npm run dev
+php artisan migrate:fresh --seed     # legt Demo-Kunde + Demo-Zugänge an
 ```
 
-Danach im Browser öffnen und mit einem der Demo-Zugänge anmelden.
+Danach mit einem der Demo-Zugänge anmelden.
+
+### Produktiv-Betrieb (ohne Demo-Daten)
+
+Für einen echten Server – **kein** Faker, keine Demo-Daten, nur die Startdaten
+(Admin-Benutzer, Rollen/Rechte, Betriebssystem- & Mail-Anbieter-Listen):
+
+```bash
+composer install --no-dev --optimize-autoloader
+npm install && npm run build
+
+cp .env.example .env
+# WICHTIG in der .env:  APP_ENV=production   (steuert HTTPS-Zwang & den Seeder)
+php artisan key:generate
+
+php artisan migrate --force
+php artisan db:seed --force          # führt den ProductionDatabaseSeeder aus
+```
+
+> Der Seeder verzweigt anhand von `APP_ENV`: bei `local` die Demo-Daten, bei `production`
+> nur die Startdaten. Steht `APP_ENV` auf `local`, aber ohne Dev-Pakete installiert, schlägt
+> das Seeding fehl (`fake()` nicht gefunden) – dann entweder `APP_ENV=production` setzen oder
+> mit Dev-Paketen installieren.
 
 ---
 
